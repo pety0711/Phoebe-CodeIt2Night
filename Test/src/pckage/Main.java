@@ -1,5 +1,7 @@
 package pckage;
 
-public class Main {
+import java.io.Console;
 
+public class Main {
+  	
 }
