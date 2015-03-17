@@ -15,12 +15,47 @@ public class Arena {
 	/** The gamers. */
 	private List<Robot> gamers;
 	
+	/** The dimension*/
+	private CoordVector dim;
+	
+	/** Number of Robots */
+	private int noRobots = 2;
+	
+	public Arena(){
+		int[] tmp = {5, 2};
+		try {
+			dim = new CoordVector(tmp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		generateFields(dim);
+		
+		for (int i = 0; i < noRobots; i++)
+		{
+			addRobot("Robot" + i);
+		}
+	}
+	
 	/**
 	 * Generate fields.
 	 *
 	 * @param size the size
 	 */
-	public void generateFields(Vector size){
+	public void generateFields(CoordVector size){
+		
+		//TODO erre valami algoritmust kitalálni, különben a pálya kitalálsába fogunk belezöldülni...
+		SafeZone s0 = new SafeZone();
+		SafeZone s1 = new SafeZone();
+		SafeZone s2 = new SafeZone();
+		SafeZone s3 = new SafeZone();
+		SafeZone s4 = new SafeZone();
+		SafeZone sr0 = new SafeZone();
+		SafeZone sr1 = new SafeZone();
+		
+		Putty p = new Putty();
+		Oil o = new Oil();
+		DangerZone d = new DangerZone();
 		
 	}
 	
