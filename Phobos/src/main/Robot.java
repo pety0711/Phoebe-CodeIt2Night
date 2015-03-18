@@ -17,7 +17,7 @@ public class Robot {
 	public String id;
 	
 	/** The speed. */
-	private Vector speed;
+	private CoordVector speed;
 	
 	/** The points. */
 	private int points;
@@ -31,8 +31,29 @@ public class Robot {
 	/** The is it alive. */
 	boolean isItAlive;
 	
+	/** Robot stands on this field */
+	Field field;
+
 	/** The arena. */
 	Arena arena;
+	
+	
+	/** Default Constructor */
+	public Robot() {
+		
+	}
+	
+	public Robot(String id, Arena a) {
+		this.id = id;
+		isItAlive = true;
+		arena = a;
+		
+		puttySupply = 3;
+		oilSupply = 3;
+		points = 0;
+		
+		speed = new CoordVector();
+	}
 	
 	/**
 	 * Put putty.
@@ -118,5 +139,14 @@ public class Robot {
 	public int getPoints() {
 		return points;
 	}
+	
+	public Field getField() {
+		return field;
+	}
 
+	public void setField(Field field) {
+		this.field = field;
+	}
+
+	
 }

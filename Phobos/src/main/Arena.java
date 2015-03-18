@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -8,6 +9,9 @@ import java.util.Vector;
  * The Class Arena.
  */
 public class Arena {
+	
+	public static final int robot0StartField = 5;
+	public static final int robot1StartField = 6;
 	
 	/** The fields. */
 	private List<Field> fields;
@@ -35,6 +39,9 @@ public class Arena {
 		{
 			addRobot("Robot" + i);
 		}
+
+		gamers.get(0).setField(fields.get(robot0StartField));
+		gamers.get(1).setField(fields.get(robot1StartField));
 	}
 	
 	/**
@@ -44,7 +51,7 @@ public class Arena {
 	 */
 	public void generateFields(CoordVector size){
 		
-		//TODO erre valami algoritmust kitalálni, különben a pálya kitalálsába fogunk belezöldülni...
+		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
 		SafeZone s0 = new SafeZone();
 		SafeZone s1 = new SafeZone();
 		SafeZone s2 = new SafeZone();
@@ -57,6 +64,31 @@ public class Arena {
 		Oil o = new Oil();
 		DangerZone d = new DangerZone();
 		
+		//TODO na meg ez is probléma lesz
+		List<Field> temp = new ArrayList<Field>();
+		temp.add(s0);
+		temp.add(s1);
+		temp.add(s2);
+		temp.add(s3);
+		temp.add(s4);
+		temp.add(sr0);
+		temp.add(sr1);
+		temp.add(p);
+		temp.add(o);
+		temp.add(d);
+
+		//TODO valakinek van ötlete erre?
+		s0.setNeighbours(temp);
+		s1.setNeighbours(temp);
+		s2.setNeighbours(temp);
+		s3.setNeighbours(temp);
+		s4.setNeighbours(temp);
+		sr0.setNeighbours(temp);
+		sr1.setNeighbours(temp);
+		p.setNeighbours(temp);
+		o.setNeighbours(temp);
+		d.setNeighbours(temp);
+		
 	}
 	
 	/**
@@ -65,7 +97,7 @@ public class Arena {
 	 * @param id the id
 	 */
 	public void addRobot(String id){
-		
+		gamers.add(new Robot(id, this));
 	}
 	
 	/**
