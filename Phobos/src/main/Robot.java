@@ -45,6 +45,7 @@ public class Robot {
 	}
 	
 	public Robot(String id, Arena a) {
+		//Erre van megoldásom, ha Szótárba tároljuk még megalkotom inkább
 		Skeleton.printLastCalledFunction(id,new String[]{id, a.toString()});
 		
 		this.id = id;

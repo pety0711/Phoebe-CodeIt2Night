@@ -76,6 +76,7 @@ public class Arena {
 		Skeleton.printLastCalledFunction(arenaID, new String[]{"size : CoordVector"});
 		
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
+		//+ be kell állítani a szomszédjaikat
 		SafeZone s0 = new SafeZone("s0");
 		SafeZone s1 = new SafeZone("s1");
 		SafeZone s2 = new SafeZone("s2");
