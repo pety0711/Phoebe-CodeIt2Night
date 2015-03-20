@@ -25,7 +25,6 @@ public class Skeleton {
 
 	}
 	
-<<<<<<< HEAD
 	public static char printMenuItems(){
 		String[] description = {"New game",
 				"Put putty",
@@ -49,21 +48,13 @@ public class Skeleton {
 	}
 	
 	//Kiiratások---------------------------------------------------------------------------------------------------------
+	
 	public static void printOutINFO(String s) {
-		System.out.println("INFO> " + s + ";");
-=======
-	public static void PrintOutINFO(String s) {
 		System.out.println("INFO> " + s);
->>>>>>> branch 'master' of https://github.com/pety0711/Phoebe-CodeIt2Night
 	}
 	
-<<<<<<< HEAD
 	public static void printOutDEBUG(String s) {
-		System.out.println("DEBUG> " + s + ";");
-=======
-	public static void PrintOutDEBUG(String s) {
 		System.out.println("DEBUG> " + s);
->>>>>>> branch 'master' of https://github.com/pety0711/Phoebe-CodeIt2Night
 	}
 	
 	public static char requestUserInput(String[] description, char[] requiredInputs) throws Exception {
