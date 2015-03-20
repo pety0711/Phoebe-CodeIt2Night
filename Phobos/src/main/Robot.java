@@ -46,7 +46,7 @@ public class Robot {
 	
 	public Robot(String id, Arena a) {
 		//Erre van megoldásom, ha Szótárba tároljuk még megalkotom inkább
-		Skeleton.printLastCalledFunction(id,new String[]{id, a.toString()});
+		Skeleton.printLastCalledFunction(id,new String[]{id, a.getClass().toString()});
 		
 		this.id = id;
 		isItAlive = true;

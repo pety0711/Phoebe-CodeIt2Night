@@ -7,6 +7,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Struct;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Dávid & Ács
@@ -134,8 +141,38 @@ public class Skeleton {
 		return result;
 	}
 	
+	private static StackTraceElement[] cFunctions = Thread.currentThread().getStackTrace();
 	
-
+	private static String getClassName(){
+		//c - Called
+		//lc-LastCalled
+		StackTraceElement lcElement = cFunctions[2];
+		String s = lcElement.getClassName().toString();
+		String[] lcSplittedClassName = s.split("\\."); //\\ muszáj anélkül nem vág a pontnál
+		String lcClassName = lcSplittedClassName[lcSplittedClassName.length-1];	
+		return lcClassName;
+	}
+	
+	private static String getLCMethodName(){
+		//c - Called
+		//lc-LastCalled
+		StackTraceElement lcElement = cFunctions[2];
+		String lcMethodName = lcElement.getMethodName();
+		if(lcMethodName=="<init>")
+			return getClassName();
+		return lcMethodName;
+	}
+	
+	private static int getCallDepth(){
+		return cFunctions.length;
+	}
+	private static String pullLineIn(){
+		String tabs = new String(); 
+		for (int i = 0; i < getCallDepth()-5; i++) {
+			tabs += "\t";
+		}
+		return tabs;
+	}
 
 	/**
 	 * printLastCalledFunction
@@ -148,36 +185,40 @@ public class Skeleton {
 	 * @since   2015-03-20
 	 */
 	public static void printLastCalledFunction(String id,String[] parameters){
-		
-		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
-		StackTraceElement last = ste[2]; 
-		//mindig a stack 2. eleme szükséges, mert LIFO.
-		
-		//A sor elején lévõ tabulátorok számát határozzuk meg, és tesszük bele egy stringbe, amit csak oda kell tenni
-		//annak a sornak az elejére, ami kiírja a függvényt.
-		String tabs = new String(); 
-		for (int i = 0; i < ste.length-4; i++) {
-			tabs += "\t";
-		}
+		cFunctions = Thread.currentThread().getStackTrace();
 		
 		//Append parameters
 		String appendedParameters = new String(); 
 		for (int i = 0; i < parameters.length; i++) {
-			appendedParameters += parameters[i];
-			if(i < parameters.length - 1){
-				appendedParameters += ", ";
+			if((i<parameters.length-1)&&(i>0)&&(i%2==0))
+				appendedParameters+=", ";
+			if(i%2==1){
+				appendedParameters += " : ";
 			}
+			appendedParameters += parameters[i];
+			
 		}
 		
+		printOutDEBUG(pullLineIn() + id +": " + getClassName()+ " - " + getLCMethodName() + "(" + appendedParameters + ")");
+	} 
+	//Tesz logikailag jobb
+	public static void printLastCalledFunction(String id, HashMap<String,String> parameters){
+		String appendedParameters = new String("");
+
+		parameters.values();
+		parameters.keySet();
+		String[] types = (String[]) parameters.values().toArray();
+		String[] names = (String[]) parameters.keySet().toArray();
+		for(int i= 0;i<names.length;i++){
+			appendedParameters+=names[i]+" : "+types[i];
+			if(i<names.length-1)
+				appendedParameters+=", ";
+		}
 		
-//		for (StackTraceElement s : ste) {
-//			System.out.println(s.getClassName() + " " + s.getMethodName());
-//		}
-		
-		printOutDEBUG(tabs + id +": " + last.getClassName()+ " - " + last.getMethodName() + "(" + appendedParameters + ")");
+		printOutDEBUG(pullLineIn() + id +": " + getClassName()+ " - " + getLCMethodName() + "(" + appendedParameters + ")");
 		
 	} 
-	
+
 	/**
 	 * Prints the out info.
 	 *
