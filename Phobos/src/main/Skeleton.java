@@ -19,7 +19,6 @@ public class Skeleton {
 		 printOutINFO("Start Test!");
 	     printOutDEBUG("Debug");
 	     Robot robot = new Robot();
-	     robot.putOil();
 //	     char r = printMenuItems();
 //	     System.out.print(r);
 	     //New main
@@ -56,15 +55,18 @@ public class Skeleton {
 	
 	//Kiiratások---------------------------------------------------------------------------------------------------------
 
+
 	/**
-	 * A függvény kiírja, melyik függvényt hívtuk utoljára. {id}:<ClassName> - <functionName>({parameters}) formátumban. 
+	 * printLastCalledFunction
+	 * A függvény kiírja, melyik függvényt hívtuk utoljára. {id}:<ClassName> - <functionName>({parameters}) formátumban.
+	 * Célszerû a paraméter stringbe vesszõket tenni a paraméterek elválasztására, ezt ez a függvény nem teszi meg! 
 	 * @param id - annak az objektumnak az azonosítója, amelyiken a függvényhívást végeztük.
 	 * @param parameters - a hívott függvénynek átadott paraméterek
 	 * @author  Akos Recse
 	 * @version 1.0
 	 * @since   2015-03-20
 	 */
-	public static void printLastCalledFunction(String id,String parameters){
+	public static void printLastCalledFunction(String id,String[] parameters){
 		
 		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
 		StackTraceElement last = ste[2]; 
@@ -77,11 +79,21 @@ public class Skeleton {
 			tabs += "\t";
 		}
 		
+		//Append parameters
+		String appendedParameters = new String(); 
+		for (int i = 0; i < parameters.length; i++) {
+			appendedParameters += parameters[i];
+			if(i < parameters.length - 1){
+				appendedParameters += ", ";
+			}
+		}
+		
+		
 //		for (StackTraceElement s : ste) {
 //			System.out.println(s.getClassName() + " " + s.getMethodName());
 //		}
 		
-		printOutDEBUG(tabs + id +": " + last.getClassName()+ " - " + last.getMethodName() + "(" + parameters + ")");
+		printOutDEBUG(tabs + id +": " + last.getClassName()+ " - " + last.getMethodName() + "(" + appendedParameters + ")");
 		
 	} 
 	
