@@ -9,7 +9,7 @@ package main;
  *
  * @author Dávid
  */
-public abstract class Patch extends SafeZone{
+public abstract class Patch {
 	
 	/** The life time. */
 	private int lifeTime;

@@ -24,15 +24,13 @@ public class SafeZone extends Field {
 	
 	/**
 	 * Change to putty.
-	 *
-	 * @return the putty
 	 */
-	public Putty changeToPutty() {
-		return null;
+	public void addPutty(Putty p) {
 	}
-	public Oil changeToOil() {
-		return null;
+	
+	public void addOil(Oil o) {
 	}
+	
 	public Field step(Vector speed) {
 		return null;
 	}

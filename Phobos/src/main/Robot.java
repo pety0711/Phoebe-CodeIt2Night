@@ -124,14 +124,6 @@ public class Robot {
 	}
 
 	/**
-	 * Change fields.
-	 *
-	 * @param s the s
-	 */
-	public void changeFields(SafeZone s){
-	}
-	
-	/**
 	 * Gets the points.
 	 *
 	 * @return the points

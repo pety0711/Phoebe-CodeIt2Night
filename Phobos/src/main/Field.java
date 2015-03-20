@@ -74,16 +74,6 @@ public abstract class  Field {
 	}
 	
 	/**
-	 * Change neighbour.
-	 *
-	 * @param from the from
-	 * @param to the to
-	 */
-	public void changeNeighbour(SafeZone from, SafeZone to) {
-		//TODO
-	}
-	
-	/**
 	 * Sets the coord.
 	 *
 	 * @param c the new coord

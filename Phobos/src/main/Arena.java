@@ -73,8 +73,6 @@ public class Arena {
 		temp.add(s4);
 		temp.add(sr0);
 		temp.add(sr1);
-		temp.add(p);
-		temp.add(o);
 		temp.add(d);
 
 		//TODO valakinek van ötlete erre?
@@ -84,9 +82,6 @@ public class Arena {
 		s3.setNeighbours(temp);
 		s4.setNeighbours(temp);
 		sr0.setNeighbours(temp);
-		sr1.setNeighbours(temp);
-		p.setNeighbours(temp);
-		o.setNeighbours(temp);
 		d.setNeighbours(temp);
 		
 	}

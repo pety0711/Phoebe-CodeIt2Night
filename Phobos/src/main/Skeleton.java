@@ -12,10 +12,6 @@ import java.io.InputStreamReader;
  *
  */
 public class Skeleton {
-
-	public main(String[] args){
-		
-	}
 	
 	public static void PrintOutINFO(String s) {
 		System.out.println("INFO> " + s + ";");
