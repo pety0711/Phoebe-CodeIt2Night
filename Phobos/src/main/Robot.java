@@ -14,7 +14,7 @@ import java.util.Vector;
 public class Robot {
 	
 	/** The id. */
-	public String id = "R2D2";
+	public String id;
 	
 	/** The speed. */
 	private CoordVector speed;
@@ -40,10 +40,13 @@ public class Robot {
 	
 	/** Default Constructor */
 	public Robot() {
+		Skeleton.printLastCalledFunction(id,new String[]{});
 		
 	}
 	
 	public Robot(String id, Arena a) {
+		Skeleton.printLastCalledFunction(id,new String[]{id, a.toString()});
+		
 		this.id = id;
 		isItAlive = true;
 		arena = a;
@@ -59,25 +62,23 @@ public class Robot {
 	 * Put putty.
 	 */
 	public void putPutty(){
-		Skeleton.printLastCalledFunction(id,"");
-		tick();
-		
+		Skeleton.printLastCalledFunction(id,new String[]{});
+		Putty putty = new Putty();
+		field.addPutty(putty);
 	}
 	
 	/**
 	 * Put oil.
 	 */
 	public void putOil(){
-		Skeleton.printLastCalledFunction(id,"");
-		putPutty();
-		tick();
+		Skeleton.printLastCalledFunction(id,new String[]{});
 	}
 	
 	/**
 	 * Tick.
 	 */
 	public void tick(){
-		Skeleton.printLastCalledFunction(id,"");
+		Skeleton.printLastCalledFunction(id,new String[]{});
 	}
 	
 	/**
@@ -136,14 +137,17 @@ public class Robot {
 	 * @return the points
 	 */
 	public int getPoints() {
+		Skeleton.printLastCalledFunction(id,new String[]{});
 		return points;
 	}
 	
 	public Field getField() {
+		Skeleton.printLastCalledFunction(id,new String[]{});
 		return field;
 	}
 
 	public void setField(Field field) {
+		Skeleton.printLastCalledFunction(id,new String[]{});
 		this.field = field;
 	}
 
