@@ -13,6 +13,13 @@ import java.io.InputStreamReader;
  */
 public class Skeleton {
 	
+	public static void main(String [ ] args)
+	{
+	     PrintOutINFO("Start Test!");
+	     PrintOutDEBUG("Debug");
+	     //New main
+	}
+	
 	public static void PrintOutINFO(String s) {
 		System.out.println("INFO> " + s + ";");
 	}
