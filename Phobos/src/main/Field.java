@@ -4,6 +4,7 @@
 package main;
 
 import java.awt.Point;//Coord
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector; 
 
@@ -21,6 +22,9 @@ public abstract class  Field {
 	/** The robots. */
 	private List<Robot> robots;
 	
+	/** The Patches */
+	protected ArrayList<Patch> patches;
+	
 	/** The arena. */
 	private Arena arena;
 	
@@ -35,6 +39,26 @@ public abstract class  Field {
 	public String getRobotId() {
 		//TODO
 		return null;
+	}
+	
+	
+	
+	public Field() {
+		patches = new ArrayList<Patch>();
+	}
+
+
+
+	/**
+	 * Change to putty.
+	 */
+	public void addPutty(Putty p) {
+		patches.add(p);
+		patches = new ArrayList<Patch>();
+	}
+	
+	public void addOil(Oil o) {
+		patches.add(o);
 	}
 	
 	/**
