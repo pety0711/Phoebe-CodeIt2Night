@@ -16,7 +16,7 @@ public class Skeleton {
 	
 	public static void main(String [ ] args)
 	{
-	     printOutINFO("Start Test!");
+		 printOutINFO("Start Test!");
 	     printOutDEBUG("Debug");
 	     char r = printMenuItems();
 	     System.out.print(r);
