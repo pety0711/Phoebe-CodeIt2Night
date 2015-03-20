@@ -84,9 +84,8 @@ public class Robot {
 	/**
 	 * Investigate collision.
 	 *
-	 * @param coord the coord
 	 */
-	public void investigateCollision(Vector coord){
+	public void investigateCollision(){
 	}
 	
 	/**
