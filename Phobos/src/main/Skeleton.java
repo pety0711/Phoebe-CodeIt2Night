@@ -12,9 +12,6 @@ import java.io.InputStreamReader;
  *
  */
 public class Skeleton {
-<<<<<<< HEAD
-=======
-	
 	
 	
 	public static void main(String [ ] args)
@@ -48,7 +45,6 @@ public class Skeleton {
 		}
 		return result;
 	}
->>>>>>> branch 'master' of https://github.com/pety0711/Phoebe-CodeIt2Night.git
 	
 	//Kiiratások---------------------------------------------------------------------------------------------------------
 	
