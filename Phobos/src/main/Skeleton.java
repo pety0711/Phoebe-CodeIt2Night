@@ -6,6 +6,7 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Struct;
 
 /**
  * @author Dávid & Ács
@@ -18,7 +19,9 @@ public class Skeleton {
 //		System.out.println(s.getClassName() + " " + s.getMethodName());
 //	}
 //	System.out.println(ste.length);
-	static String[] useCaseOptions = {"New game",
+	
+	static String[] useCaseOptions = {
+			"New game",
 			"Put putty",
 			"Put oil",
 			"Stepping on a putty",
@@ -26,63 +29,92 @@ public class Skeleton {
 			"Step on a safezone",
 			"Stepping on a dangerzone",
 			"Collision",
-			"Finish game"};
+			"Finish game",
+			"Close tester"
+	};
 	
-	static char[] requiredInputs = {'1','2','3','4','5','6','7','8','9'};
+	static char[] requiredInputs = {'1','2','3','4','5','6','7','8','9','0'};
+	static int[] requiredInputsInt = {1,2,3,4,5,6,7,8,9,0};
+	static String[] optionsType = {
+			"Use-Case",
+			"Use-Case",
+			"Use-Case",
+			"Use-Case",
+			"Use-Case",
+			"Use-Case",
+			"Use-Case",
+			"Use-Case",
+			"Use-Case",
+			"Program"
+	};
 	public static void main(String [ ] args)
-	{
+	{ 	
+		String[] emptyStrArray = new String[]{""};
 		boolean runMain = true;
+		Arena a = null;
+		printOutINFO("<init> CodeIt2Night Use-Case Tester - OK");
 		do {
-			try {
-				Runtime.getRuntime().exec("cls");
-			} catch (IOException e) {
-				for (int i = 0; i < 50; i++) {
-					System.out.println();
-				}
-			}
-			printOutINFO("Start Use-case Test!");
-		     printOutDEBUG("Debug");
-		     //
-		     String[] emptyStrArray = new String[]{""};
-		     Arena a = new Arena();
+			insertSpace();
+			printOutINFO("Menu Items List");
 		     
-		     char selectedUsecase = printMenuItems(); //Bekérjük a felhasználótól a választandó Use-case számát
+		     int selectedUsecase = printMenuItems(); //Bekérjük a felhasználótól a választandó Use-case számát
 		     
-		     System.out.println(selectedUsecase);
+		     System.out.println();
+		     if(selectedUsecase>0)
+		    	 printOutINFO("Selected Use-case:\t"+useCaseOptions[selectedUsecase-1]);
+		     System.out.println();
 		     switch(selectedUsecase){
-			     case '0': 
-			    	 
+			     case 0: 
+			    	 runMain = false;
+			    	 insertSpace();
+			    	 printOutINFO("<close> CodeIt2Night Use-Case Tester - OK");	
 			    	 break;
-			     case '1':
-			    	 printOutINFO("Selected Use-case:\t"+useCaseOptions[2]);
+			     case 1:
 			    	 printLastCalledFunction("a", emptyStrArray);
+			    	 a = new Arena();
+			    	 a.tick();
 			    	 break;
-			     case '2': //doWork
+			     case 2: //doWork
 			    	 break;
-			     case '3': //doWork
+			     case 3: //doWork
 			    	 break;
-			     case '4': //doWork
+			     case 4: //doWork
 			    	 break;
-			     case '5': //doWork
+			     case 5: //doWork
 			    	 break;
-			     case '6': //doWork
+			     case 6: //doWork
 			    	 break;
-			     case '7': //doWork
+			     case 7: //doWork
 			    	 break;
-			     case '8': //doWork
+			     case 8: //doWork
 			    	 break;
-			     case '9': //doWork
+			     case 9: //doWork
+			    	 if(a==null)
+			    		 a = new Arena();
+			    	 printLastCalledFunction("a", emptyStrArray);
+			    	 a.finishGame();
 			    	 break;
 				 default: 
 					 break;
 		     }
+		
 		     
 		} while (runMain);
 		
 		//Start 
 		 
 	}
-	
+	private static void insertSpace(){
+		for (int i = 0; i < 50; i++) {
+			System.out.print('_');
+		}
+		System.out.println("");
+		for (int i = 0; i < 50; i++) {
+			System.out.print('_');
+		}
+		System.out.println("");
+		System.out.println("");
+	}
 	
 	//Kiiratások---------------------------------------------------------------------------------------------------------
 
@@ -91,13 +123,11 @@ public class Skeleton {
 	 *
 	 * @return the char
 	 */
-	public static char printMenuItems(){
-		
-		
-		char result = 'o';
+	public static int printMenuItems(){
+		int result = -1;
 		
 		try {
-			result = requestUserInput(useCaseOptions, requiredInputs);
+			result = requestUserInput(useCaseOptions, requiredInputsInt,optionsType);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -162,6 +192,11 @@ public class Skeleton {
 	public static void printOutDEBUG(String s) {
 		System.out.println("DEBUG>\t" + s);
 	}
+	private static enum infoType{UseCase,Program};
+	infoType info = infoType.UseCase;;
+	
+	public static String getInfoType(infoType info){
+		return info.toString();}
 	
 	/**
 	 * Request user input.
@@ -171,6 +206,58 @@ public class Skeleton {
 	 * @return the char
 	 * @throws Exception the exception
 	 */
+	public static int requestUserInput(String[] description, int[] requiredInputs, String[] optionsType) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println();
+		for(int i = 0; i < description.length; i++) {
+			System.out.println("INFO> "+optionsType[i]+":\t" +"Please press '"+  requiredInputs[i]+ "'" +" for "+ description[i] );
+		}
+		
+		System.out.println();
+		//TODO - csak ekkor várunk user inputot?
+		System.out.println("Please select a USE-CASE from the list above!");
+		System.out.print("WAITING_FOR_USER_INPUT> ");
+		
+		String s = "";
+		
+		// ha talál egyezést, kilép, különben pedig addig kérünk tõle inputot, amíg nem ad jó választ.
+		int cnt = 10;
+		while (cnt > 0) {
+			try {
+				s = br.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			if(!s.isEmpty()) {
+				char[] c = s.substring(s.length() - 1).toCharArray();
+				int input = Character.getNumericValue(c[0]);//Beparzoljuk a bemenetet.
+				for (int i = 0; i < requiredInputs.length; i++) {
+					if(i==input)
+						return input;
+				}
+			}
+			
+			//ha ide eljutottunk, nincs jó input
+			System.out.println("Please select a USE-CASE from the list above!");
+			System.out.print("WAITING_FOR_USER_INPUT> ");
+			cnt --;
+		}
+		//elvileg csak 0 lehet itt már...
+		if (cnt < 1)
+			throw new Exception("User Input failed");
+		
+		return -1;
+	}
+	/**
+	 * Request user input.
+	 *
+	 * @param description the description
+	 * @param requiredInputs the required inputs
+	 * @return the char
+	 * @throws Exception the exception
+	 */
+	/*
 	public static char requestUserInput(String[] description, char[] requiredInputs) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println();
@@ -213,6 +300,6 @@ public class Skeleton {
 			throw new Exception("User Input failed");
 		
 		return '0';
-	}
+	}*/
 	//Kiiratások---------------------------------------------------------------------------------------------------------
 }
