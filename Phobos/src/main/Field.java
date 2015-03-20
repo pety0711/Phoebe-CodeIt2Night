@@ -25,7 +25,7 @@ public abstract class  Field {
 	private Arena arena;
 	
 	/** The coord. */
-	private Point coord;
+	private CoordVector coord;
 	
 	/**
 	 * Gets the robot id.
@@ -33,6 +33,7 @@ public abstract class  Field {
 	 * @return the robot id
 	 */
 	public String getRobotId() {
+		//TODO
 		return null;
 	}
 	
@@ -49,7 +50,7 @@ public abstract class  Field {
 	 * @return the neighbours
 	 */
 	public List<Field> getNeighbours() {
-		return null;
+		return neighbours;
 	}
 	
 	/**
@@ -58,6 +59,7 @@ public abstract class  Field {
 	 * @param fields the new neighbours
 	 */
 	public void setNeighbours(List<Field> fields) {
+		neighbours = fields;
 	}
 	
 	/**
@@ -66,7 +68,8 @@ public abstract class  Field {
 	 * @param direction the direction
 	 * @return the neighbour
 	 */
-	public Field getNeighbour(Vector<?> direction) {
+	public Field getNeighbour(CoordVector direction) {
+		//TODO
 		return null;
 	}
 	
@@ -77,6 +80,7 @@ public abstract class  Field {
 	 * @param to the to
 	 */
 	public void changeNeighbour(SafeZone from, SafeZone to) {
+		//TODO
 	}
 	
 	/**
@@ -84,7 +88,8 @@ public abstract class  Field {
 	 *
 	 * @param c the new coord
 	 */
-	public void setCoord(Point c) {
+	public void setCoord(CoordVector c) {
+		coord = c;
 	}
 	
 	/**
@@ -92,8 +97,8 @@ public abstract class  Field {
 	 *
 	 * @return the coord
 	 */
-	public Point getCoord() {
-		return null;
+	public CoordVector getCoord() {
+		return coord;
 	}
 	
 	

@@ -17,8 +17,6 @@ public class SafeZone extends Field {
 	@Override
 	public void steppedOnYou(Robot r) {
 		// TODO Auto-generated method stub
-		System.out.print("LoL");
-		//okskskskdaksdasd
 	}
 
 	public void investigateCollision() {
