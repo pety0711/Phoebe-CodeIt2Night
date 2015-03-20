@@ -21,11 +21,11 @@ public class Skeleton {
 	}
 	
 	public static void PrintOutINFO(String s) {
-		System.out.println("INFO> " + s + ";");
+		System.out.println("INFO> " + s);
 	}
 	
 	public static void PrintOutDEBUG(String s) {
-		System.out.println("DEBUG> " + s + ";");
+		System.out.println("DEBUG> " + s);
 	}
 	
 	public static char RequestUserInput(String[] description, char[] requiredInputs) throws Exception {
