@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Arena.
  */
@@ -35,6 +34,8 @@ public class Arena {
 		
 		generateFields(dim);
 		
+		gamers = new ArrayList<Robot>();
+		
 		for (int i = 0; i < noRobots; i++)
 		{
 			addRobot("Robot" + i);
@@ -52,25 +53,39 @@ public class Arena {
 	public void generateFields(CoordVector size){
 		
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
-		SafeZone s0 = new SafeZone();
-		SafeZone s1 = new SafeZone();
-		SafeZone s2 = new SafeZone();
-		SafeZone s3 = new SafeZone();
-		SafeZone s4 = new SafeZone();
-		SafeZone sr0 = new SafeZone();
-		SafeZone sr1 = new SafeZone();
+		SafeZone s0 = new SafeZone("s0");
+		SafeZone s1 = new SafeZone("s1");
+		SafeZone s2 = new SafeZone("s2");
+		SafeZone sp = new SafeZone("sp");
+		SafeZone so = new SafeZone("so");
+		SafeZone sr0 = new SafeZone("sr0");
+		SafeZone sr1 = new SafeZone("sr1");
 		
-		Putty p = new Putty();
-		Oil o = new Oil();
+		//TODO név paraméternek
 		DangerZone d = new DangerZone();
+
+		Putty p = new Putty();
+		sp.addPutty(p);
+		Oil o = new Oil();
+		so.addOil(o);
+		
+		fields = new ArrayList<Field>();
+		fields.add(s0);
+		fields.add(s1);
+		fields.add(s2);
+		fields.add(sp);
+		fields.add(so);
+		fields.add(sr0);
+		fields.add(sr1);
+		fields.add(d);		
 		
 		//TODO na meg ez is probléma lesz
 		List<Field> temp = new ArrayList<Field>();
 		temp.add(s0);
 		temp.add(s1);
 		temp.add(s2);
-		temp.add(s3);
-		temp.add(s4);
+		temp.add(sp);
+		temp.add(so);
 		temp.add(sr0);
 		temp.add(sr1);
 		temp.add(d);
@@ -79,9 +94,10 @@ public class Arena {
 		s0.setNeighbours(temp);
 		s1.setNeighbours(temp);
 		s2.setNeighbours(temp);
-		s3.setNeighbours(temp);
-		s4.setNeighbours(temp);
+		sp.setNeighbours(temp);
+		so.setNeighbours(temp);
 		sr0.setNeighbours(temp);
+		sr1.setNeighbours(temp);
 		d.setNeighbours(temp);
 		
 	}

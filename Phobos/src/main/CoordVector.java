@@ -9,8 +9,9 @@ public class CoordVector {
 	}
 	
 	public CoordVector(int[] arg0) throws Exception {
-		if(arg0.length == points.length)
+		if(arg0.length == dimension) {
 			points = arg0;
+		}
 		else throw new Exception("arg0's dimension is not correct!");
 	}
 	

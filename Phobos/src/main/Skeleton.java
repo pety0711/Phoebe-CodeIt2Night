@@ -20,7 +20,7 @@ public class Skeleton {
 		 printOutINFO("Start Use-case Test!");
 	     printOutDEBUG("Debug");
 	     //
-	     //Arena a = new Arena();
+	     Arena a = new Arena();
 	     Robot robot = new Robot();
 //	     char r = printMenuItems();
 //	     System.out.print(r);
