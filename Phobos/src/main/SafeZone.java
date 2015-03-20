@@ -14,16 +14,15 @@ public class SafeZone extends Field {
 
 	private String id;
 
-	private ArrayList<Patch> patches;
+	
 	
 	public SafeZone() {
 		id = "";
-		patches = new ArrayList<Patch>();
+		
 	}
 	
 	public SafeZone(String id) {
 		this.id = id; 
-		patches = new ArrayList<Patch>();
 	}
 	
 	/* (non-Javadoc)
@@ -48,16 +47,6 @@ public class SafeZone extends Field {
 		
 	}
 	
-	/**
-	 * Change to putty.
-	 */
-	public void addPutty(Putty p) {
-		patches.add(p);
-	}
-	
-	public void addOil(Oil o) {
-		patches.add(o);
-	}
 	
 	public Field step(Vector speed) {
 		return null;
