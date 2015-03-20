@@ -13,22 +13,50 @@ import java.io.InputStreamReader;
  */
 public class Skeleton {
 	
+	
+	
 	public static void main(String [ ] args)
 	{
-	     PrintOutINFO("Start Test!");
-	     PrintOutDEBUG("Debug");
+	     printOutINFO("Start Test!");
+	     printOutDEBUG("Debug");
+	     char r = printMenuItems();
+	     System.out.print(r);
 	     //New main
+
 	}
 	
-	public static void PrintOutINFO(String s) {
+	public static char printMenuItems(){
+		String[] description = {"New game",
+				"Put putty",
+				"Put oil",
+				"Stepping on a putty",
+				"Stepping on an oil",
+				"Step on a safezone",
+				"Stepping on a dangerzone",
+				"Collision",
+				"Finish game"};
+
+		char[] requiredInputs = {'1','2','3','4','5','6','7','8','9'};
+		char result = '0';
+		try {
+			result = requestUserInput(description, requiredInputs);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	//Kiiratások---------------------------------------------------------------------------------------------------------
+	public static void printOutINFO(String s) {
 		System.out.println("INFO> " + s + ";");
 	}
 	
-	public static void PrintOutDEBUG(String s) {
+	public static void printOutDEBUG(String s) {
 		System.out.println("DEBUG> " + s + ";");
 	}
 	
-	public static char RequestUserInput(String[] description, char[] requiredInputs) throws Exception {
+	public static char requestUserInput(String[] description, char[] requiredInputs) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		for(int i = 0; i < description.length; i++) {
 			System.out.println("INFO> Use-Case: " + description[i] + " - please press - '" + requiredInputs[i] + "'");
@@ -67,4 +95,5 @@ public class Skeleton {
 		
 		return '0';
 	}
+	//Kiiratások---------------------------------------------------------------------------------------------------------
 }
