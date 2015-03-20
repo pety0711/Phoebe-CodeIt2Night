@@ -40,7 +40,7 @@ public class Robot {
 	
 	/** Default Constructor */
 	public Robot() {
-		Skeleton.printLastCalledFunction(id,new String[]{});
+		Skeleton.printLastCalledFunction(id);
 		
 	}
 	
@@ -63,7 +63,7 @@ public class Robot {
 	 * Put putty.
 	 */
 	public void putPutty(){
-		Skeleton.printLastCalledFunction(id,new String[]{});
+		Skeleton.printLastCalledFunction(id);
 		Putty putty = new Putty();
 		field.addPutty(putty);
 	}
@@ -72,14 +72,14 @@ public class Robot {
 	 * Put oil.
 	 */
 	public void putOil(){
-		Skeleton.printLastCalledFunction(id,new String[]{});
+		Skeleton.printLastCalledFunction(id);
 	}
 	
 	/**
 	 * Tick.
 	 */
 	public void tick(){
-		Skeleton.printLastCalledFunction(id,new String[]{});
+		Skeleton.printLastCalledFunction(id);
 	}
 	
 	/**
@@ -137,17 +137,17 @@ public class Robot {
 	 * @return the points
 	 */
 	public int getPoints() {
-		Skeleton.printLastCalledFunction(id,new String[]{});
+		Skeleton.printLastCalledFunction(id);
 		return points;
 	}
 	
 	public Field getField() {
-		Skeleton.printLastCalledFunction(id,new String[]{});
+		Skeleton.printLastCalledFunction(id);
 		return field;
 	}
 
 	public void setField(Field field) {
-		Skeleton.printLastCalledFunction(id,new String[]{});
+		Skeleton.printLastCalledFunction(id);
 		this.field = field;
 	}
 

@@ -146,13 +146,13 @@ public class Arena {
 	 * @param id the id
 	 */
 	public void addRobot(String id){
-		Skeleton.printLastCalledFunction(arenaID, new String[]{"id : String"});
+		Skeleton.printLastCalledFunction(arenaID, new String[]{id,"String"});
 		
 		gamers.put(id, new Robot(id, this));
 	}
 	
 	public void registerPatch(Patch p) {
-		Skeleton.printLastCalledFunction(arenaID, new String[]{"id : String"});
+		Skeleton.printLastCalledFunction(arenaID, new String[]{"p","Patch"});
 		
 		patches.add(p);
 	}

@@ -201,6 +201,12 @@ public class Skeleton {
 		
 		printOutDEBUG(pullLineIn() + id +": " + getClassName()+ " - " + getLCMethodName() + "(" + appendedParameters + ")");
 	} 
+	//Paraméter nélküli
+	public static void printLastCalledFunction(String id){
+		cFunctions = Thread.currentThread().getStackTrace();
+
+		printOutDEBUG(pullLineIn() + id +": " + getClassName()+ " - " + getLCMethodName() + "()");
+	} 
 	//Tesz logikailag jobb
 	public static void printLastCalledFunction(String id, HashMap<String,String> parameters){
 		String appendedParameters = new String("");
