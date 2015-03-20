@@ -16,16 +16,47 @@ public class Skeleton {
 	
 	public static void main(String [ ] args)
 	{
-		 printOutINFO("Start Test!");
+		//Start 
+		 printOutINFO("Start Use-case Test!");
 	     printOutDEBUG("Debug");
+	     //
+	     //Arena a = new Arena();
 	     Robot robot = new Robot();
 	     robot.putOil();
 //	     char r = printMenuItems();
 //	     System.out.print(r);
 	     //New main
-
+	     
+	     
+	     char selectedUsecase = printMenuItems();
+	     switch(selectedUsecase){
+		     case 0: System.out.println("0 selected");
+		    	 break;
+		     case 1: System.out.println("1 selected");
+		    	 break;
+		     case 2: //doWork
+		    	 break;
+		     case 3: //doWork
+		    	 break;
+		     case 4: //doWork
+		    	 break;
+		     case 5: //doWork
+		    	 break;
+		     case 6: //doWork
+		    	 break;
+		     case 7: //doWork
+		    	 break;
+		     case 8: //doWork
+		    	 break;
+		     case 9: //doWork
+		    	 break;
+			 default: 
+				 break;
+	     }
+	     
 	}
 	
+	//Kiiratások---------------------------------------------------------------------------------------------------------
 	public static char printMenuItems(){
 		String[] description = {"New game",
 				"Put putty",
@@ -35,7 +66,8 @@ public class Skeleton {
 				"Step on a safezone",
 				"Stepping on a dangerzone",
 				"Collision",
-				"Finish game"};
+				"Finish game",
+				"Close test program"};
 		
 //		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
 //		for (StackTraceElement s : ste) {
@@ -43,8 +75,8 @@ public class Skeleton {
 //		}
 //		System.out.println(ste.length);
 
-		char[] requiredInputs = {'1','2','3','4','5','6','7','8','9'};
-		char result = '0';
+		char[] requiredInputs = {'1','2','3','4','5','6','7','8','9','0'};
+		char result = '1';
 		try {
 			result = requestUserInput(description, requiredInputs);
 		} catch (Exception e) {
@@ -54,7 +86,7 @@ public class Skeleton {
 		return result;
 	}
 	
-	//Kiiratások---------------------------------------------------------------------------------------------------------
+	
 
 	/**
 	 * A függvény kiírja, melyik függvényt hívtuk utoljára. {id}:<ClassName> - <functionName>({parameters}) formátumban. 
@@ -95,9 +127,13 @@ public class Skeleton {
 	
 	public static char requestUserInput(String[] description, char[] requiredInputs) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println();
 		for(int i = 0; i < description.length; i++) {
-			System.out.println("INFO> Use-Case: " + description[i] + " - please press - '" + requiredInputs[i] + "'");
+			System.out.println("INFO> Use-Case:\t" +"Please press '"+  requiredInputs[i]+ "'" +" for "+ description[i] );
 		}
+		System.out.println("INFO> Exit:\t" +"Please press '0'" +" for "+ "Close test program" );
+		
+		System.out.println();
 		//TODO - csak ekkor várunk user inputot?
 		System.out.println("Please select a USE-CASE from the list above!");
 		System.out.print("WAITING_FOR_USER_INPUT> ");
