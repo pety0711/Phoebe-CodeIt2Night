@@ -34,6 +34,12 @@ public class Skeleton {
 				"Stepping on a dangerzone",
 				"Collision",
 				"Finish game"};
+		
+//		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+//		for (StackTraceElement s : ste) {
+//			System.out.println(s.getClassName() + " " + s.getMethodName());
+//		}
+//		System.out.println(ste.length);
 
 		char[] requiredInputs = {'1','2','3','4','5','6','7','8','9'};
 		char result = '0';
