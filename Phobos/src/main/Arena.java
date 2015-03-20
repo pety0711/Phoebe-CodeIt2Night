@@ -1,7 +1,9 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 /**
@@ -16,7 +18,7 @@ public class Arena {
 	private List<Field> fields;
 	
 	/** The gamers. */
-	private List<Robot> gamers;
+	private Map<String, Robot> gamers;
 	
 	/** The dimension*/
 	private CoordVector dim;
@@ -34,7 +36,7 @@ public class Arena {
 		
 		generateFields(dim);
 		
-		gamers = new ArrayList<Robot>();
+		gamers = new HashMap<String, Robot>();
 		
 		for (int i = 0; i < noRobots; i++)
 		{
@@ -108,7 +110,7 @@ public class Arena {
 	 * @param id the id
 	 */
 	public void addRobot(String id){
-		gamers.add(new Robot(id, this));
+		gamers.put(id, new Robot(id, this));
 	}
 	
 	/**
@@ -118,7 +120,7 @@ public class Arena {
 	 * @param id the id
 	 */
 	public void killRobot(int points, String id){
-		
+		Skeleton.printOutINFO(id + " Robot died, points: " + points);
 	}
 	
 	/**
@@ -128,6 +130,14 @@ public class Arena {
 	 * @param to the to
 	 */
 	public void changeField(SafeZone from, SafeZone to){
+		
+	}
+	
+	public void tick() {
+		
+	}
+	
+	public void finishGame() {
 		
 	}
 }
