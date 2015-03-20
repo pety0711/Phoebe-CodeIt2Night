@@ -17,12 +17,14 @@ public class SafeZone extends Field {
 	
 	
 	public SafeZone() {
+		
 		id = "";
 		
 	}
 	
 	public SafeZone(String id) {
-		this.id = id; 
+		this.id = id;
+		Skeleton.printLastCalledFunction(id, new String[]{""});
 	}
 	
 	/* (non-Javadoc)

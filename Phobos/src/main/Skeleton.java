@@ -51,7 +51,7 @@ public class Skeleton {
 	{ 	
 		String[] emptyStrArray = new String[]{""};
 		boolean runMain = true;
-		Arena a = null;
+		Arena arena = null;
 		printOutINFO("<init> CodeIt2Night Use-Case Tester - OK");
 		do {
 			insertSpace();
@@ -70,9 +70,7 @@ public class Skeleton {
 			    	 printOutINFO("<close> CodeIt2Night Use-Case Tester - OK");	
 			    	 break;
 			     case 1:
-			    	 printLastCalledFunction("a", emptyStrArray);
-			    	 a = new Arena();
-			    	 a.tick();
+			    	 arena = new Arena();
 			    	 break;
 			     case 2: //doWork
 			    	 break;
@@ -89,10 +87,10 @@ public class Skeleton {
 			     case 8: //doWork
 			    	 break;
 			     case 9: //doWork
-			    	 if(a==null)
-			    		 a = new Arena();
-			    	 printLastCalledFunction("a", emptyStrArray);
-			    	 a.finishGame();
+			    	 if(arena==null)
+			    		 arena = new Arena();
+			    	 //printLastCalledFunction("a", emptyStrArray);
+			    	 arena.finishGame();
 			    	 break;
 				 default: 
 					 break;
