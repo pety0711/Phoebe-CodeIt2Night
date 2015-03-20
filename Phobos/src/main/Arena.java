@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -14,8 +15,14 @@ public class Arena {
 	public static final int robot0StartField = 5;
 	public static final int robot1StartField = 6;
 	
+	/** */
+	private String arenaID;
+	
 	/** The fields. */
 	private List<Field> fields;
+	
+	/** Patches - temporary*/
+	private List<Patch> patches;
 	
 	/** The gamers. */
 	private Map<String, Robot> gamers;
@@ -26,7 +33,19 @@ public class Arena {
 	/** Number of Robots */
 	private int noRobots = 2;
 	
+	public Arena(String id) {
+		arenaID = id;
+		Skeleton.printLastCalledFunction(arenaID, new String[]{""});
+		Initialize();
+	}
+	
 	public Arena(){
+		Skeleton.printLastCalledFunction(arenaID, new String[]{""});
+		arenaID = "arena";
+		Initialize();
+	}
+	private void Initialize() {
+//		Skeleton.printLastCalledFunction(id, new String[]{""});
 		int[] tmp = {5, 2};
 		try {
 			dim = new CoordVector(tmp);
@@ -53,6 +72,7 @@ public class Arena {
 	 * @param size the size
 	 */
 	public void generateFields(CoordVector size){
+		Skeleton.printLastCalledFunction(arenaID, new String[]{"size : CoordVector"});
 		
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
 		SafeZone s0 = new SafeZone("s0");
@@ -66,9 +86,15 @@ public class Arena {
 		//TODO név paraméternek
 		DangerZone d = new DangerZone();
 
+		patches = new ArrayList<Patch>();
 		Putty p = new Putty();
+		p.setFix();
+		patches.add(p);
 		sp.addPutty(p);
+		
 		Oil o = new Oil();
+		o.setFix();
+		patches.add(o);
 		so.addOil(o);
 		
 		fields = new ArrayList<Field>();
@@ -110,7 +136,15 @@ public class Arena {
 	 * @param id the id
 	 */
 	public void addRobot(String id){
+		Skeleton.printLastCalledFunction(arenaID, new String[]{"id : String"});
+		
 		gamers.put(id, new Robot(id, this));
+	}
+	
+	public void registerPatch(Patch p) {
+		Skeleton.printLastCalledFunction(arenaID, new String[]{"id : String"});
+		
+		patches.add(p);
 	}
 	
 	/**
@@ -120,24 +154,32 @@ public class Arena {
 	 * @param id the id
 	 */
 	public void killRobot(int points, String id){
+		Skeleton.printLastCalledFunction(arenaID, new String[]{"points : int", "id : String"});
+		
 		Skeleton.printOutINFO(id + " Robot died, points: " + points);
 	}
 	
-	/**
-	 * Change field.
-	 *
-	 * @param from the from
-	 * @param to the to
-	 */
-	public void changeField(SafeZone from, SafeZone to){
-		
-	}
-	
 	public void tick() {
+		for (Patch p : patches) {
+			p.tick();
+		}
+		
+		Set<String> keys = gamers.keySet();
+		for (String key : keys) {
+			gamers.get(key).tick();
+		}
+		
+		for (String key : keys) {
+			gamers.get(key).investigateCollision();
+		}
+		
 		
 	}
 	
 	public void finishGame() {
-		
+		Set<String> keys = gamers.keySet();
+		for (String key : keys) {
+			gamers.get(key).killRobot();
+		}
 	}
 }
