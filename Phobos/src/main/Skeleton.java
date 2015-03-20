@@ -143,7 +143,7 @@ public class Skeleton {
 	
 	private static StackTraceElement[] cFunctions = Thread.currentThread().getStackTrace();
 	
-	private static String getClassName(){
+	private static String getlcClassName(){
 		//c - Called
 		//lc-LastCalled
 		StackTraceElement lcElement = cFunctions[2];
@@ -152,14 +152,23 @@ public class Skeleton {
 		String lcClassName = lcSplittedClassName[lcSplittedClassName.length-1];	
 		return lcClassName;
 	}
+	public static String getClassName(Object o){
+		String[] split  =  o.getClass().toString().split("\\.");
+		if(split.length>0)
+			return split[split.length-1];
+		else
+			return "";
+	}
 	
-	private static String getLCMethodName(){
+	private static String getlcMethodName(){
 		//c - Called
 		//lc-LastCalled
 		StackTraceElement lcElement = cFunctions[2];
 		String lcMethodName = lcElement.getMethodName();
+		
 		if(lcMethodName=="<init>")
-			return getClassName();
+			//return getlcClassName();
+			return "<<create>>";
 		return lcMethodName;
 	}
 	
@@ -199,13 +208,13 @@ public class Skeleton {
 			
 		}
 		
-		printOutDEBUG(pullLineIn() + id +": " + getClassName()+ " - " + getLCMethodName() + "(" + appendedParameters + ")");
+		printOutDEBUG(pullLineIn() + id +": " + getlcClassName()+ " - " + getlcMethodName() + "(" + appendedParameters + ")");
 	} 
 	//Paraméter nélküli
 	public static void printLastCalledFunction(String id){
 		cFunctions = Thread.currentThread().getStackTrace();
 
-		printOutDEBUG(pullLineIn() + id +": " + getClassName()+ " - " + getLCMethodName() + "()");
+		printOutDEBUG(pullLineIn() + id +": " + getlcClassName()+ " - " + getlcMethodName() + "()");
 	} 
 	//Tesz logikailag jobb
 	public static void printLastCalledFunction(String id, HashMap<String,String> parameters){
@@ -221,7 +230,7 @@ public class Skeleton {
 				appendedParameters+=", ";
 		}
 		
-		printOutDEBUG(pullLineIn() + id +": " + getClassName()+ " - " + getLCMethodName() + "(" + appendedParameters + ")");
+		printOutDEBUG(pullLineIn() + id +": " + getlcClassName()+ " - " + getlcMethodName() + "(" + appendedParameters + ")");
 		
 	} 
 

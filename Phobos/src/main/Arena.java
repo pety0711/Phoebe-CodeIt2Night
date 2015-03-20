@@ -74,6 +74,8 @@ public class Arena {
 	 */
 	public void generateFields(CoordVector size){
 		Skeleton.printLastCalledFunction(arenaID, new String[]{"size","CoordVector","Alma","String","Körte","String"});
+		/*
+		Ezt légyszí ne töröld ha útban van se, nem tudom hogy ez így elég elegáns megoldás e az elõzõ vagy inkább ezzel kéne folytatni? ez elég bonyolultá teszi ha már így nem az.
 		HashMap<String,String> b = new HashMap<String,String>();
 		b.put("size", "CoordVector");
 		b.put("Alma", "String");
@@ -81,7 +83,7 @@ public class Arena {
 		ArrayList<HashMap<String,String>> l = new ArrayList<HashMap<String,String>>();
 		l.add(b);
 		//Skeleton.printLastCalledFunction(arenaID, b);
-		
+		*/
 		
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
 		//+ be kell állítani a szomszédjaikat
