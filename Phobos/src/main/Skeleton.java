@@ -77,15 +77,20 @@ public class Skeleton {
 			    	 printOutINFO("<close> CodeIt2Night Use-Case Tester - OK");	
 			    	 break;
 			     case 1:
-			    	 arena = new Arena();
+			    	 arena = new Arena(1);
 			    	 break;
 			     case 2: //doWork
 			    	 break;
 			     case 3: //doWork
 			    	 break;
-			     case 4: //doWork
+			     case 4: 
+			    	 if(arena==null)
+			    		 arena = new Arena(4);
+			    	 	arena.tick();
 			    	 break;
-			     case 5: //doWork
+			     case 5: 
+			    	 if(arena==null)
+			    		 arena = new Arena(1);
 			    	 break;
 			     case 6: //doWork
 			    	 break;
@@ -95,7 +100,7 @@ public class Skeleton {
 			    	 break;
 			     case 9: //doWork
 			    	 if(arena==null)
-			    		 arena = new Arena();
+			    		 arena = new Arena(1);
 			    	 //printLastCalledFunction("a", emptyStrArray);
 			    	 arena.finishGame();
 			    	 break;

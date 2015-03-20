@@ -12,7 +12,7 @@ import java.util.Vector;
  */
 public class Arena {
 	
-	public static final int robot0StartField = 5;
+	public static final int robot0StartField = 1;
 	public static final int robot1StartField = 6;
 	
 	/** */
@@ -33,38 +33,61 @@ public class Arena {
 	/** Number of Robots */
 	private int noRobots = 2;
 	
-	public Arena(String id) {
+	public Arena(String id,int debougOnly) {
 		arenaID = id;
 		Skeleton.printLastCalledFunction(arenaID, new String[]{""});
-		Initialize();
+		Initialize(debougOnly);
 	}
 	
-	public Arena(){
+	public Arena(int debugOnly){
 		Skeleton.printLastCalledFunction(arenaID, new String[]{""});
 		arenaID = "arena";
-		Initialize();
+		Initialize(debugOnly);
 	}
-	private void Initialize() {
+	private void Initialize(int debugOnly) {
 //		Skeleton.printLastCalledFunction(id, new String[]{""});
-		int[] tmp = {5, 2};
-		try {
-			dim = new CoordVector(tmp);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		generateFields(dim);
-		
-		gamers = new HashMap<String, Robot>();
-		
-		for (int i = 0; i < noRobots; i++)
-		{
-			addRobot("Robot" + i);
-		}
+		switch(debugOnly){
+		case 4:
+			int[] tmp1 = {3, 1};
+			try {
+				dim = new CoordVector(tmp1);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			generateFields(dim,debugOnly);
+			
+			gamers = new HashMap<String, Robot>();
 
-		Set<String> keys = gamers.keySet();
-		gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
-		gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
+			addRobot("Robot" + "0");
+			
+			Set<String> keys4 = gamers.keySet();
+			gamers.get(keys4.toArray()[0]).setField(fields.get(robot0StartField));
+			break;
+			
+		default: 
+			int[] tmp = {5, 2};
+			try {
+				dim = new CoordVector(tmp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			generateFields(dim,debugOnly);
+			
+			gamers = new HashMap<String, Robot>();
+			
+			for (int i = 0; i < noRobots; i++)
+			{
+				addRobot("Robot" + i);
+			}
+
+			Set<String> keys = gamers.keySet();
+			gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
+			gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
+			break;
+		}
+		
 	}
 	
 	/**
@@ -72,7 +95,7 @@ public class Arena {
 	 *
 	 * @param size the size
 	 */
-	public void generateFields(CoordVector size){
+	public void generateFields(CoordVector size,int debugOnly){
 		Skeleton.printLastCalledFunction(arenaID, new String[]{"size","CoordVector","Alma","String","Körte","String"});
 		/*
 		Ezt légyszí ne töröld ha útban van se, nem tudom hogy ez így elég elegáns megoldás e az elõzõ vagy inkább ezzel kéne folytatni? ez elég bonyolultá teszi ha már így nem az.
@@ -84,7 +107,39 @@ public class Arena {
 		l.add(b);
 		//Skeleton.printLastCalledFunction(arenaID, b);
 		*/
-		
+		switch(debugOnly){
+		case 4:
+			fields = new ArrayList<Field>();
+			patches = new ArrayList<Patch>();
+			ArrayList<Field> neighbours = new ArrayList<Field>();
+			
+			SafeZone s1 = new SafeZone("s1");
+			SafeZone s2 = new SafeZone("s2");
+			SafeZone s3 = new SafeZone("s3");
+			
+			Putty p = new Putty();
+			p.setFix();
+			patches.add(p);
+			s3.addPutty(p);
+			
+			fields.add(s1);
+			fields.add(s2);
+			fields.add(s3);
+			
+			neighbours.add(s2);
+			s1.setNeighbours(neighbours);
+			
+			neighbours.clear();
+			neighbours.add(s1);
+			neighbours.add(s3);
+			s2.setNeighbours(neighbours);
+			
+			neighbours.clear();
+			neighbours.add(s2);
+			s3.setNeighbours(neighbours);
+			
+			break;
+		}/*
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
 		//+ be kell állítani a szomszédjaikat
 		SafeZone s0 = new SafeZone("s0");
@@ -139,7 +194,7 @@ public class Arena {
 		sr0.setNeighbours(temp);
 		sr1.setNeighbours(temp);
 		d.setNeighbours(temp);
-		
+		*/
 	}
 	
 	/**
