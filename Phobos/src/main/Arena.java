@@ -62,8 +62,9 @@ public class Arena {
 			addRobot("Robot" + i);
 		}
 
-		gamers.get(0).setField(fields.get(robot0StartField));
-		gamers.get(1).setField(fields.get(robot1StartField));
+		Set<String> keys = gamers.keySet();
+		gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
+		gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
 	}
 	
 	/**
