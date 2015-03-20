@@ -18,8 +18,10 @@ public class Skeleton {
 	{
 	     printOutINFO("Start Test!");
 	     printOutDEBUG("Debug");
-	     char r = printMenuItems();
-	     System.out.print(r);
+	     Robot robot = new Robot();
+	     robot.putOil();
+//	     char r = printMenuItems();
+//	     System.out.print(r);
 	     //New main
 
 	}
@@ -53,13 +55,42 @@ public class Skeleton {
 	}
 	
 	//Kiiratások---------------------------------------------------------------------------------------------------------
+
+	/**
+	 * A függvény kiírja, melyik függvényt hívtuk utoljára. {id}:<ClassName> - <functionName>({parameters}) formátumban. 
+	 * @param id - annak az objektumnak az azonosítója, amelyiken a függvényhívást végeztük.
+	 * @param parameters - a hívott függvénynek átadott paraméterek
+	 * @author  Akos Recse
+	 * @version 1.0
+	 * @since   2015-03-20
+	 */
+	public static void printLastCalledFunction(String id,String parameters){
+		
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		StackTraceElement last = ste[2]; 
+		//mindig a stack 2. eleme szükséges, mert LIFO.
+		
+		//A sor elején lévõ tabulátorok számát határozzuk meg, és tesszük bele egy stringbe, amit csak oda kell tenni
+		//annak a sornak az elejére, ami kiírja a függvényt.
+		String tabs = new String(); 
+		for (int i = 0; i < ste.length-4; i++) {
+			tabs += "\t";
+		}
+		
+//		for (StackTraceElement s : ste) {
+//			System.out.println(s.getClassName() + " " + s.getMethodName());
+//		}
+		
+		printOutDEBUG(tabs + id +": " + last.getClassName()+ " - " + last.getMethodName() + "(" + parameters + ")");
+		
+	} 
 	
 	public static void printOutINFO(String s) {
-		System.out.println("INFO> " + s);
+		System.out.println("INFO>\t" + s);
 	}
 	
 	public static void printOutDEBUG(String s) {
-		System.out.println("DEBUG> " + s);
+		System.out.println("DEBUG>\t" + s);
 	}
 	
 	public static char requestUserInput(String[] description, char[] requiredInputs) throws Exception {

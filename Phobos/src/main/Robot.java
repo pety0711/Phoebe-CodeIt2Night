@@ -14,7 +14,7 @@ import java.util.Vector;
 public class Robot {
 	
 	/** The id. */
-	public String id;
+	public String id = "R2D2";
 	
 	/** The speed. */
 	private CoordVector speed;
@@ -59,18 +59,25 @@ public class Robot {
 	 * Put putty.
 	 */
 	public void putPutty(){
+		Skeleton.printLastCalledFunction(id,"");
+		tick();
+		
 	}
 	
 	/**
 	 * Put oil.
 	 */
 	public void putOil(){
+		Skeleton.printLastCalledFunction(id,"");
+		putPutty();
+		tick();
 	}
 	
 	/**
 	 * Tick.
 	 */
 	public void tick(){
+		Skeleton.printLastCalledFunction(id,"");
 	}
 	
 	/**
