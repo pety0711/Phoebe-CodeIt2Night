@@ -54,7 +54,7 @@ public class Arena {
 //		Skeleton.printLastCalledFunction(id, new String[]{""});
 		switch(debugOnly){
 		case 4://Step on a Putty use-case
-			int[] tmp1 = {3, 1}; //3,1 aréna létrehozása 0,0;1,0;2,0; koordináták generálódnak
+			int[] tmp1 ={3, 1}; //3,1 aréna létrehozása 0,0;1,0;2,0; koordináták generálódnak
 			try {
 				dim = new CoordVector(tmp1);
 			} catch (Exception e) {
@@ -101,7 +101,19 @@ public class Arena {
 		printPermutations(n, Nr, 0);
 	}
 	
-	//http://stackoverflow.com/questions/9632677/combinatorics-generate-all-states-array-combinations
+	/**
+	 * Hozzáadja az aviableCoords listához hozzáad CoordVector típusú objektumokat, amik
+	 * lefedik az összes lehetságes koordináta permutációját. Így kigenerálódik a megadott 
+	 * dimenziók szerint az elérhetõ CoordVector lista. pl.: 3 dimenziónál
+	 * bemenet int[]{1,2,1}
+	 * generált koordináták [0,0,0],[0,1,0], tehát ilyenkor ne hozzunk létre 3 elemet,
+	 * mert nem tudja feltenni az aréna
+	 *
+	 * @param n segédtömb
+	 * @param Nr maximális koordinátákat tároló tömb
+	 * @param idx kezdõ index ahonnan generál
+	 * @link http://stackoverflow.com/questions/9632677/combinatorics-generate-all-states-array-combinations
+	 */
 	public static void printPermutations(int[] n, int[] Nr, int idx) {
 	    if (idx == n.length) {  //stop condition for the recursion [base clause]
 	        //System.out.println(Arrays.toString(n)); //csak kiíratáshoz kell
