@@ -66,30 +66,6 @@ public class Skeleton {
     
 	public static void main(String [ ] args)
 	{ 	
-		switch(currentUseCase){
-		case Close_tester:
-			break;
-		case Collision:
-			break;
-		case Finish_game:
-			break;
-		case New_game:
-			break;
-		case Put_oil:
-			break;
-		case Put_putty:
-			break;
-		case Step_on_a_dangerzone:
-			break;
-		case Step_on_a_safezone:
-			break;
-		case Stepping_on_a_putty:
-			break;
-		case Stepping_on_an_oil:
-			break;
-		default:
-			break;
-		}
 		boolean runMain = true;
 		Arena arena = null;
 		printOutINFO("<init> CodeIt2Night Use-Case Tester - OK");
@@ -111,7 +87,7 @@ public class Skeleton {
 			    	 printOutINFO("<close> CodeIt2Night Use-Case Tester - OK");	
 			    	 break;
 			     case 1: //New game
-			    	 arena = new Arena(1);
+			    	 arena = new Arena();
 			    	 break;
 			     case 2: //doWork
 			    	 break;
@@ -119,12 +95,12 @@ public class Skeleton {
 			    	 break;
 			     case 4: 
 			    	 if(arena==null)
-			    		 arena = new Arena(4);
+			    		 arena = new Arena();
 			    	 	arena.tick();
 			    	 break;
 			     case 5: 
 			    	 if(arena==null)
-			    		 arena = new Arena(1);
+			    		 arena = new Arena();
 			    	 break;
 			     case 6: //doWork
 			    	 break;
@@ -134,7 +110,7 @@ public class Skeleton {
 			    	 break;
 			     case 9: //doWork
 			    	 if(arena==null)
-			    		 arena = new Arena(1);
+			    		 arena = new Arena();
 			    	 //printLastCalledFunction("a", emptyStrArray);
 			    	 arena.finishGame();
 			    	 break;
