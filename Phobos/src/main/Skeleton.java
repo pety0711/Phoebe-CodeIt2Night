@@ -20,7 +20,7 @@ import java.util.Map;
  *
  */
 public class Skeleton {
-	
+	public static int selectedUsecase = 1;
 //	StackTraceElement[] ste = Thread.currentThread().getStackTrace();
 //	for (StackTraceElement s : ste) {
 //		System.out.println(s.getClassName() + " " + s.getMethodName());
@@ -56,15 +56,14 @@ public class Skeleton {
 	};
 	public static void main(String [ ] args)
 	{ 	
-		String[] emptyStrArray = new String[]{""};
 		boolean runMain = true;
 		Arena arena = null;
 		printOutINFO("<init> CodeIt2Night Use-Case Tester - OK");
 		do {
 			insertSpace();
 			printOutINFO("Menu Items List");
-		     
-		     int selectedUsecase = printMenuItems(); //Bekérjük a felhasználótól a választandó Use-case számát
+			
+		     selectedUsecase = printMenuItems(); //Bekérjük a felhasználótól a választandó Use-case számát
 		     
 		     System.out.println();
 		     if(selectedUsecase>0)
