@@ -4,6 +4,8 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Vector;
 
 /**
@@ -13,18 +15,41 @@ import java.util.Vector;
 public class SafeZone extends Field {
 
 	private String id;
-
+	private ArrayList<Putty> pList;
+	private ArrayList<Oil> oList;
 	
 	
 	public SafeZone() {
+		Random r = new Random();
+		id = ""+r.nextInt(2000000000);
+		Skeleton.printLastCalledFunction(id, new String[]{id,Skeleton.getClassName(id)});
+		/*
+		pList = new ArrayList<>();
+		pList.add(new Putty());
+		pList.add(new Putty());
+		pList.add(new Putty());
 		
-		id = "";
-		
+		oList = new ArrayList<>();
+		oList.add(new Oil());
+		oList.add(new Oil());
+		oList.add(new Oil());*/
+		Skeleton.printLastCalledFunction(id, new String[]{""});
 	}
 	
 	public SafeZone(String id) {
 		this.id = id;
-		Skeleton.printLastCalledFunction(id, new String[]{""});
+		Skeleton.printLastCalledFunction(id, new String[]{id,Skeleton.getClassName(id)});
+		/*
+		pList = new ArrayList<>();
+
+		pList.add(new Putty());
+		pList.add(new Putty());
+		pList.add(new Putty());
+		
+		oList = new ArrayList<>();
+		oList.add(new Oil());
+		oList.add(new Oil());
+		oList.add(new Oil());*/
 	}
 	
 	/* (non-Javadoc)
@@ -32,25 +57,42 @@ public class SafeZone extends Field {
 	 */
 	@Override
 	public void steppedOnYou(Robot r) {
-		// TODO függvénykiiratás
-		
-		if(patches.size() > 0) {
+		/*
+		if(patches.size() > 0) {// Szerintem ez így már nem kell
 			if(patches.get(0).getClass().equals(Oil.class)) {
 				r.disableMovement();
 			} else {
 				r.slowDown();
 			}
-		}
+			
+		}*/
 		
-		// TODO Auto-generated method stub
+		Skeleton.printLastCalledFunction(id, new String[]{""});
+		for (Patch patch : patches) {
+			if(Skeleton.getClassName(patch)==(Skeleton.getClassName(new Putty())))
+				r.slowDown();
+			else 
+				r.disableMovement();
+		}
 	}
-
+	@Override
+	public void step(CoordVector speed){
+		
+		Skeleton.printLastCalledFunction(id, new String[]{"speed",Skeleton.getClassName(speed)});
+	}
+	
 	public void investigateCollision() {
 		
 	}
 	
 	
 	public Field step(Vector speed) {
+
+		Skeleton.printLastCalledFunction(id,new String[]{"speed","CoordVector"});
 		return null;
+	}
+	
+	public void addPutty(Putty p){
+		Skeleton.printLastCalledFunction(id,new String[]{p.id,Skeleton.getClassName(p)});
 	}
 }

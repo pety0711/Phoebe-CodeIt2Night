@@ -56,13 +56,6 @@ public class Arena {
 			}
 			
 			generateFields(dim,debugOnly);
-			
-			gamers = new HashMap<String, Robot>();
-
-			addRobot("Robot" + "0");
-			
-			Set<String> keys4 = gamers.keySet();
-			gamers.get(keys4.toArray()[0]).setField(fields.get(robot0StartField));
 			break;
 			
 		default: 
@@ -109,37 +102,55 @@ public class Arena {
 		*/
 		switch(debugOnly){
 		case 4:
-			fields = new ArrayList<Field>();
-			patches = new ArrayList<Patch>();
-			ArrayList<Field> neighbours = new ArrayList<Field>();
-			
-			SafeZone s1 = new SafeZone("s1");
-			SafeZone s2 = new SafeZone("s2");
-			SafeZone s3 = new SafeZone("s3");
-			
-			Putty p = new Putty();
-			p.setFix();
-			patches.add(p);
-			s3.addPutty(p);
-			
-			fields.add(s1);
-			fields.add(s2);
-			fields.add(s3);
-			
-			neighbours.add(s2);
-			s1.setNeighbours(neighbours);
-			
-			neighbours.clear();
-			neighbours.add(s1);
-			neighbours.add(s3);
-			s2.setNeighbours(neighbours);
-			
-			neighbours.clear();
-			neighbours.add(s2);
-			s3.setNeighbours(neighbours);
-			
+			putPuttyGen(debugOnly);
 			break;
-		}/*
+			
+		default:
+			defGen();	
+			break;
+		}
+		
+	}
+	private void putPuttyGen(int debugOnly){		
+		fields = new ArrayList<Field>();
+		patches = new ArrayList<Patch>();
+		ArrayList<Field> neighbours0 = new ArrayList<Field>();
+
+		ArrayList<Field> neighbours1 = new ArrayList<Field>();
+
+		ArrayList<Field> neighbours2 = new ArrayList<Field>();
+		
+		SafeZone s1 = new SafeZone("s1");
+		SafeZone s2 = new SafeZone("s2");
+		SafeZone s3 = new SafeZone("s3");
+		
+		Putty p = new Putty();
+		p.setFix();
+		patches.add(p);
+		s3.addPutty(p);
+		
+		fields.add(s1);
+		fields.add(s2);
+		fields.add(s3);
+		
+		neighbours0.add(s2);
+		s1.setNeighbours(neighbours0);
+
+		neighbours1.add(s1);
+		neighbours1.add(s3);
+		s2.setNeighbours(neighbours1);
+		
+		neighbours2.add(s2);
+		s3.setNeighbours(neighbours2);
+		
+		int robot0StartField = 0;
+		gamers = new HashMap<String, Robot>();
+		addRobot("Robot" + "0");
+		Set<String> keys4 = gamers.keySet();
+		gamers.get(keys4.toArray()[0]).setField(fields.get(robot0StartField));
+		
+	}
+	private void defGen(){
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
 		//+ be kell állítani a szomszédjaikat
 		SafeZone s0 = new SafeZone("s0");
@@ -174,7 +185,7 @@ public class Arena {
 		fields.add(sr1);
 		fields.add(d);		
 		
-		//TODO na meg ez is probléma lesz
+		//TODO na meg ez is probléma lesz, meg szerintem nem is olyan jó mert mindenkinek ugyanaz a szomszédja mindenki mindenkivel szomszédos ebben az esetben!
 		List<Field> temp = new ArrayList<Field>();
 		temp.add(s0);
 		temp.add(s1);
@@ -194,7 +205,6 @@ public class Arena {
 		sr0.setNeighbours(temp);
 		sr1.setNeighbours(temp);
 		d.setNeighbours(temp);
-		*/
 	}
 	
 	/**
@@ -203,13 +213,13 @@ public class Arena {
 	 * @param id the id
 	 */
 	public void addRobot(String id){
-		Skeleton.printLastCalledFunction(arenaID, new String[]{id,"String"});
+		Skeleton.printLastCalledFunction(arenaID, new String[]{id,Skeleton.getClassName(id)});
 		
 		gamers.put(id, new Robot(id, this));
 	}
 	
 	public void registerPatch(Patch p) {
-		Skeleton.printLastCalledFunction(arenaID, new String[]{"p","Patch"});
+		Skeleton.printLastCalledFunction(arenaID, new String[]{p.id,Skeleton.getClassName(p)});
 		
 		patches.add(p);
 	}

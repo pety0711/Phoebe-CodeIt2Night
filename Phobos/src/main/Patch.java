@@ -12,10 +12,12 @@ package main;
 public abstract class Patch {
 	
 	/** The life time. */
-	private int lifeTime;
+	protected int lifeTime;
 	
 	/** The fix. */
-	private boolean fix;
+	protected boolean fix;
+	
+	public String id;
 	
 	/**
 	 * Tick.
@@ -26,5 +28,6 @@ public abstract class Patch {
 	 * Sets the fix.
 	 */
 	public void setFix() {
+		fix = true;
 	}
 }

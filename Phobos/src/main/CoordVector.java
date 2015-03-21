@@ -15,4 +15,17 @@ public class CoordVector {
 		else throw new Exception("arg0's dimension is not correct!");
 	}
 	
+	 @Override public String toString(){
+		StringBuilder result = new StringBuilder();
+		 
+	    result.append("{");
+	    for (int i = 0; i < points.length; i++) {
+	    	result.append(points[i]);
+	    	if(i<points.length-1)
+	    		result.append(", ");
+		}
+	    result.append("}");
+
+	    return result.toString();
+	 }
 }

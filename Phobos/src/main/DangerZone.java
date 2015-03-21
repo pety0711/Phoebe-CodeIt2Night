@@ -16,4 +16,10 @@ public class DangerZone extends Field {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void step(CoordVector speed) {
+		// TODO Auto-generated method stub
+		
+	}
 }

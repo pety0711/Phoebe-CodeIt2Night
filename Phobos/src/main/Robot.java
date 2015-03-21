@@ -80,6 +80,13 @@ public class Robot {
 	 */
 	public void tick(){
 		Skeleton.printLastCalledFunction(id);
+		try {
+			speed = new CoordVector(new int[]{3,1});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		field.step(speed);
 	}
 	
 	/**
@@ -117,12 +124,14 @@ public class Robot {
 	 * Slow down.
 	 */
 	public void slowDown(){
+		Skeleton.printLastCalledFunction(id);
 	}
 
 	/**
 	 * Disable movement.
 	 */
 	public void disableMovement(){
+		Skeleton.printLastCalledFunction(id);
 	}
 
 	/**
