@@ -28,6 +28,8 @@ public class Skeleton {
 //	System.out.println(ste.length);
 	
 	static String[] useCaseOptions = {
+
+			"Close tester",
 			"New game",
 			"Put putty",
 			"Put oil",
@@ -36,15 +38,15 @@ public class Skeleton {
 			"Step on a safezone",
 			"Step on a dangerzone",
 			"Collision",
-			"Finish game",
-			"Close tester"
+			"Finish game"
 	};
 
     
 
 	static char[] requiredInputs = {'1','2','3','4','5','6','7','8','9','0'};
-	static int[] requiredInputsInt = {1,2,3,4,5,6,7,8,9,0};
+	static int[] requiredInputsInt = {0,1,2,3,4,5,6,7,8,9};
 	static String[] optionsType = {
+			"Program",
 			"Use-Case",
 			"Use-Case",
 			"Use-Case",
@@ -53,8 +55,7 @@ public class Skeleton {
 			"Use-Case",
 			"Use-Case",
 			"Use-Case",
-			"Use-Case",
-			"Program"
+			"Use-Case"
 	};
 	
 	
@@ -63,9 +64,25 @@ public class Skeleton {
     }
     
     public static UseCaseType currentUseCase = UseCaseType.New_game;
+    
     private static String getUseCaseOptions(int i){
-    	return useCaseOptions[i-1];
+    	return useCaseOptions[i];
     }
+    
+    private static String getUseCaseString(UseCaseType us){
+    	boolean run = true;
+    	int index = 0;
+    	String s = us.toString().replace('_', ' ');
+    	while ((index<useCaseOptions.length)&&run
+    			) {
+    		if(s.compareTo(useCaseOptions[index])==0)
+    			run=false;
+    		else
+    			index++;			
+		}
+    	return useCaseOptions[index];
+    }
+    
     private static UseCaseType getUseCaseType(int i){
     	return UseCaseType.valueOf(getUseCaseOptions(i).replace(' ', '_'));
     }
@@ -79,52 +96,12 @@ public class Skeleton {
 		do {
 			insertSpace();
 			printOutINFO("Menu Items List");
-			
-		     //selectedUsecase = printMenuItems(); 
+
+
 		     currentUseCase = getUseCaseType(printMenuItems()); //Bekérjük a felhasználótól a választandó Use-case számát
 		     System.out.println();
-		     if(selectedUsecase>0)
-		    	 printOutINFO("Selected Use-case:\t"+useCaseOptions[selectedUsecase-1]);
-		     System.out.println();/*
-		     switch(selectedUsecase){
-		     
-			     case 0: //Close tester
-			    	 runMain = false;
-			    	 insertSpace();
-			    	 printOutINFO("<close> CodeIt2Night Use-Case Tester - OK");	
-			    	 break;
-			     case 1: //New game
-			    	 arena = new Arena();
-			    	 break;
-			     case 2: //doWork
-			    	 break;
-			     case 3: //doWork
-			    	 break;
-			     case 4: 
-			    	 if(arena==null)
-			    		 arena = new Arena();
-			    	 	arena.tick();
-			    	 break;
-			     case 5: 
-			    	 if(arena==null)
-			    		 arena = new Arena();
-			    	 break;
-			     case 6: //doWork
-			    	 break;
-			     case 7: //doWork
-			    	 break;
-			     case 8: //doWork
-			    	 break;
-			     case 9: //doWork
-			    	 if(arena==null)
-			    		 arena = new Arena();
-			    	 //printLastCalledFunction("a", emptyStrArray);
-			    	 arena.finishGame();
-			    	 break;
-				 default: 
-					 break;
-					 
-		     }*/
+		    printOutINFO("Selected Use-case:\t"+getUseCaseString(currentUseCase));
+		     System.out.println();
 		     switch(currentUseCase){
 				case Close_tester:
 					runMain = false;
@@ -132,43 +109,36 @@ public class Skeleton {
 			    	 printOutINFO("<close> CodeIt2Night Use-Case Tester - OK");	
 					break;
 				case Collision:
-					if(arena==null)
-						arena = new Arena();
+					Arena arenaCollision = new Arena();
 					break;
 				case Finish_game:
-					if(arena==null)
-						arena = new Arena();		
-					arena.finishGame();
+					Arena arenaFinish = new Arena();	
+					arenaFinish.finishGame();
 					break;
 				case New_game:
-					if(arena==null)
-						arena = new Arena();
+					Arena arenaNew = new Arena();
 					break;
 				case Put_oil:
-					if(arena==null)
-						arena = new Arena();
+					Arena arenaPutoil = new Arena();
 					break;
 				case Put_putty:
-					if(arena==null)
-						arena = new Arena();
+					Arena arenaPutputty = new Arena();
 					break;
 				case Step_on_a_dangerzone:
-					if(arena==null)
-						arena = new Arena();
+
+					Arena arenaDangerzone = new Arena();
 					break;
 				case Step_on_a_safezone:
-					if(arena==null)
-						arena = new Arena();
+
+					Arena arenaSafezone = new Arena();
 					break;
 				case Stepping_on_a_putty:
-					if(arena==null)
-						arena = new Arena();
-		    	 	arena.tick();
+					Arena arenaStepputty = new Arena();
+					arenaStepputty.tick();
 					break;
 				case Stepping_on_an_oil:
-					if(arena==null)
-						arena = new Arena();
-		    	 	arena.tick();
+					Arena arenaStepoil = new Arena();
+					arenaStepoil.tick();
 					break;
 				default:
 					break;
