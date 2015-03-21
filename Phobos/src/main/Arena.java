@@ -181,10 +181,7 @@ public class Arena {
 	}
 	
 	public void tick() {
-		for (Patch p : patches) {
-			p.tick();
-		}
-		
+
 		Set<String> keys = gamers.keySet();
 		for (String key : keys) {
 			gamers.get(key).tick();
@@ -194,7 +191,20 @@ public class Arena {
 			gamers.get(key).investigateCollision();
 		}
 		
+		for (Patch p : patches) {
+			p.tick();
+		}
 		
+		switch(Skeleton.currentUseCase) {
+		case Put_oil:
+			gamers.get(keys.toArray()[0]).putOil();
+			break;
+		case Put_putty:
+			gamers.get(keys.toArray()[0]).putPutty();
+			break;
+		default:
+			break;
+		}
 	}
 	
 	public void finishGame() {
