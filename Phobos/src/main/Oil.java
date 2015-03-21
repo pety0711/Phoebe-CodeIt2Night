@@ -17,6 +17,11 @@ public class Oil extends Patch{
 		Skeleton.printLastCalledFunction(id);
 
 	}
+	public Oil(String id){
+		this.id = id;
+		Skeleton.printLastCalledFunction(id);
+
+	}
 	@Override
 	public void tick() {
 		lifeTime--;

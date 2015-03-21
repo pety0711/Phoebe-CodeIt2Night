@@ -158,6 +158,23 @@ public class Arena {
 		}
 		
 	}
+	private void genAll(int debugOnly){
+		fields = new ArrayList<Field>();
+		patches = new ArrayList<Patch>();
+		
+		SafeZone s1 = new SafeZone("s1");
+		SafeZone s2 = new SafeZone("s2");
+		SafeZone s3 = new SafeZone("s3");
+		Oil o = new Oil();
+		SafeZone p = new SafeZone("s2");
+		SafeZone s3 = new SafeZone("s3");
+		SafeZone s1 = new SafeZone("s1");
+		SafeZone s2 = new SafeZone("s2");
+		SafeZone s3 = new SafeZone("s3");
+		ArrayList<Field> neighbours0 = new ArrayList<Field>();
+		ArrayList<Field> neighbours1 = new ArrayList<Field>();
+		ArrayList<Field> neighbours2 = new ArrayList<Field>();
+	}
 	private void putPuttyGen(int debugOnly){		
 		fields = new ArrayList<Field>();
 		patches = new ArrayList<Patch>();
