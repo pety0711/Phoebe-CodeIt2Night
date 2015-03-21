@@ -76,9 +76,11 @@ public class SafeZone extends Field {
 		}
 	}
 	@Override
-	public void step(CoordVector speed){
-		
+	public Field step(CoordVector speed){
 		Skeleton.printLastCalledFunction(id, new String[]{"speed",Skeleton.getClassName(speed)});
+		//getNeighbour(direction);
+		getNeighbour(speed);
+		return null;
 	}
 	
 	public void investigateCollision() {

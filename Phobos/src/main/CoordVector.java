@@ -15,6 +15,10 @@ public class CoordVector {
 		else throw new Exception("arg0's dimension is not correct!");
 	}
 	
+	public int getCoordofDim(int dimension){
+		return points[dimension-1];
+	}
+	
 	 @Override public String toString(){
 		StringBuilder result = new StringBuilder();
 		 

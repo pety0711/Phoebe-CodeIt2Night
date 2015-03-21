@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,9 @@ public class Arena {
 	/** The dimension*/
 	private CoordVector dim;
 	
+	private static ArrayList<CoordVector> aviableCoords;
+	private static int aviableCoordsNext;
+	
 	/** Number of Robots */
 	private int noRobots = 2;
 	
@@ -40,22 +44,24 @@ public class Arena {
 	}
 	
 	public Arena(int debugOnly){
-		Skeleton.printLastCalledFunction(arenaID, new String[]{""});
+		Skeleton.printLastCalledFunction(arenaID, new String[]{""}); //Kiíratás
+		aviableCoords = new ArrayList<>(); //Generált elérhetõ koordináták listája
+		aviableCoordsNext=0; //A következõ elérhetõ koordináta beállítása
 		arenaID = "arena";
 		Initialize(debugOnly);
 	}
 	private void Initialize(int debugOnly) {
 //		Skeleton.printLastCalledFunction(id, new String[]{""});
 		switch(debugOnly){
-		case 4:
-			int[] tmp1 = {3, 1};
+		case 4://Step on a Putty use-case
+			int[] tmp1 = {3, 1}; //3,1 aréna létrehozása 0,0;1,0;2,0; koordináták generálódnak
 			try {
 				dim = new CoordVector(tmp1);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			generateFields(dim,debugOnly);
+			calcCoords(dim); //itt generáljuk az aviableCoords-ba az elérhetõ koordinátákat.
+			generateFields(dim,debugOnly); //Mezõk kigenerálása
 			break;
 			
 		default: 
@@ -83,6 +89,35 @@ public class Arena {
 		
 	}
 	
+	private void calcCoords(CoordVector size){
+		ArrayList<CoordVector> coords = new ArrayList<>();
+		
+		//beállítjuk a Permutációt
+		int[] n = new int[size.dimension];
+		int[] Nr = new int[size.dimension];
+		for (int i = 0; i < size.dimension; i++) {
+			Nr[i]=size.getCoordofDim(i+1)-1; //ez elég fura de a dimenziót 1-tõl számoljuk a getCoordofDim pedig 0-tól indexelve adja vissza de ez is dimenziós.
+		}
+		printPermutations(n, Nr, 0);
+	}
+	
+	//http://stackoverflow.com/questions/9632677/combinatorics-generate-all-states-array-combinations
+	public static void printPermutations(int[] n, int[] Nr, int idx) {
+	    if (idx == n.length) {  //stop condition for the recursion [base clause]
+	        //System.out.println(Arrays.toString(n)); //csak kiíratáshoz kell
+	        try {
+				aviableCoords.add(new CoordVector(n)); //hozzáadjuk az elérhetõ koordináták listájához
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        return;
+	    }
+	    for (int i = 0; i <= Nr[idx]; i++) { 
+	        n[idx] = i;
+	        printPermutations( n, Nr, idx+1); //recursive invokation, for next elements
+	    }
+	}
 	/**
 	 * Generate fields.
 	 *
@@ -123,6 +158,9 @@ public class Arena {
 		SafeZone s1 = new SafeZone("s1");
 		SafeZone s2 = new SafeZone("s2");
 		SafeZone s3 = new SafeZone("s3");
+		s1.setCoord(aviableCoords.get(aviableCoordsNext++));
+		s2.setCoord(aviableCoords.get(aviableCoordsNext++));
+		s3.setCoord(aviableCoords.get(aviableCoordsNext++));
 		
 		Putty p = new Putty();
 		p.setFix();

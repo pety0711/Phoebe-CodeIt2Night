@@ -18,7 +18,8 @@ public class DangerZone extends Field {
 	}
 
 	@Override
-	public void step(CoordVector speed) {
+	public Field step(CoordVector speed) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

@@ -81,7 +81,7 @@ public class Robot {
 	public void tick(){
 		Skeleton.printLastCalledFunction(id);
 		try {
-			speed = new CoordVector(new int[]{3,1});
+			speed = new CoordVector(new int[]{2,0});
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

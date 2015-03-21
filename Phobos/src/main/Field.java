@@ -41,7 +41,7 @@ public abstract class  Field {
 		return null;
 	}
 	
-	public abstract void step(CoordVector speed);
+	public abstract Field step(CoordVector speed);
 	
 	public Field() {
 		patches = new ArrayList<Patch>();
@@ -94,6 +94,7 @@ public abstract class  Field {
 	 */
 	public Field getNeighbour(CoordVector direction) {
 		//TODO
+
 		return null;
 	}
 	
