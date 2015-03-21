@@ -39,7 +39,11 @@ public class Skeleton {
 			"Finish game",
 			"Close tester"
 	};
-	
+
+    
+    
+    
+
 	static char[] requiredInputs = {'1','2','3','4','5','6','7','8','9','0'};
 	static int[] requiredInputsInt = {1,2,3,4,5,6,7,8,9,0};
 	static String[] optionsType = {
@@ -54,8 +58,38 @@ public class Skeleton {
 			"Use-Case",
 			"Program"
 	};
+	public static enum UseCaseType {
+    	New_game,Put_putty,Put_oil,Stepping_on_a_putty,Stepping_on_an_oil,Step_on_a_safezone,Step_on_a_dangerzone,Collision,Finish_game,Close_tester
+    }
+    
+    public static UseCaseType currentUseCase;
+    
 	public static void main(String [ ] args)
 	{ 	
+		switch(currentUseCase){
+		case Close_tester:
+			break;
+		case Collision:
+			break;
+		case Finish_game:
+			break;
+		case New_game:
+			break;
+		case Put_oil:
+			break;
+		case Put_putty:
+			break;
+		case Step_on_a_dangerzone:
+			break;
+		case Step_on_a_safezone:
+			break;
+		case Stepping_on_a_putty:
+			break;
+		case Stepping_on_an_oil:
+			break;
+		default:
+			break;
+		}
 		boolean runMain = true;
 		Arena arena = null;
 		printOutINFO("<init> CodeIt2Night Use-Case Tester - OK");
@@ -70,12 +104,13 @@ public class Skeleton {
 		    	 printOutINFO("Selected Use-case:\t"+useCaseOptions[selectedUsecase-1]);
 		     System.out.println();
 		     switch(selectedUsecase){
-			     case 0: 
+		     
+			     case 0: //Close tester
 			    	 runMain = false;
 			    	 insertSpace();
 			    	 printOutINFO("<close> CodeIt2Night Use-Case Tester - OK");	
 			    	 break;
-			     case 1:
+			     case 1: //New game
 			    	 arena = new Arena(1);
 			    	 break;
 			     case 2: //doWork
