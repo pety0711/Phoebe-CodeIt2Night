@@ -17,7 +17,10 @@ public class Putty extends Patch {
 		Skeleton.printLastCalledFunction(id);
 	}
 	
-	
+	public Putty(String id){
+		this.id = id;
+		Skeleton.printLastCalledFunction(id);
+	}
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
