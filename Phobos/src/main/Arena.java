@@ -31,112 +31,57 @@ public class Arena {
 	/** The dimension*/
 	private CoordVector dim;
 	
-	private static ArrayList<CoordVector> aviableCoords;
-	private static int aviableCoordsNext;
+//	private static ArrayList<CoordVector> aviableCoords;
+//	private static int aviableCoordsNext;
 	
 	/** Number of Robots */
 	private int noRobots = 2;
 	
-	public Arena(String id,int debougOnly) {
+	public Arena(String id) {
 		arenaID = id;
 		Skeleton.printLastCalledFunction(arenaID, new String[]{""});
-		Initialize(debougOnly);
+		Initialize();
 	}
 	
-	public Arena(int debugOnly){
+	public Arena(){
 		Skeleton.printLastCalledFunction(arenaID, new String[]{""}); //Kiíratás
-		aviableCoords = new ArrayList<>(); //Generált elérhetõ koordináták listája
-		aviableCoordsNext=0; //A következõ elérhetõ koordináta beállítása
-		arenaID = "arena";
-		Initialize(debugOnly);
-	}
-	private void Initialize(int debugOnly) {
-//		Skeleton.printLastCalledFunction(id, new String[]{""});
-		switch(debugOnly){
-		case 4://Step on a Putty use-case
-			int[] tmp1 ={3, 1}; //3,1 aréna létrehozása 0,0;1,0;2,0; koordináták generálódnak
-			try {
-				dim = new CoordVector(tmp1);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			calcCoords(dim); //itt generáljuk az aviableCoords-ba az elérhetõ koordinátákat.
-			generateFields(dim,debugOnly); //Mezõk kigenerálása
-			break;
-			
-		default: 
-			int[] tmp = {5, 2};
-			try {
-				dim = new CoordVector(tmp);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			generateFields(dim,debugOnly);
-			
-			gamers = new HashMap<String, Robot>();
-			
-			for (int i = 0; i < noRobots; i++)
-			{
-				addRobot("Robot" + i);
-			}
 
-			Set<String> keys = gamers.keySet();
-			gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
-			gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
-			break;
+		arenaID = "arena";
+		Initialize();
+	}
+	private void Initialize() {
+//		Skeleton.printLastCalledFunction(id, new String[]{""});
+
+		int[] tmp = {5, 2};
+		try {
+			dim = new CoordVector(tmp);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-	}
-	
-	private void calcCoords(CoordVector size){
-		ArrayList<CoordVector> coords = new ArrayList<>();
+		generateFields(dim);
 		
-		//beállítjuk a Permutációt
-		int[] n = new int[size.dimension];
-		int[] Nr = new int[size.dimension];
-		for (int i = 0; i < size.dimension; i++) {
-			Nr[i]=size.getCoordofDim(i+1)-1; //ez elég fura de a dimenziót 1-tõl számoljuk a getCoordofDim pedig 0-tól indexelve adja vissza de ez is dimenziós.
+		gamers = new HashMap<String, Robot>();
+		
+		for (int i = 0; i < noRobots; i++)
+		{
+			addRobot("Robot" + i);
 		}
-		printPermutations(n, Nr, 0);
+
+		Set<String> keys = gamers.keySet();
+		gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
+		gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
 	}
 	
-	/**
-	 * Hozzáadja az aviableCoords listához hozzáad CoordVector típusú objektumokat, amik
-	 * lefedik az összes lehetságes koordináta permutációját. Így kigenerálódik a megadott 
-	 * dimenziók szerint az elérhetõ CoordVector lista. pl.: 3 dimenziónál
-	 * bemenet int[]{1,2,1}
-	 * generált koordináták [0,0,0],[0,1,0], tehát ilyenkor ne hozzunk létre 3 elemet,
-	 * mert nem tudja feltenni az aréna
-	 *
-	 * @param n segédtömb
-	 * @param Nr maximális koordinátákat tároló tömb
-	 * @param idx kezdõ index ahonnan generál
-	 * @link http://stackoverflow.com/questions/9632677/combinatorics-generate-all-states-array-combinations
-	 */
-	public static void printPermutations(int[] n, int[] Nr, int idx) {
-	    if (idx == n.length) {  //stop condition for the recursion [base clause]
-	        //System.out.println(Arrays.toString(n)); //csak kiíratáshoz kell
-	        try {
-				aviableCoords.add(new CoordVector(n)); //hozzáadjuk az elérhetõ koordináták listájához
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        return;
-	    }
-	    for (int i = 0; i <= Nr[idx]; i++) { 
-	        n[idx] = i;
-	        printPermutations( n, Nr, idx+1); //recursive invokation, for next elements
-	    }
-	}
+
 	/**
 	 * Generate fields.
 	 *
 	 * @param size the size
 	 */
-	public void generateFields(CoordVector size,int debugOnly){
+	public void generateFields(CoordVector size) {
 		Skeleton.printLastCalledFunction(arenaID, new String[]{"size","CoordVector","Alma","String","Körte","String"});
+		
 		/*
 		Ezt légyszí ne töröld ha útban van se, nem tudom hogy ez így elég elegáns megoldás e az elõzõ vagy inkább ezzel kéne folytatni? ez elég bonyolultá teszi ha már így nem az.
 		HashMap<String,String> b = new HashMap<String,String>();
@@ -147,77 +92,7 @@ public class Arena {
 		l.add(b);
 		//Skeleton.printLastCalledFunction(arenaID, b);
 		*/
-		switch(debugOnly){
-		case 4:
-			putPuttyGen(debugOnly);
-			break;
-			
-		default:
-			defGen();	
-			break;
-		}
 		
-	}
-	private void genAll(int debugOnly){
-		fields = new ArrayList<Field>();
-		patches = new ArrayList<Patch>();
-		SafeZone s = new SafeZone("s");
-		SafeZone s1 = new SafeZone("s1");
-		SafeZone s2 = new SafeZone("s2");
-		SafeZone s3 = new SafeZone("s3");
-		Oil o = new Oil("o");
-		Putty p = new Putty("p");/*
-		SafeZone s3 = new SafeZone("s3");
-		SafeZone s1 = new SafeZone("s1");
-		SafeZone s2 = new SafeZone("s2");
-		SafeZone s3 = new SafeZone("s3");*/
-		ArrayList<Field> neighbours0 = new ArrayList<Field>();
-		ArrayList<Field> neighbours1 = new ArrayList<Field>();
-		ArrayList<Field> neighbours2 = new ArrayList<Field>();
-	}
-	private void putPuttyGen(int debugOnly){		
-		fields = new ArrayList<Field>();
-		patches = new ArrayList<Patch>();
-		ArrayList<Field> neighbours0 = new ArrayList<Field>();
-
-		ArrayList<Field> neighbours1 = new ArrayList<Field>();
-
-		ArrayList<Field> neighbours2 = new ArrayList<Field>();
-		
-		SafeZone s1 = new SafeZone("s1");
-		SafeZone s2 = new SafeZone("s2");
-		SafeZone s3 = new SafeZone("s3");
-		s1.setCoord(aviableCoords.get(aviableCoordsNext++));
-		s2.setCoord(aviableCoords.get(aviableCoordsNext++));
-		s3.setCoord(aviableCoords.get(aviableCoordsNext++));
-		
-		Putty p = new Putty();
-		p.setFix();
-		patches.add(p);
-		s3.addPutty(p);
-		
-		fields.add(s1);
-		fields.add(s2);
-		fields.add(s3);
-		
-		neighbours0.add(s2);
-		s1.setNeighbours(neighbours0);
-
-		neighbours1.add(s1);
-		neighbours1.add(s3);
-		s2.setNeighbours(neighbours1);
-		
-		neighbours2.add(s2);
-		s3.setNeighbours(neighbours2);
-		
-		int robot0StartField = 0;
-		gamers = new HashMap<String, Robot>();
-		addRobot("Robot" + "0");
-		Set<String> keys4 = gamers.keySet();
-		gamers.get(keys4.toArray()[0]).setField(fields.get(robot0StartField));
-		
-	}
-	private void defGen(){
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
 		//+ be kell állítani a szomszédjaikat
 		SafeZone s0 = new SafeZone("s0");
@@ -272,7 +147,9 @@ public class Arena {
 		sr0.setNeighbours(temp);
 		sr1.setNeighbours(temp);
 		d.setNeighbours(temp);
+		
 	}
+
 	
 	/**
 	 * Adds the robot.
@@ -327,3 +204,105 @@ public class Arena {
 		}
 	}
 }
+
+//private void calcCoords(CoordVector size){
+//ArrayList<CoordVector> coords = new ArrayList<>();
+//
+////beállítjuk a Permutációt
+//int[] n = new int[size.dimension];
+//int[] Nr = new int[size.dimension];
+//for (int i = 0; i < size.dimension; i++) {
+//	Nr[i]=size.getCoordofDim(i+1)-1; //ez elég fura de a dimenziót 1-tõl számoljuk a getCoordofDim pedig 0-tól indexelve adja vissza de ez is dimenziós.
+//}
+//printPermutations(n, Nr, 0);
+//}
+//
+///**
+//* Hozzáadja az aviableCoords listához hozzáad CoordVector típusú objektumokat, amik
+//* lefedik az összes lehetságes koordináta permutációját. Így kigenerálódik a megadott 
+//* dimenziók szerint az elérhetõ CoordVector lista. pl.: 3 dimenziónál
+//* bemenet int[]{1,2,1}
+//* generált koordináták [0,0,0],[0,1,0], tehát ilyenkor ne hozzunk létre 3 elemet,
+//* mert nem tudja feltenni az aréna
+//*
+//* @param n segédtömb
+//* @param Nr maximális koordinátákat tároló tömb
+//* @param idx kezdõ index ahonnan generál
+//* @link http://stackoverflow.com/questions/9632677/combinatorics-generate-all-states-array-combinations
+//*/
+//public static void printPermutations(int[] n, int[] Nr, int idx) {
+//if (idx == n.length) {  //stop condition for the recursion [base clause]
+//    //System.out.println(Arrays.toString(n)); //csak kiíratáshoz kell
+//    try {
+//		aviableCoords.add(new CoordVector(n)); //hozzáadjuk az elérhetõ koordináták listájához
+//	} catch (Exception e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//    return;
+//}
+//for (int i = 0; i <= Nr[idx]; i++) { 
+//    n[idx] = i;
+//    printPermutations( n, Nr, idx+1); //recursive invokation, for next elements
+//}
+//}
+
+//private void genAll(){
+//	fields = new ArrayList<Field>();
+//	patches = new ArrayList<Patch>();
+//	SafeZone s = new SafeZone("s");
+//	SafeZone s1 = new SafeZone("s1");
+//	SafeZone s2 = new SafeZone("s2");
+//	SafeZone s3 = new SafeZone("s3");
+//	Oil o = new Oil("o");
+//	Putty p = new Putty("p");/*
+//	SafeZone s3 = new SafeZone("s3");
+//	SafeZone s1 = new SafeZone("s1");
+//	SafeZone s2 = new SafeZone("s2");
+//	SafeZone s3 = new SafeZone("s3");*/
+//	ArrayList<Field> neighbours0 = new ArrayList<Field>();
+//	ArrayList<Field> neighbours1 = new ArrayList<Field>();
+//	ArrayList<Field> neighbours2 = new ArrayList<Field>();
+//}
+//private void putPuttyGen(){		
+//	fields = new ArrayList<Field>();
+//	patches = new ArrayList<Patch>();
+//	ArrayList<Field> neighbours0 = new ArrayList<Field>();
+//
+//	ArrayList<Field> neighbours1 = new ArrayList<Field>();
+//
+//	ArrayList<Field> neighbours2 = new ArrayList<Field>();
+//	
+//	SafeZone s1 = new SafeZone("s1");
+//	SafeZone s2 = new SafeZone("s2");
+//	SafeZone s3 = new SafeZone("s3");
+//	s1.setCoord(aviableCoords.get(aviableCoordsNext++));
+//	s2.setCoord(aviableCoords.get(aviableCoordsNext++));
+//	s3.setCoord(aviableCoords.get(aviableCoordsNext++));
+//	
+//	Putty p = new Putty();
+//	p.setFix();
+//	patches.add(p);
+//	s3.addPutty(p);
+//	
+//	fields.add(s1);
+//	fields.add(s2);
+//	fields.add(s3);
+//	
+//	neighbours0.add(s2);
+//	s1.setNeighbours(neighbours0);
+//
+//	neighbours1.add(s1);
+//	neighbours1.add(s3);
+//	s2.setNeighbours(neighbours1);
+//	
+//	neighbours2.add(s2);
+//	s3.setNeighbours(neighbours2);
+//	
+//	int robot0StartField = 0;
+//	gamers = new HashMap<String, Robot>();
+//	addRobot("Robot" + "0");
+//	Set<String> keys4 = gamers.keySet();
+//	gamers.get(keys4.toArray()[0]).setField(fields.get(robot0StartField));
+//	
+//}
