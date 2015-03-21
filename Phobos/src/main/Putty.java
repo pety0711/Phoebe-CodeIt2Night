@@ -24,5 +24,4 @@ public class Putty extends Patch {
 		lifeTime--;
 		Skeleton.printLastCalledFunction(id);
 	}
-
 }
