@@ -81,30 +81,19 @@ public class SafeZone extends Field {
 	@Override
 	public Field step(CoordVector direction){
 		Skeleton.printLastCalledFunction(id, new String[]{"direction",Skeleton.getClassName(direction)});
-		Field nb = getNeighbour(direction);/*
+		Field nb = getNeighbour(direction);
 		switch (Skeleton.currentUseCase) {
 			case Collision:
 				break;
-			case Step_on_a_dangerzone:
-				this.steppedOffYou(robots.get(0));
-				return nb;				
+			case Put_oil:
+				nb = this;
 				break;
-				
-			case Step_on_a_safezone:
-				nb.steppedOnYou(robots.get(0));
-				this.steppedOffYou(robots.get(0));
-				break;
-			case Stepping_on_a_putty:
-				nb.steppedOnYou(robots.get(0));
-				this.steppedOffYou(robots.get(0));
-				break;
-			case Stepping_on_an_oil:			
-				nb.steppedOnYou(robots.get(0));
-				this.steppedOffYou(robots.get(0));
+			case Put_putty:
+				nb = this;
 				break;
 			default:
 				break;
-		}*/
+		}
 		robots.remove(0);
 		return nb;
 	}

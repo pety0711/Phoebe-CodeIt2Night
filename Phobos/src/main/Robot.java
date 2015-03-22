@@ -70,6 +70,7 @@ public class Robot {
 	}
 	
 	public void detectCollision(CoordVector coord){
+		Skeleton.printLastCalledFunction(id);
 		
 	}
 	

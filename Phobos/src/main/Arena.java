@@ -137,12 +137,12 @@ public class Arena {
 		DangerZone d = new DangerZone();
 
 		patches = new ArrayList<Patch>();
-		Putty p = new Putty();
+		Putty p = new Putty("p");
 		p.setFix();
 		patches.add(p);
 		sp.addPutty(p);
 		
-		Oil o = new Oil();
+		Oil o = new Oil("o");
 		o.setFix();
 		patches.add(o);
 		so.addOil(o);
@@ -205,8 +205,22 @@ public class Arena {
 	
 	
 	public void tick() {
-
 		Set<String> keys = gamers.keySet();
+		switch(Skeleton.currentUseCase) {	
+			case Put_oil:
+				Skeleton.drawLine();
+				gamers.get(keys.toArray()[0]).putOil();
+				Skeleton.drawLine();
+	
+				break;
+			case Put_putty:
+				Skeleton.drawLine();
+				gamers.get(keys.toArray()[0]).putPutty();
+				Skeleton.drawLine();
+				break;
+			default:
+				break;
+			}
 		for (String key : keys) {
 			gamers.get(key).tick();
 		}
@@ -219,21 +233,7 @@ public class Arena {
 			p.tick();
 		}
 		
-		switch(Skeleton.currentUseCase) {
 		
-		case Put_oil:
-			gamers.get(keys.toArray()[0]).putOil();
-			Skeleton.drawLine();
-
-			break;
-		case Put_putty:
-			Skeleton.drawLine();
-			gamers.get(keys.toArray()[0]).putPutty();
-			Skeleton.drawLine();
-			break;
-		default:
-			break;
-		}
 	}
 	public void killRobot(int points, String id){
 		Skeleton.printLastCalledFunction(arenaID, new String[]{"points","int", "id","String"});

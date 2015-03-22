@@ -58,12 +58,7 @@ public class Skeleton {
 			"Use-Case"
 	};
 	
-	public static void drawLine(){
-		for (int i = 0; i < 50; i++) {
-			System.out.print("+");
-		}	
-		System.out.println();
-	}
+	
 	public static enum UseCaseType {
     	New_game,Put_putty,Put_oil,Stepping_on_a_putty,Stepping_on_an_oil,Step_on_a_safezone,Step_on_a_dangerzone,Collision,Finish_game,Close_tester
     }
@@ -154,26 +149,28 @@ public class Skeleton {
 					break;
 		     }
 		} while (runMain);
-		
-		//Start 
-		 
 	}
 	
 	/**
 	 * Insert space.
 	 */
 	private static void insertSpace(){
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 70; i++) {
 			System.out.print('_');
 		}
 		System.out.println("");
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 70; i++) {
 			System.out.print('_');
 		}
 		System.out.println("");
 		System.out.println("");
 	}
-	
+	public static void drawLine(){
+		for (int i = 0; i < 70; i++) {
+			System.out.print("+");
+		}	
+		System.out.println();
+	}
 	//Kiiratások---------------------------------------------------------------------------------------------------------
 
 	/**
