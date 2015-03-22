@@ -107,7 +107,7 @@ public class Robot {
 	 *
 	 * @param coord the coord
 	 */
-	public void detectCollision(Vector coord){
+	public void detectCollision(CoordVector coord){
 		
 	}
 	

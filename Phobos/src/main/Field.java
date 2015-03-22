@@ -29,7 +29,7 @@ public abstract class  Field {
 	private Arena arena;
 	
 	/** The coord. */
-	private CoordVector coord;
+	protected CoordVector coord;
 	
 	/** The id. */
 	public String id;   //Ez a field neve vagy mi lesz??

@@ -91,6 +91,8 @@ public class SafeZone extends Field {
 	public void investigateCollision() {
 		Skeleton.printLastCalledFunction(id);
 		if( (robots.get(0) != null) && robots.get(1) != null ){
+			robots.get(0).detectCollision(coord);
+			robots.get(1).detectCollision(coord);
 			
 		}
 		
