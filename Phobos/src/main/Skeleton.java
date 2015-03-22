@@ -359,7 +359,8 @@ public class Skeleton {
 		
 		System.out.println();
 		//TODO - csak ekkor várunk user inputot?
-		System.out.println("Please select a USE-CASE from the list above!");
+		System.out.println("Please select a USE-CASE from the list above!\n");
+		System.out.println("HINT: only the last character counts.");
 		System.out.print("WAITING_FOR_USER_INPUT> ");
 		
 		String s = "";
@@ -388,8 +389,10 @@ public class Skeleton {
 			cnt --;
 		}
 		//elvileg csak 0 lehet itt már...
-		if (cnt < 1)
-			throw new Exception("User Input failed");
+		if (cnt < 1) {
+			System.out.println("Error: User Input failed");
+			System.out.println("Description: You failed 10 times or more. The program now stops for your safety.");
+		}
 		
 		return -1;
 	}
