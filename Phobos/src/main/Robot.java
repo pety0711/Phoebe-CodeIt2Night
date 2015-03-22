@@ -98,7 +98,6 @@ public class Robot {
 	 *
 	 */
 	public void investigateCollision(){
-
 		Skeleton.printLastCalledFunction(id);
 	}
 	
@@ -117,6 +116,7 @@ public class Robot {
 	 * @return the speed
 	 */
 	public void getSpeed(){
+		
 	}
 	
 	/**
@@ -125,6 +125,7 @@ public class Robot {
 	 * @param speed the new speed
 	 */
 	public void setSpeed(Vector speed){
+		
 	}
 	
 	/**
