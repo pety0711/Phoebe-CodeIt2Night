@@ -131,7 +131,7 @@ public class Robot {
 		return field;}
 
 	public void setField(Field field) {
-		Skeleton.printLastCalledFunction(id);
+		Skeleton.printLastCalledFunction(id,new String[]{id,Skeleton.getClassName(this)});
 		this.field = field;
 	}
 }
