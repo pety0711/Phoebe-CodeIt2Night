@@ -180,4 +180,9 @@ public class SafeZone extends Field {
 			}
 		return returnField;
 	}
+
+	@Override
+	public void initField() {
+		Skeleton.printLastCalledFunction(id);
+	}
 }
