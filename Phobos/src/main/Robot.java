@@ -62,8 +62,8 @@ public class Robot {
 		arena.registerPatch(oil);	}
 	
 	public void tick(){
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Stepping_on_a_putty||
-			Skeleton.currentUseCase==Skeleton.UseCaseType.Stepping_on_an_oil||
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_putty||
+			Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_an_oil||
 			Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_dangerzone||
 			Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_safezone){
 			Skeleton.drawLine();
@@ -102,16 +102,16 @@ public class Robot {
 	public void slowDown(){
 		Skeleton.printLastCalledFunction(id);
 		if(
-				Skeleton.currentUseCase==Skeleton.UseCaseType.Stepping_on_a_putty||
-				Skeleton.currentUseCase==Skeleton.UseCaseType.Stepping_on_an_oil){
+				Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_putty||
+				Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_an_oil){
 				Skeleton.drawLine();
 			}
 	}
 
 	public void disableMovement(){
 		Skeleton.printLastCalledFunction(id);
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Stepping_on_a_putty||
-				Skeleton.currentUseCase==Skeleton.UseCaseType.Stepping_on_an_oil){
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_putty||
+				Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_an_oil){
 				Skeleton.drawLine();
 			}
 	}
