@@ -10,6 +10,14 @@ public class DangerZone extends Field {
 
 	private int type;
 	
+	public DangerZone() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public DangerZone(String id) {
+		this.id = id;
+	}
+	
 	@Override
 	public void steppedOnYou(Robot r) {
 		Skeleton.printLastCalledFunction(r.id,new String[]
