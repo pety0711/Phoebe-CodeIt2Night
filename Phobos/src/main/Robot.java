@@ -64,7 +64,7 @@ public class Robot {
 	 */
 	public void putPutty(){
 		Skeleton.printLastCalledFunction(id);
-		Putty putty = new Putty();
+		Putty putty = new Putty("p");
 		field.addPutty(putty);
 	}
 	
@@ -73,6 +73,8 @@ public class Robot {
 	 */
 	public void putOil(){
 		Skeleton.printLastCalledFunction(id);
+		Oil oil = new Oil("o");
+		field.addOil(oil);
 	}
 	
 	/**
@@ -139,6 +141,8 @@ public class Robot {
 	 * Kill robot.
 	 */
 	public void killRobot(){
+		Skeleton.printLastCalledFunction(this.id);
+		arena.killRobot(points, id);
 	}
 
 	/**

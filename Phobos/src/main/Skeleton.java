@@ -58,7 +58,12 @@ public class Skeleton {
 			"Use-Case"
 	};
 	
-	
+	public static void drawLine(){
+		for (int i = 0; i < 50; i++) {
+			System.out.print("+");
+		}	
+		System.out.println();
+	}
 	public static enum UseCaseType {
     	New_game,Put_putty,Put_oil,Stepping_on_a_putty,Stepping_on_an_oil,Step_on_a_safezone,Step_on_a_dangerzone,Collision,Finish_game,Close_tester
     }
@@ -110,27 +115,32 @@ public class Skeleton {
 					break;
 				case Collision:
 					Arena arenaCollision = new Arena();
+					arenaCollision.tick();
 					break;
 				case Finish_game:
 					Arena arenaFinish = new Arena();	
+					drawLine();
 					arenaFinish.finishGame();
+					drawLine();
 					break;
 				case New_game:
 					Arena arenaNew = new Arena();
 					break;
 				case Put_oil:
 					Arena arenaPutoil = new Arena();
+					arenaPutoil.tick();
 					break;
 				case Put_putty:
 					Arena arenaPutputty = new Arena();
+					arenaPutputty.tick();
 					break;
 				case Step_on_a_dangerzone:
-
 					Arena arenaDangerzone = new Arena();
+					arenaDangerzone.tick();
 					break;
 				case Step_on_a_safezone:
-
 					Arena arenaSafezone = new Arena();
+					arenaSafezone.tick();
 					break;
 				case Stepping_on_a_putty:
 					Arena arenaStepputty = new Arena();

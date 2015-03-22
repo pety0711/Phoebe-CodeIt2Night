@@ -85,8 +85,7 @@ public class Arena {
 	 * @param size the size
 	 */
 	public void generateFields(CoordVector size) {
-		Skeleton.printLastCalledFunction(arenaID, new String[]{"size","CoordVector","Alma","String","Körte","String"});
-		
+		Skeleton.printLastCalledFunction(arenaID, new String[]{"size","CoordVector"});
 		/*
 		Ezt légyszí ne töröld ha útban van se, nem tudom hogy ez így elég elegáns megoldás e az elõzõ vagy inkább ezzel kéne folytatni? ez elég bonyolultá teszi ha már így nem az.
 		HashMap<String,String> b = new HashMap<String,String>();
@@ -180,7 +179,7 @@ public class Arena {
 	 * @param id the id
 	 */
 	public void killRobot(int points, String id){
-		Skeleton.printLastCalledFunction(arenaID, new String[]{"points : int", "id : String"});
+		Skeleton.printLastCalledFunction(arenaID, new String[]{"points","int", "id","String"});
 		
 		Skeleton.printOutINFO(id + " Robot died, points: " + points);
 	}
@@ -201,8 +200,12 @@ public class Arena {
 		}
 		
 		switch(Skeleton.currentUseCase) {
+		
 		case Put_oil:
+			Skeleton.drawLine();
 			gamers.get(keys.toArray()[0]).putOil();
+
+			Skeleton.drawLine();
 			break;
 		case Put_putty:
 			gamers.get(keys.toArray()[0]).putPutty();
@@ -211,8 +214,8 @@ public class Arena {
 			break;
 		}
 	}
-	
 	public void finishGame() {
+		Skeleton.printLastCalledFunction(arenaID);
 		Set<String> keys = gamers.keySet();
 		for (String key : keys) {
 			gamers.get(key).killRobot();

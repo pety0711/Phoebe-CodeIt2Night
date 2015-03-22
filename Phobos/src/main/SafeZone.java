@@ -23,13 +23,15 @@ public class SafeZone extends Field {
 		Random r = new Random();
 		id = ""+r.nextInt(2000000000);
 		Skeleton.printLastCalledFunction(id, new String[]{id,Skeleton.getClassName(id)});
-		/*
+		
 		pList = new ArrayList<>();
+		oList = new ArrayList<>();
+		
+		/*
 		pList.add(new Putty());
 		pList.add(new Putty());
 		pList.add(new Putty());
 		
-		oList = new ArrayList<>();
 		oList.add(new Oil());
 		oList.add(new Oil());
 		oList.add(new Oil());*/
@@ -39,9 +41,10 @@ public class SafeZone extends Field {
 	public SafeZone(String id) {
 		this.id = id;
 		Skeleton.printLastCalledFunction(id, new String[]{id,Skeleton.getClassName(id)});
-		/*
+		
 		pList = new ArrayList<>();
-
+		oList = new ArrayList<>();
+		/*
 		pList.add(new Putty());
 		pList.add(new Putty());
 		pList.add(new Putty());
@@ -100,11 +103,13 @@ public class SafeZone extends Field {
 	
 	public void addPutty(Putty p){
 		Skeleton.printLastCalledFunction(id,new String[]{p.id,Skeleton.getClassName(p)});
-		pList.add(new Putty());
+		//pList.add(new Putty());
+		pList.add(p);
 	}
-	public void addOil(Oil p){     //Ez kell ide?? 
-		Skeleton.printLastCalledFunction(id,new String[]{p.id,Skeleton.getClassName(p)});
-		oList.add(new Oil());
+	public void addOil(Oil o){     //Ez kell ide?? 
+		Skeleton.printLastCalledFunction(id,new String[]{o.id,Skeleton.getClassName(o)});
+		//oList.add(new Oil());
+		oList.add(o);
 	}
 
 }
