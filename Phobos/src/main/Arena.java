@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 
+
 import main.Skeleton.UseCaseType;
 
 /**
@@ -199,6 +200,8 @@ public class Arena {
 			default:
 				break;
 			}
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision)
+			Skeleton.drawLine();
 		for (String key : keys) {
 			gamers.get(key).tick();
 		}
@@ -218,6 +221,8 @@ public class Arena {
 		Skeleton.printLastCalledFunction(arenaID, new String[]
 				{"points","int", "id","String"});
 		Skeleton.printOutINFO(id + " Robot died, points: " + points);
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_dangerzone)
+			Skeleton.drawLine();
 	}
 
 	public void finishGame() {

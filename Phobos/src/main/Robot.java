@@ -86,8 +86,6 @@ public class Robot {
 	public void detectCollision(CoordVector coord){
 		Skeleton.printLastCalledFunction(id);
 		this.isItAlive=false;
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision)
-			Skeleton.drawLine();
 		/*
 		// majd meghalnak
 		field.steppedOffYou(this);
@@ -133,5 +131,8 @@ public class Robot {
 
 	public void setField(Field field) {
 		Skeleton.printLastCalledFunction(id);
-		this.field = field;}
+		this.field = field;
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_safezone)
+			Skeleton.drawLine();
+	}
 }

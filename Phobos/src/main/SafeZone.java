@@ -111,6 +111,7 @@ public class SafeZone extends Field {
 					r.detectCollision(coord);
 				}*/
 			}
+			Skeleton.drawLine();
 			break;
 		case Close_tester:
 			break;
