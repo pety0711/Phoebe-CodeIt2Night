@@ -71,10 +71,17 @@ public class Arena {
 
 		Set<String> keys = gamers.keySet();
 		gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
-		if (Skeleton.currentUseCase == UseCaseType.Collision)
-			gamers.get(keys.toArray()[1]).setField(fields.get(robot0StartField));
+		fields.get(robot0StartField).steppedOnYou(gamers.get(keys.toArray()[0]));
+		if (Skeleton.currentUseCase == UseCaseType.Collision){
+			gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
+			fields.get(robot0StartField).steppedOnYou(gamers.get(keys.toArray()[0]));
+		}
 		else
+		{
 			gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
+			fields.get(robot1StartField).steppedOnYou(gamers.get(keys.toArray()[1]));
+		}
+		
 	}
 	
 
@@ -124,7 +131,6 @@ public class Arena {
 		SafeZone so = new SafeZone("so");
 		SafeZone sr0 = new SafeZone("sr0");
 		SafeZone sr1 = new SafeZone("sr1");
-		
 		//TODO név paraméternek
 		DangerZone d = new DangerZone();
 
@@ -138,6 +144,7 @@ public class Arena {
 		o.setFix();
 		patches.add(o);
 		so.addOil(o);
+		
 		
 		fields = new ArrayList<Field>();
 		fields.add(s0);

@@ -26,7 +26,6 @@ public class SafeZone extends Field {
 		
 		pList = new ArrayList<>();
 		oList = new ArrayList<>();
-		
 		/*
 		pList.add(new Putty());
 		pList.add(new Putty());
@@ -62,7 +61,8 @@ public class SafeZone extends Field {
 	public void steppedOnYou(Robot r) {
 		Skeleton.printLastCalledFunction(id, new String[]{r.id,Skeleton.getClassName(r)});
 		for (Patch patch : patches) {
-			if(Skeleton.getClassName(patch)==(Skeleton.getClassName(new Putty())))
+			//if(Skeleton.getClassName(patch)==(Skeleton.getClassName(new Putty())))
+			if(patch.getClass()==Putty.class)
 				r.slowDown();
 			else 
 				r.disableMovement();
@@ -73,7 +73,9 @@ public class SafeZone extends Field {
 	@Override
 	public void steppedOffYou(Robot r) {
 		Skeleton.printLastCalledFunction(id, new String[]{r.id,Skeleton.getClassName(r)});
-		robots.remove(robots.get(0));
+		if(robots.contains(r)){
+			robots.remove(r);
+		}
 	}
 	
 	@Override
@@ -85,20 +87,20 @@ public class SafeZone extends Field {
 			case Collision:
 				break;
 			case Step_on_a_dangerzone:
-				this.steppedOffYou(robots.get(0));
 				nb.steppedOnYou(robots.get(0));
+				this.steppedOffYou(robots.get(0));
 				break;
 			case Step_on_a_safezone:
-				this.steppedOffYou(robots.get(0));
 				nb.steppedOnYou(robots.get(0));
+				this.steppedOffYou(robots.get(0));
 				break;
 			case Stepping_on_a_putty:
-				this.steppedOffYou(robots.get(0));
 				nb.steppedOnYou(robots.get(0));
+				this.steppedOffYou(robots.get(0));
 				break;
-			case Stepping_on_an_oil:				
-				this.steppedOffYou(robots.get(0));
+			case Stepping_on_an_oil:			
 				nb.steppedOnYou(robots.get(0));
+				this.steppedOffYou(robots.get(0));
 				break;
 			default:
 				break;
@@ -111,12 +113,9 @@ public class SafeZone extends Field {
 		Skeleton.printLastCalledFunction(id);
 		if( (robots.get(0) != null) && robots.get(1) != null ){
 			robots.get(0).detectCollision(coord);
-			robots.get(1).detectCollision(coord);
-			
-		}
-		
+			robots.get(1).detectCollision(coord);	
+		}	
 	}
-	
 	
 	public Field step(Vector speed) {
 
@@ -128,11 +127,13 @@ public class SafeZone extends Field {
 		Skeleton.printLastCalledFunction(id,new String[]{p.id,Skeleton.getClassName(p)});
 		//pList.add(new Putty());
 		pList.add(p);
+		patches.add(p);
 	}
 	public void addOil(Oil o){     //Ez kell ide?? 
 		Skeleton.printLastCalledFunction(id,new String[]{o.id,Skeleton.getClassName(o)});
 		//oList.add(new Oil());
 		oList.add(o);
+		patches.add(o);
 	}
 
 	@Override

@@ -15,7 +15,7 @@ public class DangerZone extends Field {
 	
 	@Override
 	public void steppedOnYou(Robot r) {
-		// TODO Auto-generated method stub
+		Skeleton.printLastCalledFunction(r.id,new String[]{r.id,Skeleton.getClassName(r)});
 		robots.add(r);
 		r.killRobot();
 	}
@@ -44,6 +44,5 @@ public class DangerZone extends Field {
 	@Override
 	public void steppedOffYou(Robot r) {
 		// TODO Auto-generated method stub
-		
 	}
 }

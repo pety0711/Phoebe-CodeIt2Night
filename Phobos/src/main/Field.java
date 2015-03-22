@@ -34,6 +34,7 @@ public abstract class  Field {
 	
 	public Field() {
 		patches = new ArrayList<Patch>();
+		robots = new ArrayList<Robot>();
 		// this.id = id; Ez kell bele?
 	}
 
