@@ -17,10 +17,10 @@ import java.util.Vector;
 public abstract class  Field {
 	 
 	/** The neighbours. */
-	private List<Field> neighbours;
+	protected List<Field> neighbours; //Lehet ez is protected? Privat volt alapból.
 	
 	/** The robots. */
-	private List<Robot> robots;
+	protected List<Robot> robots;  //Sztem ez jobb protectedbe, igaz?
 	
 	/** The Patches */
 	protected ArrayList<Patch> patches;
@@ -31,20 +31,25 @@ public abstract class  Field {
 	/** The coord. */
 	private CoordVector coord;
 	
+	/** The id. */
+	public String id;   //Ez a field neve vagy mi lesz??
+	
 	/**
 	 * Gets the robot id.
 	 *
 	 * @return the robot id
 	 */
 	public String getRobotId() {
-		//TODO
-		return null;
+		
+		
+		return robots.get(0).id;
 	}
 	
 	public abstract Field step(CoordVector speed);
 	
 	public Field() {
 		patches = new ArrayList<Patch>();
+		// this.id = id; Ez kell bele?
 	}
 
 

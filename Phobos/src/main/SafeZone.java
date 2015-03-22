@@ -74,6 +74,7 @@ public class SafeZone extends Field {
 			else 
 				r.disableMovement();
 		}
+		robots.add(r);
 	}
 	@Override
 	public Field step(CoordVector speed){
@@ -84,6 +85,9 @@ public class SafeZone extends Field {
 	}
 	
 	public void investigateCollision() {
+		if( (robots.get(0) != null) && robots.get(1) != null ){
+			
+		}
 		
 	}
 	
@@ -96,5 +100,11 @@ public class SafeZone extends Field {
 	
 	public void addPutty(Putty p){
 		Skeleton.printLastCalledFunction(id,new String[]{p.id,Skeleton.getClassName(p)});
+		pList.add(new Putty());
 	}
+	public void addOil(Oil p){     //Ez kell ide?? 
+		Skeleton.printLastCalledFunction(id,new String[]{p.id,Skeleton.getClassName(p)});
+		oList.add(new Oil());
+	}
+
 }
