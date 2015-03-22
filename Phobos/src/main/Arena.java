@@ -43,12 +43,16 @@ public class Arena {
 	
 	public Arena(String id) {
 		arenaID = id;
-		Skeleton.printLastCalledFunction(arenaID, new String[]{""});
+		if(Skeleton.currentUseCase==UseCaseType.New_game)
+			Skeleton.drawLine();
+		//Skeleton.printLastCalledFunction(arenaID, new String[]{""});
 		Initialize();
 	}
 	
 	public Arena(){
-		Skeleton.printLastCalledFunction(arenaID, new String[]{""}); //Kiíratás
+		if(Skeleton.currentUseCase==UseCaseType.New_game)
+			Skeleton.drawLine();
+		//Skeleton.printLastCalledFunction(arenaID, new String[]{""}); //Kiíratás
 		arenaID = "arena";
 		Initialize();
 	}
@@ -65,7 +69,11 @@ public class Arena {
 		generateFields(dim);
 		
 		gamers = new HashMap<String, Robot>();
-		
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision){
+			noRobots=2;
+		}
+		else 
+			noRobots = 1;
 		for (int i = 0; i < noRobots; i++)
 		{
 			addRobot("Robot" + i);
@@ -74,18 +82,11 @@ public class Arena {
 		Set<String> keys = gamers.keySet();
 		gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
 		fields.get(robot0StartField).steppedOnYou(gamers.get(keys.toArray()[0]));
-		if (Skeleton.currentUseCase == UseCaseType.Collision){
-			gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
-			fields.get(robot0StartField).steppedOnYou(gamers.get(keys.toArray()[0]));
-		}
-		else
-		{
+		if (Skeleton.currentUseCase == UseCaseType.Collision){			
 			gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
 			fields.get(robot1StartField).steppedOnYou(gamers.get(keys.toArray()[1]));
-		}
-		
+		}		
 	}
-	
 
 	/**
 	 * Generate fields.
@@ -94,35 +95,7 @@ public class Arena {
 	 */
 	public void generateFields(CoordVector size) {
 		Skeleton.printLastCalledFunction(arenaID, new String[]{"size","CoordVector"});
-		
-		switch(Skeleton.currentUseCase){
-		case Close_tester:
-			break;
-		case Collision:
-			break;
-		case Finish_game:
-			break;
-		case New_game:
-			SafeZone s0 = new SafeZone("s0");
-			SafeZone s1 = new SafeZone("s1");
-			SafeZone s2 = new SafeZone("s2");
-			break;
-		case Put_oil:
-			break;
-		case Put_putty:
-			break;
-		case Step_on_a_dangerzone:
-			break;
-		case Step_on_a_safezone:
-			break;
-		case Stepping_on_a_putty:
-			break;
-		case Stepping_on_an_oil:
-			break;
-		default:
-			break;
-		
-		}
+
 		
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
 		//+ be kell állítani a szomszédjaikat

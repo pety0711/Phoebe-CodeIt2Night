@@ -68,6 +68,7 @@ public class SafeZone extends Field {
 				r.disableMovement();
 		}
 		robots.add(r);
+		r.setField(this);
 	}
 	
 	@Override
@@ -83,8 +84,6 @@ public class SafeZone extends Field {
 		Skeleton.printLastCalledFunction(id, new String[]{"direction",Skeleton.getClassName(direction)});
 		Field nb = getNeighbour(direction);
 		switch (Skeleton.currentUseCase) {
-			case Collision:
-				break;
 			case Put_oil:
 				nb = this;
 				break;
@@ -101,10 +100,14 @@ public class SafeZone extends Field {
 	@Override
 	public void investigateCollision() {
 		Skeleton.printLastCalledFunction(id);
-		if( (robots.get(0) != null) && robots.get(1) != null ){
-			robots.get(0).detectCollision(coord);
-			robots.get(1).detectCollision(coord);	
-		}	
+		switch(Skeleton.currentUseCase){
+		case Collision:
+			if( (robots.get(0) != null) && robots.get(1) != null ){
+				robots.get(0).detectCollision(coord);
+				robots.get(1).detectCollision(coord);	
+			}
+			break;
+		}
 	}
 	
 	public void addPutty(Putty p){

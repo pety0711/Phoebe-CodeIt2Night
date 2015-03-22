@@ -67,11 +67,13 @@ public class Robot {
 	
 	public void investigateCollision(){
 		Skeleton.printLastCalledFunction(id);
+		field.investigateCollision();
 	}
 	
 	public void detectCollision(CoordVector coord){
-		Skeleton.printLastCalledFunction(id);
-		
+		Skeleton.printLastCalledFunction(id);/*
+		field.steppedOffYou(this);
+		arena.killRobot(points, id);*/
 	}
 	
 	public CoordVector getSpeed(){
