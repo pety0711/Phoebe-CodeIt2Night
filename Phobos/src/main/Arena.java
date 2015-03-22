@@ -200,10 +200,8 @@ public class Arena {
 	}
 	
 	/**
-	 * Kill robot.
+	 * tick
 	 */
-	
-	
 	public void tick() {
 		Set<String> keys = gamers.keySet();
 		switch(Skeleton.currentUseCase) {	
