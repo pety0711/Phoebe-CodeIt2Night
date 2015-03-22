@@ -12,7 +12,6 @@ import java.util.Random;
  */
 public class SafeZone extends Field {
 
-	private String id;
 	private ArrayList<Putty> pList;
 	private ArrayList<Oil> oList;
 	
