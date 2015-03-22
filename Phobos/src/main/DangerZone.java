@@ -20,7 +20,7 @@ public class DangerZone extends Field {
 	
 	@Override
 	public void steppedOnYou(Robot r) {
-		Skeleton.printLastCalledFunction(r.id,new String[]
+		Skeleton.printLastCalledFunction(id,new String[]
 				{r.id,Skeleton.getClassName(r)});
 		robots.add(r);
 		r.killRobot();
