@@ -60,7 +60,7 @@ public class Skeleton {
     public static UseCaseType currentUseCase = UseCaseType.New_game;
     
     private static String getUseCaseOptions(int i){
-    	return useCaseOptions[i];
+    	return useCaseOptions[Math.max(i, 0)];
     }
     
     private static String getUseCaseString(UseCaseType us){
