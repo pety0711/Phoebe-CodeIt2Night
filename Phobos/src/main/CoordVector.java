@@ -4,6 +4,14 @@ public class CoordVector {
 	public static final int dimension = 2;
 	private int[] points;
 	
+	public int[] getPoints() {
+		return points;
+	}
+
+	public void setPoints(int[] points) {
+		this.points = points;
+	}
+
 	public CoordVector() {
 		points = new int[dimension];
 		for (int i = 0; i < dimension; i++) {
@@ -22,7 +30,8 @@ public class CoordVector {
 		return points[dimension-1];
 	}
 	
-	 @Override public String toString(){
+	 @Override 
+	 public String toString(){
 		StringBuilder result = new StringBuilder();
 		 
 	    result.append("{");
@@ -35,4 +44,16 @@ public class CoordVector {
 
 	    return result.toString();
 	 }
+
+	@Override
+	public boolean equals(Object obj) {
+		CoordVector cv = (CoordVector) obj;
+		for (int i = 0; i < dimension; i++) {
+			if (this.points[i] != cv.getPoints()[i])
+				return false;
+		}
+		return true;
+	}
+	 
+	 
 }

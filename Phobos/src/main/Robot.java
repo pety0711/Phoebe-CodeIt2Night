@@ -86,7 +86,9 @@ public class Robot {
 	
 	public void detectedCollision(CoordVector coord){
 		Skeleton.printLastCalledFunction(id, new String[]{"coord", "CoordVector"});
-		field.step(coord, this);
+		Field f = field.step(coord, this);
+		setField(f);
+		f.steppedOnYou(this);
 //		this.isItAlive=false;
 		/*
 		// majd meghalnak

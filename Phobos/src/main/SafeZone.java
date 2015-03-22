@@ -106,11 +106,11 @@ public class SafeZone extends Field {
 		Skeleton.printLastCalledFunction(id);
 		switch(Skeleton.currentUseCase){
 		case Collision:
-			if( (robots.get(0) != null) && robots.get(1) != null ){
+			if( robots.size() > 1 && (robots.get(0) != null) && robots.get(1) != null ){
 				CoordVector cv0 = new CoordVector(new int[]{1, 0});
 				CoordVector cv1 = new CoordVector(new int[]{1, 1});
-				robots.get(0).detectedCollision(cv0);
 				robots.get(1).detectedCollision(cv1);
+				robots.get(0).detectedCollision(cv0);
 			}
 			break;
 		default:
@@ -140,7 +140,15 @@ public class SafeZone extends Field {
 		Field returnField = null;
 		switch (Skeleton.currentUseCase) {
 			case Collision:
-				returnField = neighbours.get(0);
+				try {
+					if (direction.equals(new CoordVector(new int[]{1, 0}))) {
+						returnField = neighbours.get(1);
+					} else {
+						returnField = neighbours.get(0);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 			case Step_on_a_dangerzone:
 				returnField = neighbours.get(7);
