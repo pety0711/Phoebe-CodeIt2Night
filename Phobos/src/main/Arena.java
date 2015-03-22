@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
+import main.Skeleton.UseCaseType;
+
 /**
  * The Class Arena.
  */
@@ -70,7 +72,10 @@ public class Arena {
 
 		Set<String> keys = gamers.keySet();
 		gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
-		gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
+		if (Skeleton.currentUseCase == UseCaseType.Collision)
+			gamers.get(keys.toArray()[1]).setField(fields.get(robot0StartField));
+		else
+			gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
 	}
 	
 
