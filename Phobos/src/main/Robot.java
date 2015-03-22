@@ -42,7 +42,7 @@ public class Robot {
 		
 		puttySupply = 3;
 		oilSupply = 3;
-		points = 0;
+		points = 100;
 		
 		speed = new CoordVector();
 		Skeleton.printLastCalledFunction(id,new String[]
