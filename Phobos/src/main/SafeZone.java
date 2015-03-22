@@ -126,9 +126,9 @@ public class SafeZone extends Field {
 			break;
 		case Step_on_a_safezone:
 			break;
-		case Stepping_on_a_putty:
+		case Step_on_a_putty:
 			break;
-		case Stepping_on_an_oil:
+		case Step_on_an_oil:
 			break;
 		default:
 			break;
@@ -165,10 +165,10 @@ public class SafeZone extends Field {
 			case Step_on_a_safezone:
 				returnField = neighbours.get(2);
 				break;
-			case Stepping_on_a_putty:
+			case Step_on_a_putty:
 				returnField = neighbours.get(3);
 				break;
-			case Stepping_on_an_oil:
+			case Step_on_an_oil:
 				returnField = neighbours.get(4);
 				break;
 		case Close_tester:

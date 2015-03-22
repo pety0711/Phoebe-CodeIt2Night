@@ -25,8 +25,8 @@ public class Skeleton {
 			"New game",
 			"Put putty",
 			"Put oil",
-			"Stepping on a putty",
-			"Stepping on an oil",
+			"Step on a putty",
+			"Step on an oil",
 			"Step on a safezone",
 			"Step on a dangerzone",
 			"Collision",
@@ -52,8 +52,8 @@ public class Skeleton {
 	
 	
 	public static enum UseCaseType {
-    	New_game,Put_putty,Put_oil,Stepping_on_a_putty,
-    	Stepping_on_an_oil,Step_on_a_safezone,Step_on_a_dangerzone,
+    	New_game,Put_putty,Put_oil,Step_on_a_putty,
+    	Step_on_an_oil,Step_on_a_safezone,Step_on_a_dangerzone,
     	Collision,Finish_game,Close_tester
     }
     
@@ -132,11 +132,11 @@ public class Skeleton {
 					Arena arenaSafezone = new Arena();
 					arenaSafezone.tick();
 					break;
-				case Stepping_on_a_putty:
+				case Step_on_a_putty:
 					Arena arenaStepputty = new Arena();
 					arenaStepputty.tick();
 					break;
-				case Stepping_on_an_oil:
+				case Step_on_an_oil:
 					Arena arenaStepoil = new Arena();
 					arenaStepoil.tick();
 					break;
