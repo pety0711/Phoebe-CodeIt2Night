@@ -7,11 +7,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Dávid & Ács
+ * The Class Skeleton.
  *
+ * @author Dávid & Ács
  */
 public class Skeleton {
+	
+	/** The selected usecase. */
 	public static int selectedUsecase = 1;
 //	StackTraceElement[] ste = Thread.currentThread().getStackTrace();
 //	for (StackTraceElement s : ste) {
@@ -19,7 +23,8 @@ public class Skeleton {
 //	}
 //	System.out.println(ste.length);
 	
-	static String[] useCaseOptions = {
+	/** The use case options. */
+static String[] useCaseOptions = {
 
 			"Close tester",
 			"New game",
@@ -35,8 +40,11 @@ public class Skeleton {
 
     
 
+	/** The required inputs int. */
 	static int[] requiredInputsInt = 
 		{0,1,2,3,4,5,6,7,8,9};
+	
+	/** The options type. */
 	static String[] optionsType = {
 			"Program",
 			"Use-Case",
@@ -51,18 +59,54 @@ public class Skeleton {
 	};
 	
 	
+	/**
+	 * The Enum UseCaseType.
+	 */
 	public static enum UseCaseType {
-    	New_game,Put_putty,Put_oil,Step_on_a_putty,
-    	Step_on_an_oil,Step_on_a_safezone,Step_on_a_dangerzone,
-    	Collision,Finish_game,Close_tester
+    	
+	    /** The New_game. */
+	    New_game,
+/** The Put_putty. */
+Put_putty,
+/** The Put_oil. */
+Put_oil,
+/** The Step_on_a_putty. */
+Step_on_a_putty,
+    	
+	    /** The Step_on_an_oil. */
+	    Step_on_an_oil,
+/** The Step_on_a_safezone. */
+Step_on_a_safezone,
+/** The Step_on_a_dangerzone. */
+Step_on_a_dangerzone,
+    	
+	    /** The Collision. */
+	    Collision,
+/** The Finish_game. */
+Finish_game,
+/** The Close_tester. */
+Close_tester
     }
     
+    /** The current use case. */
     public static UseCaseType currentUseCase = UseCaseType.New_game;
     
+    /**
+     * Gets the use case options.
+     *
+     * @param i the i
+     * @return the use case options
+     */
     private static String getUseCaseOptions(int i){
     	return useCaseOptions[Math.max(i, 0)];
     }
     
+    /**
+     * Gets the use case string.
+     *
+     * @param us the us
+     * @return the use case string
+     */
     private static String getUseCaseString(UseCaseType us){
     	boolean run = true;
     	int index = 0;
@@ -77,10 +121,21 @@ public class Skeleton {
     	return useCaseOptions[index];
     }
     
+    /**
+     * Gets the use case type.
+     *
+     * @param i the i
+     * @return the use case type
+     */
     private static UseCaseType getUseCaseType(int i){
     	return UseCaseType.valueOf(getUseCaseOptions(i).replace(' ', '_'));
     }
     
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String [ ] args)
 	{ 	
 		
@@ -160,6 +215,10 @@ public class Skeleton {
 		System.out.println("");
 		System.out.println("");
 	}
+	
+	/**
+	 * Draw line.
+	 */
 	public static void drawLine(){
 		for (int i = 0; i < 70; i++) {
 			System.out.print("+");
@@ -187,6 +246,7 @@ public class Skeleton {
 		return result;
 	}
 	
+	/** The c functions. */
 	private static StackTraceElement[] cFunctions = Thread.currentThread().getStackTrace();
 	
 	/**
@@ -262,11 +322,12 @@ public class Skeleton {
 	 * printLastCalledFunction(String id,String[] parameters)
 	 * A függvény kiírja, melyik függvényt hívtuk utoljára. {id}:<ClassName> - <functionName>({parameters}) formátumban.
 	 * Célszerû a paraméter stringbe vesszõket tenni a paraméterek elválasztására, ezt ez a függvény nem teszi meg! 
+	 *
+	 * @author  Akos Recse & David Sebok
+	 * @version 2.1
 	 * @param id - annak az objektumnak az azonosítója, amelyiken a függvényhívást végeztük.
 	 * @param parameters - a hívott függvénynek átadott paraméterek String[] tömb amiben érték párok vannak
 	 * elõl a név hátul a típusa
-	 * @author  Akos Recse & David Sebok
-	 * @version 2.1
 	 * @since   2015-03-20
 	 */
 	public static void printLastCalledFunction(String id,String[] parameters){
@@ -347,6 +408,7 @@ public class Skeleton {
 	 *
 	 * @param description the description
 	 * @param requiredInputs the required inputs
+	 * @param optionsType the options type
 	 * @return the char
 	 * @throws Exception the exception
 	 */

@@ -10,35 +10,44 @@ import java.util.Set;
 
 import main.Skeleton.UseCaseType;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Arena.
  */
 public class Arena {
 	
+	/** The Constant robot0StartField. */
 	public static final int robot0StartField = 5;
+	
+	/** The Constant robot1StartField. */
 	public static final int robot1StartField = 6;
 	
-	/** */
+	/** The arena id. */
 	private String arenaID;
 	
 	/** The fields. */
 	private ArrayList<Field> fields;
 	
-	/** Patches - temporary*/
+	/**  Patches - temporary. */
 	private ArrayList<Patch> patches;
 	
 	/** The gamers. */
 	private HashMap<String, Robot> gamers;
 	
-	/** The dimension*/
+	/**  The dimension. */
 	private CoordVector dim;
 	
 //	private static ArrayList<CoordVector> aviableCoords; //
 //	private static int aviableCoordsNext;
 	
-	/** Number of Robots */
+	/**  Number of Robots. */
 	private int noRobots = 2;
 	
+	/**
+	 * Instantiates a new arena.
+	 *
+	 * @param id the id
+	 */
 	public Arena(String id) {
 		arenaID = id;
 		if(Skeleton.currentUseCase==UseCaseType.New_game)
@@ -47,6 +56,9 @@ public class Arena {
 		Initialize();
 	}
 	
+	/**
+	 * Instantiates a new arena.
+	 */
 	public Arena(){
 		if(Skeleton.currentUseCase==UseCaseType.New_game)
 			Skeleton.drawLine();
@@ -54,6 +66,10 @@ public class Arena {
 		arenaID = "arena";
 		Initialize();
 	}
+	
+	/**
+	 * Initialize.
+	 */
 	private void Initialize() {
 		Skeleton.printLastCalledFunction(arenaID);
 
@@ -171,6 +187,11 @@ public class Arena {
 		gamers.put(id, new Robot(id, this));
 	}
 	
+	/**
+	 * Register patch.
+	 *
+	 * @param p the p
+	 */
 	public void registerPatch(Patch p) {
 		Skeleton.printLastCalledFunction(arenaID, new String[]
 				{p.id,Skeleton.getClassName(p)});
@@ -180,9 +201,6 @@ public class Arena {
 	
 	/**
 	 * Kill robot.
-	 *
-	 * @param points the points
-	 * @param id the id
 	 */
 	
 	
@@ -226,6 +244,13 @@ public class Arena {
 		
 		
 	}
+	
+	/**
+	 * Kill robot.
+	 *
+	 * @param points the points
+	 * @param id the id
+	 */
 	public void killRobot(int points, String id){
 		Skeleton.printLastCalledFunction(arenaID, new String[]
 				{"points","int", "id","String"});
@@ -234,6 +259,9 @@ public class Arena {
 			Skeleton.drawLine();
 	}
 
+	/**
+	 * Finish game.
+	 */
 	public void finishGame() {
 		Skeleton.printLastCalledFunction(arenaID);		
 		Set<String> idSet = gamers.keySet();

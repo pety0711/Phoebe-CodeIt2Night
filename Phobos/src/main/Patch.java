@@ -11,6 +11,7 @@ package main;
  */
 public abstract class Patch {
 
+	/** The id. */
 	public String id;
 	/** The life time. */
 	protected int lifeTime;

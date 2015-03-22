@@ -6,16 +6,24 @@ package main;
 import java.util.ArrayList;
 import java.util.Random;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Dávid
+ * The Class SafeZone.
  *
+ * @author Dávid
  */
 public class SafeZone extends Field {
 
+	/** The p list. */
 	private ArrayList<Putty> pList;
+	
+	/** The o list. */
 	private ArrayList<Oil> oList;
 	
 	
+	/**
+	 * Instantiates a new safe zone.
+	 */
 	public SafeZone() {
 		Random r = new Random();
 		id = ""+r.nextInt(2000000000);
@@ -34,6 +42,11 @@ public class SafeZone extends Field {
 		Skeleton.printLastCalledFunction(id, new String[]{""});
 	}
 	
+	/**
+	 * Instantiates a new safe zone.
+	 *
+	 * @param id the id
+	 */
 	public SafeZone(String id) {
 		this.id = id;
 		Skeleton.printLastCalledFunction(id, new String[]{id,Skeleton.getClassName(id)});
@@ -69,6 +82,9 @@ public class SafeZone extends Field {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see main.Field#steppedOffYou(main.Robot)
+	 */
 	@Override
 	public void steppedOffYou(Robot r) {
 		Skeleton.printLastCalledFunction(id, new String[]
@@ -78,6 +94,9 @@ public class SafeZone extends Field {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see main.Field#step(main.CoordVector, main.Robot)
+	 */
 	@Override
 	public Field step(CoordVector direction, Robot r){
 		Skeleton.printLastCalledFunction(id, new String[]
@@ -100,6 +119,9 @@ public class SafeZone extends Field {
 		return nb;
 	}
 	
+	/* (non-Javadoc)
+	 * @see main.Field#investigateCollision()
+	 */
 	@Override
 	public void investigateCollision() throws Exception {
 		Skeleton.printLastCalledFunction(id);
@@ -117,6 +139,9 @@ public class SafeZone extends Field {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see main.Field#addPutty(main.Putty)
+	 */
 	public void addPutty(Putty p){
 		Skeleton.printLastCalledFunction(id,new String[]
 				{p.id,Skeleton.getClassName(p)});
@@ -124,6 +149,10 @@ public class SafeZone extends Field {
 		pList.add(p);
 		patches.add(p);
 	}
+	
+	/* (non-Javadoc)
+	 * @see main.Field#addOil(main.Oil)
+	 */
 	public void addOil(Oil o){  
 		Skeleton.printLastCalledFunction(id,new String[]
 				{o.id,Skeleton.getClassName(o)});
@@ -132,6 +161,9 @@ public class SafeZone extends Field {
 		patches.add(o);
 	}
 
+	/* (non-Javadoc)
+	 * @see main.Field#getNeighbour(main.CoordVector)
+	 */
 	@Override
 	public Field getNeighbour(CoordVector direction) {
 		Skeleton.printLastCalledFunction(id,new String[]
@@ -181,6 +213,9 @@ public class SafeZone extends Field {
 		return returnField;
 	}
 
+	/* (non-Javadoc)
+	 * @see main.Field#initField()
+	 */
 	@Override
 	public void initField() {
 		Skeleton.printLastCalledFunction(id);

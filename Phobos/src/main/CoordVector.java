@@ -1,17 +1,38 @@
 package main;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CoordVector.
+ */
 public class CoordVector {
+	
+	/** The Constant dimension. */
 	public static final int dimension = 2;
+	
+	/** The points. */
 	private int[] points;
 	
+	/**
+	 * Gets the points.
+	 *
+	 * @return the points
+	 */
 	public int[] getPoints() {
 		return points;
 	}
 
+	/**
+	 * Sets the points.
+	 *
+	 * @param points the new points
+	 */
 	public void setPoints(int[] points) {
 		this.points = points;
 	}
 
+	/**
+	 * Instantiates a new coord vector.
+	 */
 	public CoordVector() {
 		points = new int[dimension];
 		for (int i = 0; i < dimension; i++) {
@@ -19,6 +40,12 @@ public class CoordVector {
 		}
 	}
 	
+	/**
+	 * Instantiates a new coord vector.
+	 *
+	 * @param arg0 the arg0
+	 * @throws Exception the exception
+	 */
 	public CoordVector(int[] arg0) throws Exception {
 		if(arg0.length == dimension) {
 			points = arg0;
@@ -26,11 +53,20 @@ public class CoordVector {
 		else throw new Exception("arg0's dimension is not correct!");
 	}
 	
+	/**
+	 * Gets the coordof dim.
+	 *
+	 * @param dimension the dimension
+	 * @return the coordof dim
+	 */
 	public int getCoordofDim(int dimension){
 		return points[dimension-1];
 	}
 	
-	 @Override 
+	 /* (non-Javadoc)
+ 	 * @see java.lang.Object#toString()
+ 	 */
+ 	@Override 
 	 public String toString(){
 		StringBuilder result = new StringBuilder();
 		 
@@ -45,6 +81,9 @@ public class CoordVector {
 	    return result.toString();
 	 }
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		CoordVector cv = (CoordVector) obj;
