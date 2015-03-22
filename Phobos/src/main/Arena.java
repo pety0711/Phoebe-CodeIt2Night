@@ -100,14 +100,22 @@ public class Arena {
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
 		//+ be kell állítani a szomszédjaikat
 		SafeZone s0 = new SafeZone("s0");
+		s0.initField();
 		SafeZone s1 = new SafeZone("s1");
+		s1.initField();
 		SafeZone s2 = new SafeZone("s2");
+		s2.initField();
 		SafeZone sp = new SafeZone("sp");
+		sp.initField();
 		SafeZone so = new SafeZone("so");
+		so.initField();
 		SafeZone sr0 = new SafeZone("sr0");
+		sr0.initField();
 		SafeZone sr1 = new SafeZone("sr1");
+		sr1.initField();
 		//TODO név paraméternek
 		DangerZone d = new DangerZone("dz");
+		d.initField();
 
 		patches = new ArrayList<Patch>();
 		Putty p = new Putty("p");

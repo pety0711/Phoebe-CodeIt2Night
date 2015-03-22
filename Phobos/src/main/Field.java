@@ -34,7 +34,8 @@ public abstract class  Field {
 		robots = new ArrayList<Robot>();
 		// this.id = id; Ez kell bele?
 	}
-
+	
+	public abstract void initField();
 	public void addPutty(Putty p) {
 		Skeleton.printLastCalledFunction(id,new String[]{p.id,
 				Skeleton.getClassName(p)});

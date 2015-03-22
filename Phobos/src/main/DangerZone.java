@@ -47,4 +47,9 @@ public class DangerZone extends Field {
 	public void steppedOffYou(Robot r) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public void initField() {
+		Skeleton.printLastCalledFunction(id);
+	}
 }
