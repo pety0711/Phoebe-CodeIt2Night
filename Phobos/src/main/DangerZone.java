@@ -28,4 +28,10 @@ public class DangerZone extends Field {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void investigateCollision() {
+		// TODO Auto-generated method stub
+		
+	}
 }

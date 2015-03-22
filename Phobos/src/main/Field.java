@@ -120,6 +120,6 @@ public abstract class  Field {
 	public CoordVector getCoord() {
 		return coord;
 	}
-	
+	public abstract void investigateCollision();
 	
 }

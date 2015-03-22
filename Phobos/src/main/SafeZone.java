@@ -87,7 +87,9 @@ public class SafeZone extends Field {
 		return null;
 	}
 	
+	@Override
 	public void investigateCollision() {
+		Skeleton.printLastCalledFunction(id);
 		if( (robots.get(0) != null) && robots.get(1) != null ){
 			
 		}

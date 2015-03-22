@@ -66,6 +66,7 @@ public class Robot {
 		Skeleton.printLastCalledFunction(id);
 		Putty putty = new Putty("p");
 		field.addPutty(putty);
+		arena.registerPatch(putty);
 	}
 	
 	/**
@@ -75,6 +76,7 @@ public class Robot {
 		Skeleton.printLastCalledFunction(id);
 		Oil oil = new Oil("o");
 		field.addOil(oil);
+		arena.registerPatch(oil);
 	}
 	
 	/**
@@ -96,6 +98,8 @@ public class Robot {
 	 *
 	 */
 	public void investigateCollision(){
+
+		Skeleton.printLastCalledFunction(id);
 	}
 	
 	/**

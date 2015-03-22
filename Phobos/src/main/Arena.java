@@ -202,13 +202,14 @@ public class Arena {
 		switch(Skeleton.currentUseCase) {
 		
 		case Put_oil:
-			Skeleton.drawLine();
 			gamers.get(keys.toArray()[0]).putOil();
-
 			Skeleton.drawLine();
+
 			break;
 		case Put_putty:
+			Skeleton.drawLine();
 			gamers.get(keys.toArray()[0]).putPutty();
+			Skeleton.drawLine();
 			break;
 		default:
 			break;
