@@ -12,7 +12,6 @@ import java.util.Random;
  */
 public class SafeZone extends Field {
 
-	private String id;
 	private ArrayList<Putty> pList;
 	private ArrayList<Oil> oList;
 	
@@ -125,7 +124,7 @@ public class SafeZone extends Field {
 		pList.add(p);
 		patches.add(p);
 	}
-	public void addOil(Oil o){     //Ez kell ide?? 
+	public void addOil(Oil o){  
 		Skeleton.printLastCalledFunction(id,new String[]
 				{o.id,Skeleton.getClassName(o)});
 		//oList.add(new Oil());

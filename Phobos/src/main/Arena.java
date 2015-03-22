@@ -120,7 +120,6 @@ public class Arena {
 		patches.add(o);
 		so.addOil(o);
 		
-		
 		fields = new ArrayList<Field>();
 		fields.add(s0);
 		fields.add(s1);
