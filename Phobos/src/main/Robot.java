@@ -80,13 +80,14 @@ public class Robot {
 		setField(f);
 		f.steppedOnYou(this);}
 	
-	public void investigateCollision(){
+	public void investigateCollision() throws Exception{
 		Skeleton.printLastCalledFunction(id);
 		field.investigateCollision();	}
 	
-	public void detectCollision(CoordVector coord){
-		Skeleton.printLastCalledFunction(id);
-		this.isItAlive=false;
+	public void detectedCollision(CoordVector coord){
+		Skeleton.printLastCalledFunction(id, new String[]{"coord", "CoordVector"});
+		field.step(coord, this);
+//		this.isItAlive=false;
 		/*
 		// majd meghalnak
 		field.steppedOffYou(this);

@@ -7,6 +7,7 @@ import java.util.Set;
 
 
 
+
 import main.Skeleton.UseCaseType;
 
 /**
@@ -204,7 +205,11 @@ public class Arena {
 			Skeleton.drawLine();
 		for (String key : keys) {
 			if(gamers.get(key).isItAlive)
-				gamers.get(key).investigateCollision();
+				try {
+					gamers.get(key).investigateCollision();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		}
 		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision)
 			Skeleton.drawLine();

@@ -84,51 +84,34 @@ public class SafeZone extends Field {
 		Skeleton.printLastCalledFunction(id, new String[]
 				{"direction",Skeleton.getClassName(direction)});
 		Field nb = getNeighbour(direction);
+
 		switch (Skeleton.currentUseCase) {
-			case Put_oil:
-				nb = this;
-				break;
-			case Put_putty:
-				nb = this;
-				break;
-			default:
-				break;
-		}
+				case Put_oil:
+					nb = this;
+					break;
+				case Put_putty:
+					nb = this;
+					break;
+				default:
+					break;
+			}
+
 		//robots.remove(0);
 		steppedOffYou(r);
 		return nb;
 	}
 	
 	@Override
-	public void investigateCollision() {
+	public void investigateCollision() throws Exception {
 		Skeleton.printLastCalledFunction(id);
 		switch(Skeleton.currentUseCase){
 		case Collision:
 			if( (robots.get(0) != null) && robots.get(1) != null ){
-				robots.get(0).detectCollision(coord);
-				robots.get(1).detectCollision(coord);
-				/*for (Robot r : robots) {
-					r.detectCollision(coord);
-				}*/
+				CoordVector cv0 = new CoordVector(new int[]{1, 0});
+				CoordVector cv1 = new CoordVector(new int[]{1, 1});
+				robots.get(0).detectedCollision(cv0);
+				robots.get(1).detectedCollision(cv1);
 			}
-			break;
-		case Close_tester:
-			break;
-		case Finish_game:
-			break;
-		case New_game:
-			break;
-		case Put_oil:
-			break;
-		case Put_putty:
-			break;
-		case Step_on_a_dangerzone:
-			break;
-		case Step_on_a_safezone:
-			break;
-		case Step_on_a_putty:
-			break;
-		case Step_on_an_oil:
 			break;
 		default:
 			break;

@@ -27,7 +27,7 @@ public abstract class  Field {
 	public abstract Field step(CoordVector speed, Robot r);
 	public abstract void steppedOnYou(Robot r);
 	public abstract void steppedOffYou(Robot r);
-	public abstract void investigateCollision();
+	public abstract void investigateCollision() throws Exception;
 	
 	public Field() {
 		patches = new ArrayList<Patch>();
