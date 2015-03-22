@@ -21,10 +21,10 @@ public class Arena {
 	private String arenaID;
 	
 	/** The fields. */
-	private List<Field> fields;
+	private ArrayList<Field> fields;
 	
 	/** Patches - temporary*/
-	private List<Patch> patches;
+	private ArrayList<Patch> patches;
 	
 	/** The gamers. */
 	private HashMap<String, Robot> gamers;
@@ -210,7 +210,8 @@ public class Arena {
 			if(gamers.get(key).isItAlive)
 				gamers.get(key).investigateCollision();
 		}
-		
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision)
+			Skeleton.drawLine();
 		for (Patch p : patches) {
 			p.tick();
 		}

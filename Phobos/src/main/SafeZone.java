@@ -59,7 +59,7 @@ public class SafeZone extends Field {
 	public void steppedOnYou(Robot r) {
 		Skeleton.printLastCalledFunction(id, new String[]{r.id,Skeleton.getClassName(r)});
 		robots.add(r);
-		r.setField(this);
+		//r.setField(this);
 		
 		for (Patch patch : patches) {
 			//if(Skeleton.getClassName(patch)==(Skeleton.getClassName(new Putty())))
@@ -111,7 +111,6 @@ public class SafeZone extends Field {
 					r.detectCollision(coord);
 				}*/
 			}
-			Skeleton.drawLine();
 			break;
 		case Close_tester:
 			break;

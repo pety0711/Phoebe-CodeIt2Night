@@ -10,14 +10,14 @@ package main;
  * @author Dávid
  */
 public abstract class Patch {
-	
+
+	public String id;
 	/** The life time. */
 	protected int lifeTime;
 	
 	/** The fix. */
 	protected boolean fix;
 	
-	public String id;
 	
 	/**
 	 * Tick.

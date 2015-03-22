@@ -13,13 +13,13 @@ import java.util.Random;
 public class Robot {
 	
 	public String id;
+	public boolean isItAlive;
 	private CoordVector speed;
 	private int points;
-	int puttySupply;
-	int oilSupply;
-	boolean isItAlive;
-	Field field;
-	Arena arena;
+	private int puttySupply;
+	private int oilSupply;
+	private Field field;
+	private Arena arena;
 	
 	public Robot(Arena a) {
 		this.id = "Robot"+new Random(22222222).toString();
@@ -77,6 +77,7 @@ public class Robot {
 		}
 		
 		Field f = field.step(speed,this);
+		setField(f);
 		f.steppedOnYou(this);}
 	
 	public void investigateCollision(){
