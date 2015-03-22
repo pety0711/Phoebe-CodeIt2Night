@@ -3,12 +3,9 @@
  */
 package main;
 
-import java.awt.Point;//Coord
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector; 
+import java.util.List; 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Field.
  *
@@ -39,12 +36,14 @@ public abstract class  Field {
 	}
 
 	public void addPutty(Putty p) {
-		Skeleton.printLastCalledFunction(id,new String[]{p.id,Skeleton.getClassName(p)});
+		Skeleton.printLastCalledFunction(id,new String[]{p.id,
+				Skeleton.getClassName(p)});
 		patches.add(p);
 	}
 	
 	public void addOil(Oil o) {
-		Skeleton.printLastCalledFunction(id,new String[]{o.id,Skeleton.getClassName(o)});
+		Skeleton.printLastCalledFunction(id,new String[]{o.id,
+				Skeleton.getClassName(o)});
 		patches.add(o);
 	}
 	

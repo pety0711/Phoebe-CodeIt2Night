@@ -2,9 +2,6 @@
  * 
  */
 package main;
-
-import java.util.List;
-
 /**
  * @author Dávid
  *
@@ -15,18 +12,15 @@ public class DangerZone extends Field {
 	
 	@Override
 	public void steppedOnYou(Robot r) {
-		Skeleton.printLastCalledFunction(r.id,new String[]{r.id,Skeleton.getClassName(r)});
+		Skeleton.printLastCalledFunction(r.id,new String[]
+				{r.id,Skeleton.getClassName(r)});
 		robots.add(r);
 		r.killRobot();
 	}
 
 	@Override
 	public Field step(CoordVector speed, Robot r) {
-		List<Field> choose = this.getNeighbours();
-		
-		return null;
-		// TODO Auto-generated method stub
-		
+		return this;
 	}
 
 	@Override

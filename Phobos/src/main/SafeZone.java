@@ -4,9 +4,7 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.Vector;
 
 /**
  * @author Dávid
@@ -74,7 +72,8 @@ public class SafeZone extends Field {
 	
 	@Override
 	public void steppedOffYou(Robot r) {
-		Skeleton.printLastCalledFunction(id, new String[]{r.id,Skeleton.getClassName(r)});
+		Skeleton.printLastCalledFunction(id, new String[]
+				{r.id,Skeleton.getClassName(r)});
 		if(robots.contains(r)){
 			robots.remove(r);
 		}
@@ -82,7 +81,8 @@ public class SafeZone extends Field {
 	
 	@Override
 	public Field step(CoordVector direction, Robot r){
-		Skeleton.printLastCalledFunction(id, new String[]{"direction",Skeleton.getClassName(direction)});
+		Skeleton.printLastCalledFunction(id, new String[]
+				{"direction",Skeleton.getClassName(direction)});
 		Field nb = getNeighbour(direction);
 		switch (Skeleton.currentUseCase) {
 			case Put_oil:
@@ -106,20 +106,45 @@ public class SafeZone extends Field {
 		case Collision:
 			if( (robots.get(0) != null) && robots.get(1) != null ){
 				robots.get(0).detectCollision(coord);
-				robots.get(1).detectCollision(coord);	
+				robots.get(1).detectCollision(coord);
+				/*for (Robot r : robots) {
+					r.detectCollision(coord);
+				}*/
 			}
+			break;
+		case Close_tester:
+			break;
+		case Finish_game:
+			break;
+		case New_game:
+			break;
+		case Put_oil:
+			break;
+		case Put_putty:
+			break;
+		case Step_on_a_dangerzone:
+			break;
+		case Step_on_a_safezone:
+			break;
+		case Stepping_on_a_putty:
+			break;
+		case Stepping_on_an_oil:
+			break;
+		default:
 			break;
 		}
 	}
 	
 	public void addPutty(Putty p){
-		Skeleton.printLastCalledFunction(id,new String[]{p.id,Skeleton.getClassName(p)});
+		Skeleton.printLastCalledFunction(id,new String[]
+				{p.id,Skeleton.getClassName(p)});
 		//pList.add(new Putty());
 		pList.add(p);
 		patches.add(p);
 	}
 	public void addOil(Oil o){     //Ez kell ide?? 
-		Skeleton.printLastCalledFunction(id,new String[]{o.id,Skeleton.getClassName(o)});
+		Skeleton.printLastCalledFunction(id,new String[]
+				{o.id,Skeleton.getClassName(o)});
 		//oList.add(new Oil());
 		oList.add(o);
 		patches.add(o);
@@ -127,7 +152,8 @@ public class SafeZone extends Field {
 
 	@Override
 	public Field getNeighbour(CoordVector direction) {
-		Skeleton.printLastCalledFunction(id,new String[]{"direction",Skeleton.getClassName(direction)});
+		Skeleton.printLastCalledFunction(id,new String[]
+				{"direction",Skeleton.getClassName(direction)});
 		Field returnField = null;
 		switch (Skeleton.currentUseCase) {
 			case Collision:
@@ -145,8 +171,23 @@ public class SafeZone extends Field {
 			case Stepping_on_an_oil:
 				returnField = neighbours.get(4);
 				break;
+		case Close_tester:
+			break;
+		case Finish_game:
+			returnField = neighbours.get(0);
+			break;
+		case New_game:
+			returnField = neighbours.get(0);
+			break;
+		case Put_oil:
+			returnField = neighbours.get(0);
+			break;
+		case Put_putty:
+			returnField = neighbours.get(0);
+			break;
+		default:
+			break;
 			}
 		return returnField;
 	}
-
 }

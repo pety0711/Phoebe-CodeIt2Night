@@ -6,14 +6,6 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Struct;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Dávid & Ács
@@ -43,8 +35,8 @@ public class Skeleton {
 
     
 
-	static char[] requiredInputs = {'1','2','3','4','5','6','7','8','9','0'};
-	static int[] requiredInputsInt = {0,1,2,3,4,5,6,7,8,9};
+	static int[] requiredInputsInt = 
+		{0,1,2,3,4,5,6,7,8,9};
 	static String[] optionsType = {
 			"Program",
 			"Use-Case",
@@ -60,7 +52,9 @@ public class Skeleton {
 	
 	
 	public static enum UseCaseType {
-    	New_game,Put_putty,Put_oil,Stepping_on_a_putty,Stepping_on_an_oil,Step_on_a_safezone,Step_on_a_dangerzone,Collision,Finish_game,Close_tester
+    	New_game,Put_putty,Put_oil,Stepping_on_a_putty,
+    	Stepping_on_an_oil,Step_on_a_safezone,Step_on_a_dangerzone,
+    	Collision,Finish_game,Close_tester
     }
     
     public static UseCaseType currentUseCase = UseCaseType.New_game;
@@ -91,7 +85,6 @@ public class Skeleton {
 	{ 	
 		
 		boolean runMain = true;
-		Arena arena = null;
 		printOutINFO("<init> CodeIt2Night Use-Case Tester - OK");
 		do {
 			insertSpace();
@@ -121,6 +114,7 @@ public class Skeleton {
 				case New_game:
 					Arena arenaNew = new Arena();
 					drawLine();
+					arenaNew.tick();
 					break;
 				case Put_oil:
 					Arena arenaPutoil = new Arena();
@@ -183,7 +177,8 @@ public class Skeleton {
 		int result = -1;
 		
 		try {
-			result = requestUserInput(useCaseOptions, requiredInputsInt,optionsType);
+			result = requestUserInput(useCaseOptions, 
+					requiredInputsInt,optionsType);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

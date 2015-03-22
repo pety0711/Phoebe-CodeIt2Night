@@ -1,14 +1,10 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.Vector;
+
 
 import main.Skeleton.UseCaseType;
 
@@ -35,7 +31,7 @@ public class Arena {
 	/** The dimension*/
 	private CoordVector dim;
 	
-//	private static ArrayList<CoordVector> aviableCoords;
+//	private static ArrayList<CoordVector> aviableCoords; //
 //	private static int aviableCoordsNext;
 	
 	/** Number of Robots */
@@ -69,7 +65,8 @@ public class Arena {
 		generateFields(dim);
 		
 		gamers = new HashMap<String, Robot>();
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision||Skeleton.currentUseCase==Skeleton.UseCaseType.Finish_game){
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision||
+				Skeleton.currentUseCase==Skeleton.UseCaseType.Finish_game){
 			noRobots=2;
 		}
 		else 
@@ -80,11 +77,16 @@ public class Arena {
 		}
 
 		Set<String> keys = gamers.keySet();
-		gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
-		fields.get(robot0StartField).steppedOnYou(gamers.get(keys.toArray()[0]));
-		if (Skeleton.currentUseCase == UseCaseType.Collision||Skeleton.currentUseCase == UseCaseType.Finish_game){			
-			gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
-			fields.get(robot1StartField).steppedOnYou(gamers.get(keys.toArray()[1]));
+		gamers.get(keys.toArray()[0]).setField(
+				fields.get(robot0StartField));
+		fields.get(robot0StartField).steppedOnYou(
+				gamers.get(keys.toArray()[0]));
+		if (Skeleton.currentUseCase == UseCaseType.Collision||
+			Skeleton.currentUseCase == UseCaseType.Finish_game){			
+			gamers.get(keys.toArray()[1]).setField(
+					fields.get(robot1StartField));
+			fields.get(robot1StartField).steppedOnYou(
+					gamers.get(keys.toArray()[1]));
 		}		
 	}
 
@@ -94,7 +96,8 @@ public class Arena {
 	 * @param size the size
 	 */
 	public void generateFields(CoordVector size) {
-		Skeleton.printLastCalledFunction(arenaID, new String[]{"size","CoordVector"});
+		Skeleton.printLastCalledFunction(arenaID, new String[]
+				{"size","CoordVector"});
 
 		
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
@@ -158,13 +161,15 @@ public class Arena {
 	 * @param id the id
 	 */
 	public void addRobot(String id){
-		Skeleton.printLastCalledFunction(arenaID, new String[]{id,Skeleton.getClassName(id)});
+		Skeleton.printLastCalledFunction(arenaID, new String[]
+				{id,Skeleton.getClassName(id)});
 		
 		gamers.put(id, new Robot(id, this));
 	}
 	
 	public void registerPatch(Patch p) {
-		Skeleton.printLastCalledFunction(arenaID, new String[]{p.id,Skeleton.getClassName(p)});
+		Skeleton.printLastCalledFunction(arenaID, new String[]
+				{p.id,Skeleton.getClassName(p)});
 		
 		patches.add(p);
 	}
@@ -199,7 +204,8 @@ public class Arena {
 		}
 		
 		for (String key : keys) {
-			gamers.get(key).investigateCollision();
+			if(gamers.get(key).isItAlive)
+				gamers.get(key).investigateCollision();
 		}
 		
 		for (Patch p : patches) {
@@ -209,7 +215,8 @@ public class Arena {
 		
 	}
 	public void killRobot(int points, String id){
-		Skeleton.printLastCalledFunction(arenaID, new String[]{"points","int", "id","String"});
+		Skeleton.printLastCalledFunction(arenaID, new String[]
+				{"points","int", "id","String"});
 		Skeleton.printOutINFO(id + " Robot died, points: " + points);
 	}
 
