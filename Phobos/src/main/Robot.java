@@ -133,7 +133,5 @@ public class Robot {
 	public void setField(Field field) {
 		Skeleton.printLastCalledFunction(id);
 		this.field = field;
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_safezone)
-			Skeleton.drawLine();
 	}
 }

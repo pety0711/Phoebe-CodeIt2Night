@@ -205,7 +205,8 @@ public class Arena {
 		for (String key : keys) {
 			gamers.get(key).tick();
 		}
-		
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_safezone)
+			Skeleton.drawLine();
 		for (String key : keys) {
 			if(gamers.get(key).isItAlive)
 				gamers.get(key).investigateCollision();
