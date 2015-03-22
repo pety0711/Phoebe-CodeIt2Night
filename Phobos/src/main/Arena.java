@@ -15,7 +15,7 @@ import main.Skeleton.UseCaseType;
  */
 public class Arena {
 	
-	public static final int robot0StartField = 1;
+	public static final int robot0StartField = 5;
 	public static final int robot1StartField = 6;
 	
 	/** */

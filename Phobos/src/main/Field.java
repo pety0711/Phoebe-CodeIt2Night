@@ -29,6 +29,7 @@ public abstract class  Field {
 	
 	public abstract Field step(CoordVector speed);
 	public abstract void steppedOnYou(Robot r);
+	public abstract void steppedOffYou(Robot r);
 	public abstract void investigateCollision();
 	
 	public Field() {
@@ -37,14 +38,17 @@ public abstract class  Field {
 	}
 
 	public void addPutty(Putty p) {
+		Skeleton.printLastCalledFunction(id,new String[]{p.id,Skeleton.getClassName(p)});
 		patches.add(p);
 	}
 	
 	public void addOil(Oil o) {
+		Skeleton.printLastCalledFunction(id,new String[]{o.id,Skeleton.getClassName(o)});
 		patches.add(o);
 	}
 	
 	public List<Field> getNeighbours() {
+		Skeleton.printLastCalledFunction(id);
 		return neighbours;
 	}
 
@@ -52,11 +56,10 @@ public abstract class  Field {
 		neighbours = fields;
 	}
 
-	public Field getNeighbour(CoordVector direction) {
-		//TODO
-
+	public abstract Field getNeighbour(CoordVector direction);/* {
+		Skeleton.printLastCalledFunction(id,new String[]{"direction",Skeleton.getClassName(direction)});
 		return null;
-	}
+	}*/
 
 	public void setCoord(CoordVector c) {
 		coord = c;

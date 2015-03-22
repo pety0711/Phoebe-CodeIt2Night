@@ -60,17 +60,7 @@ public class SafeZone extends Field {
 	 */
 	@Override
 	public void steppedOnYou(Robot r) {
-		/*
-		if(patches.size() > 0) {// Szerintem ez így már nem kell
-			if(patches.get(0).getClass().equals(Oil.class)) {
-				r.disableMovement();
-			} else {
-				r.slowDown();
-			}
-			
-		}*/
-		
-		Skeleton.printLastCalledFunction(id, new String[]{""});
+		Skeleton.printLastCalledFunction(id, new String[]{r.id,Skeleton.getClassName(r)});
 		for (Patch patch : patches) {
 			if(Skeleton.getClassName(patch)==(Skeleton.getClassName(new Putty())))
 				r.slowDown();
@@ -79,11 +69,40 @@ public class SafeZone extends Field {
 		}
 		robots.add(r);
 	}
+	
+	@Override
+	public void steppedOffYou(Robot r) {
+		Skeleton.printLastCalledFunction(id, new String[]{r.id,Skeleton.getClassName(r)});
+		robots.remove(robots.get(0));
+	}
+	
 	@Override
 	public Field step(CoordVector speed){
 		Skeleton.printLastCalledFunction(id, new String[]{"speed",Skeleton.getClassName(speed)});
 		//getNeighbour(direction);
-		getNeighbour(speed);
+		Field nb = getNeighbour(speed);
+		switch (Skeleton.currentUseCase) {
+			case Collision:
+				break;
+			case Step_on_a_dangerzone:
+				this.steppedOffYou(robots.get(0));
+				nb.steppedOnYou(robots.get(0));
+				break;
+			case Step_on_a_safezone:
+				this.steppedOffYou(robots.get(0));
+				nb.steppedOnYou(robots.get(0));
+				break;
+			case Stepping_on_a_putty:
+				this.steppedOffYou(robots.get(0));
+				nb.steppedOnYou(robots.get(0));
+				break;
+			case Stepping_on_an_oil:				
+				this.steppedOffYou(robots.get(0));
+				nb.steppedOnYou(robots.get(0));
+				break;
+			default:
+				break;
+		}
 		return null;
 	}
 	
@@ -114,6 +133,30 @@ public class SafeZone extends Field {
 		Skeleton.printLastCalledFunction(id,new String[]{o.id,Skeleton.getClassName(o)});
 		//oList.add(new Oil());
 		oList.add(o);
+	}
+
+	@Override
+	public Field getNeighbour(CoordVector direction) {
+		Skeleton.printLastCalledFunction(id,new String[]{"direction",Skeleton.getClassName(direction)});
+		Field returnField = null;
+		switch (Skeleton.currentUseCase) {
+			case Collision:
+				returnField = neighbours.get(0);
+				break;
+			case Step_on_a_dangerzone:
+				returnField = neighbours.get(7);
+				break;
+			case Step_on_a_safezone:
+				returnField = neighbours.get(2);
+				break;
+			case Stepping_on_a_putty:
+				returnField = neighbours.get(3);
+				break;
+			case Stepping_on_an_oil:
+				returnField = neighbours.get(4);
+				break;
+			}
+		return returnField;
 	}
 
 }

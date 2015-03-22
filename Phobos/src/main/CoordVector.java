@@ -6,6 +6,9 @@ public class CoordVector {
 	
 	public CoordVector() {
 		points = new int[dimension];
+		for (int i = 0; i < dimension; i++) {
+			points[i] = 0;
+		}
 	}
 	
 	public CoordVector(int[] arg0) throws Exception {

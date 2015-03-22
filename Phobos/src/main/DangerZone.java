@@ -34,4 +34,16 @@ public class DangerZone extends Field {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Field getNeighbour(CoordVector direction) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void steppedOffYou(Robot r) {
+		// TODO Auto-generated method stub
+		
+	}
 }
