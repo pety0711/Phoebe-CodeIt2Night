@@ -47,12 +47,11 @@ public class Arena {
 	
 	public Arena(){
 		Skeleton.printLastCalledFunction(arenaID, new String[]{""}); //Kiíratás
-
 		arenaID = "arena";
 		Initialize();
 	}
 	private void Initialize() {
-//		Skeleton.printLastCalledFunction(id, new String[]{""});
+		Skeleton.printLastCalledFunction(arenaID);
 
 		int[] tmp = {5, 2};
 		try {
@@ -86,16 +85,35 @@ public class Arena {
 	 */
 	public void generateFields(CoordVector size) {
 		Skeleton.printLastCalledFunction(arenaID, new String[]{"size","CoordVector"});
-		/*
-		Ezt légyszí ne töröld ha útban van se, nem tudom hogy ez így elég elegáns megoldás e az elõzõ vagy inkább ezzel kéne folytatni? ez elég bonyolultá teszi ha már így nem az.
-		HashMap<String,String> b = new HashMap<String,String>();
-		b.put("size", "CoordVector");
-		b.put("Alma", "String");
-		b.put("Körte", "String");
-		ArrayList<HashMap<String,String>> l = new ArrayList<HashMap<String,String>>();
-		l.add(b);
-		//Skeleton.printLastCalledFunction(arenaID, b);
-		*/
+		
+		switch(Skeleton.currentUseCase){
+		case Close_tester:
+			break;
+		case Collision:
+			break;
+		case Finish_game:
+			break;
+		case New_game:
+			SafeZone s0 = new SafeZone("s0");
+			SafeZone s1 = new SafeZone("s1");
+			SafeZone s2 = new SafeZone("s2");
+			break;
+		case Put_oil:
+			break;
+		case Put_putty:
+			break;
+		case Step_on_a_dangerzone:
+			break;
+		case Step_on_a_safezone:
+			break;
+		case Stepping_on_a_putty:
+			break;
+		case Stepping_on_an_oil:
+			break;
+		default:
+			break;
+		
+		}
 		
 		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
 		//+ be kell állítani a szomszédjaikat
@@ -151,10 +169,7 @@ public class Arena {
 		sr0.setNeighbours(temp);
 		sr1.setNeighbours(temp);
 		d.setNeighbours(temp);
-		
 	}
-
-	
 	/**
 	 * Adds the robot.
 	 *
@@ -325,3 +340,13 @@ public class Arena {
 //	gamers.get(keys4.toArray()[0]).setField(fields.get(robot0StartField));
 //	
 //}
+/*
+Ezt légyszí ne töröld ha útban van se, nem tudom hogy ez így elég elegáns megoldás e az elõzõ vagy inkább ezzel kéne folytatni? ez elég bonyolultá teszi ha már így nem az.
+HashMap<String,String> b = new HashMap<String,String>();
+b.put("size", "CoordVector");
+b.put("Alma", "String");
+b.put("Körte", "String");
+ArrayList<HashMap<String,String>> l = new ArrayList<HashMap<String,String>>();
+l.add(b);
+//Skeleton.printLastCalledFunction(arenaID, b);
+*/
