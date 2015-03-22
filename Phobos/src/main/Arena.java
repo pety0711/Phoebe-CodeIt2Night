@@ -69,7 +69,7 @@ public class Arena {
 		generateFields(dim);
 		
 		gamers = new HashMap<String, Robot>();
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision){
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision||Skeleton.currentUseCase==Skeleton.UseCaseType.Finish_game){
 			noRobots=2;
 		}
 		else 
@@ -82,7 +82,7 @@ public class Arena {
 		Set<String> keys = gamers.keySet();
 		gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
 		fields.get(robot0StartField).steppedOnYou(gamers.get(keys.toArray()[0]));
-		if (Skeleton.currentUseCase == UseCaseType.Collision){			
+		if (Skeleton.currentUseCase == UseCaseType.Collision||Skeleton.currentUseCase == UseCaseType.Finish_game){			
 			gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
 			fields.get(robot1StartField).steppedOnYou(gamers.get(keys.toArray()[1]));
 		}		
@@ -210,19 +210,16 @@ public class Arena {
 	}
 	public void killRobot(int points, String id){
 		Skeleton.printLastCalledFunction(arenaID, new String[]{"points","int", "id","String"});
-		
 		Skeleton.printOutINFO(id + " Robot died, points: " + points);
-		//Robot g = gamers.get(id);
-		//gamers.remove(id);
 	}
-	
+
 	public void finishGame() {
-		Skeleton.printLastCalledFunction(arenaID);
-		Iterator it = gamers.entrySet().iterator();
-		while(it.hasNext()){
-			Map.Entry<String, Robot> rElement = (Map.Entry<String, Robot>)it.next();
-			gamers.get(rElement.getKey()).killRobot();
+		Skeleton.printLastCalledFunction(arenaID);		
+		Set<String> idSet = gamers.keySet();
+		for (String robotId : idSet) {
+			gamers.get(robotId).killRobot();
 		}
+		
 		gamers.clear();
 	}
 }

@@ -21,7 +21,7 @@ public class DangerZone extends Field {
 	}
 
 	@Override
-	public Field step(CoordVector speed) {
+	public Field step(CoordVector speed, Robot r) {
 		List<Field> choose = this.getNeighbours();
 		
 		return null;

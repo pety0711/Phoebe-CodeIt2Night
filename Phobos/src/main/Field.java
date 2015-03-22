@@ -27,7 +27,7 @@ public abstract class  Field {
 		return robots.get(0).id;
 	}
 	
-	public abstract Field step(CoordVector speed);
+	public abstract Field step(CoordVector speed, Robot r);
 	public abstract void steppedOnYou(Robot r);
 	public abstract void steppedOffYou(Robot r);
 	public abstract void investigateCollision();

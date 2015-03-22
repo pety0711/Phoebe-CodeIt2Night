@@ -41,19 +41,24 @@ public class Robot {
 
 	public void putPutty(){
 		Skeleton.printLastCalledFunction(id);
-		Putty putty = new Putty("p");
+		Putty putty = new Putty("pr");
 		field.addPutty(putty);
 		arena.registerPatch(putty);
 	}
 	
 	public void putOil(){
 		Skeleton.printLastCalledFunction(id);
-		Oil oil = new Oil("o");
+		Oil oil = new Oil("or");
 		field.addOil(oil);
 		arena.registerPatch(oil);
 	}
 	
 	public void tick(){
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Stepping_on_a_putty||
+			Skeleton.currentUseCase==Skeleton.UseCaseType.Stepping_on_an_oil){
+			Skeleton.drawLine();
+		}
+		
 		Skeleton.printLastCalledFunction(id);
 		try {
 			speed = new CoordVector(new int[]{2,0});
@@ -61,7 +66,7 @@ public class Robot {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Field f = field.step(speed);
+		Field f = field.step(speed,this);
 		f.steppedOnYou(this);
 	}
 	
@@ -87,14 +92,24 @@ public class Robot {
 
 	public void slowDown(){
 		Skeleton.printLastCalledFunction(id);
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Put_oil||
+				Skeleton.currentUseCase==Skeleton.UseCaseType.Put_putty){
+				Skeleton.drawLine();
+			}
 	}
 
 	public void disableMovement(){
 		Skeleton.printLastCalledFunction(id);
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Put_oil||
+				Skeleton.currentUseCase==Skeleton.UseCaseType.Put_putty){
+				Skeleton.drawLine();
+			}
 	}
 
 	public void killRobot(){
 		Skeleton.printLastCalledFunction(this.id);
+		field.steppedOffYou(this);
+		this.isItAlive = false;
 		arena.killRobot(points, id);
 	}
 

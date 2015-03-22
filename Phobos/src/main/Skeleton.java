@@ -100,7 +100,7 @@ public class Skeleton {
 
 		     currentUseCase = getUseCaseType(printMenuItems()); //Bekérjük a felhasználótól a választandó Use-case számát
 		     System.out.println();
-		    printOutINFO("Selected Use-case:\t"+getUseCaseString(currentUseCase));
+		    printOutINFO("Selected Menu item:\t"+getUseCaseString(currentUseCase));
 		     System.out.println();
 		     switch(currentUseCase){
 				case Close_tester:
@@ -120,6 +120,7 @@ public class Skeleton {
 					break;
 				case New_game:
 					Arena arenaNew = new Arena();
+					drawLine();
 					break;
 				case Put_oil:
 					Arena arenaPutoil = new Arena();
