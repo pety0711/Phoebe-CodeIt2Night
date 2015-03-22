@@ -79,17 +79,17 @@ public class SafeZone extends Field {
 	}
 	
 	@Override
-	public Field step(CoordVector speed){
-		Skeleton.printLastCalledFunction(id, new String[]{"speed",Skeleton.getClassName(speed)});
-		//getNeighbour(direction);
-		Field nb = getNeighbour(speed);
+	public Field step(CoordVector direction){
+		Skeleton.printLastCalledFunction(id, new String[]{"direction",Skeleton.getClassName(direction)});
+		Field nb = getNeighbour(direction);/*
 		switch (Skeleton.currentUseCase) {
 			case Collision:
 				break;
 			case Step_on_a_dangerzone:
-				nb.steppedOnYou(robots.get(0));
 				this.steppedOffYou(robots.get(0));
+				return nb;				
 				break;
+				
 			case Step_on_a_safezone:
 				nb.steppedOnYou(robots.get(0));
 				this.steppedOffYou(robots.get(0));
@@ -104,8 +104,9 @@ public class SafeZone extends Field {
 				break;
 			default:
 				break;
-		}
-		return null;
+		}*/
+		robots.remove(0);
+		return nb;
 	}
 	
 	@Override
@@ -115,12 +116,6 @@ public class SafeZone extends Field {
 			robots.get(0).detectCollision(coord);
 			robots.get(1).detectCollision(coord);	
 		}	
-	}
-	
-	public Field step(Vector speed) {
-
-		Skeleton.printLastCalledFunction(id,new String[]{"speed","CoordVector"});
-		return null;
 	}
 	
 	public void addPutty(Putty p){

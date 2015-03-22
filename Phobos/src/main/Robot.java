@@ -61,7 +61,8 @@ public class Robot {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		field.step(speed);
+		Field f = field.step(speed);
+		f.steppedOnYou(this);
 	}
 	
 	public void investigateCollision(){

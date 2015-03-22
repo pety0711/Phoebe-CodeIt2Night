@@ -3,6 +3,8 @@ package main;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,7 +30,7 @@ public class Arena {
 	private List<Patch> patches;
 	
 	/** The gamers. */
-	private Map<String, Robot> gamers;
+	private HashMap<String, Robot> gamers;
 	
 	/** The dimension*/
 	private CoordVector dim;
@@ -200,11 +202,7 @@ public class Arena {
 	 * @param points the points
 	 * @param id the id
 	 */
-	public void killRobot(int points, String id){
-		Skeleton.printLastCalledFunction(arenaID, new String[]{"points","int", "id","String"});
-		
-		Skeleton.printOutINFO(id + " Robot died, points: " + points);
-	}
+	
 	
 	public void tick() {
 
@@ -237,12 +235,22 @@ public class Arena {
 			break;
 		}
 	}
+	public void killRobot(int points, String id){
+		Skeleton.printLastCalledFunction(arenaID, new String[]{"points","int", "id","String"});
+		
+		Skeleton.printOutINFO(id + " Robot died, points: " + points);
+		//Robot g = gamers.get(id);
+		//gamers.remove(id);
+	}
+	
 	public void finishGame() {
 		Skeleton.printLastCalledFunction(arenaID);
-		Set<String> keys = gamers.keySet();
-		for (String key : keys) {
-			gamers.get(key).killRobot();
+		Iterator it = gamers.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry<String, Robot> rElement = (Map.Entry<String, Robot>)it.next();
+			gamers.get(rElement.getKey()).killRobot();
 		}
+		gamers.clear();
 	}
 }
 
