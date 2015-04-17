@@ -136,70 +136,70 @@ Close_tester
 	 *
 	 * @param args the arguments
 	 */
-	public static void main(String [ ] args)
-	{ 	
-		
-		boolean runMain = true;
-		printOutINFO("<init> CodeIt2Night Use-Case Tester - OK");
-		do {
-			insertSpace();
-			printOutINFO("Menu Items List");
-
-
-		     currentUseCase = getUseCaseType(printMenuItems()); //Bekérjük a felhasználótól a választandó Use-case számát
-		     System.out.println();
-		    printOutINFO("Selected Menu item:\t"+getUseCaseString(currentUseCase));
-		     System.out.println();
-		     switch(currentUseCase){
-				case Close_tester:
-					runMain = false;
-			    	 insertSpace();
-			    	 printOutINFO("<close> CodeIt2Night Use-Case Tester - OK");	
-					break;
-				case Collision:
-					Arena arenaCollision = new Arena();
-					arenaCollision.tick();
-					break;
-				case Finish_game:
-					Arena arenaFinish = new Arena();	
-					drawLine();
-					arenaFinish.finishGame();
-					drawLine();
-					break;
-				case New_game:
-					Arena arenaNew = new Arena();
-					drawLine();
-					arenaNew.tick();
-					break;
-				case Put_oil:
-					Arena arenaPutoil = new Arena();
-					arenaPutoil.tick();
-					break;
-				case Put_putty:
-					Arena arenaPutputty = new Arena();
-					arenaPutputty.tick();
-					break;
-				case Step_on_a_dangerzone:
-					Arena arenaDangerzone = new Arena();
-					arenaDangerzone.tick();
-					break;
-				case Step_on_a_safezone:
-					Arena arenaSafezone = new Arena();
-					arenaSafezone.tick();
-					break;
-				case Step_on_a_putty:
-					Arena arenaStepputty = new Arena();
-					arenaStepputty.tick();
-					break;
-				case Step_on_an_oil:
-					Arena arenaStepoil = new Arena();
-					arenaStepoil.tick();
-					break;
-				default:
-					break;
-		     }
-		} while (runMain);
-	}
+//	public static void main(String [ ] args)
+//	{ 	
+//		
+//		boolean runMain = true;
+//		printOutINFO("<init> CodeIt2Night Use-Case Tester - OK");
+//		do {
+//			insertSpace();
+//			printOutINFO("Menu Items List");
+//
+//
+//		     currentUseCase = getUseCaseType(printMenuItems()); //Bekérjük a felhasználótól a választandó Use-case számát
+//		     System.out.println();
+//		    printOutINFO("Selected Menu item:\t"+getUseCaseString(currentUseCase));
+//		     System.out.println();
+//		     switch(currentUseCase){
+//				case Close_tester:
+//					runMain = false;
+//			    	 insertSpace();
+//			    	 printOutINFO("<close> CodeIt2Night Use-Case Tester - OK");	
+//					break;
+//				case Collision:
+//					Arena arenaCollision = new Arena();
+//					arenaCollision.tick();
+//					break;
+//				case Finish_game:
+//					Arena arenaFinish = new Arena();	
+//					drawLine();
+//					arenaFinish.finishGame();
+//					drawLine();
+//					break;
+//				case New_game:
+//					Arena arenaNew = new Arena();
+//					drawLine();
+//					arenaNew.tick();
+//					break;
+//				case Put_oil:
+//					Arena arenaPutoil = new Arena();
+//					arenaPutoil.tick();
+//					break;
+//				case Put_putty:
+//					Arena arenaPutputty = new Arena();
+//					arenaPutputty.tick();
+//					break;
+//				case Step_on_a_dangerzone:
+//					Arena arenaDangerzone = new Arena();
+//					arenaDangerzone.tick();
+//					break;
+//				case Step_on_a_safezone:
+//					Arena arenaSafezone = new Arena();
+//					arenaSafezone.tick();
+//					break;
+//				case Step_on_a_putty:
+//					Arena arenaStepputty = new Arena();
+//					arenaStepputty.tick();
+//					break;
+//				case Step_on_an_oil:
+//					Arena arenaStepoil = new Arena();
+//					arenaStepoil.tick();
+//					break;
+//				default:
+//					break;
+//		     }
+//		} while (runMain);
+//	}
 	
 	/**
 	 * Insert space.
