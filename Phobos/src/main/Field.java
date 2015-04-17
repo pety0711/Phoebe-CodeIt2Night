@@ -15,10 +15,10 @@ import java.util.List;
 public abstract class  Field {
 	 
 	/** The neighbours. */
-	protected List<Field> neighbours; //Lehet ez is protected? Privat volt alapból.
+	protected List<Field> neighbours;
 	
 	/** The robots. */
-	protected List<Robi> robots;  //Sztem ez jobb protectedbe, igaz?
+	protected List<Robi> robots;
 	
 	/** The patches. */
 	protected ArrayList<Patch> patches;
@@ -30,8 +30,10 @@ public abstract class  Field {
 	protected CoordVector coord;
 	
 	/** The id. */
-	public String id;   //Ez a field neve vagy mi lesz??
+	public String id;
 
+	
+	
 	/**
 	 * Gets the robot id.
 	 *
@@ -58,13 +60,6 @@ public abstract class  Field {
 	public abstract void steppedOnYou(Robi r);
 	
 	/**
-	 * Stepped off you.
-	 *
-	 * @param r the r
-	 */
-	public abstract void steppedOffYou(Robi r);
-	
-	/**
 	 * Investigate collision.
 	 *
 	 * @throws Exception the exception
@@ -88,22 +83,18 @@ public abstract class  Field {
 	/**
 	 * Adds the putty.
 	 *
-	 * @param p the p
+	 * @param p the putty that we add to the patches List
 	 */
 	public void addPutty(Putty p) {
-		Skeleton.printLastCalledFunction(id,new String[]{p.id,
-				Skeleton.getClassName(p)});
 		patches.add(p);
 	}
 	
 	/**
 	 * Adds the oil.
 	 *
-	 * @param o the o
+	 * @param o the oil that we add to the patches List
 	 */
 	public void addOil(Oil o) {
-		Skeleton.printLastCalledFunction(id,new String[]{o.id,
-				Skeleton.getClassName(o)});
 		patches.add(o);
 	}
 	
@@ -113,7 +104,6 @@ public abstract class  Field {
 	 * @return the neighbours
 	 */
 	public List<Field> getNeighbours() {
-		Skeleton.printLastCalledFunction(id);
 		return neighbours;
 	}
 
@@ -138,11 +128,11 @@ public abstract class  Field {
 	}*/
 
 	/**
- * Sets the coord.
- *
- * @param c the new coord
- */
-public void setCoord(CoordVector c) {
+	 * Sets the coord.
+	 *
+	 * @param c the new coord
+	 */
+	public void setCoord(CoordVector c) {
 		coord = c;
 	}
 
