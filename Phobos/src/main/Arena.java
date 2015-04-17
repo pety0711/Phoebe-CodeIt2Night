@@ -1,9 +1,17 @@
 package main;
 
+import java.awt.BufferCapabilities;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+
+
+
+
 
 
 
@@ -32,16 +40,22 @@ public class Arena {
 	private ArrayList<Patch> patches;
 	
 	/** The gamers. */
-	private HashMap<String, Robot> gamers;
+	private HashMap<String, Robi> gamers;
 	
 	/**  The dimension. */
 	private CoordVector dim;
 	
-//	private static ArrayList<CoordVector> aviableCoords; //
-//	private static int aviableCoordsNext;
+	private String mapFilePath;
 	
 	/**  Number of Robots. */
 	private int noRobots = 2;
+	
+	private int sCounter = 0;
+	private int dCounter = 0;
+	private int oCounter = 0;
+	private int pCounter = 0;
+	private int rCounter = 0;
+	private int kCounter = 0;
 	
 	/**
 	 * Instantiates a new arena.
@@ -72,17 +86,10 @@ public class Arena {
 	 */
 	private void Initialize() {
 		Skeleton.printLastCalledFunction(arenaID);
-
-		int[] tmp = {5, 2};
-		try {
-			dim = new CoordVector(tmp);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
-		generateFields(dim);
+		generateFields();
 		
-		gamers = new HashMap<String, Robot>();
+		gamers = new HashMap<String, Robi>();
 		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision||
 				Skeleton.currentUseCase==Skeleton.UseCaseType.Finish_game){
 			noRobots=2;
@@ -108,73 +115,77 @@ public class Arena {
 	 *
 	 * @param size the size
 	 */
-	public void generateFields(CoordVector size) {
-		Skeleton.printLastCalledFunction(arenaID, new String[]
-				{"size","CoordVector"});
+	public void generateFields() {
+		try {
+			FileReader mapFile = new FileReader(mapFilePath);
+			BufferedReader bf = new BufferedReader(mapFile);
+			
+			int coord_dim_x = 0;
+			int coord_dim_y = 0;
+			
+			String line;
+			while( (line = bf.readLine()) != null) {
+				coord_dim_x++;
+							
+				String[] row = line.split(",");
 
-		
-		//TODO erre valami algoritmust kitalálni, különben a pálya megalkotásába fogunk belezöldülni...
-		//+ be kell állítani a szomszédjaikat
-		SafeZone s0 = new SafeZone("s0");
-		s0.initField();
-		SafeZone s1 = new SafeZone("s1");
-		s1.initField();
-		SafeZone s2 = new SafeZone("s2");
-		s2.initField();
-		SafeZone sp = new SafeZone("sp");
-		sp.initField();
-		SafeZone so = new SafeZone("so");
-		so.initField();
-		SafeZone sr0 = new SafeZone("sr0");
-		sr0.initField();
-		SafeZone sr1 = new SafeZone("sr1");
-		sr1.initField();
-		//TODO név paraméternek
-		DangerZone d = new DangerZone("dz");
-		d.initField();
-
-		patches = new ArrayList<Patch>();
-		Putty p = new Putty("p");
-		p.setFix();
-		patches.add(p);
-		sp.addPutty(p);
-		
-		Oil o = new Oil("o");
-		o.setFix();
-		patches.add(o);
-		so.addOil(o);
-		
-		fields = new ArrayList<Field>();
-		fields.add(s0);
-		fields.add(s1);
-		fields.add(s2);
-		fields.add(sp);
-		fields.add(so);
-		fields.add(sr0);
-		fields.add(sr1);
-		fields.add(d);		
-		
-		//TODO na meg ez is probléma lesz, meg szerintem nem is olyan jó mert mindenkinek ugyanaz a szomszédja mindenki mindenkivel szomszédos ebben az esetben!
-		List<Field> temp = new ArrayList<Field>();
-		temp.add(s0);
-		temp.add(s1);
-		temp.add(s2);
-		temp.add(sp);
-		temp.add(so);
-		temp.add(sr0);
-		temp.add(sr1);
-		temp.add(d);
-
-		//TODO valakinek van ötlete erre?
-		s0.setNeighbours(temp);
-		s1.setNeighbours(temp);
-		s2.setNeighbours(temp);
-		sp.setNeighbours(temp);
-		so.setNeighbours(temp);
-		sr0.setNeighbours(temp);
-		sr1.setNeighbours(temp);
-		d.setNeighbours(temp);
+				if(coord_dim_y == 0) {
+					coord_dim_y = row.length;
+					dim = new CoordVector(new int[]{coord_dim_x, coord_dim_y});
+				}
+				
+				createFields(row);
+			}
+		}
+		catch (Exception e) {
+			
+		}
 	}
+	
+	private void createFields(String[] row)  {
+
+		for(String element : row) {
+			switch (element) {
+			case "s":
+				SafeZone ss = new SafeZone("s" + sCounter++);
+				fields.add(ss);
+				break;
+				
+			case "d":
+				DangerZone dd = new DangerZone("d" + dCounter++);
+				fields.add(dd);
+				break;
+				
+			case "r":
+				Robi rr = new Robi("r" + rCounter++, this);
+				gamers.put(rr.id, rr);
+				SafeZone sr = new SafeZone("s" + sCounter++);
+				fields.add(sr);
+				rr.setField(sr);
+				break;
+				
+			case "k":
+				CleanerMaster cm = new CleanerMaster("k" + kCounter++, this);
+				break;
+			case "o":
+				break;
+			case "p":
+				break;
+			default:
+				break;
+			}
+		}
+		
+	}
+	
+	public String getMapFilePath() {
+		return mapFilePath;
+	}
+
+	public void setMapFilePath(String mapFilePath) {
+		this.mapFilePath = mapFilePath;
+	}
+
 	/**
 	 * Adds the robot.
 	 *
@@ -184,7 +195,7 @@ public class Arena {
 		Skeleton.printLastCalledFunction(arenaID, new String[]
 				{id,Skeleton.getClassName(id)});
 		
-		gamers.put(id, new Robot(id, this));
+		gamers.put(id, new Robi(id, this));
 	}
 	
 	/**

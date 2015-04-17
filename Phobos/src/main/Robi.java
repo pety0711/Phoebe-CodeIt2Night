@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Dávid
  */
-public class Robot {
+public class Robi {
 	
 	/** The id. */
 	public String id;
@@ -42,7 +42,7 @@ public class Robot {
 	 *
 	 * @param a the a
 	 */
-	public Robot(Arena a) {
+	public Robi(Arena a) {
 		this.id = "Robot"+new Random(22222222).toString();
 		isItAlive = true;
 		arena = a;
@@ -62,7 +62,7 @@ public class Robot {
 	 * @param id the id
 	 * @param a the a
 	 */
-	public Robot(String id, Arena a) {
+	public Robi(String id, Arena a) {
 		this.id = id;
 		isItAlive = true;
 		arena = a;

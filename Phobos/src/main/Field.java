@@ -18,7 +18,7 @@ public abstract class  Field {
 	protected List<Field> neighbours; //Lehet ez is protected? Privat volt alapból.
 	
 	/** The robots. */
-	protected List<Robot> robots;  //Sztem ez jobb protectedbe, igaz?
+	protected List<Robi> robots;  //Sztem ez jobb protectedbe, igaz?
 	
 	/** The patches. */
 	protected ArrayList<Patch> patches;
@@ -48,21 +48,21 @@ public abstract class  Field {
 	 * @param r the r
 	 * @return the field
 	 */
-	public abstract Field step(CoordVector speed, Robot r);
+	public abstract Field step(CoordVector speed, Robi r);
 	
 	/**
 	 * Stepped on you.
 	 *
 	 * @param r the r
 	 */
-	public abstract void steppedOnYou(Robot r);
+	public abstract void steppedOnYou(Robi r);
 	
 	/**
 	 * Stepped off you.
 	 *
 	 * @param r the r
 	 */
-	public abstract void steppedOffYou(Robot r);
+	public abstract void steppedOffYou(Robi r);
 	
 	/**
 	 * Investigate collision.
@@ -76,7 +76,7 @@ public abstract class  Field {
 	 */
 	public Field() {
 		patches = new ArrayList<Patch>();
-		robots = new ArrayList<Robot>();
+		robots = new ArrayList<Robi>();
 		// this.id = id; Ez kell bele?
 	}
 	

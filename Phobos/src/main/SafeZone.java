@@ -68,7 +68,7 @@ public class SafeZone extends Field {
 	 * @see main.Field#steppedOnYou(main.Robot)
 	 */
 	@Override
-	public void steppedOnYou(Robot r) {
+	public void steppedOnYou(Robi r) {
 		Skeleton.printLastCalledFunction(id, new String[]{r.id,Skeleton.getClassName(r)});
 		robots.add(r);
 		//r.setField(this);
@@ -86,7 +86,7 @@ public class SafeZone extends Field {
 	 * @see main.Field#steppedOffYou(main.Robot)
 	 */
 	@Override
-	public void steppedOffYou(Robot r) {
+	public void steppedOffYou(Robi r) {
 		Skeleton.printLastCalledFunction(id, new String[]
 				{r.id,Skeleton.getClassName(r)});
 		if(robots.contains(r)){
@@ -98,7 +98,7 @@ public class SafeZone extends Field {
 	 * @see main.Field#step(main.CoordVector, main.Robot)
 	 */
 	@Override
-	public Field step(CoordVector direction, Robot r){
+	public Field step(CoordVector direction, Robi r){
 		Skeleton.printLastCalledFunction(id, new String[]
 				{"direction",Skeleton.getClassName(direction)});
 		Field nb = getNeighbour(direction);
