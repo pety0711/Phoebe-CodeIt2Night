@@ -90,25 +90,25 @@ public class Arena {
 		
 		generateFields();
 		
-		gamers = new HashMap<String, Robi>();
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision||
-				Skeleton.currentUseCase==Skeleton.UseCaseType.Finish_game){
-			noRobots=2;
-		}
-		else 
-			noRobots = 1;
-		for (int i = 0; i < noRobots; i++)
-		{
-			addRobot("Robot" + i);
-		}
-
-		Set<String> keys = gamers.keySet();
-		gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
-		fields.get(robot0StartField).steppedOnYou(gamers.get(keys.toArray()[0]));
-		if (Skeleton.currentUseCase == UseCaseType.Collision || Skeleton.currentUseCase == UseCaseType.Finish_game){			
-			gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
-			fields.get(robot1StartField).steppedOnYou(gamers.get(keys.toArray()[1]));
-		}		
+//		gamers = new HashMap<String, Robi>();
+//		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision||
+//				Skeleton.currentUseCase==Skeleton.UseCaseType.Finish_game){
+//			noRobots=2;
+//		}
+//		else 
+//			noRobots = 1;
+//		for (int i = 0; i < noRobots; i++)
+//		{
+//			addRobot("Robot" + i);
+//		}
+//
+//		Set<String> keys = gamers.keySet();
+//		gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
+//		fields.get(robot0StartField).steppedOnYou(gamers.get(keys.toArray()[0]));
+//		if (Skeleton.currentUseCase == UseCaseType.Collision || Skeleton.currentUseCase == UseCaseType.Finish_game){			
+//			gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
+//			fields.get(robot1StartField).steppedOnYou(gamers.get(keys.toArray()[1]));
+//		}		
 	}
 
 	/**
@@ -263,29 +263,24 @@ public class Arena {
 	 * tick
 	 */
 	public void tick() {
+		
+		//foltok érvényesítése
+		
+		//foltok lerakása, törlése
+		
+		//robotok léptetése
 		Set<String> keys = gamers.keySet();
-		switch(Skeleton.currentUseCase) {	
-			case Put_oil:
-				Skeleton.drawLine();
-				gamers.get(keys.toArray()[0]).putOil();
-				Skeleton.drawLine();
-	
-				break;
-			case Put_putty:
-				Skeleton.drawLine();
-				gamers.get(keys.toArray()[0]).putPutty();
-				Skeleton.drawLine();
-				break;
-			default:
-				break;
-			}
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision)
-			Skeleton.drawLine();
 		for (String key : keys) {
 			gamers.get(key).tick();
 		}
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_safezone)
-			Skeleton.drawLine();
+		
+		keys = cleaners.keySet();
+		for (String key : keys) {
+			cleaners.get(key).tick();
+		}
+		
+		//ütközés vizsgálat
+		keys = gamers.keySet();
 		for (String key : keys) {
 			if(gamers.get(key).isItAlive)
 				try {
@@ -294,13 +289,16 @@ public class Arena {
 					e.printStackTrace();
 				}
 		}
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision)
-			Skeleton.drawLine();
-		for (Patch p : patches) {
-			p.tick();
-		}
 		
-		
+		keys = cleaners.keySet();
+		for (String key : keys) {
+			if(cleaners.get(key).isItAlive)
+				try {
+					cleaners.get(key).investigateCollision();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		}		
 	}
 	
 	/**

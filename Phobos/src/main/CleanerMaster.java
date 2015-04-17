@@ -3,6 +3,8 @@ package main;
 public class CleanerMaster {
 	public String id;
 	
+	public boolean isItAlive;
+	
 	private Field field;
 	
 	CleanerMaster(String id, Arena arena) {
@@ -17,5 +19,7 @@ public class CleanerMaster {
 		this.field = field;
 	}
 	
-	
+	public void tick() {}
+
+	public void investigateCollision() {}
 }
