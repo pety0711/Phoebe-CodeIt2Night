@@ -67,13 +67,6 @@ public class DangerZone extends Field {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see main.Field#steppedOffYou(main.Robot)
-	 */
-	@Override
-	public void steppedOffYou(Robi r) {
-		// TODO Auto-generated method stub
-	}
 
 	/* (non-Javadoc)
 	 * @see main.Field#initField()

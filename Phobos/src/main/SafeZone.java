@@ -31,14 +31,7 @@ public class SafeZone extends Field {
 		
 		pList = new ArrayList<>();
 		oList = new ArrayList<>();
-		/*
-		pList.add(new Putty());
-		pList.add(new Putty());
-		pList.add(new Putty());
-		
-		oList.add(new Oil());
-		oList.add(new Oil());
-		oList.add(new Oil());*/
+
 		Skeleton.printLastCalledFunction(id, new String[]{""});
 	}
 	
@@ -81,14 +74,8 @@ public class SafeZone extends Field {
 				r.disableMovement();
 		}
 	}
-	
-	/* (non-Javadoc)
-	 * @see main.Field#steppedOffYou(main.Robot)
-	 */
-	@Override
+
 	public void steppedOffYou(Robi r) {
-		Skeleton.printLastCalledFunction(id, new String[]
-				{r.id,Skeleton.getClassName(r)});
 		if(robots.contains(r)){
 			robots.remove(r);
 		}
