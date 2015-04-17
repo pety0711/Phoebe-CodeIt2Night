@@ -128,8 +128,8 @@ public class SafeZone extends Field {
 		switch(Skeleton.currentUseCase){
 		case Collision:
 			if( robots.size() > 1 && (robots.get(0) != null) && robots.get(1) != null ){
-				CoordVector cv0 = new CoordVector(new int[]{1, 0});
-				CoordVector cv1 = new CoordVector(new int[]{1, 1});
+				CoordVector cv0 = new CoordVector(1, 0);
+				CoordVector cv1 = new CoordVector(1, 1);
 				robots.get(1).detectedCollision(cv1);
 				robots.get(0).detectedCollision(cv0);
 			}
@@ -172,7 +172,7 @@ public class SafeZone extends Field {
 		switch (Skeleton.currentUseCase) {
 			case Collision:
 				try {
-					if (direction.equals(new CoordVector(new int[]{1, 0}))) {
+					if (direction.equals(new CoordVector(1, 0))) {
 						returnField = neighbours.get(1);
 					} else {
 						returnField = neighbours.get(0);

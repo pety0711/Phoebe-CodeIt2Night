@@ -41,6 +41,7 @@ public class Arena {
 	
 	/** The gamers. */
 	private HashMap<String, Robi> gamers;
+	private HashMap<String, CleanerMaster> cleaners;
 	
 	/**  The dimension. */
 	private CoordVector dim;
@@ -125,17 +126,19 @@ public class Arena {
 			
 			String line;
 			while( (line = bf.readLine()) != null) {
-				coord_dim_x++;
+				coord_dim_y++;
 							
 				String[] row = line.split(",");
 
-				if(coord_dim_y == 0) {
-					coord_dim_y = row.length;
-					dim = new CoordVector(new int[]{coord_dim_x, coord_dim_y});
+				if(coord_dim_x == 0) {
+					coord_dim_x = row.length;
+					dim = new CoordVector(coord_dim_x, coord_dim_y);
 				}
 				
 				createFields(row);
 			}
+			
+			
 		}
 		catch (Exception e) {
 			
@@ -151,11 +154,6 @@ public class Arena {
 				fields.add(ss);
 				break;
 				
-			case "d":
-				DangerZone dd = new DangerZone("d" + dCounter++);
-				fields.add(dd);
-				break;
-				
 			case "r":
 				Robi rr = new Robi("r" + rCounter++, this);
 				gamers.put(rr.id, rr);
@@ -166,16 +164,67 @@ public class Arena {
 				
 			case "k":
 				CleanerMaster cm = new CleanerMaster("k" + kCounter++, this);
+				cleaners.put(cm.id, cm);
+				SafeZone sk = new SafeZone("s" + sCounter++);
+				fields.add(sk);
+				cm.setField(sk);
 				break;
+				
 			case "o":
+				Oil o = new Oil("o" + oCounter++);
+				patches.add(o);
+				SafeZone so = new SafeZone("s" + sCounter++);
+				fields.add(so);
 				break;
+				
 			case "p":
+				Putty p = new Putty("p" + pCounter++);
+				patches.add(p);
+				SafeZone sp = new SafeZone("s" + sCounter++);
+				fields.add(sp);
 				break;
+				
+			case "d":
 			default:
+				DangerZone dd = new DangerZone("d" + dCounter++);
+				fields.add(dd);
 				break;
 			}
 		}
 		
+	}
+	
+	private void setNeighbourhood() {
+		for(int i = 0; i < fields.size(); i++) {
+			int y = dim.getY() - (int)Math.floor(i / dim.getX());
+			int x = i % dim.getX();
+			
+			fields.get(i).setCoord(new CoordVector(x, y));
+			
+			Field up = new DangerZone("edge");
+			//upper neighbour
+			if (i >= dim.getX()) {
+				up = fields.get(i - dim.getX());
+			}
+			
+			Field ri = new DangerZone("edge");
+			//right neighbour
+			if (i % dim.getX() < dim.getX() - 1) {
+				ri = fields.get(i + 1);
+			}
+			
+			Field bo = new DangerZone("edge");
+			//bottom neighbour
+			if (i <= fields.size() - 1 - dim.getX()) {
+				bo = fields.get(i + dim.getX());
+			}
+			
+			Field le = new DangerZone("edge");
+			//left neighbour
+			if (i % dim.getX() > 0) {
+				le = fields.get(i - 1);
+			}
+		}
 	}
 	
 	public String getMapFilePath() {

@@ -107,7 +107,7 @@ public class Robi {
 		Skeleton.printLastCalledFunction(id);
 		
 		try {
-			speed = new CoordVector(new int[]{2,0});
+			speed = new CoordVector(2,0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
