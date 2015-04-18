@@ -1,59 +1,32 @@
-/**
- * 
- */
 package main;
 
-import java.util.Random;
-
-// TODO: Auto-generated Javadoc
 /**
- * The Class Robot.
+ * The Class Robi.
  *
- * @author Dávid
+ * @author Virág
  */
-public class Robi {
-	
-	/** The id. */
-	public String id;
-	
-	/** The is it alive. */
-	public boolean isItAlive;
-	
-	/** The speed. */
-	private CoordVector speed;
-	
-	/** The points. */
-	private int points;
+public class Robi extends Robot{
+
+	/** The oil supply. */
+	private int oilSupply;
 	
 	/** The putty supply. */
 	private int puttySupply;
 	
-	/** The oil supply. */
-	private int oilSupply;
-	
-	/** The field. */
-	private Field field;
-	
-	/** The arena. */
-	private Arena arena;
+	/** The points. */
+	private int points;
 	
 	/**
-	 * Instantiates a new robot.
+	 * Instantiates a new robot - Robi.
 	 *
-	 * @param a the a
+	 * @param a the container Arena
 	 */
 	public Robi(Arena a) {
-		this.id = "Robot"+new Random(22222222).toString();
-		isItAlive = true;
-		arena = a;
-		
+		super(a);
 		puttySupply = 3;
 		oilSupply = 3;
-		points = 100;
+		points = 0;
 		
-		speed = new CoordVector();
-		Skeleton.printLastCalledFunction(id,new String[]
-				{id,Skeleton.getClassName(this), "a", Skeleton.getClassName(a)});
 	}
 	
 	/**
@@ -63,158 +36,103 @@ public class Robi {
 	 * @param a the a
 	 */
 	public Robi(String id, Arena a) {
-		this.id = id;
-		isItAlive = true;
-		arena = a;
-		
+		super(id, a);
 		puttySupply = 3;
 		oilSupply = 3;
-		points = 100;
-		
-		speed = new CoordVector();
-		Skeleton.printLastCalledFunction(id,new String[]
-				{id,Skeleton.getClassName(this), "a", Skeleton.getClassName(a)});
+		points = 0;
+	
+	}	
+	
+	
+	/**
+	 * Kill robot - Robi.
+	 */
+	@Override
+	public void killRobot() {
+		Skeleton.printLastCalledFunction(id);
+		field.steppedOffYou(this);
+		isItAlive = false; 
+		arena.killRobot(points, id);
+	
 	}
-
-	/**
-	 * Put putty.
-	 */
-	public void putPutty(){
-		Skeleton.printLastCalledFunction(id);
-		Putty putty = new Putty("pr");
-		field.addPutty(putty);
-		arena.registerPatch(putty);	}
 	
 	/**
-	 * Put oil.
+	 * Get the points of the Robi.
 	 */
-	public void putOil(){
+	public int getPoints() 
+	{
 		Skeleton.printLastCalledFunction(id);
-		Oil oil = new Oil("or");
-		field.addOil(oil);
-		arena.registerPatch(oil);	}
+		return points;
+	
+	}
 	
 	/**
-	 * Tick.
+	 * Disable movement after stepping on an oil.
 	 */
-	public void tick(){
+	public void disableMovement()
+	{
+		Skeleton.printLastCalledFunction(id);
 		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_putty||
-			Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_an_oil||
-			Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_dangerzone||
-			Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_safezone){
-			Skeleton.drawLine();
-		}
+				Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_an_oil){
+				Skeleton.drawLine();
+			}
+	
+	}	
+	
+	/**
+	 * Change the speed to lower after stepping on a putty.
+	 */
+	public void slowDown()
+	{
 		Skeleton.printLastCalledFunction(id);
 		
+		int[] newSpeed = null;		
+		for(int i = 0; i < speed.dimension; i++){
+			
+			newSpeed[i] = ((speed.getCoordofDim(i)) / 2);
+		}		
 		try {
-			speed = new CoordVector(2,0);
+			speed = new CoordVector(newSpeed);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		Field f = field.step(speed,this);
-		setField(f);
-		f.steppedOnYou(this);}
-	
-	/**
-	 * Investigate collision.
-	 *
-	 * @throws Exception the exception
-	 */
-	public void investigateCollision() throws Exception{
-		Skeleton.printLastCalledFunction(id);
-		field.investigateCollision();	}
-	
-	/**
-	 * Detected collision.
-	 *
-	 * @param coord the coord
-	 */
-	public void detectedCollision(CoordVector coord){
-		Skeleton.printLastCalledFunction(id, new String[]{"coord", "CoordVector"});
-		Field f = field.step(coord, this);
-		setField(f);
-		f.steppedOnYou(this);
-//		this.isItAlive=false;
-		/*
-		// majd meghalnak
-		field.steppedOffYou(this);
-		this.killRobot();*/
-	}
-	
-	/**
-	 * Gets the speed.
-	 *
-	 * @return the speed
-	 */
-	public CoordVector getSpeed(){
-		return speed;}
-	
-	/**
-	 * Sets the speed.
-	 *
-	 * @param speed the new speed
-	 */
-	public void setSpeed(CoordVector speed){
-		this.speed = speed;}
-
-	/**
-	 * Slow down.
-	 */
-	public void slowDown(){
-		Skeleton.printLastCalledFunction(id);
 		if(
 				Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_putty||
 				Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_an_oil){
 				Skeleton.drawLine();
-			}
+			}	
 	}
-
-	/**
-	 * Disable movement.
-	 */
-	public void disableMovement(){
-		Skeleton.printLastCalledFunction(id);
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_putty||
-				Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_an_oil){
-				Skeleton.drawLine();
-			}
-	}
-
-	/**
-	 * Kill robot.
-	 */
-	public void killRobot(){
-		Skeleton.printLastCalledFunction(this.id);
-		field.steppedOffYou(this);
-		this.isItAlive = false;
-		arena.killRobot(points, id);	}
-
-	/**
-	 * Gets the points.
-	 *
-	 * @return the points
-	 */
-	public int getPoints() {
-		Skeleton.printLastCalledFunction(id);
-		return points;}
+	
 	
 	/**
-	 * Gets the field.
-	 *
-	 * @return the field
+	 * Robi puts a putty.
 	 */
-	public Field getField() {
-		Skeleton.printLastCalledFunction(id);
-		return field;}
+	public void putPutty()
+	{
+		if( puttySupply > 0)
+		{
+			Skeleton.printLastCalledFunction(id);
+			puttySupply--;
+			Putty putty = new Putty("pr");
+			field.addPutty(putty);
+			arena.registerPatch(putty);	
+		}
+		
+	}
 
 	/**
-	 * Sets the field.
-	 *
-	 * @param field the new field
+	 * Robi puts an Oil.
 	 */
-	public void setField(Field field) {
-		Skeleton.printLastCalledFunction(id,new String[]{field.id,Skeleton.getClassName(field)});
-		this.field = field;
-	}
+	@Override
+	public void putOil() {
+		if( oilSupply > 0)
+		{
+			Skeleton.printLastCalledFunction(id);
+			Oil oil = new Oil("or");
+			field.addOil(oil);
+			arena.registerPatch(oil);
+		}
+		
+	}	
 }

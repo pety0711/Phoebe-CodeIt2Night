@@ -46,12 +46,12 @@ public class CoordVector {
 	 * @param arg0 the arg0
 	 * @throws Exception the exception
 	 */
-//	public CoordVector(int[] arg0) throws Exception {
-//		if(arg0.length == dimension) {
-//			points = arg0;
-//		}
-//		else throw new Exception("arg0's dimension is not correct!");
-//	}
+	public CoordVector(int[] arg0) throws Exception {
+		if(arg0.length == dimension) {
+			points = arg0;
+		}
+		else throw new Exception("arg0's dimension is not correct!");
+	}
 	
 	//mostantól érdemes lenne ezeket használni. Egyszerûbb lesz az életünk.
 	public CoordVector(int x, int y) {
