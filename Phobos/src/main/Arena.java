@@ -260,6 +260,14 @@ public class Arena {
 	}
 	
 	/**
+	 * Get patches list.
+	*/
+	
+	public ArrayList<Patch> getPatches() {
+		return patches;
+	}
+	
+	/**
 	 * tick
 	 */
 	public void tick() {
@@ -302,7 +310,7 @@ public class Arena {
 	}
 	
 	/**
-	 * Kill robot.
+	 * Kill Robi.
 	 *
 	 * @param points the points
 	 * @param id the id
@@ -310,10 +318,24 @@ public class Arena {
 	public void killRobot(int points, String id){
 		Skeleton.printLastCalledFunction(arenaID, new String[]
 				{"points","int", "id","String"});
-		Skeleton.printOutINFO(id + " Robot died, points: " + points);
+		Skeleton.printOutINFO(id + " Robi died, points: " + points);
 		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_dangerzone)
 			Skeleton.drawLine();
 	}
+	
+	/**
+	 * Kill CleanerMaster.
+	 *
+	 * @param id the id
+	 */	
+	public void killRobot(String id) {
+		Skeleton.printLastCalledFunction(arenaID, new String[]
+				{"id","String"});
+		Skeleton.printOutINFO(id + " CleanerMaster died.");
+		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_dangerzone)
+			Skeleton.drawLine();
+	}
+	
 
 	/**
 	 * Finish game.
