@@ -68,19 +68,19 @@ public abstract class Field {
 	 *
 	 * @param speed
 	 *            the speed
-	 * @param r
+	 * @param robot
 	 *            the r
 	 * @return the field
 	 */
-	public abstract Field step(CoordVector speed, Robi r);
+	public abstract Field step(CoordVector speed, Robot robot);
 
 	/**
 	 * Stepped on you.
 	 *
-	 * @param r
+	 * @param robot
 	 *            the r
 	 */
-	public abstract void steppedOnYou(Robi r);
+	public abstract void steppedOnYou(Robot robot);
 
 	/**
 	 * Investigate collision.

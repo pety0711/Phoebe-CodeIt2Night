@@ -34,7 +34,7 @@ public class DangerZone extends Field {
 	 * @see main.Field#steppedOnYou(main.Robot)
 	 */
 	@Override
-	public void steppedOnYou(Robi r) {
+	public void steppedOnYou(Robot r) {
 		Skeleton.printLastCalledFunction(id,new String[]
 				{r.id,Skeleton.getClassName(r)});
 		robots.add(r);
@@ -45,7 +45,7 @@ public class DangerZone extends Field {
 	 * @see main.Field#step(main.CoordVector, main.Robot)
 	 */
 	@Override
-	public Field step(CoordVector speed, Robi r) {
+	public Field step(CoordVector speed, Robot r) {
 		return this;
 	}
 
