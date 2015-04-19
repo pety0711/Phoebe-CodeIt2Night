@@ -3,24 +3,18 @@
  */
 package main;
 
-import main.Field.direction;
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class DangerZone.
  *
  * @author Dávid
  */
 public class DangerZone extends Field {
-
-	/** The type. */
-	private int type;
 	
 	/**
 	 * Instantiates a new danger zone.
 	 */
 	public DangerZone() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 	
 	/**
@@ -37,8 +31,6 @@ public class DangerZone extends Field {
 	 */
 	@Override
 	public void steppedOnYou(Robot r) {
-		Skeleton.printLastCalledFunction(id,new String[]
-				{r.id,Skeleton.getClassName(r)});
 		robots.add(r);
 		r.killRobot();
 	}
@@ -56,22 +48,11 @@ public class DangerZone extends Field {
 	 */
 	@Override
 	public void investigateCollision() {
-		// TODO Auto-generated method stub
 		
-	}
-
-	/* (non-Javadoc)
-	 * @see main.Field#getNeighbour(main.CoordVector)
-	 */
-	@Override
-	public Field getNeighbour(direction dir){
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public void steppedOffYou(Robot r) {
-		// TODO Auto-generated method stub
 		
 	}
 }
