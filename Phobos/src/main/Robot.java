@@ -30,6 +30,8 @@ public abstract class Robot {
 
 	protected boolean slowDownEffect;
 	protected boolean disableEffect;
+	public boolean canChangeSpeed;
+
 	
 	/**
 	 * Instantiates a new robot.
@@ -145,7 +147,8 @@ public abstract class Robot {
 	 *            the new speed
 	 */
 	public void setSpeed(CoordVector speed) {
-		this.speed = speed;
+		if(canChangeSpeed)
+			this.speed = speed;
 	}
 
 	/**

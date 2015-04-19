@@ -23,6 +23,8 @@ public class CleanerMaster extends Robot {
 	 */
 	public CleanerMaster(Arena a) {
 		super(a);
+		canChangeSpeed = true;
+
 	}
 
 	/**
@@ -35,6 +37,8 @@ public class CleanerMaster extends Robot {
 	 */
 	CleanerMaster(String id, Arena arena) {
 		super(id, arena);
+		canChangeSpeed = true;
+
 	}
 
 	/**
@@ -182,5 +186,13 @@ public class CleanerMaster extends Robot {
 		setField(f);
 		f.steppedOnYou(this);
 
+	}
+
+	@Override
+	public void takeEffect() {
+		if(field.patches.size() > 0){
+			field.cleanThePatch(this);
+		}
+		
 	}
 }

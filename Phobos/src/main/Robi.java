@@ -29,6 +29,8 @@ public class Robi extends Robot {
 		puttySupply = 3;
 		oilSupply = 3;
 		points = 0;
+		canChangeSpeed = true;
+
 
 	}
 
@@ -45,6 +47,7 @@ public class Robi extends Robot {
 		puttySupply = 3;
 		oilSupply = 3;
 		points = 0;
+		canChangeSpeed = true;
 
 	}
 
@@ -78,7 +81,8 @@ public class Robi extends Robot {
 				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_an_oil) {
 			Skeleton.drawLine();
 		}
-		canChangeSpeed = false;
+/*		canChangeSpeed = false;*/
+		disableEffect = false;
 
 	}
 
@@ -88,7 +92,7 @@ public class Robi extends Robot {
 	public void slowDown() {
 		Skeleton.printLastCalledFunction(id);
 
-		int[] newSpeed = null;
+/*		int[] newSpeed = null;
 		for (int i = 0; i < speed.dimension; i++) {
 
 			newSpeed[i] = ((speed.getCoordofDim(i)) / 2);
@@ -97,7 +101,9 @@ public class Robi extends Robot {
 			speed = new CoordVector(newSpeed);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
+		
+		slowDownEffect = false;
 
 		if (Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_putty
 				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_an_oil) {
@@ -155,4 +161,28 @@ public class Robi extends Robot {
 		f.steppedOnYou(this);
 
 	}
+
+	@Override
+	public void takeEffect() {
+		Skeleton.printLastCalledFunction(id);
+		
+		if (slowDownEffect){
+			int[] newSpeed = null;
+			for (int i = 0; i < speed.dimension; i++) {
+				newSpeed[i] = ((speed.getCoordofDim(i)) / 2);
+			}
+			try {
+				speed = new CoordVector(newSpeed);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(disableEffect){
+			canChangeSpeed = false;
+		}
+		
+	}
+	
+	
 }
