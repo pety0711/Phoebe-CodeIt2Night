@@ -1,6 +1,5 @@
 package main;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SafeZone.
  *
@@ -71,9 +70,7 @@ public class SafeZone extends Field {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see main.Field#step(main.CoordVector, main.Robot)
 	 */
 	@Override
@@ -94,27 +91,39 @@ public class SafeZone extends Field {
 		return temp;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see main.Field#investigateCollision()
 	 */
 	@Override
-	public void investigateCollision() throws Exception {
-		Skeleton.printLastCalledFunction(id);
-		switch (Skeleton.currentUseCase) {
-		case Collision:
-			if (robots.size() > 1 && (robots.get(0) != null)
-					&& robots.get(1) != null) {
-				CoordVector cv0 = new CoordVector(1, 0);
-				CoordVector cv1 = new CoordVector(1, 1);
-				robots.get(1).detectedCollision(cv1);
-				robots.get(0).detectedCollision(cv0);
+	public void investigateCollision(){
+		if(robots.size()>1){
+			
+			Robot fastest = robots.get(0);
+			for (int i = 0; i < robots.size(); i++) {
+				if(fastest.getIntSpeed() < robots.get(i).getIntSpeed()){fastest = robots.get(i);}
 			}
-			break;
-		default:
-			break;
+			
+			
+			int avgX = 0;
+			for (int i = 0; i < robots.size(); i++) {
+				avgX += robots.get(i).getSpeed().getX();
+			}
+			avgX /= robots.size();
+			
+			
+			int avgY = 0;
+			for (int i = 0; i < robots.size(); i++) {
+				avgY += robots.get(i).getSpeed().getY();
+			}
+			avgY /= robots.size();
+			
+			
+			fastest.detectedCollision(new CoordVector(avgX, avgY));
+			for (int i = 0; i < robots.size(); i++) {
+				if (!robots.get(i).equals(fastest)) {
+					robots.get(i).killRobot();
+				}
+			}
 		}
 	}
-
 }
