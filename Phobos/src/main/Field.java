@@ -26,7 +26,7 @@ public abstract class Field {
 	protected List<Field> neighbours;
 
 	/** The robots. */
-	protected List<Robi> robots;
+	protected List<Robot> robots;
 
 	/** The patches. */
 	protected ArrayList<Patch> patches;
@@ -52,7 +52,7 @@ public abstract class Field {
 	 */
 	public Field() {
 		patches = new ArrayList<Patch>();
-		robots = new ArrayList<Robi>();
+		robots = new ArrayList<Robot>();
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public abstract class Field {
 	 * Stepped on you.
 	 *
 	 * @param r
-	 *            the r
+	 *            the robot that stepped on the Field
 	 */
 	public abstract void steppedOnYou(Robot r);
 	
@@ -99,7 +99,7 @@ public abstract class Field {
 	/**
 	 * Inits the field.
 	 */
-	public abstract void initField();
+	public abstract void initField();	
 
 	/**
 	 * Adds the putty.
@@ -145,7 +145,7 @@ public abstract class Field {
 	 * @param coord - the coordinates that describes the direction
 	 * @return the direction translated from the coord parameter, if unknown return with null
 	 */
-	private direction getDirection(CoordVector coord){
+	private direction getDirection(CoordVector coord){		//R
 		if(coord == new CoordVector( 1, 0)){return direction.right;}
 		if(coord == new CoordVector(-1, 0)){return direction.left;}
 		if(coord == new CoordVector( 0, 1)){return direction.up;}
@@ -160,7 +160,7 @@ public abstract class Field {
 	 *            the direction
 	 * @return the neighbour
 	 */
-	public Field getNeighbour(direction dir) throws Throwable{
+	public Field getNeighbour(direction dir){		//R
 		Field temp = null;
 		switch (dir) {
 		case left:
@@ -177,10 +177,19 @@ public abstract class Field {
 			break;
 
 		default:
-			throw new Throwable("Unknown direction");
+			return null;
 		}
 		
 		return temp;
+	}
+
+	public ArrayList<Patch> getPatches() {
+		return patches;
+	}
+	
+
+	public void setPatches(ArrayList<Patch> patches) {
+		this.patches = patches;
 	}
 
 	/**
@@ -201,4 +210,6 @@ public abstract class Field {
 	public CoordVector getCoord() {		//R
 		return coord;
 	}
+
+	
 }
