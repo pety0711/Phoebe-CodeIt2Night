@@ -109,6 +109,7 @@ public class Prototype {
 	private void PutPatch(String id, String type) {
 
 	}
+	
 	private void SetSpeed(String id, String x, String y) {
 		/*
 		 * 
