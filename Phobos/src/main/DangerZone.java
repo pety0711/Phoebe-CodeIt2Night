@@ -35,15 +35,16 @@ public class DangerZone extends Field {
 		r.killRobot();
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see main.Field#step(main.CoordVector, main.Robot)
 	 */
 	@Override
 	public Field step(CoordVector speed, Robot r) {
+		Prototype.printOut("You can't step when you are on a DangerZone! :'( ");
 		return this;
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see main.Field#investigateCollision()
 	 */
 	@Override

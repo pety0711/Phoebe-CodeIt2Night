@@ -77,17 +77,17 @@ public class Prototype {
 		if (c.equals("c")) {
 			consoleOutput = true;
 			fileOutput = true;
-			printOut("Selected output: " + c + " as Console");
+			System.out.println("Selected output: " + c + " as Console");
 		} else if (c.equals("f")) {
 			fileOutput = true;
 			filePath = path;
 			consoleOutput = false;
-			printOut("Selected output: " + c + " as File");
+			System.out.println("Selected output: " + c + " as File");
 		} else if (c.equals("b")) {
 			fileOutput = true;
 			filePath = path;
 			consoleOutput = true;
-			printOut("Selected output: " + c + " as Both");
+			System.out.println("Selected output: " + c + " as Both");
 		}
 	}
 
@@ -146,37 +146,19 @@ public class Prototype {
 	}
 
 	private static void Step(String id) {
-		StringBuilder text = new StringBuilder("Step - ");
-		text.append(id + " Robot - Start field: ");
 		for(Robi r : gamers) {
 			if (!r.id.equals(id)) {
 				r.setSpeed(new CoordVector());
 			}
-			else {
-				text.append(r.getField().id + " [" +r.getField().getCoord().getX() + ", " + r.getField().getCoord().getY() + "]");
-			}
 		}
 		
 		arena.tick();
-		
-		for(Robi r : gamers) {
-			if (r.id.equals(id)) {
-				text.append(r.getField().id + " [" +r.getField().getCoord().getX() + ", " + r.getField().getCoord().getY() + "]");
-			}
-		}
-		
-		printOut(text.toString());
-		
 	}
 
 	private static void Step(String id, String fieldID) {
-		StringBuilder text = new StringBuilder("Step - ");
-		text.append(id + " Robot - Start field: ");
 		for(Robi r : gamers) {
 			if (r.id.equals(id)) {
-				text.append(r.getField().id + " [" +r.getField().getCoord().getX() + ", " + r.getField().getCoord().getY() + "]");
 				Field f = arena.getFieldById(fieldID);
-				text.append(f.id + " [" +f.getCoord().getX() + ", " + f.getCoord().getY() + "]");
 				CoordVector speed = r.getField().getCoord().getDiff(f.getCoord());
 				r.setSpeed(speed);
 			}
@@ -186,8 +168,6 @@ public class Prototype {
 		}
 		
 		arena.tick();
-		
-		printOut(text.toString());
 	}
 
 	private static void Collide(String r0ID, String r1ID, String type) {
@@ -211,7 +191,7 @@ public class Prototype {
 					R1 = r;	
 					r1 = true;
 				}
-				if(r.id==r1ID){
+				if(r.id==r0ID){
 					R2 = r;	
 					r2 = true;
 				}
@@ -244,20 +224,37 @@ public class Prototype {
 
 	// id: Field ID-ja, amelyen van Oil és Putty is.
 	private static void Timeout(String id) {
-		Field f = arena.getFieldById(id);
-		Robot r = gamers.get(0);
-		// Oil Timeout
-		((SafeZone)f).TickPatches();
-		((SafeZone)f).TickPatches();
-		((SafeZone)f).TickPatches();
-		((SafeZone)f).TickPatches();
-		((SafeZone)f).TickPatches();
+		StringBuilder text = new StringBuilder("Timeout  - ");
 		
-		// Putty Timeout
-		f.steppedOnYou(r);
-		f.steppedOnYou(r);
-		f.steppedOnYou(r);
-		f.steppedOnYou(r);
+		Field f = arena.getFieldById(id);
+		boolean isOil = false;
+		boolean isPutty = false;
+		//Robot r = gamers.get(0);
+		int i = 0;
+		
+		while (!(isOil || isPutty)){
+			Patch temp = f.patches.get(i);
+			String className = temp.getClass().getSimpleName();
+			// Oil timeout
+			if ((("Oil").equals(className))){
+				((Oil) temp).tick();
+				((Oil) temp).tick();
+				((Oil) temp).tick();
+				((Oil) temp).tick();
+				((Oil) temp).tick();
+				text.append(f.id + " " + temp.id);
+				isOil = true;
+			// Putty timeout
+			}else if ((("Putty").equals(className))){
+				((Putty) temp).decreaseLife();
+				((Putty) temp).decreaseLife();
+				((Putty) temp).decreaseLife();
+				((Putty) temp).decreaseLife();
+				text.append(f.id + " " + temp.id);
+				isPutty = true;
+			}else
+				++i;
+		}
 	}
 
 	private static void Terminate() {
@@ -283,7 +280,7 @@ public class Prototype {
 			FileWriter fw;
 			try {
 				fw = new FileWriter(new File(filePath));
-				fw.append(text + "\n");
+				fw.append(text);
 				fw.close();
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -109,10 +109,24 @@ public class SafeZone extends Field {
 	public void investigateCollision(){
 		if(robots.size()>1){
 			
+			String infoToPrint = "Collide - ";
+			
 			Robot fastest = robots.get(0);
 			for (int i = 0; i < robots.size(); i++) {
+				
+				infoToPrint += robots.get(i).id;
+				infoToPrint += " ";
+				infoToPrint += robots.get(i).getClass().toString();
+				infoToPrint += ", speed: [";
+				infoToPrint += robots.get(i).getSpeed().getX();
+				infoToPrint += ",";
+				infoToPrint += robots.get(i).getSpeed().getY();
+				infoToPrint += "] - ";
+				
 				if(fastest.getIntSpeed() < robots.get(i).getIntSpeed()){fastest = robots.get(i);}
 			}
+			
+			infoToPrint += "Collision: " + id + "[" + coord.getX() + "," + coord.getY() + "]";
 			
 			
 			int avgX = 0;
@@ -130,8 +144,13 @@ public class SafeZone extends Field {
 			
 			
 			fastest.detectedCollision(new CoordVector(avgX, avgY));
+			infoToPrint += fastest.id + "speed changed ;";
+			
+			
 			for (int i = 0; i < robots.size(); i++) {
 				if (!robots.get(i).equals(fastest)) {
+					
+					infoToPrint += robots.get(i).id + robots.get(i).getClass().toString() +  "died";
 					robots.get(i).killRobot();
 				}
 			}

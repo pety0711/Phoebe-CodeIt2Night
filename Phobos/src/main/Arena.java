@@ -2,6 +2,7 @@ package main;
 
 import java.awt.BufferCapabilities;
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -150,13 +151,29 @@ public class Arena {
 		}
 	}
 	
-	private void createFields(String[] row)  {
+	
+	private void drawLine(int length){
+		String line = "+";
+		for(int i = 0;i<length*5;i++){
+			line+="-";
+		}
+		line+="+";
+		Prototype.printOut(line);
+	}
+	private void writeDataLine(String[] data){
 
+	}
+	private void createFields(String[] row)  {
+		drawLine(row.length);
+		String data ="";
+		
 		for(String element : row) {
+			
 			switch (element) {
 			case "s":
 				SafeZone ss = new SafeZone("s" + sCounter++);
 				fields.add(ss);
+				data+=ss.id.
 				break;
 				
 			case "r":
@@ -194,7 +211,7 @@ public class Arena {
 				break;
 			}
 		}
-		
+		writeDataLine(data);
 	}
 	
 	private void setNeighbourhood() {

@@ -62,7 +62,7 @@ public abstract class Field {
 	 * The method returns with the List of the IDs of Robots on the field
 	 * @return the List of the IDs
 	 */
-	public List<String> getRobotId() {		//R
+	public List<String> getRobotId() {		
 		List<String> temp = new ArrayList<String>();
 		for (int i = 0; i < robots.size(); i++) {
 			temp.add(robots.get(i).id);
@@ -100,7 +100,7 @@ public abstract class Field {
 	/**
 	 * Function is called by the Arena, when it's time to add patches
 	 */
-	public void addPatchesNow(){		//R
+	public void addPatchesNow(){		
 		if(haveToAddPutty){
 			Putty putty = new Putty();
 			patches.add(putty);
@@ -118,14 +118,14 @@ public abstract class Field {
 	/**
 	 * Function is called by Robots when they want to add a Putty
 	 */
-	public void addPutty() {			//R
+	public void addPutty() {			
 		haveToAddPutty = true;
 	}
 
 	/**
 	 * Function is called by Robots when they want to add an Oil
 	 */
-	public void addOil() {				//R
+	public void addOil() {				
 		haveToAddOil = true;
 	}
 
@@ -134,7 +134,7 @@ public abstract class Field {
 	 *
 	 * @return the List of neighbours.
 	 */
-	public List<Field> getNeighbours() {	//R
+	public List<Field> getNeighbours() {	
 		return neighbours;
 	}
 
@@ -144,7 +144,7 @@ public abstract class Field {
 	 * @param fields
 	 *            the new neighbours
 	 */
-	public void setNeighbours(List<Field> fields) {		//R
+	public void setNeighbours(List<Field> fields) {		
 		neighbours = fields;
 	}
 
@@ -154,7 +154,7 @@ public abstract class Field {
 	 * @return the direction translated from the coord parameter, if unknown return with null
 	 */
 	@SuppressWarnings("unused")
-	private direction getDirection(CoordVector coord){		//R
+	private direction getDirection(CoordVector coord){		
 		if(coord == new CoordVector( 1, 0)){return direction.right;}
 		if(coord == new CoordVector(-1, 0)){return direction.left;}
 		if(coord == new CoordVector( 0, 1)){return direction.up;}
@@ -169,7 +169,7 @@ public abstract class Field {
 	 *            the direction
 	 * @return the neighbour
 	 */
-	public Field getNeighbour(direction dir){		//R
+	public Field getNeighbour(direction dir){		
 		Field temp = null;
 		switch (dir) {
 		case left:
@@ -192,12 +192,12 @@ public abstract class Field {
 		return temp;
 	}
 
-	public ArrayList<Patch> getPatches() {			//R
+	public ArrayList<Patch> getPatches() {			
 		return patches;
 	}
 	
 
-	public void setPatches(ArrayList<Patch> patches) {		//R
+	public void setPatches(ArrayList<Patch> patches) {		
 		this.patches = patches;
 	}
 
@@ -208,7 +208,7 @@ public abstract class Field {
 	 * @param c
 	 *            the new coord
 	 */
-	public void setCoord(CoordVector coord) {		//R
+	public void setCoord(CoordVector coord) {		
 		this.coord = coord;
 	}
 
@@ -217,7 +217,7 @@ public abstract class Field {
 	 *
 	 * @return the coord
 	 */
-	public CoordVector getCoord() {		//R
+	public CoordVector getCoord() {		
 		return coord;
 	}
 
