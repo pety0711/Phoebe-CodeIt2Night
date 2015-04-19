@@ -15,39 +15,49 @@ public class SafeZone extends Field {
 
 	/** The p list. */
 	private ArrayList<Putty> pList;
-	
+
 	/** The o list. */
 	private ArrayList<Oil> oList;
 
+	private Boolean haveToClean = false;
 
 	/**
 	 * Instantiates a new safe zone.
 	 *
-	 * @param id the id
+	 * @param id
+	 *            the id
 	 */
-	public SafeZone(String id) {		
+	public SafeZone(String id) {
 		pList = new ArrayList<>();
 		oList = new ArrayList<>();
 	}
-	
-	
+
 	/**
 	 * The method clears all the patches on the field
-	 * @param cleanerMaster - the cleanerMaster who cleans the patches
+	 * 
+	 * @param cleanerMaster
+	 *            - the cleanerMaster who cleans the patches
 	 */
-	public void cleanThePathches(CleanerMaster cleanerMaster){
-		
+	public void cleanThePatches(CleanerMaster cleanerMaster) {
+		haveToClean = true;
 	}
-	
+
 	/**
-	 * The method is called by the Arena, when the patches can be removed from the list
-	 * @return - true, it something has been deleted - false, if no patch removed
+	 * The method is called by the Arena, when the patches can be removed from
+	 * the list
+	 * 
+	 * @return - true, it something has been deleted - false, if no patch
+	 *         removed
 	 */
-	public Boolean haveToCleanPatch(){
-		//TODO
+	public Boolean haveToCleanPatch() {
+		if (haveToClean) {
+			pList.clear();
+			oList.clear();
+			return true;
+		}
 		return false;
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -61,35 +71,41 @@ public class SafeZone extends Field {
 			patch.doEffect(r);
 		}
 	}
-	
+
 	/**
-	 * @param r - Robot that wants to step off the field
+	 * @param r
+	 *            - Robot that wants to step off the field
 	 */
 	@Override
 	public void steppedOffYou(Robot r) {
-		if(robots.contains(r)){
+		if (robots.contains(r)) {
 			robots.remove(r);
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see main.Field#step(main.CoordVector, main.Robot)
 	 */
 	@Override
-	public Field step(CoordVector speed, Robot r){
-		//TODO
+	public Field step(CoordVector speed, Robot r) {
+		// TODO
 		return null;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see main.Field#investigateCollision()
 	 */
 	@Override
 	public void investigateCollision() throws Exception {
 		Skeleton.printLastCalledFunction(id);
-		switch(Skeleton.currentUseCase){
+		switch (Skeleton.currentUseCase) {
 		case Collision:
-			if( robots.size() > 1 && (robots.get(0) != null) && robots.get(1) != null ){
+			if (robots.size() > 1 && (robots.get(0) != null)
+					&& robots.get(1) != null) {
 				CoordVector cv0 = new CoordVector(1, 0);
 				CoordVector cv1 = new CoordVector(1, 1);
 				robots.get(1).detectedCollision(cv1);
@@ -100,6 +116,5 @@ public class SafeZone extends Field {
 			break;
 		}
 	}
-	
-}
 
+}
