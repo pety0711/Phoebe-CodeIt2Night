@@ -200,10 +200,10 @@ public class Prototype {
 		if(r1&&r2){
 			switch(type){
 			case "0":
-				int avgX = 2;
-				int avgY = 2;
-				R2.setSpeed(new CoordVector(avgX,avgY));
-				R1.setSpeed(R2.getField().getCoord());
+				CoordVector c = R1.getField().getCoord().getDiff(R2.getField().getCoord());
+				CoordVector newSpeed= new CoordVector(c.getX(),c.getY());
+				R2.setSpeed(newSpeed);
+				R1.setSpeed(newSpeed);
 				arena.tick();
 				break;
 			case "1": 
