@@ -120,6 +120,13 @@ public abstract class Robot {
 	public CoordVector getSpeed() {
 		return speed;
 	}
+	
+	public int getIntSpeed(){
+		int s = 0;
+		for (int i = 0; i < speed.dimension; i++)
+			s += Math.abs(speed.getCoordofDim(i));
+		return s;
+	}
 
 	/**
 	 * Sets the Robot's speed.

@@ -112,7 +112,7 @@ public class Prototype {
 				if (type.equals("-p")) {
 					r.putPutty();
 				} else if (type.equals("-o")) {
-					r.putOil();
+					r.putOil(); 
 				}
 				break;
 			}
