@@ -191,7 +191,7 @@ public class CleanerMaster extends Robot {
 	@Override
 	public void takeEffect() {
 		if(field.patches.size() > 0){
-			field.cleanThePatch(this);
+			(SafeZone)field.cleanThePatches(this);
 		}
 		
 	}

@@ -120,7 +120,7 @@ public class Robi extends Robot {
 			puttySupply--;
 			Putty putty = new Putty("pr");
 			field.addPutty(putty);
-			arena.registerPatch(putty);
+			arena.registerPatchCoord(field.coord);
 		}
 
 	}
@@ -135,7 +135,7 @@ public class Robi extends Robot {
 			oilSupply--;
 			Oil oil = new Oil("or");
 			field.addOil(oil);
-			arena.registerPatch(oil);
+			arena.registerPatchCoord(field.coord);
 		}
 
 	}
