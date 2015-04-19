@@ -3,8 +3,6 @@
  */
 package main;
 
-import java.util.Random;
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class Oil.
