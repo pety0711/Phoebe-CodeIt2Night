@@ -51,4 +51,10 @@ public class Putty extends Patch {
 		r.slowDown();
 		Skeleton.printLastCalledFunction(id);
 	}
+
+	@Override
+	public void doEffect(Robot r) {
+		// TODO Auto-generated method stub
+		
+	}
 }

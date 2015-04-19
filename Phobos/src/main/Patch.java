@@ -25,7 +25,7 @@ public abstract class Patch {
 	 */
 	public abstract void tick();
 	
-	public abstract void doEffect(Robi r);
+	public abstract void doEffect(Robot r);
 	
 	/**
 	 * Sets the fix.

@@ -94,12 +94,7 @@ public abstract class Field {
 	 * @throws Exception
 	 *             the exception
 	 */
-	public abstract void investigateCollision() throws Exception;
-
-	/**
-	 * Inits the field.
-	 */
-	public abstract void initField();	
+	public abstract void investigateCollision() throws Exception;	
 
 	/**
 	 * Adds the putty.
@@ -145,6 +140,7 @@ public abstract class Field {
 	 * @param coord - the coordinates that describes the direction
 	 * @return the direction translated from the coord parameter, if unknown return with null
 	 */
+	@SuppressWarnings("unused")
 	private direction getDirection(CoordVector coord){		//R
 		if(coord == new CoordVector( 1, 0)){return direction.right;}
 		if(coord == new CoordVector(-1, 0)){return direction.left;}

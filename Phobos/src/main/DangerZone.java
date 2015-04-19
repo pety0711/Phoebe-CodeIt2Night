@@ -2,6 +2,8 @@
  * 
  */
 package main;
+
+import main.Field.direction;
 // TODO: Auto-generated Javadoc
 
 /**
@@ -62,17 +64,14 @@ public class DangerZone extends Field {
 	 * @see main.Field#getNeighbour(main.CoordVector)
 	 */
 	@Override
-	public Field getNeighbour(CoordVector direction) {
+	public Field getNeighbour(direction dir){
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
-	/* (non-Javadoc)
-	 * @see main.Field#initField()
-	 */
 	@Override
-	public void initField() {
-		Skeleton.printLastCalledFunction(id);
+	public void steppedOffYou(Robot r) {
+		// TODO Auto-generated method stub
+		
 	}
 }
