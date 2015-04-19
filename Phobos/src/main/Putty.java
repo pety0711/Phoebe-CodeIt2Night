@@ -34,7 +34,9 @@ public class Putty extends Patch {
 			lifeTime--;
 		}
 	}
-	public void doEffect(Robi r) {
+	@Override
+	public void doEffect(Robot r) {
 		r.takeEffect();
-		}
+	}
+
 }
