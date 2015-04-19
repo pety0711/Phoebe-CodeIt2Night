@@ -54,6 +54,6 @@ public class DangerZone extends Field {
 
 	@Override
 	public void steppedOffYou(Robot r) {
-		
+		Prototype.printOut("You can't step when you are on a DangerZone! :'( ");
 	}
 }
