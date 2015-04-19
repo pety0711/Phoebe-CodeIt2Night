@@ -70,9 +70,6 @@ public class Arena {
 	 */
 	public Arena(String id, String path) {
 		arenaID = id;
-		if(Skeleton.currentUseCase==UseCaseType.New_game)
-			Skeleton.drawLine();
-		//Skeleton.printLastCalledFunction(arenaID, new String[]{""});
 		mapFilePath = path;
 		Initialize();
 	}
@@ -81,9 +78,6 @@ public class Arena {
 	 * Instantiates a new arena.
 	 */
 	public Arena(String path){
-		if(Skeleton.currentUseCase==UseCaseType.New_game)
-			Skeleton.drawLine();
-		//Skeleton.printLastCalledFunction(arenaID, new String[]{""}); //Kiíratás
 		arenaID = "arena";
 		mapFilePath = path;
 		Initialize();
@@ -92,9 +86,11 @@ public class Arena {
 	/**
 	 * Initialize.
 	 */
-	private void Initialize() {
-		Skeleton.printLastCalledFunction(arenaID);
-		
+	private void Initialize() {		
+		gamers = new HashMap<String, Robi>();
+		cleaners = new HashMap<String, CleanerMaster>();
+		patchesCoords = new ArrayList<CoordVector>();
+		fields = new ArrayList<Field>();
 		generateFields();
 		
 //		gamers = new HashMap<String, Robi>();
@@ -143,14 +139,14 @@ public class Arena {
 				}
 				
 				createFields(row);
-				setNeighbourhood();
-				initPatchCoords();
 			}
+			setNeighbourhood();
+			initPatchCoords();
 			
 			
 		}
 		catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
@@ -255,10 +251,7 @@ public class Arena {
 	 *
 	 * @param id the id
 	 */
-	public void addRobot(String id){
-		Skeleton.printLastCalledFunction(arenaID, new String[]
-				{id,Skeleton.getClassName(id)});
-		
+	public void addRobot(String id){		
 		gamers.put(id, new Robi(id, this));
 	}
 
@@ -421,6 +414,23 @@ public class Arena {
 		
 		gamers.clear();
 	}
+	
+//	private Field getFieldByCoord(CoordVector cv) {
+//		for (Field f : fields) {
+//			if(f.getCoord().equals(cv))
+//				return f;
+//		}
+//		return null;
+//	}
+//	
+//	private void writeOutMap() {
+//		StringBuilder text = new StringBuilder("+--------------------------------------------------+");
+//		for (int i = dim.getY(); i >=0; i++) {
+//			for (int j = 0; j < dim.getX(); j++) {
+//				getFieldByCoord(new CoordVector(j, i));
+//			}
+//		}
+//	}
 }
 
 //private void calcCoords(CoordVector size){
