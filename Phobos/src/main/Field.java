@@ -15,13 +15,12 @@ import java.util.List;
 
 public abstract class Field {
 
-	/** The neighbours. 
+	/** The neighbours. Important:
 	 * 
-	 * Important!
-	 * neighbours[0] is the neighbour at direction [-1; 0]
-	 * neighbours[1] is the neighbour at direction [ 0; 1]
-	 * neighbours[2] is the neighbour at direction [ 1; 0]
-	 * neighbours[3] is the neighbour at direction [ 0;-1]
+	 * neighbours[0] is the neighbour at direction left
+	 * neighbours[1] is the neighbour at direction up
+	 * neighbours[2] is the neighbour at direction right
+	 * neighbours[3] is the neighbour at direction down
 	 * 
 	 * */
 	protected List<Field> neighbours;
@@ -41,7 +40,12 @@ public abstract class Field {
 	/** The id. */
 	public String id;
 
-	
+	enum direction{
+		up,
+		down,
+		right,
+		left
+	};
 	
 	/**
 	 * Instantiates a new field.
@@ -68,19 +72,21 @@ public abstract class Field {
 	 *
 	 * @param speed
 	 *            the speed
-	 * @param robot
+	 * @param r
 	 *            the r
 	 * @return the field
 	 */
-	public abstract Field step(CoordVector speed, Robot robot);
+	public abstract Field step(CoordVector speed, Robi r);
 
 	/**
 	 * Stepped on you.
 	 *
-	 * @param robot
+	 * @param r
 	 *            the r
 	 */
-	public abstract void steppedOnYou(Robot robot);
+	public abstract void steppedOnYou(Robi r);
+	
+	public abstract void steppedOffYou(Robi r); 
 
 	/**
 	 * Investigate collision.
@@ -89,8 +95,6 @@ public abstract class Field {
 	 *             the exception
 	 */
 	public abstract void investigateCollision() throws Exception;
-
-
 
 	/**
 	 * Inits the field.
@@ -137,13 +141,47 @@ public abstract class Field {
 	}
 
 	/**
+	 * Tells the direction from the coordinates
+	 * @param coord - the coordinates that describes the direction
+	 * @return the direction translated from the coord parameter, if unknown return with null
+	 */
+	private direction getDirection(CoordVector coord){
+		if(coord == new CoordVector( 1, 0)){return direction.right;}
+		if(coord == new CoordVector(-1, 0)){return direction.left;}
+		if(coord == new CoordVector( 0, 1)){return direction.up;}
+		if(coord == new CoordVector( 0,-1)){return direction.down;}
+		return null;
+	}
+	
+	/**
 	 * Gets the neighbour.
 	 *
 	 * @param direction
 	 *            the direction
 	 * @return the neighbour
 	 */
-	public abstract Field getNeighbour(CoordVector direction);
+	public Field getNeighbour(direction dir) throws Throwable{
+		Field temp = null;
+		switch (dir) {
+		case left:
+			temp=neighbours.get(0);
+			break;
+		case up:
+			temp=neighbours.get(1);
+			break;
+		case right:
+			temp=neighbours.get(2);
+			break;
+		case down:
+			temp=neighbours.get(3);
+			break;
+
+		default:
+			throw new Throwable("Unknown direction");
+		}
+		
+		return temp;
+	}
 
 	/**
 	 * Sets the coord.
@@ -151,8 +189,8 @@ public abstract class Field {
 	 * @param c
 	 *            the new coord
 	 */
-	public void setCoord(CoordVector c) {
-		coord = c;
+	public void setCoord(CoordVector coord) {		//R
+		this.coord = coord;
 	}
 
 	/**
@@ -160,7 +198,7 @@ public abstract class Field {
 	 *
 	 * @return the coord
 	 */
-	public CoordVector getCoord() {
+	public CoordVector getCoord() {		//R
 		return coord;
 	}
 }
