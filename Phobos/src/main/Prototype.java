@@ -235,7 +235,7 @@ public class Prototype {
 
 	}
 	
-	private void printOut(String text) {
+	private static void printOut(String text) {
 		if (consoleOutput) {
 			System.out.println(text);
 		}
