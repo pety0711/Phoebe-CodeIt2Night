@@ -6,13 +6,12 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Field.
  *
  * @author Dávid
  */
-
 public abstract class Field {
 
 	/** The neighbours. Important:
@@ -90,15 +89,13 @@ public abstract class Field {
 	 */
 	public abstract void steppedOnYou(Robot r);
 	
+	
 	public abstract void steppedOffYou(Robot r);
 
 	/**
 	 * Investigate collision.
-	 *
-	 * @throws Exception
-	 *             the exception
 	 */
-	public abstract void investigateCollision() throws Exception;	
+	public abstract void investigateCollision();
 
 	/**
 	 * Function is called by the Arena, when it's time to add patches
