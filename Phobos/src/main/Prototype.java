@@ -92,7 +92,7 @@ public class Prototype {
 	}
 
 	// vivi
-	public static void ReadTest(String path) {
+	private static void ReadTest(String path) {
 
 		BufferedReader br = null;
 		try {
@@ -246,7 +246,7 @@ public class Prototype {
 		printOut(text.toString());
 	}
 	
-	private static void printOut(String text) {
+	public static void printOut(String text) {
 		if (consoleOutput) {
 			System.out.println(text);
 		}
