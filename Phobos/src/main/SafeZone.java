@@ -13,12 +13,9 @@ import main.Field.direction;
  */
 public class SafeZone extends Field {
 
-	/** The p list. */
-	private ArrayList<Putty> pList;
-
-	/** The o list. */
-	private ArrayList<Oil> oList;
-
+	/**
+	 * 
+	 */
 	private Boolean haveToClean = false;
 
 	/**
@@ -28,8 +25,7 @@ public class SafeZone extends Field {
 	 *            the id
 	 */
 	public SafeZone(String id) {
-		pList = new ArrayList<>();
-		oList = new ArrayList<>();
+		super();
 	}
 
 	/**
@@ -51,8 +47,7 @@ public class SafeZone extends Field {
 	 */
 	public Boolean haveToCleanPatch() {
 		if (haveToClean) {
-			pList.clear();
-			oList.clear();
+			patches.clear();
 			return true;
 		}
 		return false;
@@ -64,10 +59,7 @@ public class SafeZone extends Field {
 	@Override
 	public void steppedOnYou(Robot r) {
 		robots.add(r);
-		for (Patch patch : pList) {
-			patch.doEffect(r);
-		}
-		for (Patch patch : oList) {
+		for (Patch patch : patches) {
 			patch.doEffect(r);
 		}
 	}
