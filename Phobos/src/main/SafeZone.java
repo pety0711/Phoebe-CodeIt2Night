@@ -154,6 +154,7 @@ public class SafeZone extends Field {
 					robots.get(i).killRobot();
 				}
 			}
+			Prototype.printOut(infoToPrint);
 		}
 	}
 }
