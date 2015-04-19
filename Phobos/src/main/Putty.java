@@ -29,6 +29,7 @@ public class Putty extends Patch {
 	 */
 	public Putty(String id){
 		this.id = id;
+		lifeTime=4;
 		Skeleton.printLastCalledFunction(id);
 	}
 	
@@ -37,8 +38,17 @@ public class Putty extends Patch {
 	 */
 	@Override
 	public void tick() {
+		Skeleton.printLastCalledFunction(id);
+	}
+	public void decreaseLife() {
+		if(fix!=true){
+			lifeTime--;
+		}
+		Skeleton.printLastCalledFunction(id);
+	}
+	public void doEffect(Robi r) {
 		// TODO Auto-generated method stub
-		lifeTime--;
+		r.slowDown();
 		Skeleton.printLastCalledFunction(id);
 	}
 }

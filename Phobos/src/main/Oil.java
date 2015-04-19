@@ -19,6 +19,7 @@ public class Oil extends Patch{
 	public Oil(){
 		Random r = new Random();
 		id = "o"+r.nextInt(2000000000);
+		lifeTime=10;  
 		Skeleton.printLastCalledFunction(id);
 
 	}
@@ -39,8 +40,14 @@ public class Oil extends Patch{
 	 */
 	@Override
 	public void tick() {
-		lifeTime--;
+		if(fix!=true){
+			lifeTime--;
+		}
 		Skeleton.printLastCalledFunction(id);
 	}
-
+	
+	public void doEffect(Robi r) {
+		r.disableMovement();
+		Skeleton.printLastCalledFunction(id);
+	}
 }
