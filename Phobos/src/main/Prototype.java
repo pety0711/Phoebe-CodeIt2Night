@@ -40,7 +40,7 @@ public class Prototype {
 			SetOutput(command[1], command[2]);
 			break;
 		case "ReadTest":
-			ReadTest(command[0]);
+			ReadTest(command[1]);
 			break;
 		case "PutPatch":
 			PutPatch(command[1], command[2]);
