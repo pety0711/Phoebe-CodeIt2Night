@@ -92,7 +92,7 @@ public class Prototype {
 	}
 
 	// vivi
-	private static void ReadTest(String path) {
+	public static void ReadTest(String path) {
 
 		BufferedReader br = null;
 		try {
@@ -232,7 +232,18 @@ public class Prototype {
 	}
 
 	private static void Terminate() {
-
+		StringBuilder text = new StringBuilder("Terminatd  - ");
+		Robi winner = gamers.get(0);
+		for(Robi r : gamers) {
+			text.append(r.id + " Robot with " + r.getPoints() + ", ");
+			if (r.getPoints() > winner.getPoints()) {
+				winner = r;
+			}
+		}
+		
+		text.append(" Winner Robot is: " + winner.id);
+		
+		printOut(text.toString());
 	}
 	
 	private static void printOut(String text) {
