@@ -4,25 +4,32 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Time;
 import java.util.ArrayList;
 
 public class Prototype {
 
-	private Arena arena;
-	private ArrayList<Robi> gamers;
+	private static Arena arena;
+	private static ArrayList<Robi> gamers;
 
-	private boolean consoleOutput = true;
-	private boolean fileOutput = false;
+	private static boolean consoleOutput = true;
+	private static boolean fileOutput = false;
 
-	private String filePath;
+	private static String filePath;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        while (true) {
+        	try {
+				decodeCommand(br.readLine());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
 	}
 
-	private void decodeCommand(String line) {
+	private static void decodeCommand(String line) {
 		String[] command = line.split(" ");
 		switch (command[0]) {
 		case "NewGame":
@@ -60,12 +67,12 @@ public class Prototype {
 		}
 	}
 
-	private void newGame(String path) {
+	private static void newGame(String path) {
 		arena = new Arena(path);
 		gamers = arena.getGamers();
 	}
 
-	private void SetOutput(String c, String path) {
+	private static void SetOutput(String c, String path) {
 		if (c.equals("c")) {
 			consoleOutput = true;
 			fileOutput = true;
@@ -84,7 +91,7 @@ public class Prototype {
 	}
 
 	// vivi
-	private void ReadTest(String path) {
+	private static void ReadTest(String path) {
 
 		BufferedReader br = null;
 		try {
@@ -106,7 +113,7 @@ public class Prototype {
 		}
 	}
 
-	private void PutPatch(String id, String type) {
+	private static void PutPatch(String id, String type) {
 		for(Robi r : gamers) {
 			if (r.id.equals(id)) {
 				if (type.equals("-p")) {
@@ -118,7 +125,7 @@ public class Prototype {
 			}
 		}
 	}
-	private void SetSpeed(String id, String x, String y) {
+	private static void SetSpeed(String id, String x, String y) {
 		/*
 		 * 
 		 * SetSpeed <Robot azonosító> <sebesség: x> <sebesség: y>
@@ -137,7 +144,7 @@ public class Prototype {
 		}
 	}
 
-	private void Step(String id) {
+	private static void Step(String id) {
 		for(Robi r : gamers) {
 			if (!r.id.equals(id)) {
 				r.setSpeed(new CoordVector());
@@ -147,7 +154,7 @@ public class Prototype {
 		arena.tick();
 	}
 
-	private void Step(String id, String fieldID) {
+	private static void Step(String id, String fieldID) {
 		for(Robi r : gamers) {
 			if (r.id.equals(id)) {
 				Field f = arena.getFieldById(fieldID);
@@ -162,7 +169,7 @@ public class Prototype {
 		arena.tick();
 	}
 
-	private void Collide(String r0ID, String r1ID, String type) {
+	private static void Collide(String r0ID, String r1ID, String type) {
 		/*
 		 * Collide <Robot azonosító> <Robot azonosító> <Ütközés típusa>
 			Leírás: Két robot ütköztetése elõre megadott ütközési kimenettel
@@ -215,7 +222,7 @@ public class Prototype {
 	}
 
 	// id: Field ID-ja, amelyen van Oil és Putty is.
-	private void Timeout(String id) {
+	private static void Timeout(String id) {
 		Field f = arena.getFieldById(id);
 		// Oil Timeout
 			
@@ -223,7 +230,7 @@ public class Prototype {
 		// Putty Timeout
 	}
 
-	private void Terminate() {
+	private static void Terminate() {
 
 	}
 }
