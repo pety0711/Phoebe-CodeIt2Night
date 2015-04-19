@@ -171,15 +171,17 @@ public class Arena {
 				
 			case "o":
 				Oil o = new Oil("o" + oCounter++);
-				patches.add(o);
+//				patches.add(o);
 				SafeZone so = new SafeZone("s" + sCounter++);
+				so.addOil(o);
 				fields.add(so);
 				break;
 				
 			case "p":
 				Putty p = new Putty("p" + pCounter++);
-				patches.add(p);
+//				patches.add(p);
 				SafeZone sp = new SafeZone("s" + sCounter++);
+				sp.addPutty(p);
 				fields.add(sp);
 				break;
 				
@@ -228,7 +230,9 @@ public class Arena {
 	
 	private void initPatchCoords() {
 		for (Field f : fields) {
-			if (true){}
+			if (!f.getPatches().isEmpty()){
+				patchesCoords.add(f.getCoord());
+			}
 		}
 	}
 	
@@ -252,25 +256,25 @@ public class Arena {
 		gamers.put(id, new Robi(id, this));
 	}
 	
-	/**
-	 * Register patch.
-	 *
-	 * @param p the p
-	 */
-	public void registerPatch(Patch p) {
-		Skeleton.printLastCalledFunction(arenaID, new String[]
-				{p.id,Skeleton.getClassName(p)});
-		
-		patches.add(p);
-	}
-	
-	/**
-	 * Get patches list.
-	*/
-	
-	public ArrayList<Patch> getPatches() {
-		return patches;
-	}
+//	/**
+//	 * Register patch.
+//	 *
+//	 * @param p the p
+//	 */
+//	public void registerPatch(Patch p) {
+//		Skeleton.printLastCalledFunction(arenaID, new String[]
+//				{p.id,Skeleton.getClassName(p)});
+//		
+//		patches.add(p);
+//	}
+//	
+//	/**
+//	 * Get patches list.
+//	*/
+//	
+//	public ArrayList<Patch> getPatches() {
+//		return patches;
+//	}
 	
 	/**
 	 * Register patch's CoordVector.
@@ -298,13 +302,23 @@ public class Arena {
 	public void tick() {
 		
 		//foltok érvényesítése
-		
+		Set<String> keys = gamers.keySet();
+		for (String key : keys) {
+			gamers.get(key).takeEffect();
+		}
 		
 		//foltok lerakása, törlése
-		
+		for(Field f : fields) {
+			if (f.getClass().getName().equals("SafeZone")) {
+				boolean cleaned = ((SafeZone)f).haveToCleanPatch();
+				if(cleaned) {
+					patchesCoords.remove(f.getCoord());
+				}
+			}
+		}
 		
 		//robotok léptetése
-		Set<String> keys = gamers.keySet();
+		keys = gamers.keySet();
 		for (String key : keys) {
 			gamers.get(key).tick();
 		}

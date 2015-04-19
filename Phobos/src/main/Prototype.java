@@ -6,5 +6,25 @@ public class Prototype {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	
+	private void newGame(String path) {
+		
+	}
+	
+	private void SetOutput(char c, String path) {
+		
+	}
+	
+	private void ReadTest(String path) {
+		
+	}
+	
+	private void PutPatch(String id, String type) {
+		
+	}
+	
+	private void SetSpeed(String id, String x, String y) {
+		
+	}
 }
