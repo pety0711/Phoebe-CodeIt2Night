@@ -89,8 +89,23 @@ public class Prototype {
 		
 	}
 	
-	private void SetSpeed(String id, String x, String y) {
-		
+	private void SetSpeed(String id, int x, int y) {
+		/*
+		 * 
+		 * SetSpeed <Robot azonosító> <sebesség: x> <sebesség: y>
+			Leírás: Robot sebességének megváltoztatása
+			Opciók:
+				<Robot azonosító>: A robot azonosítója
+				<sebesség: x>: Sebességvektor x koordinátája (egész szám)
+				<sebesség: y>: Sebességvektor y koordinátája (egész szám)
+			Példa: SetSpeed R00 [2, 1]*/
+		if(!gamers.isEmpty()){
+			for(Robi r : gamers){
+				if(r.id==id){
+					r.speed = new CoordVector(x, y);
+				}
+			}
+		}
 	}
 	
 	private void Step(String id) {
