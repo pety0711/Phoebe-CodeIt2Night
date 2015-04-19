@@ -131,7 +131,7 @@ public class Prototype {
 		if(!gamers.isEmpty()){
 			for(Robi r : gamers){
 				if(r.id==id){
-					r.speed = new CoordVector(Integer.parseInt(x), Integer.parseInt(y));
+					r.setSpeed(new CoordVector(Integer.parseInt(x), Integer.parseInt(y)));
 				}
 			}
 		}
@@ -163,7 +163,51 @@ public class Prototype {
 	}
 
 	private void Collide(String r0ID, String r1ID, String type) {
-
+		/*
+		 * Collide <Robot azonosító> <Robot azonosító> <Ütközés típusa>
+			Leírás: Két robot ütköztetése elõre megadott ütközési kimenettel
+			Opciók:
+				<Robot azonosító>: Az ütközni kívánt robotok azonostója
+				<Ütközés típusa>: Az ütközés kimenetelének azonosítója, 
+				robotok sebességének meghatározása (0 :azonos sebességgel ütköznek, 
+				1 :elsõ robot gyorsabb, 2 : második robot gyorsabb)
+			Példa: Collide R00 R01 -2
+		  */
+		boolean r1=false;
+		boolean r2=false;
+		Robi R1=null;
+		Robi R2=null;
+		if(!gamers.isEmpty()){
+			for(Robi r : gamers){
+				if(r.id==r0ID){
+					R1 = r;	
+					r1 = true;
+				}
+				if(r.id==r0ID){
+					R2 = r;	
+					r2 = true;
+				}
+			}
+		}
+		if(r1&&r2){
+			switch(type){
+			case "0":
+				
+				break;
+			case "1": 
+				R2.setSpeed(new CoordVector());
+				R1.setSpeed(R2.getField().getCoord());
+				arena.tick();
+				break;
+			case "2":
+				R1.setSpeed(new CoordVector());
+				R2.setSpeed(R1.getField().getCoord());
+				arena.tick();
+				break;
+			default:
+				break;
+			}
+		}
 	}
 
 	// vivi
