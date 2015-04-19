@@ -3,6 +3,7 @@ package main;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Time;
@@ -232,5 +233,21 @@ public class Prototype {
 
 	private static void Terminate() {
 
+	}
+	
+	private void printOut(String text) {
+		if (consoleOutput) {
+			System.out.println(text);
+		}
+		if (fileOutput) {
+			FileWriter fw;
+			try {
+				fw = new FileWriter(new File(filePath));
+				fw.append(text);
+				fw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
