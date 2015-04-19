@@ -77,17 +77,17 @@ public class Prototype {
 		if (c.equals("c")) {
 			consoleOutput = true;
 			fileOutput = true;
-			System.out.println("Selected output: " + c + " as Console");
+			printOut("Selected output: " + c + " as Console");
 		} else if (c.equals("f")) {
 			fileOutput = true;
 			filePath = path;
 			consoleOutput = false;
-			System.out.println("Selected output: " + c + " as File");
+			printOut("Selected output: " + c + " as File");
 		} else if (c.equals("b")) {
 			fileOutput = true;
 			filePath = path;
 			consoleOutput = true;
-			System.out.println("Selected output: " + c + " as Both");
+			printOut("Selected output: " + c + " as Both");
 		}
 	}
 
