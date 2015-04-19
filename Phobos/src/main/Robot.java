@@ -28,6 +28,9 @@ public abstract class Robot {
 	/** The arena. */
 	protected Arena arena;
 
+	protected boolean slowDownEffect;
+	protected boolean disableEffect;
+	
 	/**
 	 * Instantiates a new robot.
 	 *
@@ -71,6 +74,8 @@ public abstract class Robot {
 	 */
 	public abstract void putOil();
 
+	public abstract void takeEffect();
+		
 	/**
 	 * Tick.
 	 */
@@ -169,5 +174,6 @@ public abstract class Robot {
 				new String[] { field.id, Skeleton.getClassName(field) });
 		this.field = field;
 	}
-
+	
+	
 }

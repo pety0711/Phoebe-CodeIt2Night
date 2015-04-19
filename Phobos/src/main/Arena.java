@@ -10,12 +10,6 @@ import java.util.List;
 import java.util.Set;
 
 
-
-
-
-
-
-
 import main.Skeleton.UseCaseType;
 
 // TODO: Auto-generated Javadoc
@@ -139,6 +133,8 @@ public class Arena {
 				}
 				
 				createFields(row);
+				setNeighbourhood();
+				initPatchCoords();
 			}
 			
 			
@@ -230,6 +226,12 @@ public class Arena {
 		}
 	}
 	
+	private void initPatchCoords() {
+		for (Field f : fields) {
+			if (true){}
+		}
+	}
+	
 	public String getMapFilePath() {
 		return mapFilePath;
 	}
@@ -297,7 +299,9 @@ public class Arena {
 		
 		//foltok érvényesítése
 		
+		
 		//foltok lerakása, törlése
+		
 		
 		//robotok léptetése
 		Set<String> keys = gamers.keySet();
