@@ -196,4 +196,11 @@ public class SafeZone extends Field {
 	public void initField() {
 		Skeleton.printLastCalledFunction(id);
 	}
+
+
+	@Override
+	public Field step(CoordVector speed, Robot r) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

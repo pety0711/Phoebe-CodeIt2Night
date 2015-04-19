@@ -76,7 +76,7 @@ public abstract class Field {
 	 *            the r
 	 * @return the field
 	 */
-	public abstract Field step(CoordVector speed, Robi r);
+	public abstract Field step(CoordVector speed, Robot r);
 
 	/**
 	 * Stepped on you.
@@ -84,9 +84,9 @@ public abstract class Field {
 	 * @param r
 	 *            the r
 	 */
-	public abstract void steppedOnYou(Robi r);
+	public abstract void steppedOnYou(Robot r);
 	
-	public abstract void steppedOffYou(Robi r); 
+	public abstract void steppedOffYou(Robot r); 
 
 	/**
 	 * Investigate collision.

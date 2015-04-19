@@ -76,7 +76,7 @@ public class Robi extends Robot{
 				Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_an_oil){
 				Skeleton.drawLine();
 			}
-	
+		
 	}	
 	
 	/**

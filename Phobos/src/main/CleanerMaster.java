@@ -1,63 +1,66 @@
 package main;
 
 import java.util.ArrayList;
+import java.lang.*;
 
 /**
  * The Class CleanerMaster.
  *
  * @author Virág
  */
-public class CleanerMaster extends Robot{
+public class CleanerMaster extends Robot {
 
-	/** 
+	/**
 	 * The target patch's CoordVector
-	*/
+	 */
 	private CoordVector target;
-	
+
 	/**
 	 * Instantiates a new robot - CleanerMaster.
 	 *
-	 * @param a the Arena
+	 * @param a
+	 *            the Arena
 	 */
 	public CleanerMaster(Arena a) {
-		super(a);		
+		super(a);
 	}
-	
+
 	/**
 	 * Instantiates a new robot - CleanerMaster.
 	 *
-	 * @param id the id
-	 * @param a the Arena
+	 * @param id
+	 *            the id
+	 * @param a
+	 *            the Arena
 	 */
 	CleanerMaster(String id, Arena arena) {
 		super(id, arena);
 	}
 
-//	public Field getField() {
-//		return field;
-//	}
-//
-//	public void setField(Field field) {
-//		this.field = field;
-//	}
-//	
-//	public void tick() {}
-//
-//	public void investigateCollision() {}
-	
+	// public Field getField() {
+	// return field;
+	// }
+	//
+	// public void setField(Field field) {
+	// this.field = field;
+	// }
+	//
+	// public void tick() {}
+	//
+	// public void investigateCollision() {}
+
 	/**
 	 * Kill robot - CleanerMaster.
 	 */
 	@Override
-	public void killRobot() 
-	{
+	public void killRobot() {
 		Skeleton.printLastCalledFunction(this.id);
 		field.steppedOffYou(this);
 		isItAlive = false;
 		putOil();
 		arena.killRobot(id);
 	}
-	
+
 	/**
 	 * Put oil. - CleanerMaster.
 	 */
@@ -66,46 +69,93 @@ public class CleanerMaster extends Robot{
 		Skeleton.printLastCalledFunction(id);
 		Oil oil = new Oil("or");
 		field.addOil(oil);
-		arena.registerPatch(oil);	
+		arena.registerPatch(oil);
 	}
-	
-	// Megtalálja azt a Patch-et, ami a legkevesebb lépésre van a Robottól --> Heurisztika a kereséshez
+
+	// Segédfüggvény, amely megkeresi a start-hoz legközelebbi targetelemet a targetLsit-bõl.
+	public CoordVector getMinDist(ArrayList<CoordVector> targetList,
+			CoordVector start) {
+		// start és a vizsgált tartgetelem távolsága lépésszámban
+		int dist = 0;
+
+		// Legkisebb lépésszám és az ahhoz tartozó targetelem koordinátái
+		int minDist = 0;
+		CoordVector t = null;
+
+		for (int i = 0; i < targetList.size(); i++) {
+			// Az aktuális távolságot kinullázzuk, egy temp-be tesszük az
+			// aktuálisan vizsgált targetelem koordinátát, hogy olvashatóbb
+			// legyen.
+			dist = 0;
+			CoordVector temp = targetList.get(i);
+
+			// Lépés távolság kiszámolása
+			for (int j = 0; j < start.dimension; j++) {
+				dist += Math
+						.abs(start.getCoordofDim(j) - temp.getCoordofDim(j));
+			}
+
+			// frissítjük a legkisebb távolság értékeket
+			if (i == 0) {
+				minDist = dist;
+				t = temp;
+			} else if (dist < minDist) {
+				minDist = dist;
+				t = temp;
+			}
+		}
+		return t;
+	}
+
+	// Megtalálja azt a Patch-et, ami a legkevesebb lépésre van a Robottól -->
+	// Heurisztika a kereséshez
 	// Itt még nem érdekes, hogy mi van a robot és a Patch-ek között
 	/**
 	 * Find the target Patch from Arena's patchList.
 	 */
-	private void getTarget(){
+	private void getTarget() {
 		Skeleton.printLastCalledFunction(id);
 
-		ArrayList<Patch> p = arena.getPatches();
-		Patch minDist = p.get(0);
-		for(int i = 1; i < p.size(); i++){
-			// Patch-ek és a CleanerMaster coordinátáinak kivonása, lépésszám kitalálása
-			// Legközelebbi Patch kiválasztása
-				
-		}
-		
+		ArrayList<CoordVector> pc = arena.getPatchesCoords();
+		CoordVector cleanerMasterCoord = this.field.getCoord();
+
+		target = getMinDist(pc, cleanerMasterCoord);
+
 	}
-	
+
 	// Közelítõ megoldás A* útkeresés szerû
-	// A szomszédok és a Target koordinátájának különbsége alapján megkapom, hogy hányat kell lépni a 
+	// A szomszédok és a Target koordinátájának különbsége alapján megkapom,
+	// hogy hányat kell lépni a
 	// szomszédtól a Target-ig.
-	// Kiválasztom azt a szomszédot, amelyik a legkevesebb lépésre van a Target-tõl
-	// Ha a kiválasztott szomszéd típusa DangerZone, akkor a második legközelebbit választom és így tovább...
+	// Kiválasztom azt a szomszédot, amelyik a legkevesebb lépésre van a
+	// Target-tõl
+	// Ha a kiválasztott szomszéd típusa DangerZone, akkor a második
+	// legközelebbit választom és így tovább...
 	/**
 	 * Find the next Field to step on, on the way to the target.
 	 */
-	private CoordVector getNextFiled()
-	{
+	private CoordVector getNextFiled() {
 		Skeleton.printLastCalledFunction(id);
-		
-		CoordVector dist;
-		
-		for(int i = 0; i < field.neighbours.size(); i++){
-			CoordVector n = field.neighbours.get(i).coord;
-			
+
+		ArrayList<CoordVector> n = null;
+
+		// Listába tesszük a szomszédok koordinátáit
+		for (int i = 0; i < field.neighbours.size(); i++) {
+			Field temp = field.getNeighbours().get(i);
+
+			// Mi az osztály neve az aktuáis szomszédnak?
+			String className = temp.getClass().getSimpleName();
+
+			// Ha DangerZone, nem vesszük bele a lépés számolásba, így biztos
+			// nem lép rá.
+			if (!(("DangerZone").equals(className))) {
+				n.add(temp.getCoord());
+			}
 		}
-		
-		return new CoordVector();
+
+		// Megnézzük, hogy melyik szomszédhoz van a target a legközelebb és
+		// visszaadjuk a CoordVector-át
+		// Erre kell majd lépnie a CleanerMasternek.
+		return getMinDist(n, this.target);
 	}
 }
