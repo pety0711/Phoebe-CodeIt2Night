@@ -146,13 +146,27 @@ public class Prototype {
 	}
 
 	private static void Step(String id) {
+		StringBuilder text = new StringBuilder("Step - ");
+		text.append(id + " Robot - Start field: ");
 		for(Robi r : gamers) {
 			if (!r.id.equals(id)) {
 				r.setSpeed(new CoordVector());
 			}
+			else {
+				text.append(r.getField().id + " [" +r.getField().getCoord().getX() + ", " + r.getField().getCoord().getY() + "]");
+			}
 		}
 		
 		arena.tick();
+		
+		for(Robi r : gamers) {
+			if (r.id.equals(id)) {
+				text.append(r.getField().id + " [" +r.getField().getCoord().getX() + ", " + r.getField().getCoord().getY() + "]");
+			}
+		}
+		
+		printOut(text.toString());
+		
 	}
 
 	private static void Step(String id, String fieldID) {
@@ -191,7 +205,7 @@ public class Prototype {
 					R1 = r;	
 					r1 = true;
 				}
-				if(r.id==r0ID){
+				if(r.id==r1ID){
 					R2 = r;	
 					r2 = true;
 				}
