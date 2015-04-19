@@ -13,8 +13,6 @@ import java.util.Set;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import main.Skeleton.UseCaseType;
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class Arena.
