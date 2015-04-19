@@ -316,10 +316,10 @@ public class Arena {
 	 * @param p the p
 	 */
 	public void registerPatchCoord(CoordVector c) {
-		Skeleton.printLastCalledFunction(arenaID, new String[]
-				{c.toString(), Skeleton.getClassName(c)});
-		
-		patchesCoords.add(c);
+//		Skeleton.printLastCalledFunction(arenaID, new String[]
+//				{c.toString(), Skeleton.getClassName(c)});
+//		
+//		patchesCoords.add(c);
 	}
 	
 	/**
@@ -405,11 +405,11 @@ public class Arena {
 	 * @param id the id
 	 */
 	public void killRobot(int points, String id){
-		Skeleton.printLastCalledFunction(arenaID, new String[]
-				{"points","int", "id","String"});
-		Skeleton.printOutINFO(id + " Robi died, points: " + points);
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_dangerzone)
-			Skeleton.drawLine();
+//		Skeleton.printLastCalledFunction(arenaID, new String[]
+//				{"points","int", "id","String"});
+//		Skeleton.printOutINFO(id + " Robi died, points: " + points);
+//		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_dangerzone)
+//			Skeleton.drawLine();
 	}
 	
 	/**
@@ -418,11 +418,11 @@ public class Arena {
 	 * @param id the id
 	 */	
 	public void killRobot(String id) {
-		Skeleton.printLastCalledFunction(arenaID, new String[]
-				{"id","String"});
-		Skeleton.printOutINFO(id + " CleanerMaster died.");
-		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_dangerzone)
-			Skeleton.drawLine();
+//		Skeleton.printLastCalledFunction(arenaID, new String[]
+//				{"id","String"});
+//		Skeleton.printOutINFO(id + " CleanerMaster died.");
+//		if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_dangerzone)
+//			Skeleton.drawLine();
 	}
 	
 
@@ -430,7 +430,7 @@ public class Arena {
 	 * Finish game.
 	 */
 	public void finishGame() {
-		Skeleton.printLastCalledFunction(arenaID);		
+//		Skeleton.printLastCalledFunction(arenaID);		
 		Set<String> idSet = gamers.keySet();
 		for (String robotId : idSet) {
 			gamers.get(robotId).killRobot();
