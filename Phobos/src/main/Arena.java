@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import main.Skeleton.UseCaseType;
 
 // TODO: Auto-generated Javadoc
@@ -38,6 +40,7 @@ public class Arena {
 	
 	/** The gamers. */
 	private HashMap<String, Robi> gamers;
+
 	private HashMap<String, CleanerMaster> cleaners;
 	
 	/**  The dimension. */
@@ -50,32 +53,39 @@ public class Arena {
 	
 	private int sCounter = 0;
 	private int dCounter = 0;
-	private int oCounter = 0;
-	private int pCounter = 0;
 	private int rCounter = 0;
 	private int kCounter = 0;
 	
+	
+	private static AtomicInteger idCounter = new AtomicInteger();
+
+	public static String createID()
+	{
+	    return String.valueOf(idCounter.getAndIncrement());
+	}
 	/**
 	 * Instantiates a new arena.
 	 *
 	 * @param id the id
 	 */
-	public Arena(String id) {
+	public Arena(String id, String path) {
 		arenaID = id;
 		if(Skeleton.currentUseCase==UseCaseType.New_game)
 			Skeleton.drawLine();
 		//Skeleton.printLastCalledFunction(arenaID, new String[]{""});
+		mapFilePath = path;
 		Initialize();
 	}
 	
 	/**
 	 * Instantiates a new arena.
 	 */
-	public Arena(){
+	public Arena(String path){
 		if(Skeleton.currentUseCase==UseCaseType.New_game)
 			Skeleton.drawLine();
 		//Skeleton.printLastCalledFunction(arenaID, new String[]{""}); //Kiíratás
 		arenaID = "arena";
+		mapFilePath = path;
 		Initialize();
 	}
 	
@@ -170,18 +180,14 @@ public class Arena {
 				break;
 				
 			case "o":
-				Oil o = new Oil("o" + oCounter++);
-//				patches.add(o);
 				SafeZone so = new SafeZone("s" + sCounter++);
-				so.addOil(o);
+				so.addOil();
 				fields.add(so);
 				break;
 				
 			case "p":
-				Putty p = new Putty("p" + pCounter++);
-//				patches.add(p);
 				SafeZone sp = new SafeZone("s" + sCounter++);
-				sp.addPutty(p);
+				sp.addPutty();
 				fields.add(sp);
 				break;
 				
@@ -255,7 +261,18 @@ public class Arena {
 		
 		gamers.put(id, new Robi(id, this));
 	}
-	
+
+	public ArrayList<Robi> getGamers() {
+		ArrayList<Robi> temp = new ArrayList<Robi>();
+		
+		Set<String> keys = gamers.keySet();
+		for (String key : keys) {
+			temp.add(gamers.get(key));
+		}
+		
+		return temp;
+	}
+
 //	/**
 //	 * Register patch.
 //	 *
@@ -307,7 +324,12 @@ public class Arena {
 			gamers.get(key).takeEffect();
 		}
 		
-		//foltok lerakása, törlése
+		//foltok lerakása
+		for(Field f : fields) {
+			f.addPatchesNow();
+		}
+		
+		//foltok törlése
 		for(Field f : fields) {
 			if (f.getClass().getName().equals("SafeZone")) {
 				boolean cleaned = ((SafeZone)f).haveToCleanPatch();
