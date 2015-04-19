@@ -107,7 +107,16 @@ public class Prototype {
 	}
 
 	private void PutPatch(String id, String type) {
-
+		for(Robi r : gamers) {
+			if (r.id.equals(id)) {
+				if (type.equals("-p")) {
+					r.putPutty();
+				} else if (type.equals("-o")) {
+					r.putOil();
+				}
+				break;
+			}
+		}
 	}
 	
 	private void SetSpeed(String id, String x, String y) {
@@ -130,11 +139,22 @@ public class Prototype {
 	}
 
 	private void Step(String id) {
-
+		for(Robi r : gamers) {
+			if (!r.id.equals(id)) {
+				r.setSpeed(new CoordVector());
+			}
+		}
+		
+		arena.tick();
 	}
 
 	private void Step(String id, String fieldID) {
-
+		for(Robi r : gamers) {
+			if (r.id.equals(id)) {
+				Field f = arena.getFieldById(fieldID);
+//				CoordVector speed = f.getCoord() - r.getField().getCoord();
+			}
+		}
 	}
 
 	private void Collide(String r0ID, String r1ID, String type) {
