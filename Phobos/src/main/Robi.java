@@ -118,9 +118,7 @@ public class Robi extends Robot {
 		if (puttySupply > 0) {
 			Skeleton.printLastCalledFunction(id);
 			puttySupply--;
-			Putty putty = new Putty("pr");
-			field.addPutty(putty);
-			arena.registerPatchCoord(field.coord);
+			field.addPutty();
 		}
 
 	}
@@ -133,9 +131,7 @@ public class Robi extends Robot {
 		if (oilSupply > 0) {
 			Skeleton.printLastCalledFunction(id);
 			oilSupply--;
-			Oil oil = new Oil("or");
-			field.addOil(oil);
-			arena.registerPatchCoord(field.coord);
+			field.addOil();
 		}
 
 	}
@@ -177,11 +173,13 @@ public class Robi extends Robot {
 				e.printStackTrace();
 			}
 		}
+		slowDownEffect = false; 
 		
 		if(disableEffect){
 			canChangeSpeed = false;
 		}
-		
+		disableEffect = false;
+		canChangeSpeed = true;
 	}
 	
 	
