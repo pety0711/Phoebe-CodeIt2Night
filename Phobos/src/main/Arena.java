@@ -39,6 +39,9 @@ public class Arena {
 	/**  Patches - temporary. */
 	private ArrayList<Patch> patches;
 	
+	/**  Coords of patches - temporary. */
+	private ArrayList<CoordVector> patchesCoords;
+	
 	/** The gamers. */
 	private HashMap<String, Robi> gamers;
 	private HashMap<String, CleanerMaster> cleaners;
@@ -265,6 +268,26 @@ public class Arena {
 	
 	public ArrayList<Patch> getPatches() {
 		return patches;
+	}
+	
+	/**
+	 * Register patch's CoordVector.
+	 *
+	 * @param p the p
+	 */
+	public void registerPatchCoord(CoordVector c) {
+		Skeleton.printLastCalledFunction(arenaID, new String[]
+				{c.toString(), Skeleton.getClassName(c)});
+		
+		patchesCoords.add(c);
+	}
+	
+	/**
+	 * Get patches Coord list.
+	*/
+	
+	public ArrayList<CoordVector> getPatchesCoords() {
+		return patchesCoords;
 	}
 	
 	/**
