@@ -170,9 +170,13 @@ public class Prototype {
 	}
 
 	private static void Step(String id, String fieldID) {
+		StringBuilder text = new StringBuilder("Step - ");
+		text.append(id + " Robot - Start field: ");
 		for(Robi r : gamers) {
 			if (r.id.equals(id)) {
+				text.append(r.getField().id + " [" +r.getField().getCoord().getX() + ", " + r.getField().getCoord().getY() + "]");
 				Field f = arena.getFieldById(fieldID);
+				text.append(f.id + " [" +f.getCoord().getX() + ", " + f.getCoord().getY() + "]");
 				CoordVector speed = r.getField().getCoord().getDiff(f.getCoord());
 				r.setSpeed(speed);
 			}
@@ -182,6 +186,8 @@ public class Prototype {
 		}
 		
 		arena.tick();
+		
+		printOut(text.toString());
 	}
 
 	private static void Collide(String r0ID, String r1ID, String type) {
@@ -277,7 +283,7 @@ public class Prototype {
 			FileWriter fw;
 			try {
 				fw = new FileWriter(new File(filePath));
-				fw.append(text);
+				fw.append(text + "\n");
 				fw.close();
 			} catch (IOException e) {
 				e.printStackTrace();
