@@ -20,6 +20,7 @@ public class SafeZone extends Field {
 	 */
 	public SafeZone(String id) {
 		super();
+		this.id = id;
 	}
 
 	/**

@@ -30,10 +30,7 @@ public class Arena {
 	
 	/** The fields. */
 	private ArrayList<Field> fields;
-	
-	/**  Patches - temporary. */
-	private ArrayList<Patch> patches;
-	
+		
 	/**  Coords of patches - temporary. */
 	private ArrayList<CoordVector> patchesCoords;
 	
@@ -169,52 +166,60 @@ public class Arena {
 			switch (element) {
 			case "s":
 				SafeZone ss = new SafeZone("s" + sCounter++);
+				ss.arena = this;
 				fields.add(ss);
 				
-				data.add(ss.id.toString()+",,"+ss.getCoord().toString());
+				data.add(ss.id.toString());
 				break;
 				
 			case "r":
 				Robi rr = new Robi("r" + rCounter++, this);
 				gamers.put(rr.id, rr);
 				SafeZone sr = new SafeZone("s" + sCounter++);
+				sr.arena = this;
 				fields.add(sr);
 				rr.setField(sr);
 
-				data.add(sr.id.toString()+","+rr.id+","+sr.getCoord().toString());
+				data.add(sr.id.toString()+","+rr.id);
 				break;
 				
 			case "k":
 				CleanerMaster cm = new CleanerMaster("k" + kCounter++, this);
 				cleaners.put(cm.id, cm);
 				SafeZone sk = new SafeZone("s" + sCounter++);
+				sk.arena = this;
 				fields.add(sk);
 				cm.setField(sk);
 
-				data.add(sk.id.toString()+","+cm.id+","+sk.getCoord().toString());
+				data.add(sk.id.toString()+","+cm.id);
 				break;
 				
 			case "o":
 				SafeZone so = new SafeZone("s" + sCounter++);
+				so.arena = this;
 				so.addOil();
+				so.addPatchesNow();
 				fields.add(so);
 
-				data.add(so.id.toString()+","+so.patches.get(0).id+","+so.getCoord().toString());
+				data.add(so.id.toString()+","+so.patches.get(0).id);
 				break;
 				
 			case "p":
 				SafeZone sp = new SafeZone("s" + sCounter++);
+				sp.arena = this;
 				sp.addPutty();
+				sp.addPatchesNow();
 				fields.add(sp);
 
-				data.add(sp.id.toString()+","+sp.patches.get(0).id+","+sp.getCoord().toString());
+				data.add(sp.id.toString()+","+sp.patches.get(0).id);
 				break;
 				
 			case "d":
 				DangerZone dd = new DangerZone("d" + dCounter++);
+				dd.arena = this;
 				fields.add(dd);
 
-				data.add(dd.id.toString()+",,"+dd.getCoord().toString());
+				data.add(dd.id.toString());
 			default:
 				break;
 			}
