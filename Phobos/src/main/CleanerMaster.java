@@ -46,7 +46,6 @@ public class CleanerMaster extends Robot {
 	 */
 	@Override
 	public void killRobot() {
-		Skeleton.printLastCalledFunction(this.id);
 		field.steppedOffYou(this);
 		isItAlive = false;
 		putOil();
@@ -58,12 +57,17 @@ public class CleanerMaster extends Robot {
 	 */
 	@Override
 	public void putOil() {
-		Skeleton.printLastCalledFunction(id);
-		Oil oil = new Oil("or");
-		field.addOil(oil);
-		arena.registerPatch(oil);
+		field.addOil();
 	}
 
+	/**
+	 * Get Min Dist. Returns the nearest CoordVector element from target list.
+	 * 
+	 * @param targetList
+	 *            the list of the possible targets.
+	 * @param start
+	 *            reference
+	 */
 	// Segédfüggvény, amely megkeresi a start-hoz legközelebbi targetelemet a
 	// targetLsit-bõl.
 	public CoordVector getMinDist(ArrayList<CoordVector> targetList,
@@ -107,7 +111,6 @@ public class CleanerMaster extends Robot {
 	 * Find the target Patch from Arena's patchList.
 	 */
 	private void getTarget() {
-		Skeleton.printLastCalledFunction(id);
 
 		ArrayList<CoordVector> pc = arena.getPatchesCoords();
 		CoordVector cleanerMasterCoord = this.field.getCoord();
@@ -128,7 +131,6 @@ public class CleanerMaster extends Robot {
 	 * Find the next Field to step on, on the way to the target.
 	 */
 	private void getNextField() {
-		Skeleton.printLastCalledFunction(id);
 
 		ArrayList<CoordVector> n = null;
 
@@ -163,24 +165,14 @@ public class CleanerMaster extends Robot {
 
 	}
 
+	/**
+	 * Tick. The CleanerMaster can step.
+	 */
 	@Override
 	public void tick() {
-		if (Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_putty
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_an_oil
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_dangerzone
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_safezone) {
-			Skeleton.drawLine();
-		}
-		Skeleton.printLastCalledFunction(id);
-
-		/*
-		 * try { speed = new CoordVector(2,0); } catch (Exception e) {
-		 * e.printStackTrace(); }
-		 */
-
 		getTarget();
 		getNextField();
-		
+
 		Field f = field.step(speed, this);
 		field.steppedOffYou(this);
 		setField(f);
@@ -188,11 +180,14 @@ public class CleanerMaster extends Robot {
 
 	}
 
+	/**
+	 * The CleanerMaster can clean up the patches.
+	 */
 	@Override
 	public void takeEffect() {
-		if(field.patches.size() > 0){
-			(SafeZone)field.cleanThePatches(this);
+		if (field.patches.size() > 0) {
+			((SafeZone) field).cleanThePatches(this);
 		}
-		
+
 	}
 }

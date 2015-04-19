@@ -31,7 +31,6 @@ public class Robi extends Robot {
 		points = 0;
 		canChangeSpeed = true;
 
-
 	}
 
 	/**
@@ -56,7 +55,6 @@ public class Robi extends Robot {
 	 */
 	@Override
 	public void killRobot() {
-		Skeleton.printLastCalledFunction(id);
 		field.steppedOffYou(this);
 		isItAlive = false;
 		arena.killRobot(points, id);
@@ -67,7 +65,6 @@ public class Robi extends Robot {
 	 * Get the points of the Robi.
 	 */
 	public int getPoints() {
-		Skeleton.printLastCalledFunction(id);
 		return points;
 
 	}
@@ -76,12 +73,6 @@ public class Robi extends Robot {
 	 * Disable movement after stepping on an oil.
 	 */
 	public void disableMovement() {
-		Skeleton.printLastCalledFunction(id);
-		if (Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_putty
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_an_oil) {
-			Skeleton.drawLine();
-		}
-/*		canChangeSpeed = false;*/
 		disableEffect = false;
 
 	}
@@ -90,25 +81,7 @@ public class Robi extends Robot {
 	 * Change the speed to lower after stepping on a putty.
 	 */
 	public void slowDown() {
-		Skeleton.printLastCalledFunction(id);
-
-/*		int[] newSpeed = null;
-		for (int i = 0; i < speed.dimension; i++) {
-
-			newSpeed[i] = ((speed.getCoordofDim(i)) / 2);
-		}
-		try {
-			speed = new CoordVector(newSpeed);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-		
 		slowDownEffect = false;
-
-		if (Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_putty
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_an_oil) {
-			Skeleton.drawLine();
-		}
 	}
 
 	/**
@@ -116,7 +89,6 @@ public class Robi extends Robot {
 	 */
 	public void putPutty() {
 		if (puttySupply > 0) {
-			Skeleton.printLastCalledFunction(id);
 			puttySupply--;
 			field.addPutty();
 		}
@@ -129,28 +101,17 @@ public class Robi extends Robot {
 	@Override
 	public void putOil() {
 		if (oilSupply > 0) {
-			Skeleton.printLastCalledFunction(id);
 			oilSupply--;
 			field.addOil();
 		}
 
 	}
-	
+
+	/**
+	 * Robi can step.
+	 */
 	@Override
 	public void tick() {
-		if (Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_putty
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_an_oil
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_dangerzone
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_safezone) {
-			Skeleton.drawLine();
-		}
-		Skeleton.printLastCalledFunction(id);
-
-		/*
-		 * try { speed = new CoordVector(2,0); } catch (Exception e) {
-		 * e.printStackTrace(); }
-		 */
-		
 		Field f = field.step(speed, this);
 		field.steppedOffYou(this);
 		setField(f);
@@ -158,11 +119,12 @@ public class Robi extends Robot {
 
 	}
 
+	/**
+	 * Robi applies the effects of the patches.
+	 * */
 	@Override
 	public void takeEffect() {
-		Skeleton.printLastCalledFunction(id);
-		
-		if (slowDownEffect){
+		if (slowDownEffect) {
 			int[] newSpeed = null;
 			for (int i = 0; i < speed.dimension; i++) {
 				newSpeed[i] = ((speed.getCoordofDim(i)) / 2);
@@ -173,14 +135,13 @@ public class Robi extends Robot {
 				e.printStackTrace();
 			}
 		}
-		slowDownEffect = false; 
-		
-		if(disableEffect){
+		slowDownEffect = false;
+
+		if (disableEffect) {
 			canChangeSpeed = false;
 		}
 		disableEffect = false;
 		canChangeSpeed = true;
 	}
-	
-	
+
 }

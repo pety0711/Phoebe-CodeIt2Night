@@ -28,11 +28,15 @@ public abstract class Robot {
 	/** The arena. */
 	protected Arena arena;
 
+	/** SlowDown flag. */
 	protected boolean slowDownEffect;
+
+	/** DisableMovement flag. */
 	protected boolean disableEffect;
+
+	/** CanChangeSpeed flag. */
 	public boolean canChangeSpeed;
 
-	
 	/**
 	 * Instantiates a new robot.
 	 *
@@ -45,10 +49,6 @@ public abstract class Robot {
 		arena = a;
 
 		speed = new CoordVector();
-		Skeleton.printLastCalledFunction(
-				id,
-				new String[] { id, Skeleton.getClassName(this), "a",
-						Skeleton.getClassName(a) });
 	}
 
 	/**
@@ -65,10 +65,6 @@ public abstract class Robot {
 		arena = a;
 
 		speed = new CoordVector();
-		Skeleton.printLastCalledFunction(
-				id,
-				new String[] { id, Skeleton.getClassName(this), "a",
-						Skeleton.getClassName(a) });
 	}
 
 	/**
@@ -76,30 +72,22 @@ public abstract class Robot {
 	 */
 	public abstract void putOil();
 
+	/**
+	 * Take Effect. SlowDown and DisableMovement effects are validated on Robi.
+	 * The CleanerMaster can clean up the patches.
+	 */
+
 	public abstract void takeEffect();
-		
+
 	/**
 	 * Tick.
 	 */
-	public abstract void tick(); 
-/*	{
-		if (Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_putty
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_an_oil
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_dangerzone
-				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_safezone) {
-			Skeleton.drawLine();
-		}
-		Skeleton.printLastCalledFunction(id);
+	public abstract void tick();
 
-		
-		 * try { speed = new CoordVector(2,0); } catch (Exception e) {
-		 * e.printStackTrace(); }
-		 
-
-		Field f = field.step(speed, this);
-		setField(f);
-		f.steppedOnYou(this);
-	}*/
+	/**
+	 * Kill robot.
+	 */
+	public abstract void killRobot();
 
 	/**
 	 * Investigate collision.
@@ -108,7 +96,6 @@ public abstract class Robot {
 	 *             the exception
 	 */
 	public void investigateCollision() throws Exception {
-		Skeleton.printLastCalledFunction(id);
 		field.investigateCollision();
 	}
 
@@ -119,16 +106,10 @@ public abstract class Robot {
 	 *            the coord
 	 */
 	public void detectedCollision(CoordVector coord) {
-		Skeleton.printLastCalledFunction(id, new String[] { "coord",
-				"CoordVector" });
 		setSpeed(coord);
 		Field f = field.step(coord, this);
 		setField(f);
 		f.steppedOnYou(this);
-		// this.isItAlive=false;
-		/*
-		 * // majd meghalnak field.steppedOffYou(this); this.killRobot();
-		 */
 	}
 
 	/**
@@ -147,14 +128,9 @@ public abstract class Robot {
 	 *            the new speed
 	 */
 	public void setSpeed(CoordVector speed) {
-		if(canChangeSpeed)
+		if (canChangeSpeed)
 			this.speed = speed;
 	}
-
-	/**
-	 * Kill robot.
-	 */
-	public abstract void killRobot();
 
 	/**
 	 * Gets the container field.
@@ -162,7 +138,6 @@ public abstract class Robot {
 	 * @return the field
 	 */
 	public Field getField() {
-		Skeleton.printLastCalledFunction(id);
 		return field;
 	}
 
@@ -173,10 +148,7 @@ public abstract class Robot {
 	 *            the new field
 	 */
 	public void setField(Field field) {
-		Skeleton.printLastCalledFunction(id,
-				new String[] { field.id, Skeleton.getClassName(field) });
 		this.field = field;
 	}
-	
-	
+
 }
