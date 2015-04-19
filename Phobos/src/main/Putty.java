@@ -38,5 +38,6 @@ public class Putty extends Patch {
 	public void doEffect(Robot r) {
 		r.takeEffect();
 		this.decreaseLife();
+		
 	}
 }
