@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import main.Skeleton.UseCaseType;
 
 // TODO: Auto-generated Javadoc
@@ -54,6 +56,13 @@ public class Arena {
 	private int rCounter = 0;
 	private int kCounter = 0;
 	
+	
+	private static AtomicInteger idCounter = new AtomicInteger();
+
+	public static String createID()
+	{
+	    return String.valueOf(idCounter.getAndIncrement());
+	}
 	/**
 	 * Instantiates a new arena.
 	 *
