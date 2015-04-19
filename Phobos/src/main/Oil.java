@@ -33,8 +33,8 @@ public class Oil extends Patch{
 			lifeTime--;
 		}
 	}
-	
-	public void doEffect(Robi r) {
-		r.disableMovement();
+	@Override
+	public void doEffect(Robot r) {
+		r.takeEffect();
 	}
 }
