@@ -74,16 +74,16 @@ public class Prototype {
 	}
 
 	private static void SetOutput(String c, String path) {
-		if (c.equals("c")) {
+		if (c.equals("-c")) {
 			consoleOutput = true;
 			fileOutput = true;
 			System.out.println("Selected output: " + c + " as Console");
-		} else if (c.equals("f")) {
+		} else if (c.equals("-f")) {
 			fileOutput = true;
 			filePath = path;
 			consoleOutput = false;
 			System.out.println("Selected output: " + c + " as File");
-		} else if (c.equals("b")) {
+		} else if (c.equals("-b")) {
 			fileOutput = true;
 			filePath = path;
 			consoleOutput = true;

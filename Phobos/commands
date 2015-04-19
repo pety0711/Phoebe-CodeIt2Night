@@ -1,0 +1,2 @@
+NewGame map.csv
+SetOutput -b Output.txt
