@@ -109,24 +109,9 @@ public class Prototype {
 	private void PutPatch(String id, String type) {
 
 	}
-	
+
 	private void SetSpeed(String id, String x, String y) {
-		/*
-		 * 
-		 * SetSpeed <Robot azonosító> <sebesség: x> <sebesség: y>
-			Leírás: Robot sebességének megváltoztatása
-			Opciók:
-				<Robot azonosító>: A robot azonosítója
-				<sebesség: x>: Sebességvektor x koordinátája (egész szám)
-				<sebesség: y>: Sebességvektor y koordinátája (egész szám)
-			Példa: SetSpeed R00 [2, 1]*/
-		if(!gamers.isEmpty()){
-			for(Robi r : gamers){
-				if(r.id==id){
-					r.speed = new CoordVector(Integer.parseInt(x), Integer.parseInt(y));
-				}
-			}
-		}
+
 	}
 
 	private void Step(String id) {
@@ -143,6 +128,7 @@ public class Prototype {
 
 	// vivi
 	private void Timeout(String id) {
+		gamers.
 
 	}
 
