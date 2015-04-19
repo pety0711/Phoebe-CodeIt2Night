@@ -107,6 +107,9 @@ public class CoordVector {
 		return true;
 	}
 	
+	/*
+	 * cv - this
+	 */
 	public CoordVector getDiff(CoordVector cv) {
 		return new CoordVector(cv.getX() - this.getX(), cv.getY() - this.getY());
 	}

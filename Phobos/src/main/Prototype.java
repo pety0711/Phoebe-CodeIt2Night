@@ -151,9 +151,15 @@ public class Prototype {
 		for(Robi r : gamers) {
 			if (r.id.equals(id)) {
 				Field f = arena.getFieldById(fieldID);
-//				CoordVector speed = f.getCoord() - r.getField().getCoord();
+				CoordVector speed = r.getField().getCoord().getDiff(f.getCoord());
+				r.setSpeed(speed);
+			}
+			else {
+				r.setSpeed(new CoordVector());
 			}
 		}
+		
+		arena.tick();
 	}
 
 	private void Collide(String r0ID, String r1ID, String type) {
