@@ -34,3 +34,5 @@ public abstract class Patch {
 		fix = true;
 	}
 }
+
+//Most akkor melyik listákból lesz kivéve a patchek megsemmisüléskor? Mert van a Field-be(1db) és a SafeZone-ba(2db) is?;
