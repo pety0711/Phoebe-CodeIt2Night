@@ -48,6 +48,7 @@ public class SafeZone extends Field {
 	public Boolean haveToCleanPatch() {
 		if (haveToClean) {
 			patches.clear();
+			haveToClean = false;
 			return true;
 		}
 		return false;

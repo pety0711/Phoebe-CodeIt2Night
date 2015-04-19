@@ -40,6 +40,10 @@ public abstract class Field {
 	/** The id. */
 	public String id;
 
+	private Boolean haveToAddOil = false;
+	
+	private Boolean haveToAddPutty = false;
+	
 	enum direction{
 		up,
 		down,
@@ -97,23 +101,35 @@ public abstract class Field {
 	public abstract void investigateCollision() throws Exception;	
 
 	/**
-	 * Adds the putty.
-	 *
-	 * @param p
-	 *            the putty that we add to the patches List
+	 * Function is called by the Arena, when it's time to add patches
 	 */
-	public void addPutty(Putty p) {			//R
-		patches.add(p);
+	public void addPatchesNow(){
+		if(haveToAddPutty){
+			Putty putty = new Putty("pr");
+			patches.add(putty);
+			arena.registerPatchCoord(coord);
+			haveToAddPutty = false;
+		}
+		if(haveToAddOil){
+			Oil oil = new Oil();
+			patches.add(oil);
+			arena.registerPatchCoord(coord);
+			haveToAddOil = false;
+		}
+	}
+	
+	/**
+	 * Function is called by Robots when they want to add a Putty
+	 */
+	public void addPutty() {			//R
+		haveToAddPutty = true;
 	}
 
 	/**
-	 * Adds the oil.
-	 *
-	 * @param o
-	 *            the oil that we add to the patches List
+	 * Function is called by Robots when they want to add an Oil
 	 */
-	public void addOil(Oil o) {				//R
-		patches.add(o);
+	public void addOil() {				//R
+		haveToAddOil = true;
 	}
 
 	/**
