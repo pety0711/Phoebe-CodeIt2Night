@@ -3,10 +3,6 @@
  */
 package main;
 
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class Putty.
