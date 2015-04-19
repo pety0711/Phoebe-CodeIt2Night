@@ -166,9 +166,13 @@ public class Prototype {
 
 	}
 
-	// vivi
+	// id: Field ID-ja, amelyen van Oil és Putty is.
 	private void Timeout(String id) {
-
+		Field f = arena.getFieldById(id);
+		// Oil Timeout
+			
+		
+		// Putty Timeout
 	}
 
 	private void Terminate() {
