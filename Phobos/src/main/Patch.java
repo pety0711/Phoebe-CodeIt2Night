@@ -19,7 +19,7 @@ public abstract class Patch {
 	/** The fix. */
 	protected boolean fix;
 	
-	public abstract void doEffect(Robi r);
+	public abstract void doEffect(Robot r);
 	
 	public void setFix() {
 		fix = true;
