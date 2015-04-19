@@ -165,15 +165,15 @@ public class Arena {
 	}
 	private void createFields(String[] row)  {
 		drawLine(row.length);
-		String data ="";
+		List<String> data = new ArrayList<String>();
 		
 		for(String element : row) {
-			
 			switch (element) {
 			case "s":
 				SafeZone ss = new SafeZone("s" + sCounter++);
 				fields.add(ss);
-				data+=ss.id.
+				
+				data.add(ss.id.toString()+",,"+ss.getCoord().toString());
 				break;
 				
 			case "r":
@@ -182,6 +182,8 @@ public class Arena {
 				SafeZone sr = new SafeZone("s" + sCounter++);
 				fields.add(sr);
 				rr.setField(sr);
+
+				data.add(sr.id.toString()+","+rr.id+","+sr.getCoord().toString());
 				break;
 				
 			case "k":
@@ -190,28 +192,35 @@ public class Arena {
 				SafeZone sk = new SafeZone("s" + sCounter++);
 				fields.add(sk);
 				cm.setField(sk);
+
+				data.add(sk.id.toString()+","+cm.id+","+sk.getCoord().toString());
 				break;
 				
 			case "o":
 				SafeZone so = new SafeZone("s" + sCounter++);
 				so.addOil();
 				fields.add(so);
+
+				data.add(so.id.toString()+","+so.patches.get(0).id+","+so.getCoord().toString());
 				break;
 				
 			case "p":
 				SafeZone sp = new SafeZone("s" + sCounter++);
 				sp.addPutty();
 				fields.add(sp);
+
+				data.add(sp.id.toString()+","+sp.patches.get(0).id+","+sp.getCoord().toString());
 				break;
 				
 			case "d":
 			default:
 				DangerZone dd = new DangerZone("d" + dCounter++);
 				fields.add(dd);
+
+				data.add(dd.id.toString()+",,"+dd.getCoord().toString());
 				break;
 			}
 		}
-		writeDataLine(data);
 	}
 	
 	private void setNeighbourhood() {

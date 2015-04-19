@@ -87,7 +87,7 @@ public class CoordVector {
 	    for (int i = 0; i < points.length; i++) {
 	    	result.append(points[i]);
 	    	if(i<points.length-1)
-	    		result.append(", ");
+	    		result.append(",");
 		}
 	    result.append("}");
 
