@@ -103,9 +103,9 @@ public abstract class Field {
 	/**
 	 * Function is called by the Arena, when it's time to add patches
 	 */
-	public void addPatchesNow(){
+	public void addPatchesNow(){		//R
 		if(haveToAddPutty){
-			Putty putty = new Putty("pr");
+			Putty putty = new Putty();
 			patches.add(putty);
 			arena.registerPatchCoord(coord);
 			haveToAddPutty = false;

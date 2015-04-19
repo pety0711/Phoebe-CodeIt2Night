@@ -1,10 +1,5 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import main.Field.direction;
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class SafeZone.
@@ -83,8 +78,20 @@ public class SafeZone extends Field {
 	 */
 	@Override
 	public Field step(CoordVector speed, Robot r) {
-		// TODO
-		return null;
+		direction tempDirX = direction.right;
+		direction tempDirY = direction.up;
+		Field temp = this;
+		
+		if (speed.getX()<0) { tempDirX = direction.left; }
+		if (speed.getY()<0) { tempDirY = direction.down; }
+		
+		for (int i = 0; i < Math.abs(speed.getX()); i++) {
+			temp.getNeighbour(tempDirX);
+		}
+		for (int i = 0; i < Math.abs(speed.getY()); i++) {
+			temp.getNeighbour(tempDirY);
+		}
+		return temp;
 	}
 
 	/*
