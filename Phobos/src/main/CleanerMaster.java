@@ -37,18 +37,6 @@ public class CleanerMaster extends Robot {
 		super(id, arena);
 	}
 
-	// public Field getField() {
-	// return field;
-	// }
-	//
-	// public void setField(Field field) {
-	// this.field = field;
-	// }
-	//
-	// public void tick() {}
-	//
-	// public void investigateCollision() {}
-
 	/**
 	 * Kill robot - CleanerMaster.
 	 */
@@ -72,7 +60,8 @@ public class CleanerMaster extends Robot {
 		arena.registerPatch(oil);
 	}
 
-	// Segédfüggvény, amely megkeresi a start-hoz legközelebbi targetelemet a targetLsit-bõl.
+	// Segédfüggvény, amely megkeresi a start-hoz legközelebbi targetelemet a
+	// targetLsit-bõl.
 	public CoordVector getMinDist(ArrayList<CoordVector> targetList,
 			CoordVector start) {
 		// start és a vizsgált tartgetelem távolsága lépésszámban
@@ -134,7 +123,7 @@ public class CleanerMaster extends Robot {
 	/**
 	 * Find the next Field to step on, on the way to the target.
 	 */
-	private CoordVector getNextFiled() {
+	private void getNextField() {
 		Skeleton.printLastCalledFunction(id);
 
 		ArrayList<CoordVector> n = null;
@@ -156,6 +145,42 @@ public class CleanerMaster extends Robot {
 		// Megnézzük, hogy melyik szomszédhoz van a target a legközelebb és
 		// visszaadjuk a CoordVector-át
 		// Erre kell majd lépnie a CleanerMasternek.
-		return getMinDist(n, this.target);
+		CoordVector nextField = getMinDist(n, this.target);
+		int[] newSpeed = null;
+		for (int j = 0; j < this.field.coord.dimension; j++) {
+			newSpeed[j] = (nextField.getCoordofDim(j) - this.field.coord
+					.getCoordofDim(j));
+		}
+		try {
+			speed = new CoordVector(newSpeed);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void tick() {
+		if (Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_putty
+				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_an_oil
+				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_dangerzone
+				|| Skeleton.currentUseCase == Skeleton.UseCaseType.Step_on_a_safezone) {
+			Skeleton.drawLine();
+		}
+		Skeleton.printLastCalledFunction(id);
+
+		/*
+		 * try { speed = new CoordVector(2,0); } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 */
+
+		getTarget();
+		getNextField();
+		
+		Field f = field.step(speed, this);
+		field.steppedOffYou(this);
+		setField(f);
+		f.steppedOnYou(this);
+
 	}
 }
