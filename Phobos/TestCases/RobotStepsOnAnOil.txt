@@ -1,0 +1,5 @@
+NewGame
+SetSpeed R00 [1, 2]
+Step R00
+SetSpeed R00 [1, 1]
+Terminate
