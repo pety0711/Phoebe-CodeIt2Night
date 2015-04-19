@@ -20,8 +20,7 @@ public class Putty extends Patch {
 
 	public Putty(){
 		lifeTime=4;
-		Random r = new Random();
-		id = "p"+r.nextInt(2000000000);
+		id = Arena.createID();
 	}
 	
 	/**

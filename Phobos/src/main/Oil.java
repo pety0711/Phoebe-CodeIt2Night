@@ -17,8 +17,7 @@ public class Oil extends Patch{
 	 * Instantiates a new oil.
 	 */
 	public Oil(){
-		Random r = new Random();
-		id = "o"+r.nextInt(2000000000);
+		id = Arena.createID();
 		lifeTime=20;  
 	}
 	/**
