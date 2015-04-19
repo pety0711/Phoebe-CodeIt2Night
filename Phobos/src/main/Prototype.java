@@ -225,10 +225,19 @@ public class Prototype {
 	// id: Field ID-ja, amelyen van Oil és Putty is.
 	private static void Timeout(String id) {
 		Field f = arena.getFieldById(id);
+		Robot r = gamers.get(0);
 		// Oil Timeout
-			
+		((SafeZone)f).TickPatches();
+		((SafeZone)f).TickPatches();
+		((SafeZone)f).TickPatches();
+		((SafeZone)f).TickPatches();
+		((SafeZone)f).TickPatches();
 		
 		// Putty Timeout
+		f.steppedOnYou(r);
+		f.steppedOnYou(r);
+		f.steppedOnYou(r);
+		f.steppedOnYou(r);
 	}
 
 	private static void Terminate() {

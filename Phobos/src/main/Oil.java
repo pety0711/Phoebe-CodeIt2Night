@@ -16,7 +16,7 @@ public class Oil extends Patch{
 	 */
 	public Oil(){
 		id = Arena.createID();
-		lifeTime=20;  
+		lifeTime=5;  
 	}
 	/**
 	 * Instantiates a new oil.
@@ -24,7 +24,7 @@ public class Oil extends Patch{
 	 * @param id the id
 	 */
 	public Oil(String id){
-		lifeTime=20; 
+		lifeTime=5; 
 		this.id = id;
 	}
 
