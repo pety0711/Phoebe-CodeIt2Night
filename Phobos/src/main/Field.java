@@ -86,7 +86,7 @@ public abstract class Field {
 	 */
 	public abstract void steppedOnYou(Robot r);
 	
-	public abstract void steppedOffYou(Robot r); 
+	public abstract void steppedOffYou(Robot r);
 
 	/**
 	 * Investigate collision.
@@ -179,15 +179,16 @@ public abstract class Field {
 		return temp;
 	}
 
-	public ArrayList<Patch> getPatches() {
+	public ArrayList<Patch> getPatches() {			//R
 		return patches;
 	}
 	
 
-	public void setPatches(ArrayList<Patch> patches) {
+	public void setPatches(ArrayList<Patch> patches) {		//R
 		this.patches = patches;
 	}
 
+	
 	/**
 	 * Sets the coord.
 	 *

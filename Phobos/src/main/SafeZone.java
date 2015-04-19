@@ -18,9 +18,7 @@ public class SafeZone extends Field {
 	
 	/** The o list. */
 	private ArrayList<Oil> oList;
-	
-	
-	
+
 
 	/**
 	 * Instantiates a new safe zone.
@@ -32,16 +30,36 @@ public class SafeZone extends Field {
 		oList = new ArrayList<>();
 	}
 	
+	
+	/**
+	 * The method clears all the patches on the field
+	 * @param cleanerMaster - the cleanerMaster who cleans the patches
+	 */
+	public void cleanThePathches(CleanerMaster cleanerMaster){
+		
+	}
+	
+	/**
+	 * The method is called by the Arena, when the patches can be removed from the list
+	 * @return - true, it something has been deleted - false, if no patch removed
+	 */
+	public Boolean haveToCleanPatch(){
+		//TODO
+		return false;
+	}
+	
 	/**
 	 * 
 	 */
 	@Override
 	public void steppedOnYou(Robot r) {
 		robots.add(r);
-		for (Patch patch : patches) {
+		for (Patch patch : pList) {
 			patch.doEffect(r);
 		}
-				
+		for (Patch patch : oList) {
+			patch.doEffect(r);
+		}
 	}
 	
 	/**
