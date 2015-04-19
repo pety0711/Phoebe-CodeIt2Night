@@ -213,11 +213,11 @@ public class Arena {
 				break;
 				
 			case "d":
-			default:
 				DangerZone dd = new DangerZone("d" + dCounter++);
 				fields.add(dd);
 
 				data.add(dd.id.toString()+",,"+dd.getCoord().toString());
+			default:
 				break;
 			}
 		}
