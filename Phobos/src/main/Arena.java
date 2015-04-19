@@ -313,6 +313,15 @@ public class Arena {
 		return patchesCoords;
 	}
 	
+	public Field getFieldById(String id) {
+		for(Field f : fields) {
+			if (f.id.equals(id)) {
+				return f;
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * tick
 	 */
