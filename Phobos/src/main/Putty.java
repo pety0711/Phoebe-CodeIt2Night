@@ -35,6 +35,6 @@ public class Putty extends Patch {
 		}
 	}
 	public void doEffect(Robi r) {
-		r.slowDown();
-	}
+		r.takeEffect();
+		}
 }
