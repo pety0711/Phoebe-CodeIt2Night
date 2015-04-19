@@ -37,6 +37,7 @@ public class Putty extends Patch {
 	@Override
 	public void doEffect(Robot r) {
 		r.takeEffect();
+		this.decreaseLife();
 	}
 
 }
