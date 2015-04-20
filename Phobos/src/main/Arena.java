@@ -138,7 +138,7 @@ public class Arena {
 			}
 			setNeighbourhood();
 			initPatchCoords();
-			
+			Prototype.drawMap(this);
 			
 		}
 		catch (Exception e) {
@@ -147,6 +147,18 @@ public class Arena {
 	}
 	
 	
+	public ArrayList<Field> getFields() {
+		return fields;
+	}
+	public void setFields(ArrayList<Field> fields) {
+		this.fields = fields;
+	}
+	public CoordVector getDim() {
+		return dim;
+	}
+	public void setDim(CoordVector dim) {
+		this.dim = dim;
+	}
 	private void drawLine(int length){
 		String line = "+";
 		for(int i = 0;i<length*5;i++){
@@ -159,7 +171,7 @@ public class Arena {
 
 	}
 	private void createFields(String[] row)  {
-		drawLine(row.length);
+		//drawLine(row.length);
 		List<String> data = new ArrayList<String>();
 		
 		for(String element : row) {
@@ -223,6 +235,7 @@ public class Arena {
 			default:
 				break;
 			}
+		//Prototype.printOut("adsadsa");
 		}
 	}
 	

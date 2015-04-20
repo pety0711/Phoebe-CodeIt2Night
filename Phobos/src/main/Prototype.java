@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Prototype {
 
@@ -20,14 +21,14 @@ public class Prototype {
 	private static String filePath;
 
 	public static void main(String[] args) {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
-        	try {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		while (true) {
+			try {
 				decodeCommand(br.readLine());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-        }
+		}
 	}
 
 	private static void decodeCommand(String line) {
@@ -115,98 +116,98 @@ public class Prototype {
 	}
 
 	private static void PutPatch(String id, String type) {
-		for(Robi r : gamers) {
+		for (Robi r : gamers) {
 			if (r.id.equals(id)) {
 				if (type.equals("-p")) {
 					r.putPutty();
 				} else if (type.equals("-o")) {
-					r.putOil(); 
+					r.putOil();
 				}
 				break;
 			}
 		}
 	}
+
 	private static void SetSpeed(String id, String x, String y) {
 		/*
 		 * 
-		 * SetSpeed <Robot azonosító> <sebesség: x> <sebesség: y>
-			Leírás: Robot sebességének megváltoztatása
-			Opciók:
-				<Robot azonosító>: A robot azonosítója
-				<sebesség: x>: Sebességvektor x koordinátája (egész szám)
-				<sebesség: y>: Sebességvektor y koordinátája (egész szám)
-			Példa: SetSpeed R00 [2, 1]*/
-		if(!gamers.isEmpty()){
-			for(Robi r : gamers){
-				if(r.id==id){
-					r.setSpeed(new CoordVector(Integer.parseInt(x), Integer.parseInt(y)));
+		 * SetSpeed <Robot azonosító> <sebesség: x> <sebesség: y> Leírás: Robot
+		 * sebességének megváltoztatása Opciók: <Robot azonosító>: A robot
+		 * azonosítója <sebesség: x>: Sebességvektor x koordinátája (egész szám)
+		 * <sebesség: y>: Sebességvektor y koordinátája (egész szám) Példa:
+		 * SetSpeed R00 [2, 1]
+		 */
+		if (!gamers.isEmpty()) {
+			for (Robi r : gamers) {
+				if (r.id == id) {
+					r.setSpeed(new CoordVector(Integer.parseInt(x), Integer
+							.parseInt(y)));
 				}
 			}
 		}
 	}
 
 	private static void Step(String id) {
-		for(Robi r : gamers) {
+		for (Robi r : gamers) {
 			if (!r.id.equals(id)) {
 				r.setSpeed(new CoordVector());
 			}
 		}
-		
+
 		arena.tick();
 	}
 
 	private static void Step(String id, String fieldID) {
-		for(Robi r : gamers) {
+		for (Robi r : gamers) {
 			if (r.id.equals(id)) {
 				Field f = arena.getFieldById(fieldID);
-				CoordVector speed = r.getField().getCoord().getDiff(f.getCoord());
+				CoordVector speed = r.getField().getCoord()
+						.getDiff(f.getCoord());
 				r.setSpeed(speed);
-			}
-			else {
+			} else {
 				r.setSpeed(new CoordVector());
 			}
 		}
-		
+
 		arena.tick();
 	}
 
 	private static void Collide(String r0ID, String r1ID, String type) {
 		/*
-		 * Collide <Robot azonosító> <Robot azonosító> <Ütközés típusa>
-			Leírás: Két robot ütköztetése elõre megadott ütközési kimenettel
-			Opciók:
-				<Robot azonosító>: Az ütközni kívánt robotok azonostója
-				<Ütközés típusa>: Az ütközés kimenetelének azonosítója, 
-				robotok sebességének meghatározása (0 :azonos sebességgel ütköznek, 
-				1 :elsõ robot gyorsabb, 2 : második robot gyorsabb)
-			Példa: Collide R00 R01 -2
-		  */
-		boolean r1=false;
-		boolean r2=false;
-		Robi R1=null;
-		Robi R2=null;
-		if(!gamers.isEmpty()){
-			for(Robi r : gamers){
-				if(r.id==r0ID){
-					R1 = r;	
+		 * Collide <Robot azonosító> <Robot azonosító> <Ütközés típusa> Leírás:
+		 * Két robot ütköztetése elõre megadott ütközési kimenettel Opciók:
+		 * <Robot azonosító>: Az ütközni kívánt robotok azonostója <Ütközés
+		 * típusa>: Az ütközés kimenetelének azonosítója, robotok sebességének
+		 * meghatározása (0 :azonos sebességgel ütköznek, 1 :elsõ robot
+		 * gyorsabb, 2 : második robot gyorsabb) Példa: Collide R00 R01 -2
+		 */
+		boolean r1 = false;
+		boolean r2 = false;
+		Robi R1 = null;
+		Robi R2 = null;
+		if (!gamers.isEmpty()) {
+			for (Robi r : gamers) {
+				if (r.id == r0ID) {
+					R1 = r;
 					r1 = true;
 				}
-				if(r.id==r0ID){
-					R2 = r;	
+				if (r.id == r0ID) {
+					R2 = r;
 					r2 = true;
 				}
 			}
 		}
-		if(r1&&r2){
-			switch(type){
+		if (r1 && r2) {
+			switch (type) {
 			case "0":
-				CoordVector c = R1.getField().getCoord().getDiff(R2.getField().getCoord());
-				CoordVector newSpeed= new CoordVector(c.getX(),c.getY());
+				CoordVector c = R1.getField().getCoord()
+						.getDiff(R2.getField().getCoord());
+				CoordVector newSpeed = new CoordVector(c.getX(), c.getY());
 				R2.setSpeed(newSpeed);
 				R1.setSpeed(newSpeed);
 				arena.tick();
 				break;
-			case "1": 
+			case "1":
 				R2.setSpeed(new CoordVector());
 				R1.setSpeed(R2.getField().getCoord());
 				arena.tick();
@@ -222,21 +223,44 @@ public class Prototype {
 		}
 	}
 
+	public static void drawMap(Arena arena) {
+		List<String> mapToDraw = new ArrayList<String>();
+
+		int rowSize = arena.getDim().getX();
+		String rowToDraw = "";
+
+		for (Field field : arena.getFields()) {
+			rowToDraw += field.id;
+			rowToDraw += "  ";
+			rowSize--;
+			if (rowSize <= 0) {
+				mapToDraw.add(rowToDraw);
+				rowSize = arena.getDim().getX();
+				rowToDraw = "";
+			}
+		}
+		for (int i = 0; i <= mapToDraw.size() + 1; i++) {
+			printOut(mapToDraw.get(mapToDraw.size() - 1));
+			mapToDraw.remove(mapToDraw.size() - 1);
+		}
+
+	}
+
 	// id: Field ID-ja, amelyen van Oil és Putty is.
 	private static void Timeout(String id) {
 		StringBuilder text = new StringBuilder("Timeout  - ");
-		
+
 		Field f = arena.getFieldById(id);
 		boolean isOil = false;
 		boolean isPutty = false;
-		//Robot r = gamers.get(0);
+		// Robot r = gamers.get(0);
 		int i = 0;
-		
-		while (!(isOil || isPutty)){
+
+		while (!(isOil || isPutty)) {
 			Patch temp = f.patches.get(i);
 			String className = temp.getClass().getSimpleName();
 			// Oil timeout
-			if ((("Oil").equals(className))){
+			if ((("Oil").equals(className))) {
 				((Oil) temp).tick();
 				((Oil) temp).tick();
 				((Oil) temp).tick();
@@ -244,15 +268,15 @@ public class Prototype {
 				((Oil) temp).tick();
 				text.append(f.id + " " + temp.id);
 				isOil = true;
-			// Putty timeout
-			}else if ((("Putty").equals(className))){
+				// Putty timeout
+			} else if ((("Putty").equals(className))) {
 				((Putty) temp).decreaseLife();
 				((Putty) temp).decreaseLife();
 				((Putty) temp).decreaseLife();
 				((Putty) temp).decreaseLife();
 				text.append(f.id + " " + temp.id);
 				isPutty = true;
-			}else
+			} else
 				++i;
 		}
 	}
@@ -260,18 +284,18 @@ public class Prototype {
 	private static void Terminate() {
 		StringBuilder text = new StringBuilder("Terminatd  - ");
 		Robi winner = gamers.get(0);
-		for(Robi r : gamers) {
+		for (Robi r : gamers) {
 			text.append(r.id + " Robot with " + r.getPoints() + ", ");
 			if (r.getPoints() > winner.getPoints()) {
 				winner = r;
 			}
 		}
-		
+
 		text.append(" Winner Robot is: " + winner.id);
-		
+
 		printOut(text.toString());
 	}
-	
+
 	public static void printOut(String text) {
 		if (consoleOutput) {
 			System.out.println(text);
