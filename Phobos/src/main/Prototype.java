@@ -22,6 +22,7 @@ public class Prototype {
 
 	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		printOut("Program is up! Waiting for commands...");
 		while (true) {
 			try {
 				decodeCommand(br.readLine());
