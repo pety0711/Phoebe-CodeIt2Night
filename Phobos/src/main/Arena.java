@@ -170,19 +170,6 @@ public class Arena {
 		this.dim = dim;
 	}
 
-	private void drawLine(int length) {
-		String line = "+";
-		for (int i = 0; i < length * 5; i++) {
-			line += "-";
-		}
-		line += "+";
-		Prototype.printOut(line);
-	}
-
-	private void writeDataLine(String[] data) {
-
-	}
-
 	private void createFields(String[] row) {
 		// drawLine(row.length);
 		List<String> data = new ArrayList<String>();
