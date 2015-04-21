@@ -206,6 +206,7 @@ public class Prototype {
 			}
 		}
 		if (r1 && r2) {
+			Field f = arena.getFieldById("s0");
 			switch (type) {
 			case "-0":
 				CoordVector c = R1.getField().getCoord()
@@ -213,16 +214,31 @@ public class Prototype {
 				CoordVector newSpeed = new CoordVector(c.getX(), c.getY());
 				R2.setSpeed(newSpeed);
 				R1.setSpeed(newSpeed);
+				
+				R2.getField().steppedOffYou(R1);
+				f.steppedOnYou(R1);
+				R2.getField().steppedOffYou(R2);
+				f.steppedOnYou(R2);
 				arena.tick();
 				break;
 			case "-1":
 				R2.setSpeed(new CoordVector());
 				R1.setSpeed(R2.getField().getCoord());
+				
+				R2.getField().steppedOffYou(R1);
+				f.steppedOnYou(R1);
+				R2.getField().steppedOffYou(R2);
+				f.steppedOnYou(R2);
 				arena.tick();
 				break;
 			case "-2":
 				R1.setSpeed(new CoordVector());
 				R2.setSpeed(R1.getField().getCoord());
+				
+				R2.getField().steppedOffYou(R1);
+				f.steppedOnYou(R1);
+				R2.getField().steppedOffYou(R2);
+				f.steppedOnYou(R2);
 				arena.tick();
 				break;
 			default:
