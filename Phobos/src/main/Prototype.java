@@ -33,7 +33,7 @@ public class Prototype {
 	}
 
 	private static void decodeCommand(String line) {
-		line.toLowerCase();
+		line = line.toLowerCase();
 		String[] command = line.split(" ");
 		switch (command[0]) {
 		case "n":
