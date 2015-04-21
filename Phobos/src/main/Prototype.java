@@ -82,7 +82,7 @@ public class Prototype {
 	private static void SetOutput(String c, String path) {
 		if (c.equals("-c")) {
 			consoleOutput = true;
-			fileOutput = true;
+			fileOutput = false;
 			System.out.println("Selected output: " + c + " as Console");
 		} else if (c.equals("-f")) {
 			fileOutput = true;

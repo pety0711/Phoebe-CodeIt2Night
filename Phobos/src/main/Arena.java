@@ -191,6 +191,8 @@ public class Arena {
 				sr.arena = this;
 				fields.add(sr);
 				rr.setField(sr);
+				sr.steppedOnYou(rr);
+				
 
 				data.add(sr.id.toString()+","+rr.id);
 				break;
