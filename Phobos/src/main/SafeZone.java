@@ -136,7 +136,6 @@ public class SafeZone extends Field {
 				avgX += robots.get(i).getSpeed().getX();
 			}
 			avgX /= robots.size();
-			//
 			
 			int avgY = 0;
 			for (int i = 0; i < robots.size(); i++) {
