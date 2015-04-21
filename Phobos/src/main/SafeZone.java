@@ -156,7 +156,7 @@ public class SafeZone extends Field {
 				avgY += robots.get(i).getSpeed().getY();
 			}
 			avgY /= robots.size();
-			/*----------------------------*/
+			/*-----------------------------*/
 
 			if (allTheSameSpeed) {
 				if (numOfRobis > 1) {
