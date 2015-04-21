@@ -112,11 +112,15 @@ public class Robi extends Robot {
 	 */
 	@Override
 	public void tick() {
+		StringBuilder text = new StringBuilder();
+		text.append("Step - " + id + " Robot  -  Start fields: " + field.id 
+				+ " [" + field.getCoord().getX() + "," + field.getCoord().getY() + "] - Target field: ");
 		Field f = field.step(speed, this);
 		field.steppedOffYou(this);
 		setField(f);
 		f.steppedOnYou(this);
-
+		text.append(field.id + " [" + field.getCoord().getX() + "," + field.getCoord().getY() + "]");
+		Prototype.printOut(text.toString());
 	}
 
 	/**
