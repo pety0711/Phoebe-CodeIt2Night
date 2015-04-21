@@ -6,7 +6,6 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * The Class Field.
  *
@@ -14,12 +13,12 @@ import java.util.List;
  */
 public abstract class Field {
 
-	/** The neighbours. Important:
+	/**
+	 * The neighbours. Important:
 	 * 
-	 * neighbours[0] is the neighbour at direction left
-	 * neighbours[1] is the neighbour at direction up
-	 * neighbours[2] is the neighbour at direction right
-	 * neighbours[3] is the neighbour at direction down
+	 * neighbours[0] is the neighbour at direction left neighbours[1] is the
+	 * neighbour at direction up neighbours[2] is the neighbour at direction
+	 * right neighbours[3] is the neighbour at direction down
 	 * 
 	 * */
 	protected List<Field> neighbours;
@@ -39,17 +38,16 @@ public abstract class Field {
 	/** The id. */
 	public String id;
 
+	int nPatches = 0;
+
 	private Boolean haveToAddOil = false;
-	
+
 	private Boolean haveToAddPutty = false;
-	
-	enum direction{
-		up,
-		down,
-		right,
-		left
+
+	enum direction {
+		up, down, right, left
 	};
-	
+
 	/**
 	 * Instantiates a new field.
 	 */
@@ -57,12 +55,13 @@ public abstract class Field {
 		patches = new ArrayList<Patch>();
 		robots = new ArrayList<Robot>();
 	}
-	
+
 	/**
 	 * The method returns with the List of the IDs of Robots on the field
+	 * 
 	 * @return the List of the IDs
 	 */
-	public List<String> getRobotId() {		
+	public List<String> getRobotId() {
 		List<String> temp = new ArrayList<String>();
 		for (int i = 0; i < robots.size(); i++) {
 			temp.add(robots.get(i).id);
@@ -88,8 +87,7 @@ public abstract class Field {
 	 *            the robot that stepped on the Field
 	 */
 	public abstract void steppedOnYou(Robot r);
-	
-	
+
 	public abstract void steppedOffYou(Robot r);
 
 	/**
@@ -100,34 +98,34 @@ public abstract class Field {
 	/**
 	 * Function is called by the Arena, when it's time to add patches
 	 */
-	public void addPatchesNow(){		
-		if(haveToAddPutty){
-			Putty putty = new Putty();
-			//Prototype.printOut("GeneratedPatch -" + putty.id + " - " + putty.getClass().getName() + " [" + coord.getX() + "," + coord.getY() + "]");
+	public void addPatchesNow() {
+		if (haveToAddPutty) {
+			Putty putty = new Putty("P" + nPatches++);
+			Prototype.printOut("GeneratedPatch -"  + putty.id + " Putty - [" + id.toString() + "]");
 			patches.add(putty);
 			arena.registerPatchCoord(coord);
 			haveToAddPutty = false;
 		}
-		if(haveToAddOil){
-			Oil oil = new Oil();
-			//Prototype.printOut("GeneratedPatch -" + oil.id + " - " + oil.getClass().getName() + " [" + coord.getX() + "," + coord.getY() + "]");
+		if (haveToAddOil) {
+			Oil oil = new Oil("O" + nPatches++);
+			Prototype.printOut("GeneratedPatch -"  + oil.id + " Putty - [" + id.toString() + "]");
 			patches.add(oil);
 			arena.registerPatchCoord(coord);
 			haveToAddOil = false;
 		}
 	}
-	
+
 	/**
 	 * Function is called by Robots when they want to add a Putty
 	 */
-	public void addPutty() {			
+	public void addPutty() {
 		haveToAddPutty = true;
 	}
 
 	/**
 	 * Function is called by Robots when they want to add an Oil
 	 */
-	public void addOil() {				
+	public void addOil() {
 		haveToAddOil = true;
 	}
 
@@ -136,7 +134,7 @@ public abstract class Field {
 	 *
 	 * @return the List of neighbours.
 	 */
-	public List<Field> getNeighbours() {	
+	public List<Field> getNeighbours() {
 		return neighbours;
 	}
 
@@ -146,24 +144,35 @@ public abstract class Field {
 	 * @param fields
 	 *            the new neighbours
 	 */
-	public void setNeighbours(List<Field> fields) {		
+	public void setNeighbours(List<Field> fields) {
 		neighbours = fields;
 	}
 
 	/**
 	 * Tells the direction from the coordinates
-	 * @param coord - the coordinates that describes the direction
-	 * @return the direction translated from the coord parameter, if unknown return with null
+	 * 
+	 * @param coord
+	 *            - the coordinates that describes the direction
+	 * @return the direction translated from the coord parameter, if unknown
+	 *         return with null
 	 */
 	@SuppressWarnings("unused")
-	private direction getDirection(CoordVector coord){		
-		if(coord == new CoordVector( 1, 0)){return direction.right;}
-		if(coord == new CoordVector(-1, 0)){return direction.left;}
-		if(coord == new CoordVector( 0, 1)){return direction.up;}
-		if(coord == new CoordVector( 0,-1)){return direction.down;}
+	private direction getDirection(CoordVector coord) {
+		if (coord == new CoordVector(1, 0)) {
+			return direction.right;
+		}
+		if (coord == new CoordVector(-1, 0)) {
+			return direction.left;
+		}
+		if (coord == new CoordVector(0, 1)) {
+			return direction.up;
+		}
+		if (coord == new CoordVector(0, -1)) {
+			return direction.down;
+		}
 		return null;
 	}
-	
+
 	/**
 	 * Gets the neighbour.
 	 *
@@ -171,46 +180,44 @@ public abstract class Field {
 	 *            the direction
 	 * @return the neighbour
 	 */
-	public Field getNeighbour(direction dir){		
+	public Field getNeighbour(direction dir) {
 		Field temp = null;
 		switch (dir) {
 		case left:
-			temp=neighbours.get(0);
+			temp = neighbours.get(0);
 			break;
 		case up:
-			temp=neighbours.get(1);
+			temp = neighbours.get(1);
 			break;
 		case right:
-			temp=neighbours.get(2);
+			temp = neighbours.get(2);
 			break;
 		case down:
-			temp=neighbours.get(3);
+			temp = neighbours.get(3);
 			break;
 
 		default:
 			return null;
 		}
-		
+
 		return temp;
 	}
 
-	public ArrayList<Patch> getPatches() {			
+	public ArrayList<Patch> getPatches() {
 		return patches;
 	}
-	
 
-	public void setPatches(ArrayList<Patch> patches) {		
+	public void setPatches(ArrayList<Patch> patches) {
 		this.patches = patches;
 	}
 
-	
 	/**
 	 * Sets the coord.
 	 *
 	 * @param c
 	 *            the new coord
 	 */
-	public void setCoord(CoordVector coord) {		
+	public void setCoord(CoordVector coord) {
 		this.coord = coord;
 	}
 
@@ -219,9 +226,8 @@ public abstract class Field {
 	 *
 	 * @return the coord
 	 */
-	public CoordVector getCoord() {		
+	public CoordVector getCoord() {
 		return coord;
 	}
 
-	
 }
