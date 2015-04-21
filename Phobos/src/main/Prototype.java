@@ -166,7 +166,8 @@ public class Prototype {
 	}
 
 	private static void Step() {
-		arena.tick();	
+		arena.tick();
+		Prototype.drawMap(arena);
 	}
 	
 	private static void Step(String id) {
