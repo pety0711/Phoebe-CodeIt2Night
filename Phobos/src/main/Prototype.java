@@ -144,7 +144,7 @@ public class Prototype {
 		 */
 		if (!gamers.isEmpty()) {
 			for (Robi r : gamers) {
-				if (r.id == id) {
+				if (r.id.equals(id)) {
 					r.setSpeed(new CoordVector(Integer.parseInt(x), Integer
 							.parseInt(y)));
 				}
