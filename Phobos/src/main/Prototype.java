@@ -128,6 +128,9 @@ public class Prototype {
 				} else if (type.equals("-o")) {
 					r.putOil();
 				}
+				if("SafeZone".equals(r.getField().getClass().getName())) {
+					((SafeZone) r.getField()).addPatchesNow();
+				}
 				break;
 			}
 		}
