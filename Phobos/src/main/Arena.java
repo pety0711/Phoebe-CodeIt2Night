@@ -6,10 +6,10 @@ import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 // TODO: Auto-generated Javadoc
@@ -138,10 +138,14 @@ public class Arena {
 //				createFields(row);
 				tempFields.add(row);
 			}
-			for (int i = 0; i < tempFields.size() + 1; i++) {
-				createFields(tempFields.get(tempFields.size() - 1));
-				tempFields.remove(tempFields.size() - 1);
+			Collections.reverse(tempFields);
+			for (String[] str : tempFields) {
+				createFields(str);
 			}
+//			for (int i = 0; i < tempFields.size() + 1; i++) {
+//				createFields(tempFields.get(tempFields.size() - 1));
+//				tempFields.remove(tempFields.size() - 1);
+//			}
 
 			dim = new CoordVector(coord_dim_x, coord_dim_y);
 
@@ -258,8 +262,10 @@ public class Arena {
 
 	private void setNeighbourhood() {
 		for (int i = 0; i < fields.size(); i++) {
-			int y = dim.getY() - (int) Math.floor(i / dim.getX()) - 1;
+			int y = (int) Math.floor(i / dim.getX());
 			int x = i % dim.getX();
+//			int y = dim.getY() - (int) Math.floor(i / dim.getX()) - 1;
+//			int x = i % dim.getX();
 
 			fields.get(i).setCoord(new CoordVector(x, y));
 

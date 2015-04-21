@@ -132,7 +132,7 @@ public class CleanerMaster extends Robot {
 	 */
 	private void getNextField() {
 
-		ArrayList<CoordVector> n = null;
+		ArrayList<CoordVector> n = new ArrayList<CoordVector>();
 
 		// Listába tesszük a szomszédok koordinátáit
 		for (int i = 0; i < field.neighbours.size(); i++) {
