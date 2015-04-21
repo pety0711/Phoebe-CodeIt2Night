@@ -143,7 +143,7 @@ public class SafeZone extends Field {
 				infoToPrint += robots.get(i).getSpeed().getY();
 				infoToPrint += "] - ";
 
-				if ("Robi".equals(robots.getClass().getName())) {
+				if ("Robi".equals(robots.get(i).getClass().getName())) {
 					numOfRobis++;
 				}
 				if (fastest.getIntSpeed() != robots.get(i).getIntSpeed()) {

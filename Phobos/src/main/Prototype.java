@@ -57,16 +57,17 @@ public class Prototype {
 			break;
 		case "step":
 			switch (command.length) {
-			case 0:
+			case 1:
 				Step();
 				break;
-			case 1:
+			case 2:
 				Step(command[1]);
 				break;
 			default:
 				Step(command[1], command[2]);
 				break;
 			}
+			break;
 		case "collide":
 			Collide(command[1], command[2], command[3]);
 			break;
