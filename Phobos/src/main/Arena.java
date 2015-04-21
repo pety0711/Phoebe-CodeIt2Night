@@ -404,10 +404,10 @@ public class Arena {
 			gamers.get(key).tick();
 		}
 		
-		/*keys = cleaners.keySet();
+		keys = cleaners.keySet();
 		for (String key : keys) {
 			cleaners.get(key).tick();
-		}*/
+		}
 		
 		//ütközés vizsgálat
 		keys = gamers.keySet();
