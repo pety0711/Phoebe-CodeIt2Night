@@ -395,7 +395,7 @@ public class Arena {
 
 		// foltok törlése
 		for (Field f : fields) {
-			if (("SafeZone").equals(f.getClass().getName())) {
+			if (("SafeZone").equals(f.getClass().getSimpleName())) {
 				if((((SafeZone)f).checkPatch()))
 					patchesCoords.remove(f.getCoord());
 					

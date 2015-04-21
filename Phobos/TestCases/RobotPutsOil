@@ -1,0 +1,3 @@
+NewGame map.csv
+PutPatch r0 -o
+Terminate
