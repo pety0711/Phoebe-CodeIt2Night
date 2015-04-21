@@ -72,8 +72,8 @@ public class CoordVector {
 	 * @param dimension the dimension
 	 * @return the coordof dim
 	 */
-	public int getCoordofDim(int dimension){
-		return points[dimension-1];
+	public int getCoordofDim(int dim){
+		return points[dim];
 	}
 	
 	 /* (non-Javadoc)
