@@ -33,36 +33,40 @@ public class Prototype {
 	}
 
 	private static void decodeCommand(String line) {
+		line.toLowerCase();
 		String[] command = line.split(" ");
 		switch (command[0]) {
-		case "NewGame":
+		case "n":
+			newGame("map.csv");
+			break;
+		case "newgame":
 			newGame(command[1]);
 			break;
-		case "SetOutput":
+		case "setoutput":
 			SetOutput(command[1], command[2]);
 			break;
-		case "ReadTest":
+		case "readtest":
 			ReadTest(command[1]);
 			break;
-		case "PutPatch":
+		case "putpatch":
 			PutPatch(command[1], command[2]);
 			break;
-		case "SetSpeed":
+		case "setspeed":
 			SetSpeed(command[1], command[2], command[3]);
 			break;
-		case "Step":
+		case "step":
 			if (command.length <= 2)
 				Step(command[1]);
 			else
 				Step(command[1], command[2]);
 			break;
-		case "Collide":
+		case "collide":
 			Collide(command[1], command[2], command[3]);
 			break;
-		case "Timeout":
+		case "timeout":
 			Timeout(command[1]);
 			break;
-		case "Terminate":
+		case "terminate":
 			Terminate();
 			break;
 		default:
