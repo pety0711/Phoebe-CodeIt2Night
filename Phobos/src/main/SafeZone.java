@@ -91,7 +91,7 @@ public class SafeZone extends Field {
 	 */
 	@Override
 	public void steppedOffYou(Robot r) {
-		if (robots.contains(r)) {
+		while (robots.contains(r)) {
 			robots.remove(r);
 		}
 	}

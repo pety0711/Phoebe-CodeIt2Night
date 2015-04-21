@@ -409,12 +409,14 @@ public class Arena {
 		// robotok léptetése
 		keys = gamers.keySet();
 		for (String key : keys) {
-			gamers.get(key).tick();
+			if (gamers.get(key).isItAlive)
+				gamers.get(key).tick();
 		}
 
 		keys = cleaners.keySet();
 		for (String key : keys) {
-			cleaners.get(key).tick();
+			if (cleaners.get(key).isItAlive)
+				cleaners.get(key).tick();
 		}
 
 		// ütközés vizsgálat
