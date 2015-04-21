@@ -46,7 +46,9 @@ public abstract class Robot {
 	public Robot(Arena a) {
 		this.id = "Robot" + new Random(22222222).toString();
 		isItAlive = true;
+		canChangeSpeed = true;
 		arena = a;
+		canChangeSpeed = true;
 
 		speed = new CoordVector();
 	}
@@ -62,7 +64,9 @@ public abstract class Robot {
 	public Robot(String id, Arena a) {
 		this.id = id;
 		isItAlive = true;
+		canChangeSpeed = true;
 		arena = a;
+		canChangeSpeed = true;
 
 		speed = new CoordVector();
 	}
@@ -136,10 +140,14 @@ public abstract class Robot {
 	 *            the new speed
 	 */
 	public void setSpeed(CoordVector s) {
-		String infoToPrint = "SpeedChanged - " + this.id + " " + this.getClass().getSimpleName() + " - Old speed: [" +
-	this.speed.getX() + ", " + this.speed.getY() + "]";
-		if (canChangeSpeed)			
+		String infoToPrint = "SpeedChanged - " + this.id + " " + this.getClass().getSimpleName() + " - Old speed: [" + this.speed.getX() + ", " + this.speed.getY() + "]";
+		
+		if (canChangeSpeed)	
+		{
+			System.out.println("change");
 			this.speed = s;
+		}
+		
 		infoToPrint += " New Speed: [" + this.speed.getX() + ", " + this.speed.getY() + "]";
 		Prototype.printOut(infoToPrint);
 	}

@@ -109,10 +109,10 @@ public class SafeZone extends Field {
 		}
 
 		for (int i = 0; i < Math.abs(speed.getX()); i++) {
-			temp.getNeighbour(tempDirX);
+			temp = temp.getNeighbour(tempDirX);
 		}
 		for (int i = 0; i < Math.abs(speed.getY()); i++) {
-			temp.getNeighbour(tempDirY);
+			temp = temp.getNeighbour(tempDirY);
 		}
 		return temp;
 	}
