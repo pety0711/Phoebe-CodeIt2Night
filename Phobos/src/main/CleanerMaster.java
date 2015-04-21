@@ -76,7 +76,7 @@ public class CleanerMaster extends Robot {
 
 		// Legkisebb lépésszám és az ahhoz tartozó targetelem koordinátái
 		int minDist = 0;
-		CoordVector t = null;
+		CoordVector t = new CoordVector();
 
 		for (int i = 0; i < targetList.size(); i++) {
 			// Az aktuális távolságot kinullázzuk, egy temp-be tesszük az
@@ -112,9 +112,11 @@ public class CleanerMaster extends Robot {
 	private void getTarget() {
 
 		ArrayList<CoordVector> pc = arena.getPatchesCoords();
-		CoordVector cleanerMasterCoord = this.field.getCoord();
 
-		target = getMinDist(pc, cleanerMasterCoord);
+		if( pc.size() > 0){
+			CoordVector cleanerMasterCoord = this.field.getCoord();
+			target = getMinDist(pc, cleanerMasterCoord);
+			getNextField();}
 
 	}
 
@@ -170,7 +172,7 @@ public class CleanerMaster extends Robot {
 	@Override
 	public void tick() {
 		getTarget();
-		getNextField();
+		//getNextField();
 
 		Field f = field.step(speed, this);
 		field.steppedOffYou(this);
