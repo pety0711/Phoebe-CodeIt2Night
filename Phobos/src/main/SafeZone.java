@@ -56,18 +56,21 @@ public class SafeZone extends Field {
 	 * The method calls the tick() functions of all the oil patches that are on
 	 * the field.
 	 */
-	public void checkPatch() {
+	public Boolean checkPatch() {
 		String infoToPrint = "";
+		Boolean temp = false;
 		
 		infoToPrint += "Object Destroyed";
 		for (Patch patch : patches) {
 			if (patch.isitremovable()) {
 				infoToPrint += patch.id;
 				patches.remove(patch);
+				temp = true;
 			}
 		}
 		infoToPrint += " - timeOut";
 		Prototype.printOut(infoToPrint);
+		return temp;
 	}
 
 	/**
