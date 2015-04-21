@@ -398,9 +398,11 @@ public class Arena {
 					for (Patch patch : f.patches) {
 						if (("Oil").equals(patch.getClass().getSimpleName())) {
 							((Oil)patch).tick();
+						}
 					}
 			}
 		}
+			
 
 		// foltok lerakása
 		for (Field f : fields) {
