@@ -6,10 +6,10 @@ import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 // TODO: Auto-generated Javadoc
@@ -135,12 +135,12 @@ public class Arena {
 				if (coord_dim_x == 0) {
 					coord_dim_x = row.length;
 				}
-//				createFields(row);
+
 				tempFields.add(row);
 			}
-			for (int i = 0; i < tempFields.size() + 1; i++) {
-				createFields(tempFields.get(tempFields.size() - 1));
-				tempFields.remove(tempFields.size() - 1);
+			Collections.reverse(tempFields);
+			for (String[] str : tempFields) {
+				createFields(str);
 			}
 
 			dim = new CoordVector(coord_dim_x, coord_dim_y);
@@ -216,6 +216,7 @@ public class Arena {
 				sk.arena = this;
 				fields.add(sk);
 				cm.setField(sk);
+				sk.steppedOnYou(cm);
 
 				data.add(sk.id.toString() + "," + cm.id);
 				break;
