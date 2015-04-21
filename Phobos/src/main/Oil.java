@@ -33,8 +33,10 @@ public class Oil extends Patch{
 	public void tick() {
 		if(fix!=true){
 			lifeTime--;
-			if(lifeTime<=0)
+			if(lifeTime<=0){
 				alive=0;
+				Prototype.printOut("Timeout " + id);
+			}
 		}
 	}
 	@Override

@@ -144,7 +144,6 @@ public abstract class Robot {
 		
 		if (canChangeSpeed)	
 		{
-			System.out.println("change");
 			this.speed = s;
 		}
 		

@@ -34,8 +34,10 @@ public class Putty extends Patch {
 	public void decreaseLife() {
 		if(fix!=true){
 			lifeTime--;
-			if(lifeTime<=0)
+			if(lifeTime<=0){
 				alive=0;
+				Prototype.printOut("Timeout " + id);
+			}
 		}
 	}
 	@Override

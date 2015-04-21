@@ -78,6 +78,7 @@ public class SafeZone extends Field {
 		robots.add(r);
 		for (Patch patch : patches) {
 			patch.doEffect(r);
+			checkPatch();
 		}
 	}
 
