@@ -52,7 +52,7 @@ public class SafeZone extends Field {
 	/**
 	 * The method calls the tick() functions of all the oil patches that are on the field.
 	 */
-	public void TickPatches(){
+	public void removePatch(){
 		for (int i = 0; i < patches.size(); i++) {
 			if((("Oil").equals(patches.get(i)))){
 				((Oil)patches.get(i)).tick();
