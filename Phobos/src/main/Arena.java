@@ -160,16 +160,14 @@ public class Arena {
 				try {
 					bf.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// 
 				}
 			}
 			if(mapFile!=null){
 				try {
 					bf.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					// 
 				}
 			}
 		}
