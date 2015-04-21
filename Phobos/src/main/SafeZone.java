@@ -42,6 +42,9 @@ public class SafeZone extends Field {
 	 */
 	public Boolean haveToCleanPatch() {
 		if (haveToClean) {
+			for (Patch patch : patches) {
+				Prototype.printOut("ObjectDestroyed " + patch.id + "CleanerMaster cleaned it");
+			}
 			patches.clear();
 			haveToClean = false;
 			return true;
@@ -54,11 +57,17 @@ public class SafeZone extends Field {
 	 * the field.
 	 */
 	public void checkPatch() {
+		String infoToPrint = "";
+		
+		infoToPrint += "Object Destroyed";
 		for (Patch patch : patches) {
 			if (patch.isitremovable()) {
+				infoToPrint += patch.id;
 				patches.remove(patch);
 			}
 		}
+		infoToPrint += " - timeOut";
+		Prototype.printOut(infoToPrint);
 	}
 
 	/**
