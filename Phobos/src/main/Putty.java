@@ -17,6 +17,7 @@ public class Putty extends Patch {
 	public Putty(){
 		lifeTime=4;
 		id = Arena.createID();
+		alive=1;
 	}
 	
 	/**
@@ -27,11 +28,14 @@ public class Putty extends Patch {
 	public Putty(String id){
 		this.id = id;
 		lifeTime=4;
+		alive=1;
 	}
 
 	public void decreaseLife() {
 		if(fix!=true){
 			lifeTime--;
+			if(lifeTime<=0)
+				alive=0;
 		}
 	}
 	@Override

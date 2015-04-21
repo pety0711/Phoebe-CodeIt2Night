@@ -17,6 +17,7 @@ public class Oil extends Patch{
 	public Oil(){
 		id = Arena.createID();
 		lifeTime=5;  
+		alive=1;
 	}
 	/**
 	 * Instantiates a new oil.
@@ -26,11 +27,14 @@ public class Oil extends Patch{
 	public Oil(String id){
 		lifeTime=5; 
 		this.id = id;
+		alive=1;
 	}
 
 	public void tick() {
 		if(fix!=true){
 			lifeTime--;
+			if(lifeTime<=0)
+				alive=0;
 		}
 	}
 	@Override

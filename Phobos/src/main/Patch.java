@@ -19,9 +19,16 @@ public abstract class Patch {
 	/** The fix. */
 	protected boolean fix;
 	
+	public int alive;
+	
 	public abstract void doEffect(Robot r);
 	
 	public void setFix() {
 		fix = true;
 	}
+	public boolean isitremovable(){
+		return (lifeTime==0);
+			
+	}
+	
 }
