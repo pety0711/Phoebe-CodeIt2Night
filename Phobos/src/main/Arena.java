@@ -268,13 +268,20 @@ public class Arena {
 			fields.get(i).setCoord(new CoordVector(x, y));
 
 			ArrayList<Field> neighbours = new ArrayList<Field>();
-			Field up = new DangerZone("edge");
-			// upper neighbour
-			if (i >= dim.getX()) {
-				up = fields.get(i - dim.getX());
-			}
+			// left neighbour
 
-			neighbours.add(up);
+			Field le = new DangerZone("edge");
+			if (i % dim.getX() > 0) {
+				le = fields.get(i - 1);
+			}
+			neighbours.add(le);
+			
+			Field up = new DangerZone("edge");
+			// upper neighupur
+			if (i <= fields.size() - 1 - dim.getX()) {
+				up = fields.get(i + dim.getX());
+			}
+			neighbours.add(up);	
 
 			Field ri = new DangerZone("edge");
 			// right neighbour
@@ -282,20 +289,13 @@ public class Arena {
 				ri = fields.get(i + 1);
 			}
 			neighbours.add(ri);
-
-			Field bo = new DangerZone("edge");
+			
 			// bottom neighbour
-			if (i <= fields.size() - 1 - dim.getX()) {
-				bo = fields.get(i + dim.getX());
+			Field bo = new DangerZone("edge");
+			if (i >= dim.getX()) {
+				bo = fields.get(i - dim.getX());
 			}
 			neighbours.add(bo);
-
-			Field le = new DangerZone("edge");
-			// left neighbour
-			if (i % dim.getX() > 0) {
-				le = fields.get(i - 1);
-			}
-			neighbours.add(le);
 
 			fields.get(i).setNeighbours(neighbours);
 		}
