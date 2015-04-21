@@ -215,6 +215,7 @@ public class Prototype {
 				R2.setSpeed(newSpeed);
 				R1.setSpeed(newSpeed);
 				
+				// Robotokat leléptetjük az eredeti helyükrõl, ráléptetjük pl az S0-ra és a field-jüket is s0-ra állítjuk.
 				R1.getField().steppedOffYou(R1);
 				f.steppedOnYou(R1);
 				R2.getField().steppedOffYou(R2);
