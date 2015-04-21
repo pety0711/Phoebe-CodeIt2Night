@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -117,9 +118,11 @@ public class Arena {
 	 *            the size
 	 */
 	public void generateFields() {
+		FileReader mapFile = null;
+		BufferedReader bf = null;
 		try {
-			FileReader mapFile = new FileReader(mapFilePath);
-			BufferedReader bf = new BufferedReader(mapFile);
+			mapFile = new FileReader(mapFilePath);
+			bf = new BufferedReader(mapFile);
 
 			int coord_dim_x = 0;
 			int coord_dim_y = 0;
@@ -151,6 +154,24 @@ public class Arena {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		finally{
+			if(bf!=null){
+				try {
+					bf.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(mapFile!=null){
+				try {
+					bf.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
