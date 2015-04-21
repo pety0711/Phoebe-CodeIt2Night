@@ -56,6 +56,8 @@ public class SafeZone extends Field {
 		for (int i = 0; i < patches.size(); i++) {
 			if((("Oil").equals(patches.get(i)))){
 				((Oil)patches.get(i)).tick();
+				 if(((Oil)patches.get(i)).lifeTime<=0)
+					 patches.remove(i);
 			}
 		}
 	}
@@ -68,6 +70,12 @@ public class SafeZone extends Field {
 		robots.add(r);
 		for (Patch patch : patches) {
 			patch.doEffect(r);
+		}
+		for (int i = 0; i < patches.size(); i++) {
+				if((("Putty").equals(patches.get(i)))){
+					 if(((Putty)patches.get(i)).lifeTime<=0)
+							 patches.remove(i);
+				}
 		}
 	}
 
