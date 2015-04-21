@@ -1,9 +1,6 @@
 package main;
 
-import java.awt.BufferCapabilities;
 import java.io.BufferedReader;
-import java.io.Console;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,12 +15,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * The Class Arena.
  */
 public class Arena {
-
-	/** The Constant robot0StartField. */
-	public static final int robot0StartField = 5;
-
-	/** The Constant robot1StartField. */
-	public static final int robot1StartField = 6;
 
 	/** The arena id. */
 	private String arenaID;
@@ -44,9 +35,6 @@ public class Arena {
 
 	private String mapFilePath;
 
-	/** Number of Robots. */
-	private int noRobots = 2;
-
 	private int sCounter = 0;
 	private int dCounter = 0;
 	private int rCounter = 0;
@@ -65,7 +53,7 @@ public class Arena {
 	 *            the id
 	 */
 	public Arena(String id, String path) {
-		arenaID = id;
+		this.arenaID = id;
 		mapFilePath = path;
 		Initialize();
 	}
@@ -74,6 +62,7 @@ public class Arena {
 	 * Instantiates a new arena.
 	 */
 	public Arena(String path) {
+		this.arenaID = "arena"+createID();
 		arenaID = "arena";
 		mapFilePath = path;
 		Initialize();
@@ -407,7 +396,9 @@ public class Arena {
 		// foltok törlése
 		for (Field f : fields) {
 			if (("SafeZone").equals(f.getClass().getName())) {
-				((SafeZone)f).checkPatch();
+				if((((SafeZone)f).checkPatch()))
+					patchesCoords.remove(f.getCoord());
+					
 				boolean cleaned = ((SafeZone) f).haveToCleanPatch();
 				if (cleaned) {
 					patchesCoords.remove(f.getCoord());
