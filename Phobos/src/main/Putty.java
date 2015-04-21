@@ -16,7 +16,7 @@ public class Putty extends Patch {
 
 	public Putty(){
 		lifeTime=4;
-		id = Arena.createID();
+		id = "p" + Arena.createID();
 		alive=1;
 	}
 	
