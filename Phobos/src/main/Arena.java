@@ -191,7 +191,6 @@ public class Arena {
 				ss.arena = this;
 				fields.add(ss);
 
-				data.add(ss.id.toString());
 				break;
 
 			case "r":
@@ -203,7 +202,6 @@ public class Arena {
 				rr.setField(sr);
 				sr.steppedOnYou(rr);
 
-				data.add(sr.id.toString() + "," + rr.id);
 				break;
 
 			case "k":
@@ -215,27 +213,22 @@ public class Arena {
 				cm.setField(sk);
 				sk.steppedOnYou(cm);
 
-				data.add(sk.id.toString() + "," + cm.id);
 				break;
 
 			case "o":
 				SafeZone so = new SafeZone("s" + sCounter++);
 				so.arena = this;
 				so.addOil();
-				so.addPatchesNow();
 				fields.add(so);
 
-				data.add(so.id.toString() + "," + so.patches.get(0).id);
 				break;
 
 			case "p":
 				SafeZone sp = new SafeZone("s" + sCounter++);
 				sp.arena = this;
 				sp.addPutty();
-				sp.addPatchesNow();
 				fields.add(sp);
 
-				data.add(sp.id.toString() + "," + sp.patches.get(0).id);
 				break;
 
 			case "d":
@@ -243,7 +236,6 @@ public class Arena {
 				dd.arena = this;
 				fields.add(dd);
 
-				data.add(dd.id.toString());
 			default:
 				break;
 			}
@@ -294,9 +286,7 @@ public class Arena {
 
 	private void initPatchCoords() {
 		for (Field f : fields) {
-			if (!f.getPatches().isEmpty()) {
-				patchesCoords.add(f.getCoord());
-			}
+			f.addPatchesNow();
 		}
 	}
 
