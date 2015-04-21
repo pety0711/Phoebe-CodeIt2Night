@@ -73,7 +73,7 @@ public class SafeZone extends Field {
 		}
 		for (int i = 0; i < patches.size(); i++) {
 				if((("Putty").equals(patches.get(i)))){
-					if(((Putty)patches.get(i)).lifeTime<=0)
+					 if(((Putty)patches.get(i)).lifeTime<=0)
 							 patches.remove(i);
 				}
 		}
