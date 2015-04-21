@@ -141,9 +141,9 @@ public class Arena {
 			Prototype.drawMap(this);
 			
 			
-			for( Field f : fields){
-				System.out.println(f.neighbours.toString());
-			}
+//			for( Field f : fields){
+//				System.out.println(f.neighbours.toString());
+//			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
