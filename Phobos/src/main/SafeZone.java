@@ -60,16 +60,19 @@ public class SafeZone extends Field {
 		String infoToPrint = "";
 		Boolean temp = false;
 		
-		infoToPrint += "Object Destroyed";
+		
 		for (Patch patch : patches) {
 			if (patch.isitremovable()) {
+				infoToPrint += "Object Destroyed";
 				infoToPrint += patch.id;
+				infoToPrint += " - timeOut";
+				Prototype.printOut(infoToPrint);
 				patches.remove(patch);
 				temp = true;
 			}
 		}
-		infoToPrint += " - timeOut";
-		Prototype.printOut(infoToPrint);
+		
+		
 		return temp;
 	}
 
