@@ -54,7 +54,7 @@ public class SafeZone extends Field {
 	 */
 	public void checkPatch(){
 		for (Patch patch : patches) {
-			if(isItRemoveable()){
+			if(patch.isitremovable()){
 				patches.remove(patch);
 			}
 		}
