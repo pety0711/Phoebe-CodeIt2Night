@@ -111,7 +111,7 @@ public class SafeZone extends Field {
 		if(robots.size()>1){
 			
 			String infoToPrint = "Collide - ";
-			
+			Boolean allTheSameSpeed = true;
 			Robot fastest = robots.get(0);
 			for (int i = 0; i < robots.size(); i++) {
 				
@@ -124,6 +124,7 @@ public class SafeZone extends Field {
 				infoToPrint += robots.get(i).getSpeed().getY();
 				infoToPrint += "] - ";
 				
+				if(fastest.getIntSpeed() != robots.get(i).getIntSpeed()){allTheSameSpeed = false;}
 				if(fastest.getIntSpeed() < robots.get(i).getIntSpeed()){fastest = robots.get(i);}
 			}
 			
