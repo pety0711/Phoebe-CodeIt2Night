@@ -277,7 +277,7 @@ public class Arena {
 			neighbours.add(le);
 			
 			Field up = new DangerZone("edge");
-			// upper neighupur
+			// upper neighbour
 			if (i <= fields.size() - 1 - dim.getX()) {
 				up = fields.get(i + dim.getX());
 			}
@@ -470,11 +470,10 @@ public class Arena {
 	 *            the id
 	 */
 	public void killRobot(String id) {
-		// Skeleton.printLastCalledFunction(arenaID, new String[]
-		// {"id","String"});
-		// Skeleton.printOutINFO(id + " CleanerMaster died.");
-		// if(Skeleton.currentUseCase==Skeleton.UseCaseType.Step_on_a_dangerzone)
-		// Skeleton.drawLine();
+		Set<String> keys = gamers.keySet();
+		for (String key : keys) {
+			gamers.get(key).takeEffect();
+		}
 	}
 
 	/**
