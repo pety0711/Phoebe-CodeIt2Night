@@ -1,9 +1,6 @@
 package main;
 
-import java.awt.BufferCapabilities;
 import java.io.BufferedReader;
-import java.io.Console;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,9 +41,6 @@ public class Arena {
 
 	private String mapFilePath;
 
-	/** Number of Robots. */
-	private int noRobots = 2;
-
 	private int sCounter = 0;
 	private int dCounter = 0;
 	private int rCounter = 0;
@@ -74,6 +68,7 @@ public class Arena {
 	 * Instantiates a new arena.
 	 */
 	public Arena(String path) {
+		this.arenaID = createID();
 		arenaID = "arena";
 		mapFilePath = path;
 		Initialize();
