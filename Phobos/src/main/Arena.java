@@ -357,7 +357,7 @@ public class Arena {
 		// Skeleton.printLastCalledFunction(arenaID, new String[]
 		// {c.toString(), Skeleton.getClassName(c)});
 		//
-		// patchesCoords.add(c);
+		 patchesCoords.add(c);
 	}
 
 	/**
