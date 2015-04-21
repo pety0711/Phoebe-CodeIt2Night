@@ -117,10 +117,12 @@ public class CleanerMaster extends Robot {
 			CoordVector cleanerMasterCoord = this.field.getCoord();
 			target = getMinDist(pc, cleanerMasterCoord);
 			getNextField();}
+		else
+			speed = new CoordVector();
 
 	}
 
-	// Közelítõ megoldás A* útkeresés szerû
+	// A* útkeresés szerû
 	// A szomszédok és a Target koordinátájának különbsége alapján megkapom,
 	// hogy hányat kell lépni a
 	// szomszédtól a Target-ig.
