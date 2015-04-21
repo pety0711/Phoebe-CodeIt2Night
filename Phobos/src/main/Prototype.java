@@ -163,6 +163,7 @@ public class Prototype {
 		}
 
 		arena.tick();
+		Prototype.drawMap(arena);
 	}
 
 	private static void Step(String id, String fieldID) {
@@ -192,7 +193,6 @@ public class Prototype {
 		boolean r1 = false;
 		boolean r2 = false;
 		
-		// Mi van ha kis robotok ütköznek??
 		
 		Robi R1 = null;
 		Robi R2 = null;
@@ -422,6 +422,7 @@ public class Prototype {
 			} else
 				++i;
 		}
+		Prototype.drawMap(arena);
 	}
 
 	private static void Terminate() {
