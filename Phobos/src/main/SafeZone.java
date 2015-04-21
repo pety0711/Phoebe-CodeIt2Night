@@ -188,13 +188,13 @@ public class SafeZone extends Field {
 				}
 			} else {
 				fastest.detectedCollision(new CoordVector(avgX, avgY));
-				infoToPrint += fastest.id + "speed changed ;";
+				infoToPrint += fastest.id + " speed changed -";
 
 				for (int i = 0; i < robots.size(); i++) {
 					if (!robots.get(i).equals(fastest)) {
 
 						infoToPrint += robots.get(i).id
-								+ robots.get(i).getClass().toString() + "died";
+								+ robots.get(i).getClass().getSimpleName() + " died";
 						robots.get(i).killRobot();
 					}
 				}

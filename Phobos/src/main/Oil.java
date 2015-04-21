@@ -30,6 +30,7 @@ public class Oil extends Patch{
 		alive=1;
 	}
 
+	
 	public void tick() {
 		if(fix!=true){
 			lifeTime--;

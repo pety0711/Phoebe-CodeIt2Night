@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Arena.
@@ -377,6 +379,19 @@ public class Arena {
 		for (String key : keys) {
 			gamers.get(key).takeEffect();
 		}
+		
+		
+		//foltok tickelése
+		for (Field f : fields) {
+			if (("SafeZone").equals(f.getClass().getSimpleName())) {
+					for (Patch patch : f.patches) {
+						if (("Oil").equals(patch.getClass().getSimpleName())) {
+							((Oil)patch).tick();
+						}
+					}
+			}
+		}
+			
 
 		// foltok lerakása
 		for (Field f : fields) {
