@@ -39,6 +39,9 @@ public class Prototype {
 		case "n":
 			newGame("map.csv");
 			break;
+		case "m":
+			newGame("newmap.csv");
+			break;
 		case "newgame":
 			newGame(command[1]);
 			break;
@@ -300,32 +303,22 @@ public class Prototype {
 		String coordToDraw = "";
 		String separateLine = "";
 
-		for (Field field : arena.getFields()) {
-			//= hosszú
-			
+		ArrayList<Field> fields = arena.getFields();
+		for (Field field : fields) {
 			idToDraw += "|";
 			idToDraw += writeElement(field.id);
 
 			patchToDraw += "|";
 			if (field.robots.size() > 0) {
 				patchToDraw += writeElement(field.robots.get(field.robots.size() - 1).id);
-				/*patchToDraw += "  ";
-				patchToDraw += field.robots.get(field.robots.size() - 1).id;
-				patchToDraw += "  ";*/
 			}else{
 				if (field.patches.size() > 0) {
-					/*patchToDraw += "  ";
-					patchToDraw += field.patches.get(field.patches.size() - 1).id;
-					patchToDraw += "  ";*/
 					patchToDraw += writeElement(field.patches.get(field.patches.size() - 1).id);
 					
-				} else {/*
-					patchToDraw += "  -  ";*/
+				} else {
 					patchToDraw += writeElement("-");
 				}
 			}
-			/*patchToDraw += " ";*/
-			
 			//Negatív koordinátákra is felkészítve
 			int x = field.coord.getX();
 			int y = field.coord.getY();
@@ -370,13 +363,15 @@ public class Prototype {
 			}
 		}
 		separateLine += "+";
+		
 		for (int i = 0; i < arena.getDim().getX() * 8 - 1; i++) {
 			separateLine += "-";
 		}
 		separateLine += "+";
 
 		printOut(separateLine);
-		for (int i = 0; i < mapToDraw.size() + 1; i++) {
+		//mapToDraw size +2
+		for (int i = 0; i < mapToDraw.size() + 2; i++) {
 			printOut(mapToDraw.get(mapToDraw.size() - 3));
 			printOut(mapToDraw.get(mapToDraw.size() - 2));
 			printOut(mapToDraw.get(mapToDraw.size() - 1));
@@ -385,7 +380,6 @@ public class Prototype {
 			mapToDraw.remove(mapToDraw.size() - 1);
 			printOut(separateLine);
 		}
-
 	}
 
 
