@@ -215,30 +215,36 @@ public class Prototype {
 				R2.setSpeed(newSpeed);
 				R1.setSpeed(newSpeed);
 				
-				R2.getField().steppedOffYou(R1);
+				R1.getField().steppedOffYou(R1);
 				f.steppedOnYou(R1);
 				R2.getField().steppedOffYou(R2);
 				f.steppedOnYou(R2);
+				R1.setField(f);
+				R2.setField(f);
 				arena.tick();
 				break;
 			case "-1":
 				R2.setSpeed(new CoordVector());
 				R1.setSpeed(R2.getField().getCoord());
 				
-				R2.getField().steppedOffYou(R1);
+				R1.getField().steppedOffYou(R1);
 				f.steppedOnYou(R1);
 				R2.getField().steppedOffYou(R2);
 				f.steppedOnYou(R2);
+				R1.setField(f);
+				R2.setField(f);
 				arena.tick();
 				break;
 			case "-2":
 				R1.setSpeed(new CoordVector());
 				R2.setSpeed(R1.getField().getCoord());
 				
-				R2.getField().steppedOffYou(R1);
+				R1.getField().steppedOffYou(R1);
 				f.steppedOnYou(R1);
 				R2.getField().steppedOffYou(R2);
 				f.steppedOnYou(R2);
+				R1.setField(f);
+				R2.setField(f);
 				arena.tick();
 				break;
 			default:
