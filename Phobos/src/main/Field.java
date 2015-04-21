@@ -103,14 +103,14 @@ public abstract class Field {
 	public void addPatchesNow(){		
 		if(haveToAddPutty){
 			Putty putty = new Putty();
-			Prototype.printOut("GeneratedPatch -" + putty.id + " - " + putty.getClass().getName() + " [" + coord.getX() + "," + coord.getY() + "]");
+			//Prototype.printOut("GeneratedPatch -" + putty.id + " - " + putty.getClass().getName() + " [" + coord.getX() + "," + coord.getY() + "]");
 			patches.add(putty);
 			arena.registerPatchCoord(coord);
 			haveToAddPutty = false;
 		}
 		if(haveToAddOil){
 			Oil oil = new Oil();
-			Prototype.printOut("GeneratedPatch -" + oil.id + " - " + oil.getClass().getName() + " [" + coord.getX() + "," + coord.getY() + "]");
+			//Prototype.printOut("GeneratedPatch -" + oil.id + " - " + oil.getClass().getName() + " [" + coord.getX() + "," + coord.getY() + "]");
 			patches.add(oil);
 			arena.registerPatchCoord(coord);
 			haveToAddOil = false;
