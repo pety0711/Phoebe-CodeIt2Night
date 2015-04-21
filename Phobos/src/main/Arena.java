@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import Teszt.Field;
-import Teszt.Patch;
+
 
 // TODO: Auto-generated Javadoc
 /**
