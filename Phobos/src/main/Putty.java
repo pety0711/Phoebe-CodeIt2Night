@@ -31,6 +31,11 @@ public class Putty extends Patch {
 		alive=1;
 	}
 
+	/**
+	 * Decreasing the lifeTime
+	 *
+	 * 
+	 */
 	public void decreaseLife() {
 		if(fix!=true){
 			lifeTime--;
@@ -40,6 +45,12 @@ public class Putty extends Patch {
 			}
 		}
 	}
+	
+	/**
+	 * doEffect on robots
+	 *
+	 * 
+	 */
 	@Override
 	public void doEffect(Robot r) {
 		r.takeEffect();
