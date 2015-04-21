@@ -131,11 +131,12 @@ public class Arena {
 
 				if(coord_dim_x == 0) {
 					coord_dim_x = row.length;
-					dim = new CoordVector(coord_dim_x, coord_dim_y);
 				}
 				
 				createFields(row);
 			}
+			dim = new CoordVector(coord_dim_x, coord_dim_y);
+			
 			setNeighbourhood();
 			initPatchCoords();
 			Prototype.drawMap(this);
@@ -247,7 +248,7 @@ public class Arena {
 	
 	private void setNeighbourhood() {
 		for(int i = 0; i < fields.size(); i++) {
-			int y = dim.getY() - (int)Math.floor(i / dim.getX());
+			int y = dim.getY() - (int)Math.floor(i / dim.getX()) - 1;
 			int x = i % dim.getX();
 			
 			fields.get(i).setCoord(new CoordVector(x, y));
