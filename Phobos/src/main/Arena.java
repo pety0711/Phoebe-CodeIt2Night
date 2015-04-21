@@ -389,7 +389,7 @@ public class Arena {
 	}
 
 	/**
-	 * tick
+	 *  tick
 	 */
 	public void tick() {
 
