@@ -113,6 +113,7 @@ public class SafeZone extends Field {
 			String infoToPrint = "Collide - ";
 			Boolean allTheSameSpeed = true;
 			Robot fastest = robots.get(0);
+			int numOfRobis = 0;
 			for (int i = 0; i < robots.size(); i++) {
 				
 				infoToPrint += robots.get(i).id;
@@ -130,7 +131,7 @@ public class SafeZone extends Field {
 			
 			infoToPrint += "Collision: " + id + "[" + coord.getX() + "," + coord.getY() + "]";
 			
-			
+			/* Counting of avg speed  */
 			int avgX = 0;
 			for (int i = 0; i < robots.size(); i++) {
 				avgX += robots.get(i).getSpeed().getX();
@@ -142,8 +143,11 @@ public class SafeZone extends Field {
 				avgY += robots.get(i).getSpeed().getY();
 			}
 			avgY /= robots.size();
+			/*-------------------------*/
 			
-			
+			if(allTheSameSpeed){
+				
+			}
 			fastest.detectedCollision(new CoordVector(avgX, avgY));
 			infoToPrint += fastest.id + "speed changed ;";
 			
