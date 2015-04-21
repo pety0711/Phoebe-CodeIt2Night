@@ -143,7 +143,7 @@ public class SafeZone extends Field {
 				infoToPrint += robots.get(i).getSpeed().getY();
 				infoToPrint += "] - ";
 
-				if ("Robi".equals(robots.get(i).getClass().getName())) {
+				if ("Robi".equals(robots.get(i).getClass().getSimpleName())) {
 					numOfRobis++;
 				}
 				if (fastest.getIntSpeed() != robots.get(i).getIntSpeed()) {
@@ -178,7 +178,7 @@ public class SafeZone extends Field {
 					}
 				} else {
 					for (Robot robot : robots) {
-						if (!"Robi".equals(robot.getClass().getName())) {
+						if (!"Robi".equals(robot.getClass().getSimpleName())) {
 							robot.killRobot();
 						}
 					}
