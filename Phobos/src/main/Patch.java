@@ -27,7 +27,7 @@ public abstract class Patch {
 		fix = true;
 	}
 	public boolean isitremovable(){
-		return (lifeTime==0);
+		return (alive==0);
 			
 	}
 	
