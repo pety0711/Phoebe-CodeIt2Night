@@ -149,9 +149,6 @@ public class Arena {
 			initPatchCoords();
 			Prototype.drawMap(this);
 
-			// for( Field f : fields){
-			// System.out.println(f.neighbours.toString());
-			// }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -258,7 +255,7 @@ public class Arena {
 
 	private void setNeighbourhood() {
 		for (int i = 0; i < fields.size(); i++) {
-			int y = dim.getY() - (int) Math.floor(i / dim.getX()) - 1;
+			int y = (int) Math.floor(i / dim.getX());
 			int x = i % dim.getX();
 
 			fields.get(i).setCoord(new CoordVector(x, y));
