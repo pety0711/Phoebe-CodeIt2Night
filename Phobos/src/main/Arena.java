@@ -16,12 +16,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Arena {
 
-	/** The Constant robot0StartField. */
-	public static final int robot0StartField = 5;
-
-	/** The Constant robot1StartField. */
-	public static final int robot1StartField = 6;
-
 	/** The arena id. */
 	private String arenaID;
 
@@ -59,7 +53,7 @@ public class Arena {
 	 *            the id
 	 */
 	public Arena(String id, String path) {
-		arenaID = id;
+		this.arenaID = id;
 		mapFilePath = path;
 		Initialize();
 	}
@@ -68,7 +62,7 @@ public class Arena {
 	 * Instantiates a new arena.
 	 */
 	public Arena(String path) {
-		this.arenaID = createID();
+		this.arenaID = "arena"+createID();
 		arenaID = "arena";
 		mapFilePath = path;
 		Initialize();
