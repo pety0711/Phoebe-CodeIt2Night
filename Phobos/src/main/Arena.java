@@ -140,6 +140,11 @@ public class Arena {
 			initPatchCoords();
 			Prototype.drawMap(this);
 			
+			//
+			
+/*			for( Field f : fields){
+				System.out.println(f.neighbours.toString());
+			}*/
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -391,10 +396,10 @@ public class Arena {
 			gamers.get(key).tick();
 		}
 		
-		keys = cleaners.keySet();
+		/*keys = cleaners.keySet();
 		for (String key : keys) {
 			cleaners.get(key).tick();
-		}
+		}*/
 		
 		//ütközés vizsgálat
 		keys = gamers.keySet();

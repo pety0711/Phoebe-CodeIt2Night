@@ -177,7 +177,7 @@ public class Prototype {
 		arena.tick();
 	}
 
-	private static void Collide(String r0ID, String r1ID, String type) {
+	private static void Collide(String r1ID, String r2ID, String type) {
 		/*
 		 * Collide <Robot azonosító> <Robot azonosító> <Ütközés típusa> Leírás:
 		 * Két robot ütköztetése elõre megadott ütközési kimenettel Opciók:
@@ -188,15 +188,18 @@ public class Prototype {
 		 */
 		boolean r1 = false;
 		boolean r2 = false;
+		
+		// Mi van ha kis robotok ütköznek??
+		
 		Robi R1 = null;
 		Robi R2 = null;
 		if (!gamers.isEmpty()) {
 			for (Robi r : gamers) {
-				if (r.id == r0ID) {
+				if (r.id.equals(r1ID)) {
 					R1 = r;
 					r1 = true;
 				}
-				if (r.id == r0ID) {
+				if (r.id.equals(r2ID)) {
 					R2 = r;
 					r2 = true;
 				}
@@ -204,7 +207,7 @@ public class Prototype {
 		}
 		if (r1 && r2) {
 			switch (type) {
-			case "0":
+			case "-0":
 				CoordVector c = R1.getField().getCoord()
 						.getDiff(R2.getField().getCoord());
 				CoordVector newSpeed = new CoordVector(c.getX(), c.getY());
@@ -212,12 +215,12 @@ public class Prototype {
 				R1.setSpeed(newSpeed);
 				arena.tick();
 				break;
-			case "1":
+			case "-1":
 				R2.setSpeed(new CoordVector());
 				R1.setSpeed(R2.getField().getCoord());
 				arena.tick();
 				break;
-			case "2":
+			case "-2":
 				R1.setSpeed(new CoordVector());
 				R2.setSpeed(R1.getField().getCoord());
 				arena.tick();
@@ -226,6 +229,8 @@ public class Prototype {
 				break;
 			}
 		}
+		Prototype.drawMap(arena);
+
 	}
 
 	/**
