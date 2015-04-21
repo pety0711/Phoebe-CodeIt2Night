@@ -56,11 +56,17 @@ public class Prototype {
 			SetSpeed(command[1], command[2], command[3]);
 			break;
 		case "step":
-			if (command.length <= 2)
+			switch (command.length) {
+			case 0:
+				Step();
+				break;
+			case 1:
 				Step(command[1]);
-			else
+				break;
+			default:
 				Step(command[1], command[2]);
-			break;
+				break;
+			}
 		case "collide":
 			Collide(command[1], command[2], command[3]);
 			break;
@@ -74,6 +80,8 @@ public class Prototype {
 			break;
 		}
 	}
+
+
 
 	private static void newGame(String path) {
 		arena = new Arena(path);
@@ -156,6 +164,10 @@ public class Prototype {
 		}
 	}
 
+	private static void Step() {
+		arena.tick();	
+	}
+	
 	private static void Step(String id) {
 		for (Robi r : gamers) {
 			if (!r.id.equals(id)) {
