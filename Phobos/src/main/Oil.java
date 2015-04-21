@@ -30,7 +30,9 @@ public class Oil extends Patch{
 		alive=1;
 	}
 
-	
+	/**
+	 * Tick for Oil
+	 */
 	public void tick() {
 		if(fix!=true){
 			lifeTime--;
@@ -40,6 +42,9 @@ public class Oil extends Patch{
 			}
 		}
 	}
+	/**
+	 * Activate effect on robot
+	 */
 	@Override
 	public void doEffect(Robot r) {
 		r.takeEffect();
