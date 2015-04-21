@@ -323,25 +323,16 @@ public class Prototype {
 			int x = field.coord.getX();
 			int y = field.coord.getY();
 			if(x<0&&y<0){
-				coordToDraw += "|[";
-				coordToDraw += field.coord.getX();
-				coordToDraw += ",";
-				coordToDraw += field.coord.getY();
-				coordToDraw += "]";
+				coordToDraw += "|";
+				coordToDraw += writeElement("["+field.coord.getX()+","+field.coord.getY()+"]");
 			}
 			else if(x<0||y<0){
-					coordToDraw += "|[";
-					coordToDraw += field.coord.getX();
-					coordToDraw += ",";
-					coordToDraw += field.coord.getY();
-					coordToDraw += "] ";
+				coordToDraw += "|";
+				coordToDraw += writeElement("["+field.coord.getX()+","+field.coord.getY()+"]");
 			}
 			else{
-				coordToDraw += "| [";
-				coordToDraw += field.coord.getX();
-				coordToDraw += ",";
-				coordToDraw += field.coord.getY();
-				coordToDraw += "] ";
+				coordToDraw += "|";
+				coordToDraw += writeElement("["+field.coord.getX()+","+field.coord.getY()+"]");
 			}
 			
 			rowSize--;
@@ -370,8 +361,7 @@ public class Prototype {
 		separateLine += "+";
 
 		printOut(separateLine);
-		//mapToDraw size +2
-		for (int i = 0; i < mapToDraw.size() + 2; i++) {
+		for (int i = 0; i < arena.getDim().getY(); i++) {
 			printOut(mapToDraw.get(mapToDraw.size() - 3));
 			printOut(mapToDraw.get(mapToDraw.size() - 2));
 			printOut(mapToDraw.get(mapToDraw.size() - 1));
