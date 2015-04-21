@@ -224,25 +224,82 @@ public class Prototype {
 		}
 	}
 
+	/**
+	 * Visualize the map to the conlose created in the parameter.
+	 * 
+	 * @param arena
+	 *            - the method reads the built map from it
+	 */
 	public static void drawMap(Arena arena) {
-		List<String> mapToDraw = new ArrayList<String>();
+		ArrayList<String> mapToDraw = new ArrayList<String>();
 
 		int rowSize = arena.getDim().getX();
-		String rowToDraw = "";
+		String idToDraw = "";
+		String patchToDraw = "";
+		String coordToDraw = "";
+		String separateLine = "";
 
 		for (Field field : arena.getFields()) {
-			rowToDraw += field.id;
-			rowToDraw += "  ";
+
+			idToDraw += "|  ";
+			idToDraw += field.id;
+			idToDraw += "   ";
+
+			patchToDraw += "| ";
+			if (field.robots.size() > 0) {
+				patchToDraw += "  ";
+				patchToDraw += field.robots.get(field.robots.size() - 1).id;
+				patchToDraw += "  ";
+			}else{
+				if (field.patches.size() > 0) {
+					patchToDraw += "  ";
+					patchToDraw += field.patches.get(field.patches.size() - 1).id;
+					patchToDraw += "  ";
+				} else {
+					patchToDraw += "  -  ";
+				}
+			}
+			patchToDraw += " ";
+
+			coordToDraw += "| [";
+			coordToDraw += field.coord.getX();
+			coordToDraw += ",";
+			coordToDraw += field.coord.getY();
+			coordToDraw += "] ";
+
 			rowSize--;
+
 			if (rowSize <= 0) {
-				mapToDraw.add(rowToDraw);
+				idToDraw += "|";
+				coordToDraw += "|";
+				patchToDraw += "|";
+
+				mapToDraw.add(idToDraw);
+				mapToDraw.add(patchToDraw);
+				mapToDraw.add(coordToDraw);
+
+				idToDraw = "";
+				coordToDraw = "";
+				patchToDraw = "";
+
 				rowSize = arena.getDim().getX();
-				rowToDraw = "";
 			}
 		}
-		for (int i = 0; i <= mapToDraw.size() + 1; i++) {
+		separateLine += "+";
+		for (int i = 0; i < arena.getDim().getX() * 8 - 1; i++) {
+			separateLine += "-";
+		}
+		separateLine += "+";
+
+		printOut(separateLine);
+		for (int i = 0; i < mapToDraw.size() + 1; i++) {
+			printOut(mapToDraw.get(mapToDraw.size() - 3));
+			printOut(mapToDraw.get(mapToDraw.size() - 2));
 			printOut(mapToDraw.get(mapToDraw.size() - 1));
+			mapToDraw.remove(mapToDraw.size() - 3);
+			mapToDraw.remove(mapToDraw.size() - 2);
 			mapToDraw.remove(mapToDraw.size() - 1);
+			printOut(separateLine);
 		}
 
 	}
