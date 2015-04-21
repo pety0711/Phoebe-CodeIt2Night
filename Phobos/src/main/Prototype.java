@@ -262,6 +262,32 @@ public class Prototype {
 	 * @param arena
 	 *            - the method reads the built map from it
 	 */
+	private static String genSpaces(int count){
+		String s="";
+		for(int i = 0;i<count;i++){
+			s+=" ";
+		}
+		return s;
+	}
+	private static String writeElement(String id){
+		//7 hosszu
+		String newString = "";
+		int cnt = id.length();
+		int c = 7-cnt;
+		if(c%2==0){
+			newString +=genSpaces(c/2);
+			newString +=id;
+			newString +=genSpaces(c/2);
+		}
+		else{
+			newString +=genSpaces(c/2);
+			newString +=id;
+			newString +=genSpaces(c/2);
+			newString +=" ";
+		}
+		return newString;
+	}
+	
 	public static void drawMap(Arena arena) {
 		ArrayList<String> mapToDraw = new ArrayList<String>();
 
@@ -272,33 +298,56 @@ public class Prototype {
 		String separateLine = "";
 
 		for (Field field : arena.getFields()) {
+			//= hosszú
+			
+			idToDraw += "|";
+			idToDraw += writeElement(field.id);
 
-			idToDraw += "|  ";
-			idToDraw += field.id;
-			idToDraw += "   ";
-
-			patchToDraw += "| ";
+			patchToDraw += "|";
 			if (field.robots.size() > 0) {
-				patchToDraw += "  ";
+				patchToDraw += writeElement(field.robots.get(field.robots.size() - 1).id);
+				/*patchToDraw += "  ";
 				patchToDraw += field.robots.get(field.robots.size() - 1).id;
-				patchToDraw += "  ";
+				patchToDraw += "  ";*/
 			}else{
 				if (field.patches.size() > 0) {
-					patchToDraw += "  ";
+					/*patchToDraw += "  ";
 					patchToDraw += field.patches.get(field.patches.size() - 1).id;
-					patchToDraw += "  ";
-				} else {
-					patchToDraw += "  -  ";
+					patchToDraw += "  ";*/
+					patchToDraw += writeElement(field.patches.get(field.patches.size() - 1).id);
+					
+				} else {/*
+					patchToDraw += "  -  ";*/
+					patchToDraw += writeElement("-");
 				}
 			}
-			patchToDraw += " ";
-
-			coordToDraw += "| [";
-			coordToDraw += field.coord.getX();
-			coordToDraw += ",";
-			coordToDraw += field.coord.getY();
-			coordToDraw += "] ";
-
+			/*patchToDraw += " ";*/
+			
+			//Negatív koordinátákra is felkészítve
+			int x = field.coord.getX();
+			int y = field.coord.getY();
+			if(x<0&&y<0){
+				coordToDraw += "|[";
+				coordToDraw += field.coord.getX();
+				coordToDraw += ",";
+				coordToDraw += field.coord.getY();
+				coordToDraw += "]";
+			}
+			else if(x<0||y<0){
+					coordToDraw += "|[";
+					coordToDraw += field.coord.getX();
+					coordToDraw += ",";
+					coordToDraw += field.coord.getY();
+					coordToDraw += "] ";
+			}
+			else{
+				coordToDraw += "| [";
+				coordToDraw += field.coord.getX();
+				coordToDraw += ",";
+				coordToDraw += field.coord.getY();
+				coordToDraw += "] ";
+			}
+			
 			rowSize--;
 
 			if (rowSize <= 0) {
