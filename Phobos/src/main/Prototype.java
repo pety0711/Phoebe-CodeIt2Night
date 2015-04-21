@@ -273,15 +273,17 @@ public class Prototype {
 		//7 hosszu
 		String newString = "";
 		int cnt = id.length();
-		if(cnt%2==0){
-			newString +=genSpaces(2);
+		int c = 7-cnt;
+		if(c%2==0){
+			newString +=genSpaces(c/2);
 			newString +=id;
-			newString +=genSpaces(3);
+			newString +=genSpaces(c/2);
 		}
 		else{
-			newString +=genSpaces(2);
+			newString +=genSpaces(c/2);
 			newString +=id;
-			newString +=genSpaces(3);
+			newString +=genSpaces(c/2);
+			newString +=" ";
 		}
 		return newString;
 	}
@@ -301,21 +303,25 @@ public class Prototype {
 			idToDraw += "|";
 			idToDraw += writeElement(field.id);
 
-			patchToDraw += "| ";
+			patchToDraw += "|";
 			if (field.robots.size() > 0) {
-				patchToDraw += "  ";
+				patchToDraw += writeElement(field.robots.get(field.robots.size() - 1).id);
+				/*patchToDraw += "  ";
 				patchToDraw += field.robots.get(field.robots.size() - 1).id;
-				patchToDraw += "  ";
+				patchToDraw += "  ";*/
 			}else{
 				if (field.patches.size() > 0) {
-					patchToDraw += "  ";
+					/*patchToDraw += "  ";
 					patchToDraw += field.patches.get(field.patches.size() - 1).id;
-					patchToDraw += "  ";
-				} else {
-					patchToDraw += "  -  ";
+					patchToDraw += "  ";*/
+					patchToDraw += writeElement(field.patches.get(field.patches.size() - 1).id);
+					
+				} else {/*
+					patchToDraw += "  -  ";*/
+					patchToDraw += writeElement("-");
 				}
 			}
-			patchToDraw += " ";
+			/*patchToDraw += " ";*/
 			
 			//Negatív koordinátákra is felkészítve
 			int x = field.coord.getX();
