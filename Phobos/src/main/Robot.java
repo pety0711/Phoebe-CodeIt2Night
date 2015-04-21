@@ -46,6 +46,7 @@ public abstract class Robot {
 	public Robot(Arena a) {
 		this.id = "Robot" + new Random(22222222).toString();
 		isItAlive = true;
+		canChangeSpeed = true;
 		arena = a;
 		canChangeSpeed = true;
 
@@ -63,6 +64,7 @@ public abstract class Robot {
 	public Robot(String id, Arena a) {
 		this.id = id;
 		isItAlive = true;
+		canChangeSpeed = true;
 		arena = a;
 		canChangeSpeed = true;
 
