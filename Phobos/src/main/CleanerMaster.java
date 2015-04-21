@@ -132,7 +132,7 @@ public class CleanerMaster extends Robot {
 	 */
 	private void getNextField() {
 
-		ArrayList<CoordVector> n = null;
+		ArrayList<CoordVector> n = new ArrayList<CoordVector>();
 
 		// Listába tesszük a szomszédok koordinátáit
 		for (int i = 0; i < field.neighbours.size(); i++) {
@@ -152,7 +152,7 @@ public class CleanerMaster extends Robot {
 		// visszaadjuk a CoordVector-át
 		// Erre kell majd lépnie a CleanerMasternek.
 		CoordVector nextField = getMinDist(n, this.target);
-		int[] newSpeed = null;
+		int[] newSpeed = new int[this.field.coord.dimension];
 		for (int j = 0; j < this.field.coord.dimension; j++) {
 			newSpeed[j] = (nextField.getCoordofDim(j) - this.field.coord
 					.getCoordofDim(j));
