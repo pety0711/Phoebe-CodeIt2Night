@@ -50,16 +50,17 @@ public class SafeZone extends Field {
 	}
 
 	/**
-	 * The method calls the tick() functions of all the oil patches that are on the field.
+	 * The method calls the tick() functions of all the oil patches that are on
+	 * the field.
 	 */
-	public void checkPatch(){
+	public void checkPatch() {
 		for (Patch patch : patches) {
-			if(patch.isitremovable()){
+			if (patch.isitremovable()) {
 				patches.remove(patch);
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -90,10 +91,14 @@ public class SafeZone extends Field {
 		direction tempDirX = direction.right;
 		direction tempDirY = direction.up;
 		Field temp = this;
-		
-		if (speed.getX()<0) { tempDirX = direction.left; }
-		if (speed.getY()<0) { tempDirY = direction.down; }
-		
+
+		if (speed.getX() < 0) {
+			tempDirX = direction.left;
+		}
+		if (speed.getY() < 0) {
+			tempDirY = direction.down;
+		}
+
 		for (int i = 0; i < Math.abs(speed.getX()); i++) {
 			temp.getNeighbour(tempDirX);
 		}
@@ -107,15 +112,15 @@ public class SafeZone extends Field {
 	 * @see main.Field#investigateCollision()
 	 */
 	@Override
-	public void investigateCollision(){
-		if(robots.size()>1){
-			
+	public void investigateCollision() {
+		if (robots.size() > 1) {
+
 			String infoToPrint = "Collide - ";
 			Boolean allTheSameSpeed = true;
 			Robot fastest = robots.get(0);
 			int numOfRobis = 0;
 			for (int i = 0; i < robots.size(); i++) {
-				
+
 				infoToPrint += robots.get(i).id;
 				infoToPrint += " ";
 				infoToPrint += robots.get(i).getClass().toString();
@@ -124,39 +129,58 @@ public class SafeZone extends Field {
 				infoToPrint += ",";
 				infoToPrint += robots.get(i).getSpeed().getY();
 				infoToPrint += "] - ";
-				
-				if(fastest.getIntSpeed() != robots.get(i).getIntSpeed()){allTheSameSpeed = false;}
-				if(fastest.getIntSpeed() < robots.get(i).getIntSpeed()){fastest = robots.get(i);}
+
+				if ("Robi".equals(robots.getClass().getName())) {
+					numOfRobis++;
+				}
+				if (fastest.getIntSpeed() != robots.get(i).getIntSpeed()) {
+					allTheSameSpeed = false;
+				}
+				if (fastest.getIntSpeed() < robots.get(i).getIntSpeed()) {
+					fastest = robots.get(i);
+				}
 			}
-			
-			infoToPrint += "Collision: " + id + "[" + coord.getX() + "," + coord.getY() + "]";
-			
-			/* Counting of avg speed  */
+
+			infoToPrint += "Collision: " + id + "[" + coord.getX() + ","
+					+ coord.getY() + "]";
+
+			/* Counting of avg speed */
 			int avgX = 0;
 			for (int i = 0; i < robots.size(); i++) {
 				avgX += robots.get(i).getSpeed().getX();
 			}
 			avgX /= robots.size();
-			
+
 			int avgY = 0;
 			for (int i = 0; i < robots.size(); i++) {
 				avgY += robots.get(i).getSpeed().getY();
 			}
 			avgY /= robots.size();
-			/*----------------------------*/
-			
-			if(allTheSameSpeed){
-				
-			}
-			fastest.detectedCollision(new CoordVector(avgX, avgY));
-			infoToPrint += fastest.id + "speed changed ;";
-			
-			
-			for (int i = 0; i < robots.size(); i++) {
-				if (!robots.get(i).equals(fastest)) {
-					
-					infoToPrint += robots.get(i).id + robots.get(i).getClass().toString() +  "died";
-					robots.get(i).killRobot();
+			/*-----------------------------*/
+
+			if (allTheSameSpeed) {
+				if (numOfRobis > 1) {
+					for (Robot robot : robots) {
+						robot.killRobot();
+					}
+				} else {
+					for (Robot robot : robots) {
+						if (!"Robi".equals(robot.getClass().getName())) {
+							robot.killRobot();
+						}
+					}
+				}
+			} else {
+				fastest.detectedCollision(new CoordVector(avgX, avgY));
+				infoToPrint += fastest.id + "speed changed ;";
+
+				for (int i = 0; i < robots.size(); i++) {
+					if (!robots.get(i).equals(fastest)) {
+
+						infoToPrint += robots.get(i).id
+								+ robots.get(i).getClass().toString() + "died";
+						robots.get(i).killRobot();
+					}
 				}
 			}
 			Prototype.printOut(infoToPrint);
