@@ -1,3 +1,7 @@
 NewGame map.csv
-Collide r0 r1 -0
+SetSpeed r1 0 1
+Step
+SetSpeed r1 0 -1
+SetSpeed r0 0 1
+Step
 Terminate

@@ -1,3 +1,4 @@
 NewGame map.csv
 PutPatch r0 -p
+Step
 Terminate
