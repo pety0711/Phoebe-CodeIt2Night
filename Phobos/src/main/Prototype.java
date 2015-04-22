@@ -538,17 +538,21 @@ public class Prototype {
 		}
 		if (fileOutput) {
 			FileWriter fw = null;
+			BufferedWriter bw = null;
 			try {
 				fw = new FileWriter(new File(filePath), true);
-				BufferedWriter bf = new BufferedWriter(fw);
-				bf.write(text);
-				bf.close();
+				bw = new BufferedWriter(fw);
+				bw.write(text);
+				bw.flush();
+				bw.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {
 				try {
 					if (fw != null)
 						fw.close();
+					if (bw != null)
+						bw.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
