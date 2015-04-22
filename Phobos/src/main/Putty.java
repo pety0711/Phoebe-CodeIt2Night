@@ -55,6 +55,8 @@ public class Putty extends Patch {
 	public void doEffect(Robot r) {
 		if ("Robi".equals(r.getClass().getSimpleName()))
 			((Robi)r).slowDown();
+		else
+			r.takeEffect();
 		this.decreaseLife();
 		
 	}

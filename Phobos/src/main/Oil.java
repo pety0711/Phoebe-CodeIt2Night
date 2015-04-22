@@ -49,5 +49,7 @@ public class Oil extends Patch{
 	public void doEffect(Robot r) {
 		if ("Robi".equals(r.getClass().getSimpleName()))
 			((Robi)r).disableMovement();
+		else
+			r.takeEffect();
 	}
 }
