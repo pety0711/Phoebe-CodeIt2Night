@@ -1,0 +1,6 @@
+NewGame map.csv
+SetSpeed r0 -1 0
+Step
+SetSpeed r0 0 0
+Step
+Terminate
