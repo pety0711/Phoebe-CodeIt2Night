@@ -1,6 +1,7 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -461,13 +462,21 @@ public class Prototype {
 			System.out.println(text);
 		}
 		if (fileOutput) {
-			FileWriter fw;
+			FileWriter fw = null;
 			try {
-				fw = new FileWriter(new File(filePath));
-				fw.append(text);
-				fw.close();
+				fw = new FileWriter(new File(filePath), true);
+				BufferedWriter bf = new BufferedWriter(fw);
+				bf.write(text);
+				bf.close();
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
+				try {
+					if (fw != null)
+						fw.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
