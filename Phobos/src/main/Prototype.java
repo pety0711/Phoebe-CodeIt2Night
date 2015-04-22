@@ -322,15 +322,32 @@ public class Prototype {
 			idToDraw += writeElement(field.id);
 
 			patchToDraw += "|";
-			if (field.robots.size() > 0) {
-				patchToDraw += writeElement(field.robots.get(field.robots.size() - 1).id);
-			}else{
+			if(field.robots.size() > 0 || field.patches.size() > 0){
+				String sn = "";
+				boolean hasRobot = false;
+				for(Robot r : field.robots){
+					sn+=r.id;
+					hasRobot = true;
+					if (field.robots.size()>1){
+						sn+=",";
+					}
+				}/*
+				if (field.robots.size() > 0) {
+					sn+=field.robots.get(field.robots.size() - 1).id;
+					hasRobot = true;
+				}*/
+					//patchToDraw += writeElement(field.robots.get(field.robots.size() - 1).id);
 				if (field.patches.size() > 0) {
-					patchToDraw += writeElement(field.patches.get(field.patches.size() - 1).id);
+					if(hasRobot){
+					sn+=",";
+					}
+					sn+=field.patches.get(field.patches.size() - 1).id;	
 					
-				} else {
-					patchToDraw += writeElement("-");
 				}
+				patchToDraw += writeElement(sn);
+				
+			} else {
+				patchToDraw += writeElement("-");
 			}
 			//Negatív koordinátákra is felkészítve
 			int x = field.coord.getX();
