@@ -537,20 +537,17 @@ public class Prototype {
 			System.out.println(text);
 		}
 		if (fileOutput) {
-			FileWriter fw = null;
 			BufferedWriter bw = null;
 			try {
-				fw = new FileWriter(new File(filePath), true);
-				bw = new BufferedWriter(fw);
+				bw = new BufferedWriter(new FileWriter(filePath, true));
 				bw.write(text);
+				bw.write("\n");
 				bw.flush();
 				bw.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {
 				try {
-					if (fw != null)
-						fw.close();
 					if (bw != null)
 						bw.close();
 				} catch (IOException e) {
