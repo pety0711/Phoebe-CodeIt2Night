@@ -174,17 +174,17 @@ public class SafeZone extends Field {
 
 			if (allTheSameSpeed) {
 				if (numOfRobis > 1) {
-					for (Robot robot : robots) {
-						robot.killRobot();
+					for (int i = 0; i < robots.size(); i++) {
+						robots.get(i).killRobot();
 					}
 				} else {
 					if (numOfRobis == 1) {
-						for (Robot robot : robots) {
+						for (int i = 0; i < robots.size(); i++) {
 							if (!"Robi"
-									.equals(robot.getClass().getSimpleName())) {
-								robot.killRobot();
+									.equals(robots.get(i).getClass().getSimpleName())) {
+								robots.get(i).killRobot();
 							}
-						}
+						}					
 					}
 				}
 			} else {
