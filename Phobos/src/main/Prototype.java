@@ -49,6 +49,9 @@ public class Prototype {
 		case "readtest":
 			ReadTest(command[1]);
 			break;
+		case "runtest":
+			runTest(command[1]);
+			break;
 		case "putpatch":
 			PutPatch(command[1], command[2]);
 			break;
@@ -82,7 +85,62 @@ public class Prototype {
 		}
 	}
 
+	private static void runTest(String string) {
+		switch (string) {
+		case "1":
+			ReadTest("testcases/CleanerMasterCollideWithRobot_CleanerMasterIsFaster");
+			break;
+		case "2":
+			ReadTest("testcases/CleanerMasterStepsOnPatch");
+			break;
+		case "3":
+			ReadTest("testcases/FourStepsOnPutty");
+			break;
+		case "4":
+			ReadTest("testcases/GameTimeout");
+			break;
+		case "5":
+			ReadTest("testcases/NewGameFromFile");
+			break;
+		case "6":
+			ReadTest("testcases/OilTimeout");
+			break;
+		case "7":
+			ReadTest("testcases/RobotCollideWithCleanerMaster_RobotIsFaster");
+			break;
+		case "8":
+			ReadTest("testcases/RobotPutsOil");
+			break;
+		case "9":
+			ReadTest("testcases/RobotPutsPutty");
+			break;
+		case "10":
+			ReadTest("testcases/RobotsCollideWithDifferentSpeed");
+			break;
+		case "11":
+			ReadTest("testcases/RobotsCollideWithSameSpeed");
+			break;
+		case "12":
+			ReadTest("testcases/RobotStepsBySpeed");
+			break;
+		case "13":
+			ReadTest("testcases/RobotStepsOnOil");
+			break;
+		case "14":
+			ReadTest("testcases/RobotStepsOnPutty");
+			break;
+		case "15":
+			ReadTest("testcases/RobotStepsToASpecifiedField");
+			break;
+		case "16":
+			ReadTest("testcases/StepOnDangerZone");
+			break;
+		default:
+			
+			break;
+		}
 
+	}
 
 	private static void newGame(String path) {
 		arena = new Arena(path);
@@ -138,7 +196,7 @@ public class Prototype {
 				} else if (type.equals("-o")) {
 					r.putOil();
 				}
-				if("SafeZone".equals(r.getField().getClass().getName())) {
+				if ("SafeZone".equals(r.getField().getClass().getName())) {
 					((SafeZone) r.getField()).addPatchesNow();
 				}
 				break;
@@ -169,7 +227,7 @@ public class Prototype {
 		arena.tick();
 		Prototype.drawMap(arena);
 	}
-	
+
 	private static void Step(String id) {
 		for (Robi r : gamers) {
 			if (!r.id.equals(id)) {
@@ -208,8 +266,7 @@ public class Prototype {
 		 */
 		boolean r1 = false;
 		boolean r2 = false;
-		
-		
+
 		Robi R1 = null;
 		Robi R2 = null;
 		if (!gamers.isEmpty()) {
@@ -233,8 +290,9 @@ public class Prototype {
 				CoordVector newSpeed = new CoordVector(c.getX(), c.getY());
 				R2.setSpeed(newSpeed);
 				R1.setSpeed(newSpeed);
-				
-				// Robotokat leléptetjük az eredeti helyükrõl, ráléptetjük pl az S0-ra és a field-jüket is s0-ra állítjuk.
+
+				// Robotokat leléptetjük az eredeti helyükrõl, ráléptetjük pl az
+				// S0-ra és a field-jüket is s0-ra állítjuk.
 				R1.getField().steppedOffYou(R1);
 				f.steppedOnYou(R1);
 				R2.getField().steppedOffYou(R2);
@@ -246,7 +304,7 @@ public class Prototype {
 			case "-1":
 				R2.setSpeed(new CoordVector());
 				R1.setSpeed(R2.getField().getCoord());
-				
+
 				R1.getField().steppedOffYou(R1);
 				f.steppedOnYou(R1);
 				R2.getField().steppedOffYou(R2);
@@ -258,7 +316,7 @@ public class Prototype {
 			case "-2":
 				R1.setSpeed(new CoordVector());
 				R2.setSpeed(R1.getField().getCoord());
-				
+
 				R1.getField().steppedOffYou(R1);
 				f.steppedOnYou(R1);
 				R2.getField().steppedOffYou(R2);
@@ -281,32 +339,32 @@ public class Prototype {
 	 * @param arena
 	 *            - the method reads the built map from it
 	 */
-	private static String genSpaces(int count){
-		String s="";
-		for(int i = 0;i<count;i++){
-			s+=" ";
+	private static String genSpaces(int count) {
+		String s = "";
+		for (int i = 0; i < count; i++) {
+			s += " ";
 		}
 		return s;
 	}
-	private static String writeElement(String id){
-		//7 hosszu
+
+	private static String writeElement(String id) {
+		// 7 hosszu
 		String newString = "";
 		int cnt = id.length();
-		int c = 7-cnt;
-		if(c%2==0){
-			newString +=genSpaces(c/2);
-			newString +=id;
-			newString +=genSpaces(c/2);
-		}
-		else{
-			newString +=genSpaces(c/2);
-			newString +=id;
-			newString +=genSpaces(c/2);
-			newString +=" ";
+		int c = 7 - cnt;
+		if (c % 2 == 0) {
+			newString += genSpaces(c / 2);
+			newString += id;
+			newString += genSpaces(c / 2);
+		} else {
+			newString += genSpaces(c / 2);
+			newString += id;
+			newString += genSpaces(c / 2);
+			newString += " ";
 		}
 		return newString;
 	}
-	
+
 	public static void drawMap(Arena arena) {
 		ArrayList<String> mapToDraw = new ArrayList<String>();
 
@@ -322,49 +380,51 @@ public class Prototype {
 			idToDraw += writeElement(field.id);
 
 			patchToDraw += "|";
-			if(field.robots.size() > 0 || field.patches.size() > 0){
+			if (field.robots.size() > 0 || field.patches.size() > 0) {
 				String sn = "";
 				boolean hasRobot = false;
-				for(Robot r : field.robots){
-					sn+=r.id;
+				for (Robot r : field.robots) {
+					sn += r.id;
 					hasRobot = true;
-					if (field.robots.size()>1){
-						sn+=",";
+					if (field.robots.size() > 1) {
+						sn += ",";
 					}
 				}/*
-				if (field.robots.size() > 0) {
-					sn+=field.robots.get(field.robots.size() - 1).id;
-					hasRobot = true;
-				}*/
-					//patchToDraw += writeElement(field.robots.get(field.robots.size() - 1).id);
+				 * if (field.robots.size() > 0) {
+				 * sn+=field.robots.get(field.robots.size() - 1).id; hasRobot =
+				 * true; }
+				 */
+				// patchToDraw +=
+				// writeElement(field.robots.get(field.robots.size() - 1).id);
 				if (field.patches.size() > 0) {
-					if(hasRobot){
-					sn+=",";
+					if (hasRobot) {
+						sn += ",";
 					}
-					sn+=field.patches.get(field.patches.size() - 1).id;	
-					
+					sn += field.patches.get(field.patches.size() - 1).id;
+
 				}
 				patchToDraw += writeElement(sn);
-				
+
 			} else {
 				patchToDraw += writeElement("-");
 			}
-			//Negatív koordinátákra is felkészítve
+			// Negatív koordinátákra is felkészítve
 			int x = field.coord.getX();
 			int y = field.coord.getY();
-			if(x<0&&y<0){
+			if (x < 0 && y < 0) {
 				coordToDraw += "|";
-				coordToDraw += writeElement("["+field.coord.getX()+","+field.coord.getY()+"]");
-			}
-			else if(x<0||y<0){
+				coordToDraw += writeElement("[" + field.coord.getX() + ","
+						+ field.coord.getY() + "]");
+			} else if (x < 0 || y < 0) {
 				coordToDraw += "|";
-				coordToDraw += writeElement("["+field.coord.getX()+","+field.coord.getY()+"]");
-			}
-			else{
+				coordToDraw += writeElement("[" + field.coord.getX() + ","
+						+ field.coord.getY() + "]");
+			} else {
 				coordToDraw += "|";
-				coordToDraw += writeElement("["+field.coord.getX()+","+field.coord.getY()+"]");
+				coordToDraw += writeElement("[" + field.coord.getX() + ","
+						+ field.coord.getY() + "]");
 			}
-			
+
 			rowSize--;
 
 			if (rowSize <= 0) {
@@ -384,7 +444,7 @@ public class Prototype {
 			}
 		}
 		separateLine += "+";
-		
+
 		for (int i = 0; i < arena.getDim().getX() * 8 - 1; i++) {
 			separateLine += "-";
 		}
@@ -401,7 +461,6 @@ public class Prototype {
 			printOut(separateLine);
 		}
 	}
-
 
 	// id: Field ID-ja, amelyen van Oil és Putty is.
 	private static void Timeout(String id) {
