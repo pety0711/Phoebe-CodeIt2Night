@@ -89,51 +89,67 @@ public class Prototype {
 		switch (string) {
 		case "1":
 			ReadTest("testcases/CleanerMasterCollideWithRobot_CleanerMasterIsFaster");
+			Prototype.printOut("test running: CleanerMasterCollideWithRobot_CleanerMasterIsFaster");
 			break;
 		case "2":
 			ReadTest("testcases/CleanerMasterStepsOnPatch");
+			Prototype.printOut("test running: CleanerMasterStepsOnPatch");
 			break;
 		case "3":
 			ReadTest("testcases/FourStepsOnPutty");
+			Prototype.printOut("test running: FourStepsOnPutty");
 			break;
 		case "4":
 			ReadTest("testcases/GameTimeout");
+			Prototype.printOut("test running: GameTimeout");
 			break;
 		case "5":
 			ReadTest("testcases/NewGameFromFile");
+			Prototype.printOut("test running: NewGameFromFile");
 			break;
 		case "6":
 			ReadTest("testcases/OilTimeout");
+			Prototype.printOut("test running: OilTimeout");
 			break;
 		case "7":
 			ReadTest("testcases/RobotCollideWithCleanerMaster_RobotIsFaster");
+			Prototype.printOut("test running: RobotCollideWithCleanerMaster_RobotIsFaster");
 			break;
 		case "8":
 			ReadTest("testcases/RobotPutsOil");
+			Prototype.printOut("test running: RobotPutsOil");
 			break;
 		case "9":
 			ReadTest("testcases/RobotPutsPutty");
+			Prototype.printOut("test running: RobotPutsPutty");
 			break;
 		case "10":
 			ReadTest("testcases/RobotsCollideWithDifferentSpeed");
+			Prototype.printOut("test running: RobotsCollideWithDifferentSpeed");
 			break;
 		case "11":
 			ReadTest("testcases/RobotsCollideWithSameSpeed");
+			Prototype.printOut("test running: RobotsCollideWithSameSpeed");
 			break;
 		case "12":
 			ReadTest("testcases/RobotStepsBySpeed");
+			Prototype.printOut("test running: RobotStepsBySpeed");
 			break;
 		case "13":
 			ReadTest("testcases/RobotStepsOnOil");
+			Prototype.printOut("test running: RobotStepsOnOil");
 			break;
 		case "14":
 			ReadTest("testcases/RobotStepsOnPutty");
+			Prototype.printOut("test running: RobotStepsOnPutty");
 			break;
 		case "15":
 			ReadTest("testcases/RobotStepsToASpecifiedField");
+			Prototype.printOut("test running: RobotStepsToASpecifiedField");
 			break;
 		case "16":
 			ReadTest("testcases/StepOnDangerZone");
+			Prototype.printOut("test running: StepOnDangerZone");
 			break;
 		default:
 			
