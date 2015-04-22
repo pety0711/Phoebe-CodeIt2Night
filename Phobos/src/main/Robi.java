@@ -70,7 +70,7 @@ public class Robi extends Robot {
 	 * Disable movement after stepping on an oil.
 	 */
 	public void disableMovement() {
-		disableEffect = false;
+		disableEffect = true;
 
 	}
 
@@ -78,7 +78,7 @@ public class Robi extends Robot {
 	 * Change the speed to lower after stepping on a putty.
 	 */
 	public void slowDown() {
-		slowDownEffect = false;
+		slowDownEffect = true;
 	}
 
 	/**
@@ -114,10 +114,13 @@ public class Robi extends Robot {
 		text.append("Step - " + id + " Robot  -  Start fields: " + field.id 
 				+ " [" + field.getCoord().getX() + "," + field.getCoord().getY() + "] - Target field: ");
 		
+		
 		Field f = field.step(speed, this);
 		field.steppedOffYou(this);
 		setField(f);
 		f.steppedOnYou(this);
+		
+		canChangeSpeed = true;
 		
 		text.append(field.id + " [" + field.getCoord().getX() + "," + field.getCoord().getY() + "]");
 		Prototype.printOut(text.toString());
@@ -129,7 +132,7 @@ public class Robi extends Robot {
 	@Override
 	public void takeEffect() {
 		if (slowDownEffect) {
-			int[] newSpeed = null;
+			int[] newSpeed = new int[this.speed.dimension];
 			for (int i = 0; i < speed.dimension; i++) {
 				newSpeed[i] = ((speed.getCoordofDim(i)) / 2);
 			}
@@ -145,7 +148,6 @@ public class Robi extends Robot {
 			canChangeSpeed = false;
 		}
 		disableEffect = false;
-		canChangeSpeed = true;
 	}
 
 }
