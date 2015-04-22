@@ -80,8 +80,8 @@ public class SafeZone extends Field {
 	@Override
 	public void steppedOnYou(Robot r) {
 		robots.add(r);
-		for (Patch patch : patches) {
-			patch.doEffect(r);
+		for (int i = 0; i < patches.size(); i++) {
+			patches.get(i).doEffect(r);
 			checkPatch();
 		}
 	}
