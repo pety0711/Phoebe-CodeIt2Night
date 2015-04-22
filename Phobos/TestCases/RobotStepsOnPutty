@@ -1,4 +1,5 @@
 NewGame map.csv
 SetSpeed r0 -1 0
 Step
+Step
 Terminate

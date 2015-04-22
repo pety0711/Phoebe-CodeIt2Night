@@ -194,6 +194,7 @@ public class Prototype {
 		}
 
 		arena.tick();
+		Prototype.drawMap(arena);
 	}
 
 	private static void Collide(String r1ID, String r2ID, String type) {
