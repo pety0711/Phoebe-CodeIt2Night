@@ -201,6 +201,7 @@ public class SafeZone extends Field {
 					}
 				}
 			}
+			fastest.getField().robots.remove(fastest);
 			Prototype.printOut(infoToPrint);
 		}
 	}
