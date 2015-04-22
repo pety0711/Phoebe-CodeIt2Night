@@ -423,6 +423,7 @@ public class Prototype {
 				((Oil) temp).tick();
 				((Oil) temp).tick();
 				((Oil) temp).tick();
+				arena.tick();
 				text.append(f.id + " " + temp.id);
 				isOil = true;
 				// Putty timeout
@@ -431,6 +432,7 @@ public class Prototype {
 				((Putty) temp).decreaseLife();
 				((Putty) temp).decreaseLife();
 				((Putty) temp).decreaseLife();
+				arena.tick();
 				text.append(f.id + " " + temp.id);
 				isPutty = true;
 			} else
