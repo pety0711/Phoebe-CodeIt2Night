@@ -43,7 +43,8 @@ public class SafeZone extends Field {
 	public Boolean haveToCleanPatch() {
 		if (haveToClean) {
 			for (Patch patch : patches) {
-				Prototype.printOut("ObjectDestroyed " + patch.id + "CleanerMaster cleaned it");
+				Prototype.printOut("ObjectDestroyed " + patch.id
+						+ "CleanerMaster cleaned it");
 			}
 			patches.clear();
 			haveToClean = false;
@@ -59,20 +60,17 @@ public class SafeZone extends Field {
 	public Boolean checkPatch() {
 		String infoToPrint = "";
 		Boolean temp = false;
-		
-		
-		for (Patch patch : patches) {
-			if (patch.isitremovable()) {
+
+		for (int i = 0; i < patches.size(); i++) {
+			if (patches.get(i).isitremovable()) {
 				infoToPrint += "Object Destroyed";
-				infoToPrint += patch.id;
+				infoToPrint += patches.get(i).id;
 				infoToPrint += " - timeOut";
 				Prototype.printOut(infoToPrint);
-				patches.remove(patch);
+				patches.remove(patches.get(i));
 				temp = true;
 			}
 		}
-		
-		
 		return temp;
 	}
 
@@ -180,9 +178,12 @@ public class SafeZone extends Field {
 						robot.killRobot();
 					}
 				} else {
-					for (Robot robot : robots) {
-						if (!"Robi".equals(robot.getClass().getSimpleName())) {
-							robot.killRobot();
+					if (numOfRobis == 1) {
+						for (Robot robot : robots) {
+							if (!"Robi"
+									.equals(robot.getClass().getSimpleName())) {
+								robot.killRobot();
+							}
 						}
 					}
 				}
@@ -194,7 +195,8 @@ public class SafeZone extends Field {
 					if (!robots.get(i).equals(fastest)) {
 
 						infoToPrint += robots.get(i).id
-								+ robots.get(i).getClass().getSimpleName() + " died";
+								+ robots.get(i).getClass().getSimpleName()
+								+ " died";
 						robots.get(i).killRobot();
 					}
 				}
