@@ -1,0 +1,3 @@
+NewGame map.csv
+Collide r0 r1 -1
+Terminate

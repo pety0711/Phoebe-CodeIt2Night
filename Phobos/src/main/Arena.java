@@ -379,15 +379,15 @@ public class Arena {
 		}
 		
 		//foltok tickelése
-				for (Field f : fields) {
-					if (("SafeZone").equals(f.getClass().getSimpleName())) {
-							for (Patch patch : f.patches) {
-								if (("Oil").equals(patch.getClass().getSimpleName())) {
-									((Oil)patch).tick();
-								}
-							}
+		for (Field f : fields) {
+			if (("SafeZone").equals(f.getClass().getSimpleName())) {
+					for (Patch patch : f.patches) {
+						if (("Oil").equals(patch.getClass().getSimpleName())) {
+							((Oil)patch).tick();
+						}
 					}
-				}
+			}
+		}
 
 		// foltok lerakása
 		for (Field f : fields) {
