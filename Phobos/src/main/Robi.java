@@ -109,6 +109,7 @@ public class Robi extends Robot {
 	 */
 	@Override
 	public void tick() {
+		points=points+1;
 		StringBuilder text = new StringBuilder();
 		
 		text.append("Step - " + id + " Robot  -  Start fields: " + field.id 
