@@ -372,12 +372,6 @@ public class Arena {
 	 */
 	public void tick() {
 
-		// foltok érvényesítése
-		Set<String> keys = gamers.keySet();
-		for (String key : keys) {
-			gamers.get(key).takeEffect();
-		}
-		
 		//foltok tickelése
 		for (Field f : fields) {
 			if (("SafeZone").equals(f.getClass().getSimpleName())) {
@@ -408,7 +402,7 @@ public class Arena {
 		}
 
 		// robotok léptetése
-		keys = gamers.keySet();
+		Set<String> keys = gamers.keySet();
 		for (String key : keys) {
 			if (gamers.get(key).isItAlive)
 				gamers.get(key).tick();
@@ -439,6 +433,12 @@ public class Arena {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+		}
+		
+		// foltok érvényesítése
+		keys = gamers.keySet();
+		for (String key : keys) {
+			gamers.get(key).takeEffect();
 		}
 	}
 
