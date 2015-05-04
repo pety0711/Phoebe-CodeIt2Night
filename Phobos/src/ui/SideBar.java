@@ -84,7 +84,7 @@ public class SideBar extends JPanel{
 		gamer.setFont(new Font("Calibri Light", Font.BOLD, 13));
 		verticalBox.add(gamer);
 		
-		// Points és az értékét tároló box 
+		// Points és az értékét tároló horizontálisan tároló box 
 		Box pointBox = Box.createHorizontalBox();
 		verticalBox.add(pointBox);
 		
