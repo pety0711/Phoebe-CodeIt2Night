@@ -29,7 +29,7 @@ public class GameEventListener {
 		
 	}
 	
-	private void processArena(List<Field> fields){
+	private void processArena(/*List<Field> fields*/){
 		
 	}
 }
