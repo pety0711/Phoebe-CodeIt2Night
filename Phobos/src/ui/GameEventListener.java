@@ -1,10 +1,12 @@
 package ui;
 
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Timer;
+
+import main.*;
 
 public class GameEventListener {
 
@@ -29,7 +31,7 @@ public class GameEventListener {
 		
 	}
 	
-	private void processArena(/*List<Field> fields*/){
+	private void processArena(ArrayList<Field> fields){
 		
 	}
 }
