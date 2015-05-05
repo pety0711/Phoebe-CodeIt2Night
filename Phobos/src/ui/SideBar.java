@@ -17,7 +17,7 @@ public class SideBar extends JPanel{
 	private JLabel putty;
 	private JLabel oil;
 	private ImageIcon image;
-	JLabel imageLabel;
+	private JLabel imageLabel;
 	
 	private JLabel pointsValue;
 	private JLabel puttySupply;

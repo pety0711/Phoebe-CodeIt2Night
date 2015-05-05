@@ -11,8 +11,8 @@ import main.CoordVector;
 
 public class GamePanel extends JPanel{
 
-	Map<String, String> objectStyle;
-	JTable gameArena;
+	private Map<String, String> objectStyle;
+	private JTable gameArena;
 	
 	public GamePanel(){
 		

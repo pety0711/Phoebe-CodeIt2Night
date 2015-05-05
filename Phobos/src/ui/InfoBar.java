@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 
 public class InfoBar extends JPanel{
 
-	JLabel time;
+	private JLabel time;
 	
 	public InfoBar(){
 		

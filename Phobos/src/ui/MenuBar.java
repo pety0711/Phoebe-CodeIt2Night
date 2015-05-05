@@ -9,12 +9,12 @@ import javax.swing.KeyStroke;
 
 public class MenuBar extends JMenuBar {
 
-	JMenu file;
-	JMenuItem newGame;
-	JMenuItem exit;
+	private JMenu file;
+	private JMenuItem newGame;
+	private JMenuItem exit;
 
-	JMenu help;
-	JMenuItem controls;
+	private JMenu help;
+	private JMenuItem controls;
 
 	// TODO: ActionListener-ek beállítása + gyors gombok
 
