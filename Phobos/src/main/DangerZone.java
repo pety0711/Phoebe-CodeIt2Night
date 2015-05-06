@@ -32,6 +32,7 @@ public class DangerZone extends Field {
 	@Override
 	public void steppedOnYou(Robot r) {
 		robots.add(r);
+		this.sethasChanged(true);				
 		r.killRobot();
 	}
 
