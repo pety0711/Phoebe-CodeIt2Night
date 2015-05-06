@@ -28,11 +28,13 @@ public class Arena {
 	/** The gamers. */
 	private HashMap<String, Robi> gamers;
 
+	/** The cleaners. */
 	private HashMap<String, CleanerMaster> cleaners;
 
 	/** The dimension. */
 	private CoordVector dim;
 
+	/** The mapFilePath. */
 	private String mapFilePath;
 
 	private int sCounter = 0;
@@ -162,22 +164,50 @@ public class Arena {
 		}
 	}
 
+	/**
+	 * Gets the fields.
+	 *
+	 * @return the fields
+	 */
 	public ArrayList<Field> getFields() {
 		return fields;
 	}
 
+	/**
+	 * Sets the fields.
+	 *
+	 * @param fields
+	 *            the new fields
+	 */
 	public void setFields(ArrayList<Field> fields) {
 		this.fields = fields;
 	}
 
+	/**
+	 * Gets the dim.
+	 *
+	 * @return the dim
+	 */
 	public CoordVector getDim() {
 		return dim;
 	}
 
+	/**
+	 * Sets the dim.
+	 *
+	 * @param dim
+	 *            the new dim
+	 */
 	public void setDim(CoordVector dim) {
 		this.dim = dim;
 	}
 
+	/**
+	 * The Arena here creates the Fields.
+	 *
+	 * @param row
+	 *            the fields which will be created
+	 */
 	private void createFields(String[] row) {
 		// drawLine(row.length);
 		List<String> data = new ArrayList<String>();
@@ -241,6 +271,7 @@ public class Arena {
 		}
 	}
 
+	
 	private void setNeighbourhood() {
 		for (int i = 0; i < fields.size(); i++) {
 			int y = (int) Math.floor(i / dim.getX());
@@ -287,11 +318,22 @@ public class Arena {
 			f.addPatchesNow();
 		}
 	}
-
+	
+	/**
+	 * Gets the mapFilePath.
+	 *
+	 * @return the mapFilePath
+	 */
 	public String getMapFilePath() {
 		return mapFilePath;
 	}
 
+	/**
+	 * Sets the mapFilePath.
+	 *
+	 * @param mapFilePath
+	 *            the new mapFilePath
+	 */
 	public void setMapFilePath(String mapFilePath) {
 		this.mapFilePath = mapFilePath;
 	}
@@ -306,6 +348,11 @@ public class Arena {
 		gamers.put(id, new Robi(id, this));
 	}
 
+	/**
+	 * Gets the Robies/gamers.
+	 *
+	 * @return the gamers 
+	 */
 	public ArrayList<Robi> getGamers() {
 		ArrayList<Robi> temp = new ArrayList<Robi>();
 
@@ -358,6 +405,12 @@ public class Arena {
 		return patchesCoords;
 	}
 
+	/**
+	 * Gets the specific Field by string.
+	 *
+	 * @param id
+	 *            the specific Field's id
+	 */
 	public Field getFieldById(String id) {
 		for (Field f : fields) {
 			if (f.id.equals(id)) {
