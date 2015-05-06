@@ -47,6 +47,7 @@ public abstract class Field {
 
 	private Boolean haveToAddPutty = false;
 
+	/** The possibilities of directions */
 	enum direction {
 		up, down, right, left
 	};
@@ -206,10 +207,21 @@ public abstract class Field {
 		return temp;
 	}
 
+	/**
+	 * Gets the patches.
+	 *
+	 * @return the patches
+	 */
 	public ArrayList<Patch> getPatches() {
 		return patches;
 	}
 
+	/**
+	 * Sets the patches.
+	 *
+	 * @param patches
+	 *            the new patches
+	 */
 	public void setPatches(ArrayList<Patch> patches) {
 		this.patches = patches;
 	}
