@@ -37,6 +37,9 @@ public abstract class Field {
 
 	/** The id. */
 	public String id;
+	
+	/** Has the field changed */
+	public boolean hasChanged = true;		//Létrehozáskor "változott", utána kirajzolás után kell sztem visszaállítani false-ra
 
 	int nPatches = 0;
 
@@ -228,6 +231,25 @@ public abstract class Field {
 	 */
 	public CoordVector getCoord() {
 		return coord;
+	}
+	
+	/**
+	 * Gets the hasChanged
+	 *
+	 * @return the hasChanged
+	 */
+	public boolean gethasChanged(){
+		return hasChanged;
+	}
+	
+	/**
+	 * Set the hasChanged
+	 *
+	 * @param change
+	 * 				the new hasChanged
+	 */
+	public void sethasChanged(boolean change){
+		this.hasChanged = change;
 	}
 
 }
