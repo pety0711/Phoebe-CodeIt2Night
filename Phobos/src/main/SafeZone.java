@@ -47,7 +47,7 @@ public class SafeZone extends Field {
 						+ "CleanerMaster cleaned it");
 			}
 			patches.clear();
-			this.sethasChanged(true);
+			this.setHasChanged(true);
 			haveToClean = false;
 			return true;
 		}
@@ -70,7 +70,7 @@ public class SafeZone extends Field {
 				Prototype.printOut(infoToPrint);
 				patches.remove(patches.get(i));
 				temp = true;
-				this.sethasChanged(true);
+				this.setHasChanged(true);
 			}
 		}
 		return temp;
@@ -86,7 +86,7 @@ public class SafeZone extends Field {
 			patches.get(i).doEffect(r);
 			checkPatch();
 		}
-		this.sethasChanged(true);
+		this.setHasChanged(true);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class SafeZone extends Field {
 		while (robots.contains(r)) {
 			robots.remove(r);
 		}
-		this.sethasChanged(true);
+		this.setHasChanged(true);
 	}
 
 	/**

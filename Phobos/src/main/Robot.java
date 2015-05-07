@@ -100,7 +100,6 @@ public abstract class Robot {
 	 *             the exception
 	 */
 	public void investigateCollision() throws Exception {
-		//System.out.println("HELLO ROBOT INVESTIGATE");
 		field.investigateCollision();
 	}
 

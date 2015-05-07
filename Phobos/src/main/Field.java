@@ -250,7 +250,7 @@ public abstract class Field {
 	 *
 	 * @return the hasChanged
 	 */
-	public boolean gethasChanged(){
+	public boolean getHasChanged(){
 		return hasChanged;
 	}
 	
@@ -260,7 +260,7 @@ public abstract class Field {
 	 * @param change
 	 * 				the new hasChanged
 	 */
-	public void sethasChanged(boolean change){
+	public void setHasChanged(boolean change){
 		this.hasChanged = change;
 	}
 

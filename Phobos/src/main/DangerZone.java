@@ -3,6 +3,10 @@
  */
 package main;
 
+import java.util.List;
+
+import main.Field.direction;
+
 /**
  * The Class DangerZone.
  *
@@ -32,7 +36,7 @@ public class DangerZone extends Field {
 	@Override
 	public void steppedOnYou(Robot r) {
 		robots.add(r);
-		this.sethasChanged(true);				
+		this.setHasChanged(true);				
 		r.killRobot();
 	}
 
@@ -50,6 +54,14 @@ public class DangerZone extends Field {
 	@Override
 	public void investigateCollision() {
 		
+	}
+	
+	@Override
+	public Field getNeighbour(direction dir) {
+		if (id.toUpperCase().contains("EDGE")) {
+			return this;
+		}
+		return super.getNeighbour(dir);
 	}
 
 	@Override

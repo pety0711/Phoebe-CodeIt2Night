@@ -55,7 +55,6 @@ public class Robi extends Robot {
 		field.steppedOffYou(this);
 		isItAlive = false;
 		arena.killRobot(points, id);
-
 	}
 
 	/**
