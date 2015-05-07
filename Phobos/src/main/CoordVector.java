@@ -58,6 +58,14 @@ public class CoordVector {
 		points = new int[] {x, y};
 	}
 	
+	public void setX(int x) {
+		points[0] = x;
+	}
+	
+	public void setY(int y) {
+		points[1] = y;
+	}
+	
 	public int getX() {
 		return points[0];
 	}

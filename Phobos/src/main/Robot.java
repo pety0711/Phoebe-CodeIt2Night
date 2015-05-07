@@ -132,6 +132,22 @@ public abstract class Robot {
 			s += Math.abs(speed.getCoordofDim(i));
 		return s;
 	}
+	
+	public void stepUp(){
+		speed.setY(speed.getY() + 1);
+	}
+	
+	public void stepDown() {
+		speed.setY(speed.getY() - 1);		
+	}
+	
+	public void stepRight() {
+		speed.setX(speed.getX() + 1);
+	}
+	
+	public void stepLeft() {
+		speed.setX(speed.getX() - 1);
+	}
 
 	/**
 	 * Sets the Robot's speed.

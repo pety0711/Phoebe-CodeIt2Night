@@ -79,27 +79,6 @@ public class Arena {
 		patchesCoords = new ArrayList<CoordVector>();
 		fields = new ArrayList<Field>();
 		generateFields();
-
-		// gamers = new HashMap<String, Robi>();
-		// if(Skeleton.currentUseCase==Skeleton.UseCaseType.Collision||
-		// Skeleton.currentUseCase==Skeleton.UseCaseType.Finish_game){
-		// noRobots=2;
-		// }
-		// else
-		// noRobots = 1;
-		// for (int i = 0; i < noRobots; i++)
-		// {
-		// addRobot("Robot" + i);
-		// }
-		//
-		// Set<String> keys = gamers.keySet();
-		// gamers.get(keys.toArray()[0]).setField(fields.get(robot0StartField));
-		// fields.get(robot0StartField).steppedOnYou(gamers.get(keys.toArray()[0]));
-		// if (Skeleton.currentUseCase == UseCaseType.Collision ||
-		// Skeleton.currentUseCase == UseCaseType.Finish_game){
-		// gamers.get(keys.toArray()[1]).setField(fields.get(robot1StartField));
-		// fields.get(robot1StartField).steppedOnYou(gamers.get(keys.toArray()[1]));
-		// }
 	}
 
 	/**
