@@ -41,7 +41,7 @@ public class GamePanel extends JPanel{
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+				false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
