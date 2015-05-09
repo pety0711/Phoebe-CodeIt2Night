@@ -86,6 +86,7 @@ public class GameEventListener {
 	ActionListener taskPerformer = new ActionListener() {
 	    public void actionPerformed(ActionEvent evt) {
 	  	  System.out.println("tick \n");
+	  	  
 	    }
 	};
 
