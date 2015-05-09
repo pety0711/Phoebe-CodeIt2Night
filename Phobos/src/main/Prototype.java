@@ -2,7 +2,6 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -89,7 +88,8 @@ public class Prototype {
 	private static void runTest(String string) {
 		switch (string) {
 		case "1":
-			Prototype.printOut("test running: CleanerMasterCollideWithRobot_CleanerMasterIsFaster");
+			Prototype
+					.printOut("test running: CleanerMasterCollideWithRobot_CleanerMasterIsFaster");
 			ReadTest("testcases/CleanerMasterCollideWithRobot_CleanerMasterIsFaster");
 			break;
 		case "2":
@@ -99,7 +99,7 @@ public class Prototype {
 		case "3":
 			Prototype.printOut("test running: FourStepsOnPutty");
 			ReadTest("testcases/FourStepsOnPutty");
-			
+
 			break;
 		case "4":
 			Prototype.printOut("test running: GameTimeout");
@@ -114,7 +114,8 @@ public class Prototype {
 			ReadTest("testcases/OilTimeout");
 			break;
 		case "7":
-			Prototype.printOut("test running: RobotCollideWithCleanerMaster_RobotIsFaster");
+			Prototype
+					.printOut("test running: RobotCollideWithCleanerMaster_RobotIsFaster");
 			ReadTest("testcases/RobotCollideWithCleanerMaster_RobotIsFaster");
 			break;
 		case "8":
@@ -154,7 +155,7 @@ public class Prototype {
 			ReadTest("testcases/StepOnDangerZone");
 			break;
 		default:
-			
+
 			break;
 		}
 

@@ -64,7 +64,7 @@ public class Arena {
 	 * Instantiates a new arena.
 	 */
 	public Arena(String path) {
-		this.arenaID = "arena"+createID();
+		this.arenaID = "arena" + createID();
 		arenaID = "arena";
 		mapFilePath = path;
 		Initialize();
@@ -123,20 +123,19 @@ public class Arena {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally{
-			if(bf!=null){
+		} finally {
+			if (bf != null) {
 				try {
 					bf.close();
 				} catch (IOException e) {
-					// 
+					//
 				}
 			}
-			if(mapFile!=null){
+			if (mapFile != null) {
 				try {
 					bf.close();
 				} catch (IOException e) {
-					// 
+					//
 				}
 			}
 		}
@@ -249,7 +248,6 @@ public class Arena {
 		}
 	}
 
-	
 	private void setNeighbourhood() {
 		for (int i = 0; i < fields.size(); i++) {
 			int y = (int) Math.floor(i / dim.getX());
@@ -265,13 +263,13 @@ public class Arena {
 				le = fields.get(i - 1);
 			}
 			neighbours.add(le);
-			
+
 			Field up = new DangerZone("edge");
 			// upper neighbour
 			if (i <= fields.size() - 1 - dim.getX()) {
 				up = fields.get(i + dim.getX());
 			}
-			neighbours.add(up);	
+			neighbours.add(up);
 
 			Field ri = new DangerZone("edge");
 			// right neighbour
@@ -279,7 +277,7 @@ public class Arena {
 				ri = fields.get(i + 1);
 			}
 			neighbours.add(ri);
-			
+
 			// bottom neighbour
 			Field bo = new DangerZone("edge");
 			if (i >= dim.getX()) {
@@ -296,7 +294,7 @@ public class Arena {
 			f.addPatchesNow();
 		}
 	}
-	
+
 	/**
 	 * Gets the mapFilePath.
 	 *
@@ -329,10 +327,21 @@ public class Arena {
 	/**
 	 * Gets the Robies/gamers.
 	 *
-	 * @return the gamers 
+	 * @return the gamers
 	 */
 	public ArrayList<Robi> getGamers() {
 		ArrayList<Robi> temp = new ArrayList<Robi>();
+
+		Set<String> keys = gamers.keySet();
+		for (String key : keys) {
+			temp.add(gamers.get(key));
+		}
+
+		return temp;
+	}
+
+	public ArrayList<Robot> getRobots() {
+		ArrayList<Robot> temp = new ArrayList<Robot>();
 
 		Set<String> keys = gamers.keySet();
 		for (String key : keys) {
@@ -372,7 +381,7 @@ public class Arena {
 		// Skeleton.printLastCalledFunction(arenaID, new String[]
 		// {c.toString(), Skeleton.getClassName(c)});
 		//
-		 patchesCoords.add(c);
+		patchesCoords.add(c);
 	}
 
 	/**
@@ -399,18 +408,18 @@ public class Arena {
 	}
 
 	/**
-	 *  tick
+	 * tick
 	 */
 	public void tick() {
 
-		//foltok tickelése
+		// foltok tickelése
 		for (Field f : fields) {
 			if (("SafeZone").equals(f.getClass().getSimpleName())) {
-					for (Patch patch : f.patches) {
-						if (("Oil").equals(patch.getClass().getSimpleName())) {
-							((Oil)patch).tick();
-						}
+				for (Patch patch : f.patches) {
+					if (("Oil").equals(patch.getClass().getSimpleName())) {
+						((Oil) patch).tick();
 					}
+				}
 			}
 		}
 
@@ -422,9 +431,9 @@ public class Arena {
 		// foltok törlése
 		for (Field f : fields) {
 			if (("SafeZone").equals(f.getClass().getSimpleName())) {
-				if((((SafeZone)f).checkPatch()))
+				if ((((SafeZone) f).checkPatch()))
 					patchesCoords.remove(f.getCoord());
-					
+
 				boolean cleaned = ((SafeZone) f).haveToCleanPatch();
 				if (cleaned) {
 					patchesCoords.remove(f.getCoord());
@@ -465,7 +474,7 @@ public class Arena {
 					e.printStackTrace();
 				}
 		}
-		
+
 		// foltok érvényesítése
 		keys = gamers.keySet();
 		for (String key : keys) {
