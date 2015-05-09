@@ -17,10 +17,12 @@ public class GameEventListener {
 	public GameWindow gameWindow;
 	public ActionListener buttonListener;
 	public Timer timer;
-	public ActionListener timerListener;
+	
+	
+
 	
 	public GameEventListener(){
-		timer = new Timer(1000, timerListener);
+		timer = new Timer(1000, taskPerformer);
 		timer.setRepeats(true);
 		timer.start();
 	}
@@ -81,11 +83,10 @@ public class GameEventListener {
 		
 	}
 	
-	  int delay = 1000; //milliseconds
-	  ActionListener taskPerformer = new ActionListener() {
-	      public void actionPerformed(ActionEvent evt) {
-	    	  System.out.println("tick");
-	      }
-	  };
+	ActionListener taskPerformer = new ActionListener() {
+	    public void actionPerformed(ActionEvent evt) {
+	  	  System.out.println("tick \n");
+	    }
+	};
 
 }
