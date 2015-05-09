@@ -25,7 +25,7 @@ public class GameEventListener {
 	
 	
 	public void start(){
-		timer.
+		
 	}
 	
 	public void exit(){
