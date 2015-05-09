@@ -27,6 +27,7 @@ public class GameWindow extends JFrame {
 	private SideBar leftSideBar;
 	private InfoBar infoBar;
 	private MenuBar menuBar;
+	private GameEventListener ge;  
 
 	/**
 	 * Launch the application.
@@ -99,7 +100,11 @@ public class GameWindow extends JFrame {
 		this.setJMenuBar(menuBar);
 
 		this.setVisible(true);
-
+		
+		ge = new GameEventListener();
 	}
-
+	
+	public void draw(){
+		
+	}
 }
