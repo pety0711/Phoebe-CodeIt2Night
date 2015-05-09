@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.awt.Event;
 //import java.util.Timer;
 import javax.swing.Timer;
 
@@ -21,6 +22,7 @@ public class GameEventListener {
 	public GameEventListener(){
 		timer = new Timer(1000, timerListener);
 		timer.setRepeats(true);
+		timer.start();
 	}
 	
 	
@@ -75,11 +77,15 @@ public class GameEventListener {
 		
 	}
 	
-	public void actionPerformed(ActionEvent e){
-		
-	}
-	
 	private void processArena(ArrayList<Field> fields){
 		
 	}
+	
+	  int delay = 1000; //milliseconds
+	  ActionListener taskPerformer = new ActionListener() {
+	      public void actionPerformed(ActionEvent evt) {
+	    	  System.out.println("tick");
+	      }
+	  };
+
 }

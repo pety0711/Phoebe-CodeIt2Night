@@ -2,6 +2,7 @@ package main;
 
 import java.awt.EventQueue;
 
+import ui.GameEventListener;
 import ui.GameWindow;
 
 public class Main {
@@ -12,6 +13,7 @@ public class Main {
 			public void run() {
 				try {
 					GameWindow window = new GameWindow();
+					GameEventListener GEL = new GameEventListener();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
