@@ -120,7 +120,6 @@ public class Arena {
 
 			setNeighbourhood();
 			initPatchCoords();
-			Prototype.drawMap(this);
 
 		} catch (Exception e) {
 			e.printStackTrace();
