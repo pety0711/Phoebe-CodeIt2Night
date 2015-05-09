@@ -11,7 +11,7 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-import main.CoordVector;
+import main.*;
 
 public class GamePanel extends JPanel{
 
@@ -19,72 +19,54 @@ public class GamePanel extends JPanel{
 	private JTable gameArena;
 	
 	public GamePanel(){
+		int height= 15;
+		int width = 15;
 		
 		gameArena = new JTable();
 		gameArena.setRowHeight(15);
 		gameArena.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		gameArena.setRowSelectionAllowed(false);
-		gameArena.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"a", null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
+		
+		Object[][] model = new Object[height][width];
+		String[] s= new String[width];
+		boolean[] columnEditables = new boolean[width];
+		
+		for(int i = 0;i<height;i++){
+			Object[] col = new Object[width];
+			for(int j=0;j<width;j++){
+				col[j]=null; //Feltöltés null értékkekkel
 			}
-		) {
+			model[i]=col; //sor hozzáadása
+			s[i]=""; //cellák tartalma üres legyen
+			columnEditables[i]=false; //ne legyenek szerkeszthetõek
+		}
+		
+		DefaultTableModel tableModel = new DefaultTableModel(model,s){
 			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+					false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
 			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		JTextField textBox=new JTextField();
-		gameArena.getColumnModel().getColumn(0).setResizable(false);
-		gameArena.getColumnModel().getColumn(0).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(1).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(2).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(3).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(4).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(5).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(6).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(7).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(8).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(9).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(10).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(11).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(12).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(13).setPreferredWidth(15);
-		gameArena.getColumnModel().getColumn(14).setPreferredWidth(15);/*
-		TableColumn tc = gameArena.getColumnModel().getColumn(5);
-		textBox.setBackground(Color.RED);
-		tc.setCellEditor(new DefaultCellEditor(textBox));
-		textBox.setBackground(Color.BLUE);*/
+		
+		gameArena.setModel(tableModel);
+		for(int i=0;i<height;i++){
+			gameArena.getColumnModel().getColumn(i).setResizable(false);
+			gameArena.getColumnModel().getColumn(i).setPreferredWidth(15);
+		}
+
 		this.add(gameArena);
-		MyCellRenderer mcr = new MyCellRenderer();
-		for (int columnIndex = 0; columnIndex < gameArena.getColumnCount(); columnIndex ++) {
-		            gameArena.getColumnModel().getColumn(columnIndex).setCellRenderer(mcr);
-		        }
+		
 	}
-	public class MyCellRenderer extends javax.swing.table.DefaultTableCellRenderer {
+	public class cellColorRenderer extends javax.swing.table.DefaultTableCellRenderer {
 	    public java.awt.Component getTableCellRendererComponent(javax.swing.JTable table, java.lang.Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 	        java.awt.Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 	        cellComponent.setBackground(java.awt.Color.YELLOW);
 	        return cellComponent;
 	    }
 	}
+	
 	public void draw(CoordVector coord, String type){
 		
 	}
