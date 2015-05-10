@@ -79,6 +79,7 @@ public class GamePanel extends JPanel {
 				int column) {
 			Component c = super.getTableCellRendererComponent(table, "",
 					isSelected, hasFocus, row, column);
+			setBorder(noFocusBorder);
 			if (value == null) {
 				return c;
 			}
