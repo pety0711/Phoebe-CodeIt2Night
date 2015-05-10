@@ -61,91 +61,39 @@ public class GamePanel extends JPanel {
 		for (int i = 0; i < height; i++) {
 			gameArena.getColumnModel().getColumn(i).setResizable(false);
 			gameArena.getColumnModel().getColumn(i).setPreferredWidth(15);
+			gameArena.getColumnModel().getColumn(i).setCellRenderer(createNewColorRenderer(Color.RED));
 		}
 
 		this.add(gameArena);
 
 	}
 	
-	/*
-	public class StatusColumnCellRenderer extends DefaultTableCellRenderer {
-		  @Override
-		  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-
-		    //Cells are by default rendered as a JLabel.
-		    JLabel l = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-
-		    //Get the status for the current row.
-		    CustomTableModel tableModel = (CustomTableModel) table.getModel();
-		    if (tableModel.getStatus(row) == CustomTableModel.APPROVED) {
-		      l.setBackground(Color.GREEN);
-		    } else {
-		      l.setBackground(Color.RED);
-		    }
-
-		  //Return the JLabel which renders the cell.
-		  return l;
-
-		}
-*//*
-	public class cellColorRenderer extends
-			javax.swing.table.DefaultTableCellRenderer {
-		public java.awt.Component getTableCellRendererComponent(
-				javax.swing.JTable table, java.lang.Object value,
-				boolean isSelected, boolean hasFocus, int row, int column) {
-			java.awt.Component cellComponent = super
-					.getTableCellRendererComponent(table, value, isSelected,
-							hasFocus, row, column);
-			cellComponent.setBackground(java.awt.Color.YELLOW);
-			return cellComponent;
-		}
-	}*/
-		  /*
-	  class CustomRenderer extends DefaultTableCellRenderer 
+	
+	
+	  class ColorRenderer extends DefaultTableCellRenderer 
 	  {
+		  private Color color;
+		  public void setColor(Color cc){
+			  color=cc;
+		  }
+		  
 	      public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
 	      {
 	          Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-	          c.setBackground(new java.awt.Color(255, 72, 72));
-	          return c;
-	      }
-	  }*/
-	/*
-	  class CustomRenderer extends DefaultTableCellRenderer {
-//http://stackoverflow.com/questions/2780573/change-table-cell-color-in-java	  
-		    int col; 
-		    int row;
-		    public CustomRenderer (int col, int row) 
-		    {
-		       this.col = col;
-		       this.row = row;
-		    }
-		    public Component getTableCellRendererComponent
-		(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
-		    {
-		        Component c = super.getTableCellRendererComponent
-		                          (table, value, isSelected, hasFocus, row, column);
-
-		        setForeground( (column == this.col && row == this.row) 
-		                                   ? Color.red : Color.black );
-		        setBackground(Color.RED);
-		        return c;
-		    }
-		}*/
-	  class CustomRenderer extends DefaultTableCellRenderer 
-	  {
-	      public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
-	      {
-	          Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-	          c.setBackground(Color.BLUE);
+	          c.setBackground(color);
 	          // Formatting here
 
 	          return c;
 	      }
 	  }
+	  ColorRenderer createNewColorRenderer(Color color){
+			ColorRenderer nColor = new ColorRenderer();
+			nColor.setColor(color);
+			return nColor;
+		}
 	public void draw(CoordVector coord, String type) {
 		//test
-		gameArena.getColumnModel().getColumn(1).setCellRenderer(new CustomRenderer());
+		gameArena.getColumnModel().getColumn(1).setCellRenderer(createNewColorRenderer(Color.RED));
 		//model.setRowColour(1, Color.YELLOW);
 		
 		//gameArena.setDefaultRenderer(String.class, new CustomRenderer());
@@ -154,49 +102,4 @@ public class GamePanel extends JPanel {
 		// -> fekete? vagy akármi, stb...
 		
 	}
-	static class MyTableModel extends DefaultTableModel {
-
-	    List<Color> rowColours = Arrays.asList(
-	        Color.RED,
-	        Color.GREEN,
-	        Color.CYAN
-	    );
-
-	    public void setRowColour(int row, Color c) {
-	        rowColours.set(row, c);
-	        fireTableRowsUpdated(row, row);
-	    }
-
-	    public Color getRowColour(int row) {
-	        return rowColours.get(row);
-	    }
-
-	    @Override
-	    public int getRowCount() {
-	        return 3;
-	    }
-
-	    @Override
-	    public int getColumnCount() {
-	        return 3;
-	    }
-
-	    @Override
-	    public Object getValueAt(int row, int column) {
-	        return String.format("%d %d", row, column);
-	    }
-	}
-	
-	static class MyTableCellRenderer extends DefaultTableCellRenderer {
-
-	    @Override
-	    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-	        MyTableModel model = (MyTableModel) table.getModel();
-	        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-	        c.setBackground(model.getRowColour(row));
-	        return c;
-	    }
-	}
-	
-	
 }
