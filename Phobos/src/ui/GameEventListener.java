@@ -57,6 +57,7 @@ public class GameEventListener implements KeyListener {
 				gameWindow.draw(new CoordVector(3, 3), "");
 
 				if (seconds == 0 && minutes == 0) {
+					gameWindow.drawTime(minutes, seconds);
 					mainArena.finishGame();
 					exit();
 				}
