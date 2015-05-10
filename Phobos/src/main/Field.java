@@ -37,9 +37,11 @@ public abstract class Field {
 
 	/** The id. */
 	public String id;
-	
+
 	/** Has the field changed */
-	public boolean hasChanged = true;		//Létrehozáskor "változott", utána kirajzolás után kell sztem visszaállítani false-ra
+	public boolean hasChanged = true; // Létrehozáskor "változott", utána
+										// kirajzolás után kell sztem
+										// visszaállítani false-ra
 
 	int nPatches = 0;
 
@@ -105,14 +107,16 @@ public abstract class Field {
 	public void addPatchesNow() {
 		if (haveToAddPutty) {
 			Putty putty = new Putty("P" + nPatches++);
-			Prototype.printOut("GeneratedPatch -"  + putty.id + " Putty - [" + id.toString() + "]");
+			Prototype.printOut("GeneratedPatch -" + putty.id + " Putty - ["
+					+ id.toString() + "]");
 			patches.add(putty);
 			arena.registerPatchCoord(coord);
 			haveToAddPutty = false;
 		}
 		if (haveToAddOil) {
 			Oil oil = new Oil("O" + nPatches++);
-			Prototype.printOut("GeneratedPatch -"  + oil.id + " Putty - [" + id.toString() + "]");
+			Prototype.printOut("GeneratedPatch -" + oil.id + " Putty - ["
+					+ id.toString() + "]");
 			patches.add(oil);
 			arena.registerPatchCoord(coord);
 			haveToAddOil = false;
@@ -244,24 +248,38 @@ public abstract class Field {
 	public CoordVector getCoord() {
 		return coord;
 	}
-	
+
 	/**
 	 * Gets the hasChanged
 	 *
 	 * @return the hasChanged
 	 */
-	public boolean getHasChanged(){
+	public boolean getHasChanged() {
 		return hasChanged;
 	}
-	
+
 	/**
 	 * Set the hasChanged
 	 *
 	 * @param change
-	 * 				the new hasChanged
+	 *            the new hasChanged
 	 */
-	public void setHasChanged(boolean change){
+	public void setHasChanged(boolean change) {
 		this.hasChanged = change;
 	}
 
+	public boolean hasRobi() {
+		if (robots.size() > 0
+				&& "Robi".equals(robots.get(0).getClass().getSimpleName()))
+			return true;
+		return false;
+	}
+
+	public boolean hasCleaner() {
+		if (robots.size() > 0
+				&& "CleanerMaster".equals(robots.get(0).getClass()
+						.getSimpleName()))
+			return true;
+		return false;
+	}
 }

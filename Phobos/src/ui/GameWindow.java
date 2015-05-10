@@ -1,24 +1,14 @@
 package ui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import java.awt.BorderLayout;
-
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import java.awt.FlowLayout;
-
-import javax.swing.JLabel;
+import main.CoordVector;
 
 public class GameWindow extends JFrame {
 
@@ -26,7 +16,7 @@ public class GameWindow extends JFrame {
 	private SideBar rightSideBar;
 	private SideBar leftSideBar;
 	private InfoBar infoBar;
-	private MenuBar menuBar; 
+	private MenuBar menuBar;
 	private JLabel titleBar;
 
 	/**
@@ -89,18 +79,22 @@ public class GameWindow extends JFrame {
 
 		this.setVisible(true);
 	}
-	
-	public void draw(){
-		
+
+	public void draw(CoordVector coord, String type) {
+
 	}
-	public void drawTime(int min, int sec){
+
+	public void drawTime(int min, int sec) {
 		if (sec < 10) {
-			infoBar.refreshTime(Integer.toString(min) + " : " + "0" + Integer.toString(sec));
-		}else {
-			infoBar.refreshTime(Integer.toString(min) + " : " + Integer.toString(sec));
+			infoBar.refreshTime(Integer.toString(min) + " : " + "0"
+					+ Integer.toString(sec));
+		} else {
+			infoBar.refreshTime(Integer.toString(min) + " : "
+					+ Integer.toString(sec));
 		}
 	}
-	public void drawPoints(){
+
+	public void drawPoints() {
 		rightSideBar.refreshDatas(15, 15, 15);
 	}
 }

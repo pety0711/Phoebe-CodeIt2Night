@@ -3,12 +3,7 @@ package ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.sql.Time;
 import java.util.ArrayList;
-
-
-
-
 
 //import java.util.Timer;
 import javax.swing.Timer;
@@ -29,7 +24,6 @@ public class GameEventListener {
 	private static int seconds;
 	private static int minutes;
 
-
 	public GameEventListener(Arena arena) {
 		gameWindow = new GameWindow();
 		gameWindow.setVisible(true);
@@ -37,19 +31,20 @@ public class GameEventListener {
 		robots = arena.getRobots();
 		taskPerformer = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				System.out.println("tick \n");	
+				System.out.println("tick \n");
 				gameWindow.drawTime(minutes, seconds);
-				if(seconds <= 0){
+				if (seconds <= 0) {
 					minutes--;
 					seconds = 59;
-				}else {
+				} else {
 					seconds--;
 				}
 				mainArena.tick();
+				processArena(mainArena.getFields());
 				gameWindow.drawPoints();
 			}
 		};
-		
+
 		timer = new Timer(1000, taskPerformer);
 		timer.setRepeats(true);
 	}
@@ -108,7 +103,17 @@ public class GameEventListener {
 	}
 
 	private void processArena(ArrayList<Field> fields) {
+		for (Field f : fields) {
+			if (f.hasChanged) {
+				if (f.hasRobi()) {
+					gameWindow.draw(f.getCoord(), f.getRobotId().get(0));
+				} else if (f.hasCleaner()) {
+					gameWindow.draw(f.getCoord(), f.getRobotId().get(0));
+				} else if (f.getPatches().size() > 0) {
 
+				}
+			}
+		}
 	}
 
 }
