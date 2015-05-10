@@ -112,6 +112,7 @@ public abstract class Robot {
 	public void detectedCollision(CoordVector coord) {
 		setSpeed(coord);
 		Field f = field.step(coord, this);
+		field.steppedOffYou(this);
 		setField(f);
 		f.steppedOnYou(this);
 	}
@@ -124,26 +125,26 @@ public abstract class Robot {
 	public CoordVector getSpeed() {
 		return speed;
 	}
-	
-	public int getIntSpeed(){
+
+	public int getIntSpeed() {
 		int s = 0;
 		for (int i = 0; i < speed.dimension; i++)
 			s += Math.abs(speed.getCoordofDim(i));
 		return s;
 	}
-	
-	public void stepUp(){
+
+	public void stepUp() {
 		speed.setY(speed.getY() + 1);
 	}
-	
+
 	public void stepDown() {
-		speed.setY(speed.getY() - 1);		
+		speed.setY(speed.getY() - 1);
 	}
-	
+
 	public void stepRight() {
 		speed.setX(speed.getX() + 1);
 	}
-	
+
 	public void stepLeft() {
 		speed.setX(speed.getX() - 1);
 	}
@@ -155,14 +156,16 @@ public abstract class Robot {
 	 *            the new speed
 	 */
 	public void setSpeed(CoordVector s) {
-		String infoToPrint = "SpeedChanged - " + this.id + " " + this.getClass().getSimpleName() + " - Old speed: [" + this.speed.getX() + ", " + this.speed.getY() + "]";
-		
-		if (canChangeSpeed)	
-		{
+		String infoToPrint = "SpeedChanged - " + this.id + " "
+				+ this.getClass().getSimpleName() + " - Old speed: ["
+				+ this.speed.getX() + ", " + this.speed.getY() + "]";
+
+		if (canChangeSpeed) {
 			this.speed = s;
 		}
-		
-		infoToPrint += " New Speed: [" + this.speed.getX() + ", " + this.speed.getY() + "]";
+
+		infoToPrint += " New Speed: [" + this.speed.getX() + ", "
+				+ this.speed.getY() + "]";
 		Prototype.printOut(infoToPrint);
 	}
 
