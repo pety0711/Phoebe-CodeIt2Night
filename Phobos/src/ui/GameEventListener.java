@@ -26,8 +26,10 @@ public class GameEventListener implements KeyListener {
 	private ActionListener taskPerformer;
 	private static int seconds;
 	private static int minutes;
+	private static boolean ok;
 
-	public GameEventListener(final Arena arena) {
+	public GameEventListener(Arena arena) {
+		ok=true;
 		gameWindow = new GameWindow(arena.getDim());
 		gameWindow.registerKeyListener(this);
 		gameWindow.setVisible(true);
@@ -49,11 +51,10 @@ public class GameEventListener implements KeyListener {
 				gameWindow.draw(new CoordVector(3, 3), "");
 				
 				if(seconds==0&&minutes==0){
-					arena.finishGame();
+					mainArena.finishGame();
 					exit();
 				}
 			}
-			
 		};
 
 		timer = new Timer(1000, taskPerformer);
@@ -64,11 +65,13 @@ public class GameEventListener implements KeyListener {
 	public static void start() {
 		seconds = 0;
 		minutes = 2;
+		
 		timer.start();
 	}
 
 	public static void exit() {
 		timer.stop();
+		ok=false;
 	}
 
 	public void keyPressed(KeyEvent e) {
