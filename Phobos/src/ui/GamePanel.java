@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.KeyListener;
 import java.util.Map;
 
 import javax.swing.JPanel;
@@ -59,6 +60,11 @@ public class GamePanel extends JPanel {
 		}
 		gameArena.setDefaultRenderer(Object.class, new ColorRenderer());
 		this.add(gameArena);
+	}
+
+	public void registerKeyListener(KeyListener l) {
+		this.addKeyListener(l);
+		gameArena.addKeyListener(l);
 	}
 
 	private class ColorRenderer extends DefaultTableCellRenderer {

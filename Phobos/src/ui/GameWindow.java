@@ -88,6 +88,7 @@ public class GameWindow extends JFrame {
 
 	public void registerKeyListener(KeyListener l) {
 		addKeyListener(l);
+		gamePanel.registerKeyListener(l);
 	}
 
 	public void draw(CoordVector coord, String type) {
