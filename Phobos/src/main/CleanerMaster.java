@@ -113,11 +113,11 @@ public class CleanerMaster extends Robot {
 
 		ArrayList<CoordVector> pc = arena.getPatchesCoords();
 
-		if( pc.size() > 0){
+		if (pc.size() > 0) {
 			CoordVector cleanerMasterCoord = this.field.getCoord();
 			target = getMinDist(pc, cleanerMasterCoord);
-			getNextField();}
-		else
+			getNextField();
+		} else
 			speed = new CoordVector();
 
 	}
@@ -174,13 +174,22 @@ public class CleanerMaster extends Robot {
 	@Override
 	public void tick() {
 		getTarget();
-		//getNextField();
+		// getNextField();
 
 		Field f = field.step(speed, this);
 		field.steppedOffYou(this);
 		setField(f);
 		f.steppedOnYou(this);
 
+	}
+
+	public void stepBack() {
+		CoordVector backSpeed = new CoordVector(speed.getX() * (-1),
+				speed.getY() * (-1));
+		Field f = field.step(speed, this);
+		field.steppedOffYou(this);
+		setField(f);
+		f.steppedOnYou(this);
 	}
 
 	/**

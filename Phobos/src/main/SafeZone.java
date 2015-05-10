@@ -184,13 +184,16 @@ public class SafeZone extends Field {
 				} else {
 					if (numOfRobis == 1) {
 						for (int i = 0; i < robots.size(); i++) {
-							if (!"Robi"
-									.equals(robots.get(i).getClass().getSimpleName())) {
+							if (!"Robi".equals(robots.get(i).getClass()
+									.getSimpleName())) {
 								robots.get(i).killRobot();
 							}
-						}					
+						}
 					}
 				}
+			} else if ("CleanerMaster".equals(fastest.getClass()
+					.getSimpleName())) {
+				((CleanerMaster) fastest).stepBack();
 			} else {
 				fastest.detectedCollision(new CoordVector(avgX, avgY));
 				infoToPrint += fastest.id + " speed changed -";
