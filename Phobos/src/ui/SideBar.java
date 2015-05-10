@@ -62,7 +62,7 @@ public class SideBar extends JPanel {
 
 		if (robot.id.contains("1")) {
 			image = (new ImageIcon("robi.png")).getImage();
-			image = image.getScaledInstance(190, 280, 0);
+			image = image.getScaledInstance(190, 190, 0);
 		}
 
 		else {
