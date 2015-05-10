@@ -3,6 +3,7 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,15 +26,19 @@ public class GameWindow extends JFrame {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @param coordVector
 	 */
-	public GameWindow() {
-		initialize();
+	public GameWindow(CoordVector coord) {
+		initialize(coord);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * 
+	 * @param coord
 	 */
-	private void initialize() {
+	private void initialize(CoordVector coord) {
 
 		// Frame
 		setPreferredSize(new Dimension(450, 150));
@@ -70,7 +75,7 @@ public class GameWindow extends JFrame {
 		this.add(infoBar, BorderLayout.SOUTH);
 
 		// Game panel
-		gamePanel = new GamePanel();
+		gamePanel = new GamePanel(coord);
 		this.add(gamePanel, BorderLayout.CENTER);
 
 		// Menu bar
@@ -78,6 +83,11 @@ public class GameWindow extends JFrame {
 		this.setJMenuBar(menuBar);
 
 		this.setVisible(true);
+	}
+
+	public void registerKeyListener(KeyListener l) {
+		addKeyListener(l);
+		gamePanel.addKeyListener(l);
 	}
 
 	public void draw(CoordVector coord, String type) {

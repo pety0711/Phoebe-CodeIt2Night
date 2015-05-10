@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-
-
 //import java.util.Timer;
 import javax.swing.Timer;
 
@@ -17,7 +15,7 @@ import main.Field;
 import main.Patch;
 import main.Robi;
 
-public class GameEventListener implements KeyListener{
+public class GameEventListener implements KeyListener {
 
 	private Arena mainArena;
 	private ArrayList<Robi> robots;
@@ -30,7 +28,8 @@ public class GameEventListener implements KeyListener{
 	private static int minutes;
 
 	public GameEventListener(Arena arena) {
-		gameWindow = new GameWindow();
+		gameWindow = new GameWindow(arena.getDim());
+		gameWindow.registerKeyListener(this);
 		gameWindow.setVisible(true);
 		mainArena = arena;
 		robots = arena.getGamers();
@@ -47,7 +46,7 @@ public class GameEventListener implements KeyListener{
 				mainArena.tick();
 				processArena(mainArena.getFields());
 				gameWindow.drawPoints();
-				gameWindow.draw(new CoordVector(3,3), "");
+				gameWindow.draw(new CoordVector(3, 3), "");
 			}
 		};
 
@@ -59,7 +58,7 @@ public class GameEventListener implements KeyListener{
 	public static void start() {
 		seconds = 0;
 		minutes = 2;
-		timer.start();	
+		timer.start();
 	}
 
 	public static void exit() {
@@ -67,42 +66,39 @@ public class GameEventListener implements KeyListener{
 	}
 
 	public void keyPressed(KeyEvent e) {
-		
-		if (robots.size()>1){
-			CoordVector old0 = robots.get(0).getSpeed();
-			CoordVector old1 = robots.get(1).getSpeed();
-			
+
+		if (robots.size() == 2) {
 			switch (e.getKeyCode()) {
 			// UP change speed (x,y)=>(x,y+1)
 			case KeyEvent.VK_NUMPAD8:
-				robots.get(1).setSpeed(new CoordVector(old1.getX(), old1.getY()+1));
+				robots.get(1).stepUp();
 				break;
 			case KeyEvent.VK_W:
-				robots.get(0).setSpeed(new CoordVector(old0.getX(), old0.getY()+1));
+				robots.get(0).stepUp();
 				break;
 
 			// DOWN speed (x,y)=>(x,y-1)
 			case KeyEvent.VK_NUMPAD2:
-				robots.get(1).setSpeed(new CoordVector(old1.getX(), old1.getY()-1));
+				robots.get(1).stepDown();
 				break;
 			case KeyEvent.VK_S:
-				robots.get(0).setSpeed(new CoordVector(old0.getX(), old0.getY()-1));
+				robots.get(0).stepDown();
 				break;
 
 			// LEFT speed (x,y)=>(x-1,y)
 			case KeyEvent.VK_NUMPAD4:
-				robots.get(1).setSpeed(new CoordVector(old1.getX()-1, old1.getY()));
+				robots.get(1).stepLeft();
 				break;
 			case KeyEvent.VK_A:
-				robots.get(0).setSpeed(new CoordVector(old0.getX()-1, old0.getY()));
+				robots.get(0).stepLeft();
 				break;
 
 			// RIGHT speed (x,y)=>(x+1,y)
 			case KeyEvent.VK_NUMPAD6:
-				robots.get(1).setSpeed(new CoordVector(old1.getX()+1, old1.getY()));
+				robots.get(1).stepRight();
 				break;
 			case KeyEvent.VK_D:
-				robots.get(0).setSpeed(new CoordVector(old0.getX()+1, old0.getY()));
+				robots.get(0).stepRight();
 				break;
 
 			// PUT OIL
@@ -162,12 +158,12 @@ public class GameEventListener implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

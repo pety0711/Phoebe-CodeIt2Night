@@ -19,9 +19,10 @@ public class GamePanel extends JPanel {
 
 	int height = 15;
 	int width = 15;
-	
-	public GamePanel() {
 
+	public GamePanel(CoordVector coord) {
+		height = coord.getY();
+		width = coord.getX();
 		gameArena = new JTable();
 		gameArena.setRowHeight(15);
 		gameArena.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
@@ -87,8 +88,14 @@ public class GamePanel extends JPanel {
 			case "P":
 				c.setBackground(Color.BLACK);
 				break;
-			default:
+			case "1":
 				c.setBackground(Color.MAGENTA);
+				break;
+			case "0":
+				c.setBackground(Color.CYAN);
+				break;
+			default:
+				c.setBackground(Color.BLACK);
 				break;
 			}
 			return c;
@@ -109,8 +116,15 @@ public class GamePanel extends JPanel {
 		 * gameArena.getColumnModel().getColumn
 		 * (5).setCellRenderer(createNewColorRenderer(Color.BLACK));
 		 */
-		if (!type.isEmpty())
-			gameArena.setValueAt(type.charAt(0), height-coord.getY()-1, coord.getX());
+		if (!type.isEmpty()) {
+			if (type.toLowerCase().startsWith("r")) {
+				gameArena.setValueAt(type.charAt(type.length() - 1), height
+						- coord.getY() - 1, coord.getX());
+			} else {
+				gameArena.setValueAt(type.charAt(0), height - coord.getY() - 1,
+						coord.getX());
+			}
+		}
 
 		gameArena.updateUI();
 		// gameArena.setDefaultRenderer(String.class, new CustomRenderer());
