@@ -59,9 +59,9 @@ public class SideBar extends JPanel{
 	
 	public void refreshDatas(int points, int oil, int putty){
 		
-		this.points.setText(Integer.toString(points));
-		this.oil.setText(Integer.toString(oil));
-		this.putty.setText(Integer.toString(putty));
+		this.pointsValue.setText(Integer.toString(points));
+		this.oilSupply.setText(Integer.toString(oil));
+		this.puttySupply.setText(Integer.toString(putty));
 
 	}
 	
