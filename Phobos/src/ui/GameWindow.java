@@ -100,4 +100,7 @@ public class GameWindow extends JFrame {
 			infoBar.refreshTime(Integer.toString(min) + " : " + Integer.toString(sec));
 		}
 	}
+	public void drawPoints(){
+		rightSideBar.refreshDatas(15, 15, 15);
+	}
 }

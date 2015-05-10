@@ -26,16 +26,14 @@ public class GameEventListener {
 	public ActionListener buttonListener;
 	public static Timer timer;
 	private ActionListener taskPerformer;
-	private int seconds;
-	private int minutes;
+	private static int seconds;
+	private static int minutes;
 
 
 	public GameEventListener(Arena arena) {
 		gameWindow = new GameWindow();
 		gameWindow.setVisible(true);
 		mainArena = arena;
-		seconds = 0;
-		minutes = 2;
 		robots = arena.getRobots();
 		taskPerformer = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -48,19 +46,21 @@ public class GameEventListener {
 					seconds--;
 				}
 				mainArena.tick();
+				gameWindow.drawPoints();
 			}
 		};
 		
 		timer = new Timer(1000, taskPerformer);
 		timer.setRepeats(true);
-		
 	}
 
 	public static void start() {
+		seconds = 0;
+		minutes = 2;
 		timer.start();
 	}
 
-	public void exit() {
+	public static void exit() {
 		timer.stop();
 	}
 
