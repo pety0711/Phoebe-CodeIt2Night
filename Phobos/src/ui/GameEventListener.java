@@ -111,6 +111,10 @@ public class GameEventListener implements KeyListener {
 
 		JOptionPane.showMessageDialog(gameWindow, messageString);
 	}
+	
+	public void controls(){
+		JOptionPane.showMessageDialog(gameWindow, "<html><div width='400px'><h1>Controls</h1><ul style='list-style-type:none'>  <li style='padding-bottom: 10px;'><b>Start New Game</b> - CTRL + N</li>  <li style='padding-bottom: 10px;'><b>Movement</b>  <ul style='list-style-type:none;padding-top: 7px;'><li ><u>Left Player</u><ul style='list-style-type:none;padding-top: 7px;'><li style='padding-bottom: 3px;'>Increase Speed<ul style='list-style-type:none;padding-top: 3px;'><li>Forward - W</li><li>Right - D</li><li>Left - A</li><li>Backward - S</li></ul></li><li style='padding-bottom: 3px;'>Put Patch<ul style='list-style-type:none;padding-top: 3px;'><li>Oil - Q</li><li>Putty - R</li></ul></li></ul></li><li ><u>Right Player</u><ul style='list-style-type:none;padding-top: 7px;'><li style='padding-bottom: 3px;'>Increase Speed<ul style='list-style-type:none;padding-top: 3px;'><li>Forward - Num8</li><li>Right - Num6</li><li>Left - Num4</li><li>Backward - Num2</li></ul></li><li style='padding-bottom: 3px;'>Put Patch<ul style='list-style-type:none;padding-top: 3px;'><li>Oil - Num7</li><li>Putty - Num9</li></ul></li></ul></li>  </ul>  </li>  <li><b>Exit Game</b> - CTRL + Q</li></ul></div></html>");
+	}
 
 	public void keyPressed(KeyEvent e) {
 

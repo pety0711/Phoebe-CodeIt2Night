@@ -53,6 +53,15 @@ public class MenuBar extends JMenuBar {
 			}
 		}
 		exit.addActionListener(new exitAction());
+		
+		class controlsAction implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				// TODO
+				System.out.println("controls");
+				GameEventListener.getInstance().controls();
+			}
+		}
+		controls.addActionListener(new controlsAction());
 	}
 
 }
