@@ -81,7 +81,7 @@ public class GameWindow extends JFrame {
 	}
 
 	public void draw(CoordVector coord, String type) {
-
+		gamePanel.draw(coord, type);
 	}
 
 	public void drawTime(int min, int sec) {

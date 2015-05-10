@@ -109,7 +109,7 @@ public class GameEventListener {
 				if (f.hasRobi()) {
 					gameWindow.draw(f.getCoord(), f.getRobotId().get(0));
 				} else if (f.hasCleaner()) {
-					gameWindow.draw(f.getCoord(), f.getRobotId().get(0));
+					gameWindow.draw(f.getCoord(), "CleanerMaster");
 				} else if (f.getPatches().size() > 0) {
 					ArrayList<Patch> patches = f.getPatches();
 					boolean hasOil = false;
