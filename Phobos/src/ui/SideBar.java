@@ -100,6 +100,10 @@ public class SideBar extends JPanel {
 		this.puttySupply.setText(Integer.toString(putty));
 
 	}
+	
+	public void refreshPlayer(Robi newPlayer){
+		this.player = newPlayer;
+	}
 
 	public void refreshDatas() {
 

@@ -84,6 +84,7 @@ public class GameEventListener implements KeyListener {
 			mainArena = Arena.restart();
 			robots = mainArena.getGamers();
 			ok = false;
+			gameWindow.PlayersChanged(robots.get(0), robots.get(1));
 		}
 		timer.start();
 	}

@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 
 import main.Arena;
 import main.CoordVector;
+import main.Robi;
 
 public class GameWindow extends JFrame {
 
@@ -93,6 +94,12 @@ public class GameWindow extends JFrame {
 		this.setVisible(true);
 	}
 
+	
+	public void PlayersChanged(Robi r0, Robi r1){
+		leftSideBar.refreshPlayer(r0);
+		rightSideBar.refreshPlayer(r1);
+	}
+	
 	/**
 	 * Register KeyListener.
 	 */
