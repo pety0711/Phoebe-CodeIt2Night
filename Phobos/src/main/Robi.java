@@ -64,6 +64,23 @@ public class Robi extends Robot {
 		return points;
 
 	}
+	
+	/**
+	 * Get the puttySupply of the Robi.
+	 */
+	public int getPuttySupply() {
+		return puttySupply;
+
+	}
+	
+	
+	/**
+	 * Get the oilSupply of the Robi.
+	 */
+	public int getOilSupply() {
+		return oilSupply;
+
+	}
 
 	/**
 	 * Disable movement after stepping on an oil.
