@@ -37,12 +37,6 @@ public class GameEventListener {
 		seconds = 0;
 		minutes = 2;
 		robots = arena.getRobots();
-		timer = new Timer(1000, taskPerformer);
-		timer.setRepeats(true);
-		
-		
-		
-		
 		taskPerformer = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				System.out.println("tick \n");	
@@ -54,9 +48,12 @@ public class GameEventListener {
 					seconds--;
 				}
 				mainArena.tick();
-				
 			}
 		};
+		
+		timer = new Timer(1000, taskPerformer);
+		timer.setRepeats(true);
+		
 	}
 
 	public static void start() {
