@@ -69,6 +69,10 @@ public class GamePanel extends JPanel {
 		gameArena.addKeyListener(l);
 	}
 
+	
+	/**
+	 * The color distribution
+	 */
 	private class ColorRenderer extends DefaultTableCellRenderer {
 		public Component getTableCellRendererComponent(JTable table,
 				Object value, boolean isSelected, boolean hasFocus, int row,
@@ -79,27 +83,42 @@ public class GamePanel extends JPanel {
 				return c;
 			}
 			switch (((Character) value).toString().toUpperCase()) {
+			//SafeZone
 			case "S":
 				c.setBackground(Color.GREEN);
 				break;
+				
+			//DangerZone
 			case "D":
 				c.setBackground(Color.RED);
 				break;
+				
+			//Oil
 			case "O":
 				c.setBackground(Color.ORANGE);
 				break;
+				
+			//Putty
 			case "P":
 				c.setBackground(Color.BLACK);
 				break;
+				
+			//Player1
 			case "1":
 				c.setBackground(Color.MAGENTA);
 				break;
+				
+			//Player0
 			case "0":
 				c.setBackground(Color.CYAN);
 				break;
+				
+			//CleanerMaster
 			case "C":
 				c.setBackground(Color.WHITE);
 				break;
+				
+			//Default
 			default:
 				c.setBackground(Color.BLACK);
 				break;
@@ -108,6 +127,9 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Here happens the field drawing
+	 */
 	public void draw(CoordVector coord, String type) {
 		int x = coord.getX();
 		int y = coord.getY();
