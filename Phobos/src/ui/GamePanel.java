@@ -47,11 +47,6 @@ public class GamePanel extends JPanel {
 					false, false, false, false, false, false, false, false,
 					false, false, false, false };
 
-			/*
-			 * boolean[] columnEditables = new boolean[] { true, true, true,
-			 * true, true, true, true, true, true, true, true, true, true, true,
-			 * true };
-			 */
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -93,6 +88,9 @@ public class GamePanel extends JPanel {
 				break;
 			case "0":
 				c.setBackground(Color.CYAN);
+				break;
+			case "C":
+				c.setBackground(Color.WHITE);
 				break;
 			default:
 				c.setBackground(Color.BLACK);

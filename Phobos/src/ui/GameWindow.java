@@ -47,6 +47,7 @@ public class GameWindow extends JFrame {
 		setSize(new Dimension(450, 450));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 450);
+		setFocusable(true);
 		this.setLayout(new BorderLayout(0, 0));
 		this.setFocusable(true);
 		// Title label
@@ -87,7 +88,6 @@ public class GameWindow extends JFrame {
 
 	public void registerKeyListener(KeyListener l) {
 		addKeyListener(l);
-		gamePanel.addKeyListener(l);
 	}
 
 	public void draw(CoordVector coord, String type) {
