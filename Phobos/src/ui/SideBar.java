@@ -2,6 +2,7 @@ package ui;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -9,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import main.Robi;
 
 public class SideBar extends JPanel{
 	
@@ -18,6 +21,8 @@ public class SideBar extends JPanel{
 	private JLabel oil;
 	private ImageIcon image;
 	private JLabel imageLabel;
+	
+	private Robi player;
 	
 	private JLabel pointsValue;
 	private JLabel puttySupply;
@@ -39,6 +44,26 @@ public class SideBar extends JPanel{
 
 		init();
 	}
+	
+	public SideBar(Robi robot){
+		
+		player = robot;
+		
+		gamer = new JLabel(player.id);
+		points = new JLabel("Points");
+		putty = new JLabel("Putty");
+		oil = new JLabel("Oil");
+		
+		pointsValue = new JLabel("0");
+		puttySupply = new JLabel("0");
+		oilSupply = new JLabel("0");
+		
+		image = new ImageIcon();
+		imageLabel = new JLabel(image);
+
+		init();
+	}
+	
 	
 	public SideBar(String gamerID, int gamerPoints, int gamerPutty, int gamerOil, ImageIcon gamerImage){
 		
@@ -62,6 +87,14 @@ public class SideBar extends JPanel{
 		this.pointsValue.setText(Integer.toString(points));
 		this.oilSupply.setText(Integer.toString(oil));
 		this.puttySupply.setText(Integer.toString(putty));
+
+	}
+	
+	public void refreshDatas(){
+		
+		this.pointsValue.setText(Integer.toString(player.getPoints()));
+		this.oilSupply.setText(Integer.toString(player.getOilSupply()));
+		this.puttySupply.setText(Integer.toString(player.getPuttySupply()));
 
 	}
 	

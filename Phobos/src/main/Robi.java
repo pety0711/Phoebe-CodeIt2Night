@@ -17,6 +17,14 @@ public class Robi extends Robot {
 	private int points;
 
 
+	public int getPuttySupply(){
+		return this.puttySupply;
+	}
+	
+	public int getOilSupply(){
+		return this.oilSupply;
+	}
+	
 	/**
 	 * Instantiates a new robot - Robi.
 	 *

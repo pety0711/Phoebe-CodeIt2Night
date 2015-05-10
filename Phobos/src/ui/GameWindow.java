@@ -9,10 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import main.Arena;
 import main.CoordVector;
 
 public class GameWindow extends JFrame {
 
+	private Arena arena;
+	
 	private GamePanel gamePanel;
 	private SideBar rightSideBar;
 	private SideBar leftSideBar;
@@ -29,7 +32,8 @@ public class GameWindow extends JFrame {
 	 * 
 	 * @param coordVector
 	 */
-	public GameWindow(CoordVector coord) {
+	public GameWindow(CoordVector coord, Arena aarena) {
+		this.arena = aarena;
 		initialize(coord);
 	}
 
@@ -58,14 +62,14 @@ public class GameWindow extends JFrame {
 		this.add(titleBar, BorderLayout.NORTH);
 
 		// Left side bar
-		leftSideBar = new SideBar();
+		leftSideBar = new SideBar(arena.getGamers().get(0));
 		leftSideBar.setSize(new Dimension(100, 100));
 		leftSideBar.setPreferredSize(new Dimension(100, 100));
 		leftSideBar.setMinimumSize(new Dimension(100, 100));
 		this.add(leftSideBar, BorderLayout.WEST);
 
 		// Right side Bar
-		rightSideBar = new SideBar();
+		rightSideBar = new SideBar(arena.getGamers().get(1));
 		rightSideBar.setSize(new Dimension(100, 100));
 		rightSideBar.setPreferredSize(new Dimension(100, 100));
 		rightSideBar.setMinimumSize(new Dimension(100, 100));
@@ -106,6 +110,7 @@ public class GameWindow extends JFrame {
 	}
 
 	public void drawPoints() {
-		rightSideBar.refreshDatas(15, 15, 15);
+		rightSideBar.refreshDatas();
+		leftSideBar.refreshDatas();
 	}
 }
