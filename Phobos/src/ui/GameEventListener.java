@@ -26,9 +26,14 @@ public class GameEventListener implements KeyListener {
 	private ActionListener taskPerformer;
 	private static int seconds;
 	private static int minutes;
+	private static boolean ok;
 
 	public GameEventListener(Arena arena) {
+		ok=true;
 		mainArena = arena;
+		gameWindow = new GameWindow(arena.getDim(),mainArena);
+		gameWindow.registerKeyListener(this);
+		gameWindow.setVisible(true);
 		robots = arena.getGamers();
 		taskPerformer = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -44,11 +49,14 @@ public class GameEventListener implements KeyListener {
 				processArena(mainArena.getFields());
 				gameWindow.drawPoints();
 				gameWindow.draw(new CoordVector(3, 3), "");
+				
+				if(seconds==0&&minutes==0){
+					mainArena.finishGame();
+					exit();
+				}
 			}
 		};
-		gameWindow = new GameWindow(arena.getDim(),mainArena);
-		gameWindow.registerKeyListener(this);
-		gameWindow.setVisible(true);
+
 		timer = new Timer(1000, taskPerformer);
 		timer.setRepeats(true);
 		start();
@@ -57,11 +65,13 @@ public class GameEventListener implements KeyListener {
 	public static void start() {
 		seconds = 0;
 		minutes = 2;
+		
 		timer.start();
 	}
 
 	public static void exit() {
 		timer.stop();
+		ok=false;
 	}
 
 	public void keyPressed(KeyEvent e) {
