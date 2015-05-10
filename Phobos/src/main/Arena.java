@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -43,6 +44,7 @@ public class Arena {
 	private int dCounter = 0;
 	private int rCounter = 0;
 	private int kCounter = 0;
+	private int tickCounter = 0;
 
 	private static AtomicInteger idCounter = new AtomicInteger();
 
@@ -489,6 +491,17 @@ public class Arena {
 			if (!gamers.get(key).isItAlive) {
 				GameEventListener.exit();
 			}
+		}
+		tickCounter++;
+		if(tickCounter/28==0){
+			Field f;
+			do {
+				f = fields.get(new Random().nextInt(fields.size()));
+	        } while (f.id.charAt(0)!='s');
+			CleanerMaster cm = new CleanerMaster("k" + kCounter++, this);
+			cleaners.put(cm.id, cm);
+			cm.setField(f);
+			f.steppedOnYou(cm);
 		}
 	}
 
