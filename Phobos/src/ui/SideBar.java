@@ -205,6 +205,8 @@ public class SideBar extends JPanel {
 		oilBox.add(oilSupply);
 
 		// Image-t tartalmazó label
+		imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		verticalBox.add(imageLabel);
 
 	}
