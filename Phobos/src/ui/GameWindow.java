@@ -53,7 +53,7 @@ public class GameWindow extends JFrame {
 		setBounds(100, 100, 450, 450);
 		setFocusable(true);
 		this.setLayout(new BorderLayout(0, 0));
-
+		this.setFocusable(true);
 		// Title label
 		titleBar = new JLabel("Phoebe");
 		titleBar.setHorizontalTextPosition(SwingConstants.CENTER);

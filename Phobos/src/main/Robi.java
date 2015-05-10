@@ -16,14 +16,6 @@ public class Robi extends Robot {
 	/** The points. */
 	private int points;
 
-
-	public int getPuttySupply(){
-		return this.puttySupply;
-	}
-	
-	public int getOilSupply(){
-		return this.oilSupply;
-	}
 	
 	/**
 	 * Instantiates a new robot - Robi.
@@ -70,6 +62,23 @@ public class Robi extends Robot {
 	 */
 	public int getPoints() {
 		return points;
+
+	}
+	
+	/**
+	 * Get the puttySupply of the Robi.
+	 */
+	public int getPuttySupply() {
+		return puttySupply;
+
+	}
+	
+	
+	/**
+	 * Get the oilSupply of the Robi.
+	 */
+	public int getOilSupply() {
+		return oilSupply;
 
 	}
 
