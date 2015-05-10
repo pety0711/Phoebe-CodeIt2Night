@@ -9,14 +9,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-public class MenuBar extends JMenuBar{
-
+public class MenuBar extends JMenuBar {
 
 	public MenuBar() {
 
 		JMenu file = new JMenu("File");
 		this.add(file);
-	
+
 		JMenuItem newGame = new JMenuItem("New Game");
 		KeyStroke keyStrokeToNewGame = KeyStroke.getKeyStroke(KeyEvent.VK_N,
 				KeyEvent.CTRL_DOWN_MASK);
@@ -36,27 +35,24 @@ public class MenuBar extends JMenuBar{
 		help.add(controls);
 
 		this.setVisible(true);
-		
-		class newGameAction implements ActionListener{
-			public void	actionPerformed(ActionEvent e) {
-				//TODO
+
+		class newGameAction implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				// TODO
 				System.out.println("newGame");
-				GameEventListener.start();
+				GameEventListener.getInstance().start();
 			}
 		}
 		newGame.addActionListener(new newGameAction());
-		
-		class exitAction implements ActionListener{
-			public void	actionPerformed(ActionEvent e) {
-				//TODO
+
+		class exitAction implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				// TODO
 				System.out.println("exit");
-				GameEventListener.exit();
+				GameEventListener.getInstance().exit();
 			}
 		}
 		exit.addActionListener(new exitAction());
 	}
-	
-
-	
 
 }

@@ -3,7 +3,6 @@ package main;
 import java.awt.EventQueue;
 
 import ui.GameEventListener;
-import ui.GameWindow;
 
 public class Main {
 	static Arena mainArena;
@@ -14,9 +13,10 @@ public class Main {
 			public void run() {
 				try {
 					mainArena = new Arena("asdasd", "map.csv");
-					
-					GameEventListener GEL = new GameEventListener(mainArena);
-					
+
+					GameEventListener GEL = GameEventListener.getInstance();
+					GEL.Initialize(mainArena);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

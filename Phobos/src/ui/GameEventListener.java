@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-
 import javax.swing.JOptionPane;
 //import java.util.Timer;
 import javax.swing.Timer;
@@ -20,20 +19,25 @@ import main.Robi;
 public class GameEventListener implements KeyListener {
 
 	private Arena mainArena;
-	private static ArrayList<Robi> robots;
+	private ArrayList<Robi> robots;
 
-	public static GameWindow gameWindow;
+	public GameWindow gameWindow;
 	public ActionListener buttonListener;
-	public static Timer timer;
+	public Timer timer;
 	private ActionListener taskPerformer;
-	private static int seconds;
-	private static int minutes;
-	private static boolean ok;
+	private int seconds;
+	private int minutes;
+	private boolean ok;
 
-	public GameEventListener(Arena arena) {
-		ok=true;
+	private static GameEventListener instance = null;
+
+	protected GameEventListener() {
+	}
+
+	public void Initialize(Arena arena) {
+		ok = true;
 		mainArena = arena;
-		gameWindow = new GameWindow(arena.getDim(),mainArena);
+		gameWindow = new GameWindow(arena.getDim(), mainArena);
 		gameWindow.registerKeyListener(this);
 		gameWindow.setVisible(true);
 		robots = arena.getGamers();
@@ -51,8 +55,8 @@ public class GameEventListener implements KeyListener {
 				processArena(mainArena.getFields());
 				gameWindow.drawPoints();
 				gameWindow.draw(new CoordVector(3, 3), "");
-				
-				if(seconds==0&&minutes==0){
+
+				if (seconds == 0 && minutes == 0) {
 					mainArena.finishGame();
 					exit();
 				}
@@ -64,31 +68,40 @@ public class GameEventListener implements KeyListener {
 		start();
 	}
 
-	public static void start() {
+	public static GameEventListener getInstance() {
+		if (instance == null) {
+			instance = new GameEventListener();
+		}
+		return instance;
+	}
+
+	public void start() {
 		seconds = 0;
 		minutes = 2;
-		
+
 		timer.start();
 	}
 
-	public static void exit() {
+	public void exit() {
 		timer.stop();
-		ok=false;
+		ok = false;
 		String messageString = "";
 		if (robots.get(0).getPoints() < robots.get(1).getPoints()) {
-				messageString += "Winner is:  " + robots.get(1).id;
-		}else {
+			messageString += "Winner is:  " + robots.get(1).id;
+		} else {
 			if (robots.get(0).getPoints() > robots.get(1).getPoints()) {
 				messageString += "Winner is:  " + robots.get(0).id;
-			}else {
+			} else {
 				messageString += "It's a Tie!";
 			}
 		}
 		messageString += "\n";
-		messageString += robots.get(0).id + " has: " + Integer.toString(robots.get(0).getPoints()) + " points";
+		messageString += robots.get(0).id + " has: "
+				+ Integer.toString(robots.get(0).getPoints()) + " points";
 		messageString += "\n";
-		messageString += robots.get(1).id + " has: " + Integer.toString(robots.get(1).getPoints()) + " points";
-		
+		messageString += robots.get(1).id + " has: "
+				+ Integer.toString(robots.get(1).getPoints()) + " points";
+
 		JOptionPane.showMessageDialog(gameWindow, messageString);
 	}
 

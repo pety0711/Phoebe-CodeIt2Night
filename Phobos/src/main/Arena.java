@@ -489,15 +489,15 @@ public class Arena {
 		// végsõ ellenõrzés, hogy meghalt-e egy robot
 		for (String key : keys) {
 			if (!gamers.get(key).isItAlive) {
-				GameEventListener.exit();
+				GameEventListener.getInstance().exit();
 			}
 		}
 		tickCounter++;
-		if(tickCounter%28==0){
+		if (tickCounter % 28 == 0) {
 			Field f;
 			do {
 				f = fields.get(new Random().nextInt(fields.size()));
-	        } while (f.id.charAt(0)!='s');
+			} while (f.id.charAt(0) != 's');
 			CleanerMaster cm = new CleanerMaster("k" + kCounter++, this);
 			cleaners.put(cm.id, cm);
 			cm.setField(f);
