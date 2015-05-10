@@ -3,7 +3,12 @@ package ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.sql.Time;
 import java.util.ArrayList;
+
+
+
+
 
 //import java.util.Timer;
 import javax.swing.Timer;
@@ -19,25 +24,42 @@ public class GameEventListener {
 
 	public GameWindow gameWindow;
 	public ActionListener buttonListener;
-	public Timer timer;
+	public static Timer timer;
 	private ActionListener taskPerformer;
+	private int seconds;
+	private int minutes;
+
 
 	public GameEventListener(Arena arena) {
+		gameWindow = new GameWindow();
+		gameWindow.setVisible(true);
 		mainArena = arena;
+		seconds = 0;
+		minutes = 2;
 		robots = arena.getRobots();
-
-		taskPerformer = new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				System.out.println("tick \n");
-				mainArena.tick();
-			}
-		};
-
 		timer = new Timer(1000, taskPerformer);
 		timer.setRepeats(true);
+		
+		
+		
+		
+		taskPerformer = new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				System.out.println("tick \n");	
+				gameWindow.drawTime(minutes, seconds);
+				if(seconds <= 0){
+					minutes--;
+					seconds = 59;
+				}else {
+					seconds--;
+				}
+				mainArena.tick();
+				
+			}
+		};
 	}
 
-	public void start() {
+	public static void start() {
 		timer.start();
 	}
 

@@ -27,6 +27,7 @@ public class GameWindow extends JFrame {
 	private SideBar leftSideBar;
 	private InfoBar infoBar;
 	private MenuBar menuBar; 
+	private JLabel titleBar;
 
 	/**
 	 * Launch the application.
@@ -54,43 +55,49 @@ public class GameWindow extends JFrame {
 		this.setLayout(new BorderLayout(0, 0));
 
 		// Title label
-		JLabel titleBar = new JLabel("Phoebe");
+		titleBar = new JLabel("Phoebe");
 		titleBar.setHorizontalTextPosition(SwingConstants.CENTER);
 		titleBar.setHorizontalAlignment(SwingConstants.CENTER);
 		titleBar.setFont(new Font("Calibri Light", Font.BOLD, 18));
 		this.add(titleBar, BorderLayout.NORTH);
 
 		// Left side bar
-		JPanel leftSideBar = new SideBar();
+		leftSideBar = new SideBar();
 		leftSideBar.setSize(new Dimension(100, 100));
 		leftSideBar.setPreferredSize(new Dimension(100, 100));
 		leftSideBar.setMinimumSize(new Dimension(100, 100));
 		this.add(leftSideBar, BorderLayout.WEST);
 
 		// Right side Bar
-		JPanel rightSideBar = new SideBar();
+		rightSideBar = new SideBar();
 		rightSideBar.setSize(new Dimension(100, 100));
 		rightSideBar.setPreferredSize(new Dimension(100, 100));
 		rightSideBar.setMinimumSize(new Dimension(100, 100));
 		this.add(rightSideBar, BorderLayout.EAST);
 
 		// Info Bar
-		JPanel infoBar = new InfoBar();
+		infoBar = new InfoBar();
 		this.add(infoBar, BorderLayout.SOUTH);
 
 		// Game panel
-		JPanel gamePanel = new GamePanel();
+		gamePanel = new GamePanel();
 		this.add(gamePanel, BorderLayout.CENTER);
 
 		// Menu bar
-		JMenuBar menuBar = new MenuBar();
+		menuBar = new MenuBar();
 		this.setJMenuBar(menuBar);
 
 		this.setVisible(true);
-		
 	}
 	
 	public void draw(){
 		
+	}
+	public void drawTime(int min, int sec){
+		if (sec < 10) {
+			infoBar.refreshTime(Integer.toString(min) + " : " + "0" + Integer.toString(sec));
+		}else {
+			infoBar.refreshTime(Integer.toString(min) + " : " + Integer.toString(sec));
+		}
 	}
 }

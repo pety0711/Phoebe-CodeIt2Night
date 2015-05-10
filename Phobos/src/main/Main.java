@@ -14,9 +14,7 @@ public class Main {
 			public void run() {
 				try {
 					mainArena = new Arena("asdasd", "map.csv");
-					GameWindow window = new GameWindow();
 					GameEventListener GEL = new GameEventListener(mainArena);
-					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -40,7 +40,8 @@ public class MenuBar extends JMenuBar{
 		class newGameAction implements ActionListener{
 			public void	actionPerformed(ActionEvent e) {
 				//TODO
-				System.out.println("newGame");				
+				System.out.println("newGame");
+				GameEventListener.start();
 			}
 		}
 		newGame.addActionListener(new newGameAction());
