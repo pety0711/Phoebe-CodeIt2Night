@@ -68,7 +68,7 @@ public abstract class Robot {
 		arena = a;
 		canChangeSpeed = true;
 
-		speed = new CoordVector();
+		speed = new CoordVector(1,1);
 	}
 
 	/**

@@ -39,9 +39,9 @@ public class GameWindow extends JFrame {
 		setPreferredSize(new Dimension(450, 150));
 		setTitle("Phoebe Game");
 		setResizable(false);
-		setSize(new Dimension(450, 300));
+		setSize(new Dimension(450, 450));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 450);
 		this.setLayout(new BorderLayout(0, 0));
 
 		// Title label

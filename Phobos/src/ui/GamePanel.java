@@ -44,14 +44,14 @@ public class GamePanel extends JPanel {
 		}
 
 		DefaultTableModel tableModel = new DefaultTableModel(model, s) {
-			/*boolean[] columnEditables = new boolean[] { false, false, false,
+			boolean[] columnEditables = new boolean[] { false, false, false,
 					false, false, false, false, false, false, false, false,
 					false, false, false, false };
-*/
+/*
 			boolean[] columnEditables = new boolean[] { true, true, true,
 					true, true, true, true, true, true, true, true,
 					true, true, true, true };
-			
+			*/
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -97,7 +97,7 @@ public class GamePanel extends JPanel {
 		/*gameArena.getColumnModel().getColumn(3).setCellRenderer(createNewColorRenderer(Color.RED));
 		gameArena.getColumnModel().getColumn(5).setCellRenderer(createNewColorRenderer(Color.BLACK));*/
 		if(type!="")
-		gameArena.setValueAt(type.charAt(0), coord.getY(), coord.getX());
+			gameArena.setValueAt(type.charAt(0), coord.getY(), coord.getX());
 
 		gameArena.updateUI();
 		//gameArena.setDefaultRenderer(String.class, new CustomRenderer());
