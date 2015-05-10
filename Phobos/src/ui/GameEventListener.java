@@ -68,6 +68,7 @@ public class GameEventListener implements KeyListener {
 		start();
 	}
 
+<<<<<<< HEAD
 	public static GameEventListener getInstance() {
 		if (instance == null) {
 			instance = new GameEventListener();
@@ -76,13 +77,26 @@ public class GameEventListener implements KeyListener {
 	}
 
 	public void start() {
+=======
+	/**
+	 * The timer will start and the game will be this long
+	 */
+	public static void start() {
+>>>>>>> branch 'master' of https://github.com/pety0711/Phoebe-CodeIt2Night.git
 		seconds = 0;
 		minutes = 2;
 
 		timer.start();
 	}
 
+<<<<<<< HEAD
 	public void exit() {
+=======
+	/**
+	 *The game will end and the winner and points will be shown.
+	 */
+	public static void exit() {
+>>>>>>> branch 'master' of https://github.com/pety0711/Phoebe-CodeIt2Night.git
 		timer.stop();
 		ok = false;
 		String messageString = "";
@@ -105,6 +119,10 @@ public class GameEventListener implements KeyListener {
 		JOptionPane.showMessageDialog(gameWindow, messageString);
 	}
 
+	
+	/**
+	 * Here we can configure the buttons.
+	 */
 	public void keyPressed(KeyEvent e) {
 
 		if (robots.size() == 2) {
@@ -160,6 +178,10 @@ public class GameEventListener implements KeyListener {
 		}
 	}
 
+	
+	/**
+	 * All the fields which changed will be redrawn.
+	 */
 	private void processArena(ArrayList<Field> fields) {
 		for (Field f : fields) {
 			if (f.hasChanged) {
