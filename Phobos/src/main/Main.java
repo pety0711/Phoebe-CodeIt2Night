@@ -12,7 +12,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					mainArena = new Arena("asdasd", "map.csv");
+					mainArena = new Arena("asdasd", "big_map.csv");
 
 					GameEventListener GEL = GameEventListener.getInstance();
 					GEL.Initialize(mainArena);

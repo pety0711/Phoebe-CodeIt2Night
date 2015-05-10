@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
 		height = coord.getY();
 		width = coord.getX();
 		gameArena = new JTable();
-		gameArena.setRowHeight(30);
+		gameArena.setRowHeight(15);
 		gameArena.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		gameArena.setRowSelectionAllowed(false);
 
@@ -46,12 +46,8 @@ public class GamePanel extends JPanel {
 		}
 
 		DefaultTableModel tableModel = new DefaultTableModel(model, s) {
-			boolean[] columnEditables = new boolean[] { false, false, false,
-					false, false, false, false, false, false, false, false,
-					false, false, false, false };
-
 			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
+				return false;
 			}
 		};
 

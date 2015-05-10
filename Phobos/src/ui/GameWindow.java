@@ -51,11 +51,11 @@ public class GameWindow extends JFrame {
 		setResizable(true);
 		setSize(new Dimension(450, 450));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 600);
+		setBounds(100, 100, 1300, 870);
 		setFocusable(true);
 		this.setLayout(new BorderLayout(0, 0));
 		this.setFocusable(true);
-		
+
 		// Title label
 		titleBar = new JLabel("Phoebe");
 		titleBar.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -89,17 +89,16 @@ public class GameWindow extends JFrame {
 		// Menu bar
 		menuBar = new MenuBar();
 		this.setJMenuBar(menuBar);
-		
-		//It will be visible
+
+		// It will be visible
 		this.setVisible(true);
 	}
 
-	
-	public void PlayersChanged(Robi r0, Robi r1){
+	public void PlayersChanged(Robi r0, Robi r1) {
 		leftSideBar.refreshPlayer(r0);
 		rightSideBar.refreshPlayer(r1);
 	}
-	
+
 	/**
 	 * Register KeyListener.
 	 */
@@ -128,7 +127,6 @@ public class GameWindow extends JFrame {
 		}
 	}
 
-	
 	/**
 	 * The points drawing
 	 */
