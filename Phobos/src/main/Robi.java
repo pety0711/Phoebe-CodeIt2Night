@@ -16,7 +16,6 @@ public class Robi extends Robot {
 	/** The points. */
 	private int points;
 
-	
 	/**
 	 * Instantiates a new robot - Robi.
 	 *
@@ -64,7 +63,7 @@ public class Robi extends Robot {
 		return points;
 
 	}
-	
+
 	/**
 	 * Get the puttySupply of the Robi.
 	 */
@@ -72,8 +71,7 @@ public class Robi extends Robot {
 		return puttySupply;
 
 	}
-	
-	
+
 	/**
 	 * Get the oilSupply of the Robi.
 	 */
@@ -125,21 +123,22 @@ public class Robi extends Robot {
 	 */
 	@Override
 	public void tick() {
-		points=points + this.getIntSpeed();
+		points = points + this.getIntSpeed();
 		StringBuilder text = new StringBuilder();
-		
-		text.append("Step - " + id + " Robot  -  Start fields: " + field.id 
-				+ " [" + field.getCoord().getX() + "," + field.getCoord().getY() + "] - Target field: ");
-		
-		
+
+		text.append("Step - " + id + " Robot  -  Start fields: " + field.id
+				+ " [" + field.getCoord().getX() + ","
+				+ field.getCoord().getY() + "] - Target field: ");
+
 		Field f = field.step(speed, this);
 		field.steppedOffYou(this);
 		setField(f);
 		f.steppedOnYou(this);
-		
+
 		canChangeSpeed = true;
-		
-		text.append(field.id + " [" + field.getCoord().getX() + "," + field.getCoord().getY() + "]");
+
+		// text.append(field.id + " [" + field.getCoord().getX() + "," +
+		// field.getCoord().getY() + "]");
 		Prototype.printOut(text.toString());
 	}
 
