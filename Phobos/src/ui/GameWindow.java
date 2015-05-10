@@ -87,19 +87,29 @@ public class GameWindow extends JFrame {
 		// Menu bar
 		menuBar = new MenuBar();
 		this.setJMenuBar(menuBar);
-
+		
+		//It will be visible
 		this.setVisible(true);
 	}
 
+	/**
+	 * Register KeyListener.
+	 */
 	public void registerKeyListener(KeyListener l) {
 		addKeyListener(l);
 		gamePanel.registerKeyListener(l);
 	}
 
+	/**
+	 * The field drawing
+	 */
 	public void draw(CoordVector coord, String type) {
 		gamePanel.draw(coord, type);
 	}
 
+	/**
+	 * The time drawing
+	 */
 	public void drawTime(int min, int sec) {
 		if (sec < 10) {
 			infoBar.refreshTime(Integer.toString(min) + " : " + "0"
@@ -110,6 +120,10 @@ public class GameWindow extends JFrame {
 		}
 	}
 
+	
+	/**
+	 * The points drawing
+	 */
 	public void drawPoints() {
 		rightSideBar.refreshDatas();
 		leftSideBar.refreshDatas();

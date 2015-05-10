@@ -21,6 +21,10 @@ public class InfoBar extends JPanel{
 		this.setVisible(true);
 	}
 	
+	/**
+	 * It refreshes the time.
+	 *
+	 */
 	public void refreshTime(String newTime){
 		time.setText(newTime);
 	}
