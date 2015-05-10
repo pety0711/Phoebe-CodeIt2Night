@@ -21,8 +21,8 @@ public class GamePanel extends JPanel {
 	private JTable gameArena;
 
 	public GamePanel() {
-		int height = 50;
-		int width = 50;
+		int height = 15;
+		int width = 15;
 
 		gameArena = new JTable();
 		gameArena.setRowHeight(15);
@@ -61,14 +61,10 @@ public class GamePanel extends JPanel {
 		for (int i = 0; i < height; i++) {
 			gameArena.getColumnModel().getColumn(i).setResizable(false);
 			gameArena.getColumnModel().getColumn(i).setPreferredWidth(15);
-			gameArena.getColumnModel().getColumn(i).setCellRenderer(createNewColorRenderer(Color.RED));
 		}
-
 		this.add(gameArena);
-
 	}
-	
-	
+		
 	
 	  class ColorRenderer extends DefaultTableCellRenderer 
 	  {
@@ -81,21 +77,29 @@ public class GamePanel extends JPanel {
 	      {
 	          Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 	          c.setBackground(color);
-	          // Formatting here
-
 	          return c;
 	      }
 	  }
+	  
 	  ColorRenderer createNewColorRenderer(Color color){
 			ColorRenderer nColor = new ColorRenderer();
 			nColor.setColor(color);
 			return nColor;
 		}
+	  
 	public void draw(CoordVector coord, String type) {
-		//test
-		gameArena.getColumnModel().getColumn(1).setCellRenderer(createNewColorRenderer(Color.RED));
-		//model.setRowColour(1, Color.YELLOW);
-		
+		int x = coord.getX();
+		int y = coord.getY();
+		/*
+		Component c = gameArena.getComponentAt(2,2);
+		c.setBackground(Color.RED);*/
+
+		/*gameArena.getColumnModel().getColumn(3).setCellRenderer(createNewColorRenderer(Color.RED));
+		gameArena.getColumnModel().getColumn(5).setCellRenderer(createNewColorRenderer(Color.BLACK));*/
+		if(type!="")
+		gameArena.setValueAt(type.charAt(0), coord.getY(), coord.getX());
+
+		gameArena.updateUI();
 		//gameArena.setDefaultRenderer(String.class, new CustomRenderer());
 		// TODO coord megfeleltetése cellának
 		// TODO string megfeleltetése színnek, pl SafeZone -> sárga? DangerZone
