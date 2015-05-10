@@ -186,7 +186,7 @@ public class CleanerMaster extends Robot {
 	public void stepBack() {
 		CoordVector backSpeed = new CoordVector(speed.getX() * (-1),
 				speed.getY() * (-1));
-		Field f = field.step(speed, this);
+		Field f = field.step(backSpeed, this);
 		field.steppedOffYou(this);
 		setField(f);
 		f.steppedOnYou(this);
