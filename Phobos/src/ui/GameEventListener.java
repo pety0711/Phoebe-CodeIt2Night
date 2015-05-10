@@ -40,7 +40,8 @@ public class GameEventListener implements KeyListener {
 		gameWindow = new GameWindow(arena.getDim(), mainArena);
 		gameWindow.registerKeyListener(this);
 		gameWindow.setVisible(true);
-		robots = arena.getGamers();
+		robots = mainArena.getGamers();
+
 		taskPerformer = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				System.out.println("tick \n");
@@ -79,7 +80,6 @@ public class GameEventListener implements KeyListener {
 	public void start() {
 		seconds = 0;
 		minutes = 2;
-
 		timer.start();
 	}
 

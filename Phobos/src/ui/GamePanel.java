@@ -69,7 +69,6 @@ public class GamePanel extends JPanel {
 		gameArena.addKeyListener(l);
 	}
 
-	
 	/**
 	 * The color distribution
 	 */
@@ -84,42 +83,47 @@ public class GamePanel extends JPanel {
 				return c;
 			}
 			switch (((Character) value).toString().toUpperCase()) {
-			//SafeZone
+			// SafeZone
 			case "S":
 				c.setBackground(Color.GREEN);
 				break;
-				
-			//DangerZone
+
+			// DangerZone
 			case "D":
 				c.setBackground(Color.RED);
 				break;
-				
-			//Oil
+
+			// Oil
 			case "O":
 				c.setBackground(Color.ORANGE);
 				break;
-				
-			//Putty
+
+			// Mixed
+			case "M":
+				c.setBackground(Color.ORANGE.brighter());
+				break;
+
+			// Putty
 			case "P":
 				c.setBackground(Color.BLACK);
 				break;
-				
-			//Player1
+
+			// Player1
 			case "1":
 				c.setBackground(Color.MAGENTA);
 				break;
-				
-			//Player0
+
+			// Player0
 			case "0":
 				c.setBackground(Color.CYAN);
 				break;
-				
-			//CleanerMaster
+
+			// CleanerMaster
 			case "C":
 				c.setBackground(Color.WHITE);
 				break;
-				
-			//Default
+
+			// Default
 			default:
 				c.setBackground(Color.BLACK);
 				break;
