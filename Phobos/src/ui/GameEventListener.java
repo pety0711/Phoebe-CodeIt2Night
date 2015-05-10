@@ -10,6 +10,7 @@ import javax.swing.Timer;
 
 import main.Arena;
 import main.Field;
+import main.Patch;
 import main.Robi;
 
 public class GameEventListener {
@@ -110,10 +111,25 @@ public class GameEventListener {
 				} else if (f.hasCleaner()) {
 					gameWindow.draw(f.getCoord(), f.getRobotId().get(0));
 				} else if (f.getPatches().size() > 0) {
+					ArrayList<Patch> patches = f.getPatches();
+					boolean hasOil = false;
+					boolean hasPutty = false;
+					for (Patch p : patches) {
+						if ("Oil".equals(p.getClass().getSimpleName()))
+							hasOil = true;
+						else if ("Putty".equals(p.getClass().getSimpleName()))
+							hasPutty = true;
+					}
 
+					if (hasOil && hasPutty) {
+						gameWindow.draw(f.getCoord(), "Mixed");
+					} else if (hasOil) {
+						gameWindow.draw(f.getCoord(), "Oil");
+					} else if (hasPutty) {
+						gameWindow.draw(f.getCoord(), "Putty");
+					}
 				}
 			}
 		}
 	}
-
 }

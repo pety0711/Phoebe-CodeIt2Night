@@ -190,6 +190,7 @@ public class Arena {
 		List<String> data = new ArrayList<String>();
 
 		for (String element : row) {
+			element = element.toLowerCase();
 			switch (element) {
 			case "s":
 				SafeZone ss = new SafeZone("s" + sCounter++);
