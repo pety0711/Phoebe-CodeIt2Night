@@ -10,12 +10,12 @@ import javax.swing.Timer;
 
 import main.Arena;
 import main.Field;
-import main.Robot;
+import main.Robi;
 
 public class GameEventListener {
 
 	private Arena mainArena;
-	private ArrayList<Robot> robots;
+	private ArrayList<Robi> robots;
 
 	public GameWindow gameWindow;
 	public ActionListener buttonListener;
@@ -28,7 +28,7 @@ public class GameEventListener {
 		gameWindow = new GameWindow();
 		gameWindow.setVisible(true);
 		mainArena = arena;
-		robots = arena.getRobots();
+		robots = arena.getGamers();
 		taskPerformer = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				System.out.println("tick \n");
