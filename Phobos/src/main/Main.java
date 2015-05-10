@@ -14,12 +14,13 @@ public class Main {
 			public void run() {
 				try {
 					mainArena = new Arena("asdasd", "map.csv");
+					
 					GameEventListener GEL = new GameEventListener(mainArena);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
 }

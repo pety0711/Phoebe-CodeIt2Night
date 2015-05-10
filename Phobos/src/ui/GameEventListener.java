@@ -5,10 +5,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+
 //import java.util.Timer;
 import javax.swing.Timer;
 
 import main.Arena;
+import main.CoordVector;
 import main.Field;
 import main.Patch;
 import main.Robi;
@@ -43,17 +45,19 @@ public class GameEventListener {
 				mainArena.tick();
 				processArena(mainArena.getFields());
 				gameWindow.drawPoints();
+				gameWindow.draw(new CoordVector(3,3), "");
 			}
 		};
 
 		timer = new Timer(1000, taskPerformer);
 		timer.setRepeats(true);
+		start();
 	}
 
 	public static void start() {
 		seconds = 0;
 		minutes = 2;
-		timer.start();
+		timer.start();	
 	}
 
 	public static void exit() {
@@ -61,6 +65,7 @@ public class GameEventListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
+		
 		if (true)
 			switch (e.getKeyCode()) {
 			// UP change speed (x,y)=>(x,y+1)

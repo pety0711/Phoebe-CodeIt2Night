@@ -96,7 +96,7 @@ public class GamePanel extends JPanel {
 
 		/*gameArena.getColumnModel().getColumn(3).setCellRenderer(createNewColorRenderer(Color.RED));
 		gameArena.getColumnModel().getColumn(5).setCellRenderer(createNewColorRenderer(Color.BLACK));*/
-		if(type!="")
+		if(!type.isEmpty())
 			gameArena.setValueAt(type.charAt(0), coord.getY(), coord.getX());
 
 		gameArena.updateUI();
