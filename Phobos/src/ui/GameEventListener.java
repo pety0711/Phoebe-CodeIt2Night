@@ -138,6 +138,7 @@ public class GameEventListener {
 				} else {
 					gameWindow.draw(f.getCoord(), "SafeZone");
 				}
+				f.setHasChanged(false);
 			}
 		}
 	}
