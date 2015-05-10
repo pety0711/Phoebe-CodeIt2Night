@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.KeyListener;
 import java.util.Map;
 
@@ -22,10 +23,11 @@ public class GamePanel extends JPanel {
 	int width = 15;
 
 	public GamePanel(CoordVector coord) {
+		setLayout(new GridLayout());
 		height = coord.getY();
 		width = coord.getX();
 		gameArena = new JTable();
-		gameArena.setRowHeight(15);
+		gameArena.setRowHeight(30);
 		gameArena.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		gameArena.setRowSelectionAllowed(false);
 

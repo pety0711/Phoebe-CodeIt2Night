@@ -15,7 +15,7 @@ import main.CoordVector;
 public class GameWindow extends JFrame {
 
 	private Arena arena;
-	
+
 	private GamePanel gamePanel;
 	private SideBar rightSideBar;
 	private SideBar leftSideBar;
@@ -47,10 +47,10 @@ public class GameWindow extends JFrame {
 		// Frame
 		setPreferredSize(new Dimension(450, 150));
 		setTitle("Phoebe Game");
-		setResizable(false);
+		setResizable(true);
 		setSize(new Dimension(450, 450));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 450);
+		setBounds(100, 100, 1000, 600);
 		setFocusable(true);
 		this.setLayout(new BorderLayout(0, 0));
 		this.setFocusable(true);
@@ -63,16 +63,16 @@ public class GameWindow extends JFrame {
 
 		// Left side bar
 		leftSideBar = new SideBar(arena.getGamers().get(0));
-		leftSideBar.setSize(new Dimension(100, 100));
-		leftSideBar.setPreferredSize(new Dimension(100, 100));
-		leftSideBar.setMinimumSize(new Dimension(100, 100));
+		// leftSideBar.setSize(new Dimension(100, 100));
+		// leftSideBar.setPreferredSize(new Dimension(100, 100));
+		// leftSideBar.setMinimumSize(new Dimension(100, 100));
 		this.add(leftSideBar, BorderLayout.WEST);
 
 		// Right side Bar
 		rightSideBar = new SideBar(arena.getGamers().get(1));
-		rightSideBar.setSize(new Dimension(100, 100));
-		rightSideBar.setPreferredSize(new Dimension(100, 100));
-		rightSideBar.setMinimumSize(new Dimension(100, 100));
+		// rightSideBar.setSize(new Dimension(100, 100));
+		// rightSideBar.setPreferredSize(new Dimension(100, 100));
+		// rightSideBar.setMinimumSize(new Dimension(100, 100));
 		this.add(rightSideBar, BorderLayout.EAST);
 
 		// Info Bar
@@ -81,6 +81,7 @@ public class GameWindow extends JFrame {
 
 		// Game panel
 		gamePanel = new GamePanel(coord);
+		gamePanel.setMinimumSize(new Dimension(500, 500));
 		this.add(gamePanel, BorderLayout.CENTER);
 
 		// Menu bar
