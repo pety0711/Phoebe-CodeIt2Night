@@ -128,6 +128,10 @@ public class GameEventListener {
 					} else if (hasPutty) {
 						gameWindow.draw(f.getCoord(), "Putty");
 					}
+				} else if ("DangerZone".equals(f.getClass().getSimpleName())) {
+					gameWindow.draw(f.getCoord(), "DangerZone");
+				} else {
+					gameWindow.draw(f.getCoord(), "SafeZone");
 				}
 			}
 		}
