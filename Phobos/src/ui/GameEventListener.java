@@ -64,6 +64,9 @@ public class GameEventListener implements KeyListener {
 		start();
 	}
 
+	/**
+	 * The timer will start and the game will be this long.
+	 */
 	public static void start() {
 		seconds = 0;
 		minutes = 2;
@@ -71,6 +74,9 @@ public class GameEventListener implements KeyListener {
 		timer.start();
 	}
 
+	/**
+	 *The game will end and the winner and points will be shown.
+	 */
 	public static void exit() {
 		timer.stop();
 		ok=false;
@@ -92,6 +98,10 @@ public class GameEventListener implements KeyListener {
 		JOptionPane.showMessageDialog(gameWindow, messageString);
 	}
 
+	
+	/**
+	 * Here we can configure the buttons.
+	 */
 	public void keyPressed(KeyEvent e) {
 
 		if (robots.size() == 2) {
@@ -147,6 +157,10 @@ public class GameEventListener implements KeyListener {
 		}
 	}
 
+	
+	/**
+	 * All the fields which changed will be redrawn.
+	 */
 	private void processArena(ArrayList<Field> fields) {
 		for (Field f : fields) {
 			if (f.hasChanged) {
