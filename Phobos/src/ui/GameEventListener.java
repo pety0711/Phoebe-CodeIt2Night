@@ -65,7 +65,7 @@ public class GameEventListener implements KeyListener {
 	}
 
 	/**
-	 * The timer will start and the game will be this long.
+	 * The timer will start and the game will be this long
 	 */
 	public static void start() {
 		seconds = 0;
