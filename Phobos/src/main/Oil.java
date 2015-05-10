@@ -25,9 +25,10 @@ public class Oil extends Patch{
 	 * @param id the id
 	 */
 	public Oil(String id){
-		lifeTime=5; 
+		lifeTime=30;
 		this.id = id;
 		alive=1;
+		
 	}
 
 	/**
