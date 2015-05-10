@@ -17,9 +17,10 @@ public class GamePanel extends JPanel {
 	private Map<String, String> objectStyle;
 	private JTable gameArena;
 
+	int height = 15;
+	int width = 15;
+	
 	public GamePanel() {
-		int height = 15;
-		int width = 15;
 
 		gameArena = new JTable();
 		gameArena.setRowHeight(15);
@@ -109,7 +110,7 @@ public class GamePanel extends JPanel {
 		 * (5).setCellRenderer(createNewColorRenderer(Color.BLACK));
 		 */
 		if (!type.isEmpty())
-			gameArena.setValueAt(type.charAt(0), coord.getY(), coord.getX());
+			gameArena.setValueAt(type.charAt(0), height-coord.getY()-1, coord.getX());
 
 		gameArena.updateUI();
 		// gameArena.setDefaultRenderer(String.class, new CustomRenderer());
