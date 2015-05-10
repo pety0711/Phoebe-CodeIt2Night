@@ -61,12 +61,12 @@ public class SideBar extends JPanel {
 		oilSupply = new JLabel("0");
 
 		if (robot.id.contains("1")) {
-			image = (new ImageIcon("iron_man.jpg")).getImage();
+			image = (new ImageIcon("robi.png")).getImage();
 			image = image.getScaledInstance(190, 280, 0);
 		}
 
 		else {
-			image = (new ImageIcon("terminator.jpg")).getImage();
+			image = (new ImageIcon("cyanRobi.png")).getImage();
 			image = image.getScaledInstance(190, 190, 0);
 		}
 		imageLabel = new JLabel();
