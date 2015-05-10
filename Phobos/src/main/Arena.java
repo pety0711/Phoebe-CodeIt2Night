@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import ui.GameEventListener;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Arena.
@@ -480,6 +482,13 @@ public class Arena {
 		keys = gamers.keySet();
 		for (String key : keys) {
 			gamers.get(key).takeEffect();
+		}
+
+		// végsõ ellenõrzés, hogy meghalt-e egy robot
+		for (String key : keys) {
+			if (!gamers.get(key).isItAlive) {
+				GameEventListener.exit();
+			}
 		}
 	}
 

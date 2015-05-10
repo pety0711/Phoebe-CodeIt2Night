@@ -2,11 +2,8 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.UIManager;
@@ -47,11 +44,12 @@ public class GamePanel extends JPanel {
 			boolean[] columnEditables = new boolean[] { false, false, false,
 					false, false, false, false, false, false, false, false,
 					false, false, false, false };
-/*
-			boolean[] columnEditables = new boolean[] { true, true, true,
-					true, true, true, true, true, true, true, true,
-					true, true, true, true };
-			*/
+
+			/*
+			 * boolean[] columnEditables = new boolean[] { true, true, true,
+			 * true, true, true, true, true, true, true, true, true, true, true,
+			 * true };
+			 */
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -62,48 +60,62 @@ public class GamePanel extends JPanel {
 			gameArena.getColumnModel().getColumn(i).setResizable(false);
 			gameArena.getColumnModel().getColumn(i).setPreferredWidth(15);
 		}
+		gameArena.setDefaultRenderer(Object.class, new ColorRenderer());
 		this.add(gameArena);
 	}
-		
-	
-	  class ColorRenderer extends DefaultTableCellRenderer 
-	  {
-		  private Color color;
-		  public void setColor(Color cc){
-			  color=cc;
-		  }
-		  
-	      public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
-	      {
-	          Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-	          c.setBackground(color);
-	          return c;
-	      }
-	  }
-	  
-	  ColorRenderer createNewColorRenderer(Color color){
-			ColorRenderer nColor = new ColorRenderer();
-			nColor.setColor(color);
-			return nColor;
+
+	private class ColorRenderer extends DefaultTableCellRenderer {
+		public Component getTableCellRendererComponent(JTable table,
+				Object value, boolean isSelected, boolean hasFocus, int row,
+				int column) {
+			Component c = super.getTableCellRendererComponent(table, "",
+					isSelected, hasFocus, row, column);
+			if (value == null) {
+				return c;
+			}
+			switch (((Character) value).toString().toUpperCase()) {
+			case "S":
+				c.setBackground(Color.GREEN);
+				break;
+			case "D":
+				c.setBackground(Color.RED);
+				break;
+			case "O":
+				c.setBackground(Color.ORANGE);
+				break;
+			case "P":
+				c.setBackground(Color.BLACK);
+				break;
+			default:
+				c.setBackground(Color.MAGENTA);
+				break;
+			}
+			return c;
 		}
-	  
+	}
+
 	public void draw(CoordVector coord, String type) {
 		int x = coord.getX();
 		int y = coord.getY();
 		/*
-		Component c = gameArena.getComponentAt(2,2);
-		c.setBackground(Color.RED);*/
+		 * Component c = gameArena.getComponentAt(2,2);
+		 * c.setBackground(Color.RED);
+		 */
 
-		/*gameArena.getColumnModel().getColumn(3).setCellRenderer(createNewColorRenderer(Color.RED));
-		gameArena.getColumnModel().getColumn(5).setCellRenderer(createNewColorRenderer(Color.BLACK));*/
-		if(!type.isEmpty())
+		/*
+		 * gameArena.getColumnModel().getColumn(3).setCellRenderer(
+		 * createNewColorRenderer(Color.RED));
+		 * gameArena.getColumnModel().getColumn
+		 * (5).setCellRenderer(createNewColorRenderer(Color.BLACK));
+		 */
+		if (!type.isEmpty())
 			gameArena.setValueAt(type.charAt(0), coord.getY(), coord.getX());
 
 		gameArena.updateUI();
-		//gameArena.setDefaultRenderer(String.class, new CustomRenderer());
+		// gameArena.setDefaultRenderer(String.class, new CustomRenderer());
 		// TODO coord megfeleltetése cellának
 		// TODO string megfeleltetése színnek, pl SafeZone -> sárga? DangerZone
 		// -> fekete? vagy akármi, stb...
-		
+
 	}
 }
