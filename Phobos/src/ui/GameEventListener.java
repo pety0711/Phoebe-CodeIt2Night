@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+
+import javax.swing.JOptionPane;
 //import java.util.Timer;
 import javax.swing.Timer;
 
@@ -18,9 +20,9 @@ import main.Robi;
 public class GameEventListener implements KeyListener {
 
 	private Arena mainArena;
-	private ArrayList<Robi> robots;
+	private static ArrayList<Robi> robots;
 
-	public GameWindow gameWindow;
+	public static GameWindow gameWindow;
 	public ActionListener buttonListener;
 	public static Timer timer;
 	private ActionListener taskPerformer;
@@ -72,6 +74,22 @@ public class GameEventListener implements KeyListener {
 	public static void exit() {
 		timer.stop();
 		ok=false;
+		String messageString = "";
+		if (robots.get(0).getPoints() < robots.get(1).getPoints()) {
+				messageString += "Winner is:  " + robots.get(1).id;
+		}else {
+			if (robots.get(0).getPoints() > robots.get(1).getPoints()) {
+				messageString += "Winner is:  " + robots.get(0).id;
+			}else {
+				messageString += "It's a Tie!";
+			}
+		}
+		messageString += "\n";
+		messageString += robots.get(0).id + " has: " + Integer.toString(robots.get(0).getPoints()) + " points";
+		messageString += "\n";
+		messageString += robots.get(1).id + " has: " + Integer.toString(robots.get(1).getPoints()) + " points";
+		
+		JOptionPane.showMessageDialog(gameWindow, messageString);
 	}
 
 	public void keyPressed(KeyEvent e) {
