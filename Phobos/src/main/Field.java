@@ -112,6 +112,7 @@ public abstract class Field {
 			patches.add(putty);
 			arena.registerPatchCoord(coord);
 			haveToAddPutty = false;
+			hasChanged = true;
 		}
 		if (haveToAddOil) {
 			Oil oil = new Oil("O" + nPatches++);
@@ -120,6 +121,7 @@ public abstract class Field {
 			patches.add(oil);
 			arena.registerPatchCoord(coord);
 			haveToAddOil = false;
+			hasChanged = true;
 		}
 	}
 
