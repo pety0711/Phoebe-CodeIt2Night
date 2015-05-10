@@ -95,17 +95,17 @@ public class GamePanel extends JPanel {
 
 			// Oil
 			case "O":
-				c.setBackground(Color.ORANGE);
+				c.setBackground(Color.BLACK);
 				break;
 
 			// Mixed
 			case "M":
-				c.setBackground(Color.ORANGE.brighter());
+				c.setBackground(Color.ORANGE.darker());
 				break;
 
 			// Putty
 			case "P":
-				c.setBackground(Color.BLACK);
+				c.setBackground(Color.ORANGE);
 				break;
 
 			// Player1

@@ -137,28 +137,32 @@ public abstract class Robot {
 	 * The speed will change like this, when we push w or num8.
 	 */
 	public void stepUp() {
-		speed.setY(speed.getY() + 1);
+		if (canChangeSpeed)
+			speed.setY(speed.getY() + 1);
 	}
 
 	/**
 	 * The speed will change like this, when we push s or num2.
 	 */
 	public void stepDown() {
-		speed.setY(speed.getY() - 1);
+		if (canChangeSpeed)
+			speed.setY(speed.getY() - 1);
 	}
 
 	/**
 	 * The speed will change like this, when we push d or num6.
 	 */
 	public void stepRight() {
-		speed.setX(speed.getX() + 1);
+		if (canChangeSpeed)
+			speed.setX(speed.getX() + 1);
 	}
 
 	/**
 	 * The speed will change like this, when we push a or num4.
 	 */
 	public void stepLeft() {
-		speed.setX(speed.getX() - 1);
+		if (canChangeSpeed)
+			speed.setX(speed.getX() - 1);
 	}
 
 	/**
