@@ -28,6 +28,7 @@ public class Arena {
 	/** Coords of patches - temporary. */
 	private ArrayList<CoordVector> patchesCoords;
 
+	
 	/** The gamers. */
 	private HashMap<String, Robi> gamers;
 
@@ -45,7 +46,9 @@ public class Arena {
 	private int rCounter = 0;
 	private int kCounter = 0;
 	private int tickCounter = 0;
-
+	private Arena backup;
+	
+	
 	private static AtomicInteger idCounter = new AtomicInteger();
 
 	public static String createID() {
@@ -83,8 +86,15 @@ public class Arena {
 		patchesCoords = new ArrayList<CoordVector>();
 		fields = new ArrayList<Field>();
 		generateFields();
+		try{
+		backup = (Arena)this.clone();}
+		catch(Exception ex){}
+		
 	}
-
+	public static Arena restart(){
+		return new Arena("main","map.csv");
+	}
+	
 	/**
 	 * Generate fields.
 	 *
