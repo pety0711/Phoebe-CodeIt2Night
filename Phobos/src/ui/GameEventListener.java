@@ -80,16 +80,17 @@ public class GameEventListener implements KeyListener {
 	public void start() {
 		seconds = 0;
 		minutes = 2;
-		if(!ok){
-			Initialize(Arena.restart());
-			ok=false;
+		if (!ok) {
+			mainArena = Arena.restart();
+			robots = mainArena.getGamers();
+			ok = false;
 		}
 		timer.start();
 	}
 
 	public void exit() {
 		timer.stop();
-		ok=false;
+		ok = false;
 		String messageString = "";
 		if (robots.get(0).getPoints() < robots.get(1).getPoints()) {
 			messageString += "Winner is:  " + robots.get(1).id;
