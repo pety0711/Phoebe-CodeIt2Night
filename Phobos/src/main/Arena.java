@@ -493,7 +493,7 @@ public class Arena {
 			}
 		}
 		tickCounter++;
-		if(tickCounter/28==0){
+		if(tickCounter%28==0){
 			Field f;
 			do {
 				f = fields.get(new Random().nextInt(fields.size()));
