@@ -67,7 +67,6 @@ public class GameEventListener implements KeyListener {
 
 		timer = new Timer(1000, taskPerformer);
 		timer.setRepeats(true);
-		start();
 	}
 
 	public static GameEventListener getInstance() {
